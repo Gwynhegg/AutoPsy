@@ -10,7 +10,9 @@
 
             <StackLayout x:Name="PolicyView" IsVisible="false">
                 <Image BackgroundColor="Aqua"></Image>
-                <ScrollView></ScrollView>
+                <ScrollView>
+                        <Label x:Name="PolicyText"></Label>
+                </ScrollView>
                 <Button x:Name="AcceptPolicy" Text="Принять" Clicked ="AcceptPolicy_Clicked"></Button>
             </StackLayout>
         </StackLayout>

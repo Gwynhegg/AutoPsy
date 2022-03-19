@@ -28,14 +28,14 @@
                 </Grid.ColumnDefinitions>
 
                 <Button x:Name="HideRegisterForm" Text="X" Grid.Row="0" Grid.Column="1" Clicked="HideRegisterForm_Clicked" HorizontalOptions="End"></Button>
-                <Entry x:Name="SurnameEntry" Text="Фамилия" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></Entry>
-                <Entry x:Name="NameEntry" Text="Имя" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"></Entry>
-                <Entry x:Name="PatronymicEntry" Text="Отчество" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"></Entry>
+                <Entry x:Name="SurnameEntry" Text="Фамилия" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Focused="SurnameEntry_Focused" Unfocused="SurnameEntry_Unfocused"></Entry>
+                <Entry x:Name="NameEntry" Text="Имя" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Focused="NameEntry_Focused" Unfocused="NameEntry_Unfocused"></Entry>
+                <Entry x:Name="PatronymicEntry" Text="Отчество" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Focused="PatronymicEntry_Focused" Unfocused="PatronymicEntry_Unfocused"></Entry>
                 <DatePicker x:Name="BirthDate" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"></DatePicker>
                 <StackLayout x:Name="GenderFrame" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
-                    <RadioButton x:Name="MaleOption" Content="Мужской пол"></RadioButton>
-                    <RadioButton x:Name="FemaleOption" Content="Женский пол"></RadioButton>
-                    <RadioButton x:Name="NonOption" Content="Не указывать"></RadioButton>
+                    <RadioButton x:Name="MaleOption" Content="Мужской пол" CheckedChanged="Option_CheckedChanged"></RadioButton>
+                    <RadioButton x:Name="FemaleOption" Content="Женский пол" CheckedChanged="Option_CheckedChanged"></RadioButton>
+                    <RadioButton x:Name="NonOption" Content="Не указывать" IsChecked="True" CheckedChanged="Option_CheckedChanged"></RadioButton>
                 </StackLayout>
                 <CheckBox x:Name="HasExperience" Grid.Row="6" Grid.Column="1" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"></CheckBox>
                 <Label Text="Имеется ли у вас опыт лечения?" Grid.Row="6" Grid.Column="0" VerticalTextAlignment="Center"></Label>

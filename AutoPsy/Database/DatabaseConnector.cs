@@ -25,8 +25,14 @@ namespace AutoPsy.Database
 
         public bool IsTableExisted(string tableName)
         {
-            var t = databaseInstance.sqliteConnection.GetTableInfo(tableName);
+            var t = this.sqliteConnection.GetTableInfo(tableName);
             if (t.Count == 0) return false; else return true;
+        }
+
+        public void CreateAndInsertData(object item)
+        {
+            this.sqliteConnection.CreateTable(item.GetType());
+            this.sqliteConnection.Insert(item);
         }
     }
 }

@@ -98,7 +98,6 @@ namespace AutoPsy.Database.Entities
         }
 
         private string hashPassword;
-        [NotNull]
         public string HashPassword
         {
             get
