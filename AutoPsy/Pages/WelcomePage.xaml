@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPsy.Pages.WelcomePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ContentView x:Name="LoadingView" IsVisible="true">
+                <Image BackgroundColor="#862727"></Image>
+            </ContentView>
+
+            <StackLayout x:Name="PolicyView" IsVisible="false">
+                <Image BackgroundColor="Aqua"></Image>
+                <ScrollView></ScrollView>
+                <Button x:Name="AcceptPolicy" Text="Принять" Clicked ="AcceptPolicy_Clicked"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
