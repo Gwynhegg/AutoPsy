@@ -9,6 +9,7 @@ namespace AutoPsy.Database
     {
         private SQLiteConnection sqliteConnection;
         private static DatabaseConnector databaseInstance;
+        public int currentConnectedUser { get; private set; }
         private DatabaseConnector()
         {
             var databaseName = "userdata.db3";
@@ -25,6 +26,7 @@ namespace AutoPsy.Database
 
         public bool IsTableExisted(string tableName)
         {
+            this.sqliteConnection.DropTable<Entities.User>();
             var t = this.sqliteConnection.GetTableInfo(tableName);
             if (t.Count == 0) return false; else return true;
         }
@@ -33,6 +35,8 @@ namespace AutoPsy.Database
         {
             this.sqliteConnection.CreateTable(item.GetType());
             this.sqliteConnection.Insert(item);
+
+            if (item is Entities.User) currentConnectedUser = (item as Entities.User).Id;
         }
     }
 }

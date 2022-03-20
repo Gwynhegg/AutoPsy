@@ -39,6 +39,16 @@ namespace AutoPsy.Database.Entities
             user.Gender = gender;
         }
 
+        public void SetBirtdDate(DateTime date)
+        {
+            user.BirthDate = date;
+        }
+
+        public User GetUser()
+        {
+            return user;
+        }
+
         public bool CheckCorrectness()
         {
             if (user.PersonName != "" && user.PersonSurname != "") return true; else return false;

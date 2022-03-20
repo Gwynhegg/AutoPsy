@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.WelcomePage">
     <ContentPage.Content>
         <StackLayout>
@@ -11,9 +12,9 @@
             <StackLayout x:Name="PolicyView" IsVisible="false">
                 <Image BackgroundColor="Aqua"></Image>
                 <ScrollView>
-                        <Label x:Name="PolicyText"></Label>
+                    <Label x:Name="PolicyText" Text="{x:Static res:PrivacyPolicy.MainText}"></Label>
                 </ScrollView>
-                <Button x:Name="AcceptPolicy" Text="Принять" Clicked ="AcceptPolicy_Clicked"></Button>
+                <Button x:Name="AcceptPolicy" Text="{x:Static res:PrivacyPolicy.Accept}" Clicked ="AcceptPolicy_Clicked"></Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
