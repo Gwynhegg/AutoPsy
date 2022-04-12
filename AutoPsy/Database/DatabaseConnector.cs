@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 namespace AutoPsy.Database
 {
@@ -26,6 +27,7 @@ namespace AutoPsy.Database
 
         public bool IsTableExisted(string tableName)
         {
+            // ЗАГЛУШКА ДЛЯ ПРОВЕРКИ РЕГИСТРАЦИИ
             this.sqliteConnection.DropTable<Entities.User>();
             var t = this.sqliteConnection.GetTableInfo(tableName);
             if (t.Count == 0) return false; else return true;

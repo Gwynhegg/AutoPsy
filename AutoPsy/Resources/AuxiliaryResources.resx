@@ -117,28 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add" xml:space="preserve">
-    <value>Добавить</value>
+  <data name="AlertMessage" xml:space="preserve">
+    <value>Упс!</value>
   </data>
-  <data name="Clinic" xml:space="preserve">
-    <value>Клиника</value>
+  <data name="ButtonOK" xml:space="preserve">
+    <value>ОК</value>
   </data>
-  <data name="Diagnosis" xml:space="preserve">
-    <value>Диагноз</value>
+  <data name="ExperienceAlertMessage" xml:space="preserve">
+    <value>Кажется, вы забыли указать дату и диагноз</value>
   </data>
-  <data name="Doctor" xml:space="preserve">
-    <value>Лечащий врач</value>
+  <data name="MedicineMessage" xml:space="preserve">
+    <value>Кажется, вы неправильно указали дозировку</value>
   </data>
-  <data name="Dosage" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="Medicine" xml:space="preserve">
-    <value>Препараты</value>
-  </data>
-  <data name="NameOfMedicine" xml:space="preserve">
-    <value>Название препарата</value>
-  </data>
-  <data name="Score" xml:space="preserve">
-    <value>Оценка приема</value>
+  <data name="RegisterAlertMessage" xml:space="preserve">
+    <value>Кажется, вы забыли указать имя и фамилию</value>
   </data>
 </root>

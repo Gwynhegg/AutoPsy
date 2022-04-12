@@ -22,24 +22,24 @@ namespace AutoPsy.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class UserExperienceDefault {
+    internal class AuxiliaryResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal UserExperienceDefault() {
+        internal AuxiliaryResources() {
         }
         
         /// <summary>
         ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.UserExperienceDefault", typeof(UserExperienceDefault).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.AuxiliaryResources", typeof(AuxiliaryResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace AutoPsy.Resources {
         ///   обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,74 +61,47 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Добавить.
+        ///   Ищет локализованную строку, похожую на Упс!.
         /// </summary>
-        public static string Add {
+        internal static string AlertMessage {
             get {
-                return ResourceManager.GetString("Add", resourceCulture);
+                return ResourceManager.GetString("AlertMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Клиника.
+        ///   Ищет локализованную строку, похожую на ОК.
         /// </summary>
-        public static string Clinic {
+        internal static string ButtonOK {
             get {
-                return ResourceManager.GetString("Clinic", resourceCulture);
+                return ResourceManager.GetString("ButtonOK", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Диагноз.
+        ///   Ищет локализованную строку, похожую на Кажется, вы забыли указать дату и диагноз.
         /// </summary>
-        public static string Diagnosis {
+        internal static string ExperienceAlertMessage {
             get {
-                return ResourceManager.GetString("Diagnosis", resourceCulture);
+                return ResourceManager.GetString("ExperienceAlertMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Лечащий врач.
+        ///   Ищет локализованную строку, похожую на Кажется, вы неправильно указали дозировку.
         /// </summary>
-        public static string Doctor {
+        internal static string MedicineMessage {
             get {
-                return ResourceManager.GetString("Doctor", resourceCulture);
+                return ResourceManager.GetString("MedicineMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на 0.
+        ///   Ищет локализованную строку, похожую на Кажется, вы забыли указать имя и фамилию.
         /// </summary>
-        public static string Dosage {
+        internal static string RegisterAlertMessage {
             get {
-                return ResourceManager.GetString("Dosage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Препараты.
-        /// </summary>
-        public static string Medicine {
-            get {
-                return ResourceManager.GetString("Medicine", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Название препарата.
-        /// </summary>
-        public static string NameOfMedicine {
-            get {
-                return ResourceManager.GetString("NameOfMedicine", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Оценка приема.
-        /// </summary>
-        public static string Score {
-            get {
-                return ResourceManager.GetString("Score", resourceCulture);
+                return ResourceManager.GetString("RegisterAlertMessage", resourceCulture);
             }
         }
     }

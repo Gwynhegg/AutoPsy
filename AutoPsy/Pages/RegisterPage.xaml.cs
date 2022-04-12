@@ -44,7 +44,7 @@ namespace AutoPsy.Pages
             }
             else
             {
-                await DisplayAlert("Упс!", "Кажется, вы забыли указать имя или фамилию", "ОК");
+                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.RegisterAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
             }
         }
 
@@ -55,17 +55,17 @@ namespace AutoPsy.Pages
 
         private void SurnameEntry_Focused(object sender, FocusEventArgs e)
         {
-            SurnameEntry.Text = "";
+            if (SurnameEntry.Text == AutoPsy.Resources.UserDefault.UserSurname) SurnameEntry.Text = "";
         }
 
         private void NameEntry_Focused(object sender, FocusEventArgs e)
         {
-            NameEntry.Text = "";
+            if (NameEntry.Text == AutoPsy.Resources.UserDefault.UserName) NameEntry.Text = "";
         }
 
         private void PatronymicEntry_Focused(object sender, FocusEventArgs e)
         {
-            PatronymicEntry.Text = "";
+            if (PatronymicEntry.Text == AutoPsy.Resources.UserDefault.UserPatronymic) PatronymicEntry.Text = "";
         }
 
         private void SurnameEntry_Unfocused(object sender, FocusEventArgs e)

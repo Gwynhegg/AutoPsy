@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,19 +13,22 @@ namespace AutoPsy.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PrimaryUserExperiencePage : ContentPage
     {
-        private List<Database.Entities.UserExperience> experienceList;
-        private List<CustomComponents.UserExperiencePanel> experiencePages;
+        private ObservableCollection<Database.Entities.UserExperience> experiencePages;
         public PrimaryUserExperiencePage()
         {
             InitializeComponent();
-
-            experienceList = new List<Database.Entities.UserExperience>();
-            experiencePages = new List<CustomComponents.UserExperiencePanel>();
+            experiencePages = new ObservableCollection<Database.Entities.UserExperience>();
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new UserExperienceEditorPage());
+            await Navigation.PushModalAsync(new UserExperienceEditorPage(this));
+        }
+
+        public void SynchronizeContentPages(CustomComponents.UserExperiencePanel experiencePanel)
+        {
+            experiencePages.Add(experiencePanel.experienceHandler.GetUserExperience());
+            ExperienceCarouselView.ItemsSource = experiencePages;
         }
     }
 }

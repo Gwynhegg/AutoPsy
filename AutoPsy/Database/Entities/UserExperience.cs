@@ -39,7 +39,7 @@ namespace AutoPsy.Database.Entities
             }
         }
 
-        private string nameOfClinic;
+        private string nameOfClinic = "Не указано";
         public string NameOfClinic
         {
             get
@@ -48,12 +48,12 @@ namespace AutoPsy.Database.Entities
             }
             set
             {
-                this.NameOfClinic = value;
+                this.nameOfClinic = value;
                 OnPropertyChanged(nameof(NameOfClinic));
             }
         }
 
-        private string treatingDoctor;
+        private string treatingDoctor = "Не указано";
         public string TreatingDoctor
         {
             get
@@ -97,17 +97,17 @@ namespace AutoPsy.Database.Entities
             }
         }
 
-        private List<Medicine> listOfMedicine;
-        public List<Medicine> ListOfMedicine
+        private string indexOfMedicine;
+        public string IndexOfMedicine
         {
             get
             {
-                return listOfMedicine;
+                return indexOfMedicine;
             }
             set
             {
-                this.listOfMedicine = value;
-                OnPropertyChanged(nameof(ListOfMedicine));
+                this.indexOfMedicine = value;
+                OnPropertyChanged(nameof(IndexOfMedicine));
             }
         }
 

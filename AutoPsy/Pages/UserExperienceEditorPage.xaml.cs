@@ -13,17 +13,28 @@ namespace AutoPsy.Pages
     public partial class UserExperienceEditorPage : ContentPage
     {
         CustomComponents.UserExperiencePanel experiencePanel;
-        public UserExperienceEditorPage()
+        private PrimaryUserExperiencePage parentPage;
+        public UserExperienceEditorPage(PrimaryUserExperiencePage parentPage)
         {
             InitializeComponent();
+            this.parentPage = parentPage;
             experiencePanel = new CustomComponents.UserExperiencePanel(enabled: true);
             CurrentItem.Children.Insert(0, experiencePanel); 
-
         }
 
-        private void SaveAndReturn_Clicked(object sender, EventArgs e)
+        private async void SaveAndReturn_Clicked(object sender, EventArgs e)
         {
-            experiencePanel.TrySave();
+            try
+            {
+                experiencePanel.TrySave();
+                parentPage.SynchronizeContentPages(experiencePanel);
+                await Navigation.PopModalAsync();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.ExperienceAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
+            }
+
 
         }
     }
