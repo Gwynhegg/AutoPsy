@@ -27,8 +27,44 @@ namespace AutoPsy.Pages
 
         public void SynchronizeContentPages(CustomComponents.UserExperiencePanel experiencePanel)
         {
-            experiencePages.Add(experiencePanel.experienceHandler.GetUserExperience());
+            var addedExperience = experiencePanel.experienceHandler.GetUserExperience();
+            int indexOfElement = experiencePages.IndexOf(experiencePages.Where(x => x.Id == addedExperience.Id).FirstOrDefault());
+
+            if (indexOfElement == -1)
+                experiencePages.Add(experiencePanel.experienceHandler.GetUserExperience());
+            else
+                experiencePages[indexOfElement] = addedExperience;
+
             ExperienceCarouselView.ItemsSource = experiencePages;
+        }
+
+        private async void EditButton_Clicked(object sender, EventArgs e)
+        {
+
+            if (experiencePages.Count == 0)
+            {
+                await DisplayAlert("Упс!", "Пока у вас нет записей для редактирования", "OK");
+                return;
+            }
+            var temp = ExperienceCarouselView.CurrentItem as AutoPsy.Database.Entities.UserExperience;
+
+            if (temp != null) await Navigation.PushModalAsync(new UserExperienceEditorPage(this, temp));
+        }
+
+        private async void DeleteButton_Clicked(object sender, EventArgs e)
+        {
+            if (experiencePages.Count == 0)
+            {
+                await DisplayAlert("Упс!", "Пока у вас нет записей для удаления", "OK");
+                return;
+            }
+
+            var temp = ExperienceCarouselView.CurrentItem as AutoPsy.Database.Entities.UserExperience;
+
+            experiencePages.Remove(temp);
+            ExperienceCarouselView.ItemsSource = experiencePages;
+
+            if (temp != null) Database.DatabaseConnector.GetDatabaseConnector().DeleteData(temp);
         }
     }
 }

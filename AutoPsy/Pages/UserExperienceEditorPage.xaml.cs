@@ -22,6 +22,14 @@ namespace AutoPsy.Pages
             CurrentItem.Children.Insert(0, experiencePanel); 
         }
 
+        public UserExperienceEditorPage(PrimaryUserExperiencePage parentPage, Database.Entities.UserExperience userExperience)
+        {
+            InitializeComponent();
+            this.parentPage = parentPage;
+            experiencePanel = new CustomComponents.UserExperiencePanel(enabled: true, userExperience);
+            CurrentItem.Children.Insert(0, experiencePanel);
+        }
+
         private async void SaveAndReturn_Clicked(object sender, EventArgs e)
         {
             try

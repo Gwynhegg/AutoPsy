@@ -16,9 +16,9 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
 
             </Grid.ColumnDefinitions>
-            <Button Text="+" Clicked="Button_Clicked" Grid.Row="0" Grid.Column="3"></Button>
-            <Button Text="E" Grid.Row="0" Grid.Column="2"></Button>
-            <Button Text="D" Grid.Row="0" Grid.Column="1"></Button>
+            <Button x:Name="AddButton" Text="+" Clicked="Button_Clicked" Grid.Row="0" Grid.Column="3"></Button>
+            <Button x:Name="EditButton" Text="E" Grid.Row="0" Grid.Column="2" Clicked="EditButton_Clicked"></Button>
+            <Button x:Name="DeleteButton" Text="D" Grid.Row="0" Grid.Column="1" Clicked="DeleteButton_Clicked"></Button>
             <CarouselView x:Name="ExperienceCarouselView" Loop="False" Margin="10, 10, 10, 10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>

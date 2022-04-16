@@ -10,6 +10,7 @@ namespace AutoPsy.Database.Entities
     {
         private UserExperience userExperience;
         private ObservableCollection<Database.Entities.Medicine> listOfMedicine;
+        public byte stateMode { get; set; } = 0;
 
         public UserExperienceHandler(int userId)
         {
@@ -18,6 +19,12 @@ namespace AutoPsy.Database.Entities
             userExperience.Diagnosis = "";
             listOfMedicine = new ObservableCollection<Medicine>();
         }
+
+        public void CopyUserExperience(UserExperience userExperience)
+        {
+            this.userExperience = (UserExperience)userExperience.Clone();
+        }
+
 
         public void AddNameOfClinic(string nameOfClinic)
         {
@@ -95,10 +102,30 @@ namespace AutoPsy.Database.Entities
             foreach (Medicine medicine in listOfMedicine)
             {
                 string temp = String.Join("/", medicine.NameOfMedicine, medicine.Dosage);
-                codifiedMedicine += String.Concat(temp, "\\");
+                codifiedMedicine += String.Concat(temp, '\\');
             }
             userExperience.IndexOfMedicine = codifiedMedicine;
-            DatabaseConnector.GetDatabaseConnector().CreateAndInsertData(userExperience);
+
+            if (stateMode == 0)
+                DatabaseConnector.GetDatabaseConnector().CreateAndInsertData(userExperience);
+            else
+                DatabaseConnector.GetDatabaseConnector().UpdateData(userExperience);
+        }
+
+        public void DeleteExperienceRecord()
+        {
+
+        }
+
+        public void RecreateListOfMedicine(Database.Entities.UserExperience userExperience)
+        {
+            string[] medicineRequest = userExperience.IndexOfMedicine.Split('\\');
+
+            foreach (string subRequest in medicineRequest)
+            {
+                string[] tempString = subRequest.Split('/');
+                if (tempString.Length == 2) listOfMedicine.Add(new Medicine() { NameOfMedicine = tempString[0], Dosage = Double.Parse(tempString[1]) });
+            }
         }
     }
 }

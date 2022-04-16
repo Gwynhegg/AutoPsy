@@ -7,7 +7,7 @@ using System.Text;
 namespace AutoPsy.Database.Entities
 {
     [Table("UserExperience")]
-    public class UserExperience : INotifyPropertyChanged
+    public class UserExperience : INotifyPropertyChanged, ICloneable
     {
         private int id;
         [PrimaryKey, AutoIncrement]
@@ -131,6 +131,20 @@ namespace AutoPsy.Database.Entities
         {
             this.PropertyChanged?.Invoke(this,
               new PropertyChangedEventArgs(propertyName));
+        }
+
+        public object Clone()
+        {
+            UserExperience clone = new UserExperience();
+            clone.id = this.id;
+            clone.appointment = this.appointment;
+            clone.nameOfClinic = String.Copy(this.nameOfClinic);
+            clone.indexOfMedicine = String.Copy(this.indexOfMedicine);
+            clone.treatingDoctor = String.Copy(this.treatingDoctor);
+            clone.diagnosis = String.Copy(this.diagnosis);
+            clone.score = this.score;
+            clone.userId = this.userId;
+            return clone;
         }
     }
 }

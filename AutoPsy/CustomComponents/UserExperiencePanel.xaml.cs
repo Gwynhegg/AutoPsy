@@ -19,7 +19,30 @@ namespace AutoPsy.CustomComponents
             this.Children.All(x => x.IsEnabled = enabled);
 
             var currentUser = Database.DatabaseConnector.GetDatabaseConnector().currentConnectedUser;
-            experienceHandler = new Database.Entities.UserExperienceHandler(currentUser);
+            experienceHandler = new Database.Entities.UserExperienceHandler(currentUser) { stateMode = 0};
+        }
+
+        public UserExperiencePanel(bool enabled, Database.Entities.UserExperience userExperience)
+        {
+            InitializeComponent();
+            this.Children.All(x => x.IsEnabled = enabled);
+
+            var currentUser = Database.DatabaseConnector.GetDatabaseConnector().currentConnectedUser;
+            experienceHandler = new Database.Entities.UserExperienceHandler(currentUser) { stateMode = 1};
+            SynchronizeData(userExperience);
+        }
+
+        private void SynchronizeData(Database.Entities.UserExperience userExperience)
+        {
+            experienceHandler.CopyUserExperience(userExperience);
+
+            ClinicEntry.Text = userExperience.NameOfClinic;
+            DoctorEntry.Text = userExperience.TreatingDoctor;
+            DiagnosisEntry.Text = userExperience.Diagnosis;
+            ScoreSlider.Value = userExperience.Score;
+            experienceHandler.RecreateListOfMedicine(userExperience);
+            ListOfMedicine.ItemsSource = experienceHandler.GetMedicine();
+            
         }
 
         public void TrySave()

@@ -40,5 +40,16 @@ namespace AutoPsy.Database
 
             if (item is Entities.User) currentConnectedUser = (item as Entities.User).Id;
         }
+
+        public void UpdateData(object item)
+        {
+            this.sqliteConnection.CreateTable(item.GetType());
+            this.sqliteConnection.Update(item);
+        }
+
+        public void DeleteData(object item)
+        {
+            this.sqliteConnection.Delete(item);
+        }
     }
 }

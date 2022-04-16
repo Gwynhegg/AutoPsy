@@ -40,6 +40,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>PrivacyPolicy.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\TableNames.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TableNames.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\UserDefault.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -75,6 +80,10 @@
     <EmbeddedResource Update="Resources\PrivacyPolicy.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PrivacyPolicy.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\TableNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TableNames.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\UserDefault.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
