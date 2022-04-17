@@ -15,17 +15,13 @@ namespace AutoPsy.Pages
         public WelcomePage()
         {
             InitializeComponent();
-            var databaseConnector = Database.DatabaseConnector.GetDatabaseConnector();
-            var usersExisted = databaseConnector.IsTableExisted("Users");
+            var usersExisted = App.Connector.IsTableExisted<Database.Entities.User>();
+
             if (usersExisted)
-            {
-                NavigateToLoginPage();
-                return;
-            }
+                Navigation.PushModalAsync(new CheckPasswordPage());
             else SetPrivacyPoliceView();
         }
 
-        private async void NavigateToLoginPage() => await Navigation.PushModalAsync(new Pages.LogInPage());
         private async void AcceptPolicy_Clicked(object sender, EventArgs e) => await Navigation.PushModalAsync(new Pages.RegisterPage());
         private void SetPrivacyPoliceView()
         {

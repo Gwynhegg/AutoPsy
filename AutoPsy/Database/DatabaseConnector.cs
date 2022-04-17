@@ -1,55 +1,76 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.ComponentModel;
+using System.IO;
 
 namespace AutoPsy.Database
 {
-    public sealed class DatabaseConnector
+    public class DatabaseConnector
     {
-        private SQLiteConnection sqliteConnection;
-        private static DatabaseConnector databaseInstance;
+        readonly SQLiteConnection sqliteConnection;
         public int currentConnectedUser { get; private set; }
-        private DatabaseConnector()
+        public DatabaseConnector()
         {
-            var databaseName = "userdata.db3";
-            var path = System.IO.Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), databaseName);
-            this.sqliteConnection = new SQLiteConnection(path);
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Const.Constants.DATABASE_NAME);
+            var flags =
+                SQLite.SQLiteOpenFlags.ReadWrite |
+                SQLite.SQLiteOpenFlags.Create |
+                SQLite.SQLiteOpenFlags.SharedCache;
+
+            this.sqliteConnection = new SQLiteConnection(path, flags);
         }
 
-        public static DatabaseConnector GetDatabaseConnector()
-        {
-            if (databaseInstance == null)
-                databaseInstance = new DatabaseConnector();
-            return databaseInstance;
-        }
-
-        public bool IsTableExisted(string tableName)
+        public bool IsTableExisted<T>() where T : new()
         {
             // ЗАГЛУШКА ДЛЯ ПРОВЕРКИ РЕГИСТРАЦИИ
-            this.sqliteConnection.DropTable<Entities.User>();
-            var t = this.sqliteConnection.GetTableInfo(tableName);
-            if (t.Count == 0) return false; else return true;
+            //this.sqliteConnection.DropTable<Entities.User>();
+
+            try
+            {
+                object result = SelectData<T>(1);
+
+                if (result is Entities.User) currentConnectedUser = (result as Entities.User).Id;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public void CreateAndInsertData(object item)
+        public void CreateAndInsertData<T>(object item)
         {
-            this.sqliteConnection.CreateTable(item.GetType());
+            var t = this.sqliteConnection.CreateTable<T>();
             this.sqliteConnection.Insert(item);
 
             if (item is Entities.User) currentConnectedUser = (item as Entities.User).Id;
+
         }
 
-        public void UpdateData(object item)
+        public void UpdateData<T>(object item)
         {
-            this.sqliteConnection.CreateTable(item.GetType());
+            this.sqliteConnection.CreateTable<T>();
             this.sqliteConnection.Update(item);
         }
 
         public void DeleteData(object item)
         {
             this.sqliteConnection.Delete(item);
+        }
+
+        public object SelectData<T>(int ID) where T : new()
+        {
+            return this.sqliteConnection.Find<T>(ID);
+        }
+
+        public List<T> SelectAll<T>() where T : new()
+        {
+            return this.sqliteConnection.Table<T>().ToList();
+        }
+
+        public void CloseConnection()
+        {
+            this.sqliteConnection.Close();
         }
     }
 }

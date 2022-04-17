@@ -107,9 +107,9 @@ namespace AutoPsy.Database.Entities
             userExperience.IndexOfMedicine = codifiedMedicine;
 
             if (stateMode == 0)
-                DatabaseConnector.GetDatabaseConnector().CreateAndInsertData(userExperience);
+                App.Connector.CreateAndInsertData<UserExperience>(userExperience);
             else
-                DatabaseConnector.GetDatabaseConnector().UpdateData(userExperience);
+                App.Connector.UpdateData<UserExperience>(userExperience);
         }
 
         public void DeleteExperienceRecord()

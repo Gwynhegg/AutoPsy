@@ -27,13 +27,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Pages\LogInPage.xaml.cs">
-      <DependentUpon>LogInPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Resources\AuxiliaryResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AuxiliaryResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\PasswordDefault.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PasswordDefault.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\PrivacyPolicy.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -61,6 +63,15 @@
     <EmbeddedResource Update="CustomComponents\UserExperiencePanel.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\CheckPasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\CreatePasswordPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\PrimaryUserExperiencePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -76,6 +87,10 @@
     <EmbeddedResource Update="Resources\AuxiliaryResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AuxiliaryResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\PasswordDefault.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PasswordDefault.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\PrivacyPolicy.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

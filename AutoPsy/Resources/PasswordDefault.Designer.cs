@@ -22,24 +22,24 @@ namespace AutoPsy.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class TableNames {
+    public class PasswordDefault {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal TableNames() {
+        internal PasswordDefault() {
         }
         
         /// <summary>
         ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.TableNames", typeof(TableNames).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.PasswordDefault", typeof(PasswordDefault).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace AutoPsy.Resources {
         ///   обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,20 +61,29 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на UserExperience.
+        ///   Ищет локализованную строку, похожую на Придумайте пароль для доступа к аккаунту.
         /// </summary>
-        internal static string UserExperience {
+        public static string FirstStep {
             get {
-                return ResourceManager.GetString("UserExperience", resourceCulture);
+                return ResourceManager.GetString("FirstStep", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на User.
+        ///   Ищет локализованную строку, похожую на Сбросить.
         /// </summary>
-        internal static string Users {
+        public static string Reset {
             get {
-                return ResourceManager.GetString("Users", resourceCulture);
+                return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Подтвердите пароль.
+        /// </summary>
+        public static string SecondStep {
+            get {
+                return ResourceManager.GetString("SecondStep", resourceCulture);
             }
         }
     }

@@ -18,7 +18,7 @@ namespace AutoPsy.CustomComponents
             InitializeComponent();
             this.Children.All(x => x.IsEnabled = enabled);
 
-            var currentUser = Database.DatabaseConnector.GetDatabaseConnector().currentConnectedUser;
+            var currentUser = App.Connector.currentConnectedUser;
             experienceHandler = new Database.Entities.UserExperienceHandler(currentUser) { stateMode = 0};
         }
 
@@ -27,7 +27,7 @@ namespace AutoPsy.CustomComponents
             InitializeComponent();
             this.Children.All(x => x.IsEnabled = enabled);
 
-            var currentUser = Database.DatabaseConnector.GetDatabaseConnector().currentConnectedUser;
+            var currentUser = App.Connector.currentConnectedUser;
             experienceHandler = new Database.Entities.UserExperienceHandler(currentUser) { stateMode = 1};
             SynchronizeData(userExperience);
         }

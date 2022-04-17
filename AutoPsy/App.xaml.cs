@@ -6,6 +6,17 @@ namespace AutoPsy
 {
     public partial class App : Application
     {
+        private static Database.DatabaseConnector connector;
+        public static Database.DatabaseConnector Connector
+        {
+            get
+            {
+                if (connector == null)
+                    connector = new Database.DatabaseConnector();
+                return connector;
+            }
+        }
+
         public App()
         {
             InitializeComponent();

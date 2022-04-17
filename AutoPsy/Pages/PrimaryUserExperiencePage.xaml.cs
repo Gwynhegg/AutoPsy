@@ -64,7 +64,12 @@ namespace AutoPsy.Pages
             experiencePages.Remove(temp);
             ExperienceCarouselView.ItemsSource = experiencePages;
 
-            if (temp != null) Database.DatabaseConnector.GetDatabaseConnector().DeleteData(temp);
+            if (temp != null) App.Connector.DeleteData(temp);
+        }
+
+        private async void MoveForward_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new CreatePasswordPage());
         }
     }
 }

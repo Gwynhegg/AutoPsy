@@ -56,7 +56,7 @@ namespace AutoPsy.Database.Entities
 
         public void CreateUserInfo()
         {
-            DatabaseConnector.GetDatabaseConnector().CreateAndInsertData(user);
+            App.Connector.CreateAndInsertData<User>(user);
         }
     }
 }

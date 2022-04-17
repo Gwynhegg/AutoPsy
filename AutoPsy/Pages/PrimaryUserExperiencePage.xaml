@@ -50,7 +50,7 @@
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
-            <Button x:Name="MoveForward" Text="Далее" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4"></Button>
+            <Button x:Name="MoveForward" Text="Далее" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Clicked="MoveForward_Clicked"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

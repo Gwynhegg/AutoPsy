@@ -37,10 +37,9 @@ namespace AutoPsy.Pages
             {
                 userHandler.CreateUserInfo();
                 if (HasExperience.IsChecked)
-                {
-                    PrimaryUserExperiencePage experiencePage = new PrimaryUserExperiencePage();
-                    await Navigation.PushModalAsync(experiencePage);
-                }
+                    await Navigation.PushModalAsync(new PrimaryUserExperiencePage());
+                else
+                    await Navigation.PushModalAsync(new CreatePasswordPage());
             }
             else
             {
