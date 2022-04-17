@@ -17,6 +17,7 @@ namespace AutoPsy.Pages
         {
             InitializeComponent();
             userHandler = new Database.Entities.UserHandler();
+            userHandler.SetBirtdDate(DateTime.Now);
         }
 
         private void Register_Clicked(object sender, EventArgs e)

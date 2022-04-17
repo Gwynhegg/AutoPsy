@@ -1,9 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AutoPsy.Pages.MainPage">
+            xmlns:profile ="clr-namespace:AutoPsy.Pages.ProfilePages"
+            xmlns:diary="clr-namespace:AutoPsy.Pages.DiaryPages"
+            xmlns:table="clr-namespace:AutoPsy.Pages.TablePages"
+            xmlns:report="clr-namespace:AutoPsy.Pages.ReportPages"
+            xmlns:root="clr-namespace:AutoPsy.Pages.MainPages"
+    x:Class="AutoPsy.Pages.MainPage">
   <!--Pages can be added as references or inline-->
-  <ContentPage Title="Tab 1" />
-  <ContentPage Title="Tab 2" />
-  <ContentPage Title="Tab 3" />
+  <profile:ProfilePage Title="Профиль" />
+  <diary:DiaryPage Title="Дневник" />
+  <root:RootPage Title="Главная" />
+  <table:TablePage Title="Таблица" />
+  <report:ReportPage Title="Отчёт" />
 </TabbedPage>

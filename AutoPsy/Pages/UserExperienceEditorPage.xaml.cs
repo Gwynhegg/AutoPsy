@@ -13,8 +13,9 @@ namespace AutoPsy.Pages
     public partial class UserExperienceEditorPage : ContentPage
     {
         CustomComponents.UserExperiencePanel experiencePanel;
-        private PrimaryUserExperiencePage parentPage;
-        public UserExperienceEditorPage(PrimaryUserExperiencePage parentPage)
+        private ISynchronizablePage parentPage;
+
+        public UserExperienceEditorPage(ISynchronizablePage parentPage)
         {
             InitializeComponent();
             this.parentPage = parentPage;
@@ -22,7 +23,7 @@ namespace AutoPsy.Pages
             CurrentItem.Children.Insert(0, experiencePanel); 
         }
 
-        public UserExperienceEditorPage(PrimaryUserExperiencePage parentPage, Database.Entities.UserExperience userExperience)
+        public UserExperienceEditorPage(ISynchronizablePage parentPage, Database.Entities.UserExperience userExperience)
         {
             InitializeComponent();
             this.parentPage = parentPage;
@@ -42,8 +43,6 @@ namespace AutoPsy.Pages
             {
                 await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.ExperienceAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
             }
-
-
         }
     }
 }

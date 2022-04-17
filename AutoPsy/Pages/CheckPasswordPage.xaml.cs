@@ -23,7 +23,10 @@ namespace AutoPsy.Pages
             {
                 var user = (Database.Entities.User)App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);
                 if (Logic.Hashing.VerifyHashedPassword(user.HashPassword, PasswordField.Text))
+                {
+
                     await Navigation.PushModalAsync(new MainPage());
+                }
                 else
                 {
                     await DisplayAlert("Упс!", "Хорошая попытка!", "ОК");

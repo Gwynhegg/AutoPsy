@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace AutoPsy.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PrimaryUserExperiencePage : ContentPage
+    public partial class PrimaryUserExperiencePage : ContentPage, ISynchronizablePage
     {
         private ObservableCollection<Database.Entities.UserExperience> experiencePages;
         public PrimaryUserExperiencePage()

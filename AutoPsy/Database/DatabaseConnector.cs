@@ -27,7 +27,7 @@ namespace AutoPsy.Database
 
             try
             {
-                object result = SelectData<T>(1);
+                var result = this.sqliteConnection.Table<T>().First();
 
                 if (result is Entities.User) currentConnectedUser = (result as Entities.User).Id;
                 return true;

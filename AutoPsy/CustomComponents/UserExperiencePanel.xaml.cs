@@ -18,8 +18,12 @@ namespace AutoPsy.CustomComponents
             InitializeComponent();
             this.Children.All(x => x.IsEnabled = enabled);
 
+            AppointmentDate.MinimumDate = DateTime.Now - (DateTime.Now - new DateTime(1950, 1, 1));
+            AppointmentDate.MaximumDate = DateTime.Now;
+
             var currentUser = App.Connector.currentConnectedUser;
             experienceHandler = new Database.Entities.UserExperienceHandler(currentUser) { stateMode = 0};
+            experienceHandler.AddAppointment(DateTime.Now);
         }
 
         public UserExperiencePanel(bool enabled, Database.Entities.UserExperience userExperience)
@@ -36,6 +40,7 @@ namespace AutoPsy.CustomComponents
         {
             experienceHandler.CopyUserExperience(userExperience);
 
+            AppointmentDate.Date = userExperience.Appointment;
             ClinicEntry.Text = userExperience.NameOfClinic;
             DoctorEntry.Text = userExperience.TreatingDoctor;
             DiagnosisEntry.Text = userExperience.Diagnosis;
@@ -131,6 +136,11 @@ namespace AutoPsy.CustomComponents
         {
             var entryMedicine = sender as Entry;
             if (entryMedicine.Text != "" && entryMedicine.Text != AutoPsy.Resources.UserExperienceDefault.NameOfMedicine) experienceHandler.SetCurrentMedicineName(entryMedicine.Text);
+        }
+
+        private void AppointmentDate_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            experienceHandler.AddAppointment(AppointmentDate.Date);
         }
     }
 }

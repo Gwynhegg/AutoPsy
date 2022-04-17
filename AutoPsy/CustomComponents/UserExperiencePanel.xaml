@@ -7,7 +7,7 @@
     <Entry x:Name="ClinicEntry" Text="{x:Static res:UserExperienceDefault.Clinic}" Focused="ClinicEntry_Focused" Unfocused="ClinicEntry_Unfocused"></Entry>
     <Entry x:Name="DoctorEntry" Text="{x:Static res:UserExperienceDefault.Doctor}" Focused="DoctorEntry_Focused" Unfocused="DoctorEntry_Unfocused"></Entry>
     <Label Text="Дата приема"></Label>
-    <DatePicker x:Name="AppointmentDate"></DatePicker>
+    <DatePicker x:Name="AppointmentDate" DateSelected="AppointmentDate_DateSelected"></DatePicker>
     <Entry x:Name="DiagnosisEntry" Text="{x:Static res:UserExperienceDefault.Diagnosis}" Focused="DiagnosisEntry_Focused" Unfocused="DiagnosisEntry_Unfocused"></Entry>
     <Frame>
         <StackLayout>

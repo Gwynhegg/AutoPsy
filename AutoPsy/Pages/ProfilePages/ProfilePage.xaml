@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPsy.Pages.ProfilePages.ProfilePage">
+    <ContentPage.Content>
+        <Grid x:Name="ProfileGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image BackgroundColor="Azure" Grid.Row="0" Grid.Column="0"></Image>
+            <Button x:Name="SettingsButton" Text="Настройки" Grid.Row="0" Grid.Column="2"></Button>
+            <Button x:Name="PersonalDataButton" Grid.Row="1" Grid.ColumnSpan="3"></Button>
+            <DatePicker x:Name="DateNavigatorStart" Grid.Row="2" Grid.Column="0" DateSelected="DateNavigatorStart_DateSelected"></DatePicker>
+            <DatePicker x:Name="DateNavigatorEnd" Grid.Row="2" Grid.Column="2" DateSelected="DateNavigatorEnd_DateSelected"></DatePicker>
+            <Label Text="----" Grid.Row="2" Grid.Column="1"></Label>
+            
+            <CarouselView x:Name="ExperienceCarouselView" Loop="False" Margin="10, 10, 10, 10" Grid.Row="3" Grid.ColumnSpan="3">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout IsEnabled="False">
+                            <Label Text="{Binding NameOfClinic}"></Label>
+                            <Label Text="{Binding TreatingDoctor}"></Label>
+                            <Label Text="Дата приема"></Label>
+                            <DatePicker Date="{Binding Appointment}"></DatePicker>
+                            <Label Text="{Binding Diagnosis}"></Label>
+                            <Frame>
+                                <StackLayout>
+                                    <Label></Label>
+                                    <ListView x:Name="ListOfMedicine">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                                                        <Label x:Name="NameOfMedicine" Text="{Binding NameOfMedicine}"></Label>
+                                                        <Label x:Name="Dosage" Text="{Binding Dosage}"></Label>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackLayout>
+                            </Frame>
+                            <Slider Value="{Binding Score}"></Slider>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <Button x:Name="AddButton" Text="+" Grid.Row="4" Grid.Column="0" Clicked="AddButton_Clicked"></Button>
+            <Button x:Name="EditButton" Text="E" Grid.Row="4" Grid.Column="1" Clicked="EditButton_Clicked"></Button>
+            <Button x:Name="DeleteButton" Text="D" Grid.Row="4" Grid.Column="2" Clicked="DeleteButton_Clicked"></Button>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
