@@ -43,7 +43,7 @@ namespace AutoPsy.Pages
                     if (passwordInstance == PasswordField.Text)
                     {
                         var hashedPassword = Logic.Hashing.HashPassword(passwordInstance);
-                        var user = (Database.Entities.User)App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);
+                        var user = App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);
                         user.HashPassword = Logic.Hashing.HashPassword(passwordInstance);
                         App.Connector.UpdateData<Database.Entities.User>(user);
                         await Navigation.PushModalAsync(new MainPage());

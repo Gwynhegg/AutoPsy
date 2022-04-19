@@ -27,10 +27,16 @@ namespace AutoPsy.Pages.ProfilePages
             DateNavigatorEnd.Date= DateTime.Now;
 
             experiencePages = new ObservableCollection<Database.Entities.UserExperience>();
-            user = (Database.Entities.User)App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);
+            user = App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);
 
             SynchronizeExperiencePages();
 
+            SetProfileName();
+        }
+
+        public void RefreshData()
+        {
+            user = App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);
             SetProfileName();
         }
 
@@ -126,5 +132,12 @@ namespace AutoPsy.Pages.ProfilePages
 
             if (temp != null) App.Connector.DeleteData(temp);
         }
+
+        private async void PersonalDataButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new PersonalDataPage(this));
+        }
+
+
     }
 }

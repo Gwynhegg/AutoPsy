@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPsy.Pages.ProfilePages.PersonalDataPage">
+    <ContentPage.Content>
+        <StackLayout x:Name="PersonPanel">
+            <Entry x:Name="SurnameEntry" Unfocused="SurnameEntry_Unfocused"></Entry>
+            <Entry x:Name="NameEntry" Unfocused="NameEntry_Unfocused"></Entry>
+            <Entry x:Name="PatronymicEntry" Focused="PatronymicEntry_Focused" Unfocused="PatronymicEntry_Unfocused"></Entry>
+            <DatePicker x:Name="BirthDate" DateSelected="BirthDate_DateSelected"></DatePicker>
+            <StackLayout x:Name="GenderFrame">
+                <RadioButton x:Name="MaleOption" Content="Мужской пол" CheckedChanged="Option_CheckedChanged"></RadioButton>
+                <RadioButton x:Name="FemaleOption" Content="Женский пол" CheckedChanged="Option_CheckedChanged"></RadioButton>
+                <RadioButton x:Name="NonOption" Content="Не указывать" CheckedChanged="Option_CheckedChanged"></RadioButton>
+            </StackLayout>
+            <Button x:Name="SaveAndQuit" Text="Сохранить" Clicked="SaveAndQuit_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

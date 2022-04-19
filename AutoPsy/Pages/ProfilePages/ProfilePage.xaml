@@ -17,7 +17,7 @@
             </Grid.ColumnDefinitions>
             <Image BackgroundColor="Azure" Grid.Row="0" Grid.Column="0"></Image>
             <Button x:Name="SettingsButton" Text="Настройки" Grid.Row="0" Grid.Column="2"></Button>
-            <Button x:Name="PersonalDataButton" Grid.Row="1" Grid.ColumnSpan="3"></Button>
+            <Button x:Name="PersonalDataButton" Grid.Row="1" Grid.ColumnSpan="3" Clicked="PersonalDataButton_Clicked"></Button>
             <DatePicker x:Name="DateNavigatorStart" Grid.Row="2" Grid.Column="0" DateSelected="DateNavigatorStart_DateSelected"></DatePicker>
             <DatePicker x:Name="DateNavigatorEnd" Grid.Row="2" Grid.Column="2" DateSelected="DateNavigatorEnd_DateSelected"></DatePicker>
             <Label Text="----" Grid.Row="2" Grid.Column="1"></Label>

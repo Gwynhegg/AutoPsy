@@ -34,9 +34,11 @@ namespace AutoPsy.Pages
 
         private async void Continue_Clicked(object sender, EventArgs e)
         {
+            NameEntry.Unfocus(); SurnameEntry.Unfocus(); PatronymicEntry.Unfocus();
+
             if (userHandler.CheckCorrectness())
             {
-                userHandler.CreateUserInfo();
+                    userHandler.CreateUserInfo();
                 if (HasExperience.IsChecked)
                     await Navigation.PushModalAsync(new PrimaryUserExperiencePage());
                 else
@@ -96,6 +98,9 @@ namespace AutoPsy.Pages
         {
             if ((sender as RadioButton).IsChecked == true)
                 userHandler.SetGender((sender as RadioButton).Content.ToString());
+
+            foreach (RadioButton button in GenderFrame.Children)
+                if (!button.Content.Equals((sender as RadioButton).Content)) button.IsChecked = false;
         }
         private void BirthDate_DateSelected(object sender, DateChangedEventArgs e)
         {

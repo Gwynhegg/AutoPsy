@@ -18,5 +18,7 @@ namespace AutoPsy.Pages
             Console.WriteLine();
             InitializeComponent();
         }
+
+        protected override bool OnBackButtonPressed() => true;
     }
 }

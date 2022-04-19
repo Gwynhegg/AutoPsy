@@ -6,7 +6,7 @@
             xmlns:table="clr-namespace:AutoPsy.Pages.TablePages"
             xmlns:report="clr-namespace:AutoPsy.Pages.ReportPages"
             xmlns:root="clr-namespace:AutoPsy.Pages.MainPages"
-    x:Class="AutoPsy.Pages.MainPage">
+    x:Class="AutoPsy.Pages.MainPage" TabIndex="2">
   <!--Pages can be added as references or inline-->
   <profile:ProfilePage Title="Профиль" />
   <diary:DiaryPage Title="Дневник" />

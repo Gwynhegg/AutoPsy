@@ -58,7 +58,7 @@ namespace AutoPsy.Database
             this.sqliteConnection.Delete(item);
         }
 
-        public object SelectData<T>(int ID) where T : new()
+        public T SelectData<T>(int ID) where T : new()
         {
             return this.sqliteConnection.Find<T>(ID);
         }

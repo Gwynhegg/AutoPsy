@@ -21,7 +21,7 @@ namespace AutoPsy.Pages
         {
             if (PasswordField.Text.Length == 6)
             {
-                var user = (Database.Entities.User)App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);
+                var user = App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);
                 if (Logic.Hashing.VerifyHashedPassword(user.HashPassword, PasswordField.Text))
                 {
 
