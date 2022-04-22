@@ -11,14 +11,15 @@ using Xamarin.Forms.Xaml;
 namespace AutoPsy.Pages.ProfilePages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : ContentPage, ISynchronizablePage
+    public partial class ProfilePage : ContentPage, ISynchronizablePage     // Страница персональных данных пользователя, а также журнал его посещений
     {
-        private ObservableCollection<Database.Entities.UserExperience> experiencePages;
-        private Database.Entities.User user;
+        private ObservableCollection<Database.Entities.UserExperience> experiencePages;     // Определяем коллекцию для хранения карт посещений
+        private Database.Entities.User user;        // Определяем подключенного к системе юзера
         public ProfilePage()
         {
             InitializeComponent();
 
+            // Ограничиваем значения полей для ввода дат разумными рамками и задаем начальные значения
             DateNavigatorStart.MinimumDate = DateTime.Now - (DateTime.Now - new DateTime(1950, 1, 1));
             DateNavigatorStart.MaximumDate = DateTime.Now;
             DateNavigatorEnd.MinimumDate = DateTime.Now - (DateTime.Now - new DateTime(1950, 1, 1));
@@ -26,26 +27,26 @@ namespace AutoPsy.Pages.ProfilePages
             DateNavigatorStart.Date= DateTime.Now;
             DateNavigatorEnd.Date= DateTime.Now;
 
-            experiencePages = new ObservableCollection<Database.Entities.UserExperience>();
-            user = App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);
+            experiencePages = new ObservableCollection<Database.Entities.UserExperience>();     // Создаем коллекцию карточек посещений
+            user = App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);        // Получаем инстанс подключенного пользователя
 
-            SynchronizeExperiencePages();
+            SynchronizeExperiencePages();       // Синхронизируем найденные карты посещений пользователя
 
-            SetProfileName();
+            SetProfileName();       // Устанавливаем имя пользователя для отображения
         }
 
-        public void RefreshData()
+        public void RefreshData()       // Метод для обновления персональных данных на актуальные
         {
-            user = App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);
-            SetProfileName();
+            user = App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);        // Получаем актуальные данные о пользователе
+            SetProfileName();       // УСтанавливаем новое имя пользователя для отображения
         }
 
-        private void DateNavigatorStart_DateSelected(object sender, DateChangedEventArgs e)
+        private void DateNavigatorStart_DateSelected(object sender, DateChangedEventArgs e)     // При каждой смене дат синхронизируем найденные карточки с заданным интервалом
         {
             SynchronizeExperiencePages();
         }
 
-        private void DateNavigatorEnd_DateSelected(object sender, DateChangedEventArgs e)
+        private void DateNavigatorEnd_DateSelected(object sender, DateChangedEventArgs e)       // При каждой смене дат синхронизируем найденные карточки с заданным интервалом
         {
             if (DateNavigatorEnd.Date < DateNavigatorStart.Date) DateNavigatorEnd.Date = DateNavigatorStart.Date;
             SynchronizeExperiencePages();
@@ -53,8 +54,9 @@ namespace AutoPsy.Pages.ProfilePages
 
         private void SynchronizeExperiencePages()
         {
-            if (!App.Connector.IsTableExisted<Database.Entities.UserExperience>()) return;
+            if (!App.Connector.IsTableExisted<Database.Entities.UserExperience>()) return;      // проверяем существование таблицы с карточками посещений
 
+            // Выбираем те из них, даты которых попадают в заданный интервал
             var queryPages = App.Connector.SelectAll<Database.Entities.UserExperience>().
                 Where(
                 x => x.Appointment.Year >= DateNavigatorStart.Date.Year &&
@@ -65,13 +67,13 @@ namespace AutoPsy.Pages.ProfilePages
                 x.Appointment.Day <= DateNavigatorEnd.Date.Day
                 ).Cast<Database.Entities.UserExperience>().ToList();
 
-            if (queryPages.Count == 0) return;
+            if (queryPages.Count == 0) return;      // Если таковых нет, возвращаемся
 
             experiencePages.Clear();
-            foreach (var experiencePage in queryPages)
+            foreach (var experiencePage in queryPages)      // Иначе помещаем каждую из них в коллекцию
                 experiencePages.Add(experiencePage);
 
-            ExperienceCarouselView.ItemsSource = experiencePages;
+            ExperienceCarouselView.ItemsSource = experiencePages;       // Отображаем колллекцию на форме
         }
 
         public void SynchronizeContentPages(CustomComponents.UserExperiencePanel experiencePanel)
@@ -85,7 +87,10 @@ namespace AutoPsy.Pages.ProfilePages
                 addedExperience.Appointment.Day <= DateNavigatorEnd.Date.Day)
             {
                 var index = experiencePages.IndexOf(experiencePages.FirstOrDefault(x => x.Id == addedExperience.Id));
-                if (index != -1) experiencePages[index] = addedExperience;
+                if (index != -1)
+                    experiencePages[index] = addedExperience;
+                else
+                    experiencePages.Add(addedExperience);
                 ExperienceCarouselView.ItemsSource = experiencePages;
             }
         }
@@ -100,11 +105,13 @@ namespace AutoPsy.Pages.ProfilePages
             PersonalDataButton.Text = userDataString;
         }
 
+        // Метод для добавления карточки посещений
         private async void AddButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new UserExperienceEditorPage(this));
         }
 
+        // Метод для редактирования карточки посещений
         private async void EditButton_Clicked(object sender, EventArgs e)
         {
             if (experiencePages.Count == 0)
@@ -117,6 +124,7 @@ namespace AutoPsy.Pages.ProfilePages
             if (temp != null) await Navigation.PushModalAsync(new UserExperienceEditorPage(this, temp));
         }
 
+        // Метод для удаления карточки посещений
         private async void DeleteButton_Clicked(object sender, EventArgs e)
         {
             if (experiencePages.Count == 0)

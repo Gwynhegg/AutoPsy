@@ -13,52 +13,27 @@ namespace AutoPsy.Database.Entities
         [PrimaryKey, AutoIncrement]
         public int Id
         {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                this.id = value;
-                OnPropertyChanged(nameof(Id));
-            }
+            get { return id; }
+            set { this.id = value; OnPropertyChanged(nameof(Id)); }
         }
 
         private string nameOfMedicine;
         [NotNull]
         public string NameOfMedicine
         {
-            get
-            {
-                return nameOfMedicine;
-            }
-            set
-            {
-                this.nameOfMedicine = value;
-                OnPropertyChanged(nameof(NameOfMedicine));
-            }
+            get { return nameOfMedicine; }
+            set { this.nameOfMedicine = value; OnPropertyChanged(nameof(NameOfMedicine)); }
         }
 
         private double dosage;
         [NotNull]
         public double Dosage
         {
-            get
-            {
-                return dosage;
-            }
-            set
-            {
-                this.dosage = value;
-                OnPropertyChanged(nameof(Dosage));
-            }
+            get { return dosage; }
+            set { this.dosage = value; OnPropertyChanged(nameof(Dosage)); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
-        {
-            this.PropertyChanged?.Invoke(this,
-              new PropertyChangedEventArgs(propertyName));
-        }
+        private void OnPropertyChanged(string propertyName) => this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

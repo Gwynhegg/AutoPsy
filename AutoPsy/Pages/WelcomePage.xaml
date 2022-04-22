@@ -4,18 +4,22 @@
              xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.WelcomePage">
     <ContentPage.Content>
-        <StackLayout>
-            <ContentView x:Name="LoadingView" IsVisible="true">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ContentView x:Name="LoadingView" IsVisible="true" Grid.RowSpan="2">
                 <Image BackgroundColor="#862727"></Image>
             </ContentView>
 
             <StackLayout x:Name="PolicyView" IsVisible="false">
                 <Image BackgroundColor="Aqua"></Image>
-                <ScrollView>
+                <ScrollView Grid.Row="0">
                     <Label x:Name="PolicyText" Text="{x:Static res:PrivacyPolicy.MainText}"></Label>
                 </ScrollView>
-                <Button x:Name="AcceptPolicy" Text="{x:Static res:PrivacyPolicy.Accept}" Clicked ="AcceptPolicy_Clicked"></Button>
+                <Button x:Name="AcceptPolicy" Text="{x:Static res:PrivacyPolicy.Accept}" Clicked ="AcceptPolicy_Clicked" Grid.Row="1"></Button>
             </StackLayout>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

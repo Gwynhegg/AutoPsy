@@ -10,16 +10,14 @@ using Xamarin.Forms.Xaml;
 namespace AutoPsy.Pages.DiaryPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DiaryPage : ContentPage
+    public partial class DiaryEditPage : ContentPage
     {
-        public DiaryPage()
+        private CustomComponents.DiaryPagePanel pagePanel;
+        public DiaryEditPage()
         {
             InitializeComponent();
-        }
-
-        private async void AddButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new DiaryEditPage());
+            pagePanel = new CustomComponents.DiaryPagePanel(this);      // создаем панель для ввода
+            CurrentItem.Children.Insert(0, pagePanel);
         }
     }
 }

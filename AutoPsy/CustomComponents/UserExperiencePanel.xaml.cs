@@ -13,6 +13,7 @@ namespace AutoPsy.CustomComponents
     public partial class UserExperiencePanel : StackLayout
     {
         public Database.Entities.UserExperienceHandler experienceHandler { get; private set; }
+        public UserExperiencePanel() { }
         public UserExperiencePanel(bool enabled)
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace AutoPsy.CustomComponents
             experienceHandler.AddAppointment(DateTime.Now);
         }
 
-        public UserExperiencePanel(bool enabled, Database.Entities.UserExperience userExperience)
+        public UserExperiencePanel(bool enabled, Database.Entities.UserExperience userExperience)       // ПРОБЛЕМА С ОТОБРАЖЕНИЕМ МЕДИКАМЕНТОВ
         {
             InitializeComponent();
             this.Children.All(x => x.IsEnabled = enabled);

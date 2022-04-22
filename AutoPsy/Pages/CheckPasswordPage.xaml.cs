@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace AutoPsy.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CheckPasswordPage : ContentPage
+    public partial class CheckPasswordPage : ContentPage        // Форма авторизации - первоначальный вход в приложение
     {
         public CheckPasswordPage()
         {
@@ -19,17 +19,17 @@ namespace AutoPsy.Pages
 
         private async void PasswordField_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (PasswordField.Text.Length == 6)
+            if (PasswordField.Text.Length == 6)     // Стандартная длина пароля - 6 символов, проверяем поле на уровень заполненности
             {
-                var user = App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);
-                if (Logic.Hashing.VerifyHashedPassword(user.HashPassword, PasswordField.Text))
+                var user = App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);        // Получаем хэшированный пароль пользователя
+                if (Logic.Hashing.VerifyHashedPassword(user.HashPassword, PasswordField.Text))      // Вызываем метод верификации хэша
                 {
-
-                    await Navigation.PushModalAsync(new MainPage());
+                    PasswordField.IsEnabled = false;
+                    await Navigation.PushModalAsync(new MainPage());        // Если все успешно, переходим на главную форму
                 }
                 else
                 {
-                    await DisplayAlert("Упс!", "Хорошая попытка!", "ОК");
+                    await DisplayAlert("Упс!", "Хорошая попытка!", "ОК");       // Иначе выводим сообщение об ошибке
                     PasswordField.Text = "";
                 }
             }

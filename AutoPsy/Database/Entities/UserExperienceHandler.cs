@@ -97,6 +97,16 @@ namespace AutoPsy.Database.Entities
         }
 
         public void CreateUserExperienceInfo()
+        {            
+            CodifyListOfMedicine();
+
+            if (stateMode == 0)
+                App.Connector.CreateAndInsertData<UserExperience>(userExperience);
+            else
+                App.Connector.UpdateData<UserExperience>(userExperience);
+        }
+
+        private void CodifyListOfMedicine()
         {
             string codifiedMedicine = "";
             foreach (Medicine medicine in listOfMedicine)
@@ -105,16 +115,6 @@ namespace AutoPsy.Database.Entities
                 codifiedMedicine += String.Concat(temp, '\\');
             }
             userExperience.IndexOfMedicine = codifiedMedicine;
-
-            if (stateMode == 0)
-                App.Connector.CreateAndInsertData<UserExperience>(userExperience);
-            else
-                App.Connector.UpdateData<UserExperience>(userExperience);
-        }
-
-        public void DeleteExperienceRecord()
-        {
-
         }
 
         public void RecreateListOfMedicine(Database.Entities.UserExperience userExperience)

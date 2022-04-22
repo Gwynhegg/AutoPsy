@@ -3,10 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AutoPsy.Pages.DiaryPages.DiaryPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="DIARY"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <DatePicker x:Name="DateNavigatorStart" Grid.Column="0"></DatePicker>
+                <DatePicker x:Name="DateNavigatorEnd" Grid.Column="2"></DatePicker>
+            </Grid>
+
+
+            <CarouselView Grid.Row="1"></CarouselView>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Text="P" Grid.Column="1"></Button>
+                <Button Text="E" Grid.Column="2"></Button>
+                <Button Text="D" Grid.Column="3"></Button>
+            </Grid>
+            
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Text="Анализ" Grid.Column="0"></Button>
+                    <Button Text="?" Grid.Column="1"></Button>
+                <Button x:Name="AddButton" Text="+" Grid.Column="2" Clicked="AddButton_Clicked"></Button>
+                </Grid>
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

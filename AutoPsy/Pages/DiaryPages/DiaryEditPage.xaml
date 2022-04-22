@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:cust="clr-namespace:AutoPsy.CustomComponents"
-             x:Class="AutoPsy.Pages.UserExperienceEditorPage">
+             x:Class="AutoPsy.Pages.DiaryPages.DiaryEditPage">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="8*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            <StackLayout x:Name="CurrentItem"></StackLayout>
-            <Button x:Name="SaveAndReturn" Text="Сохранить" Clicked="SaveAndReturn_Clicked" Grid.Row="1"></Button>
+            <StackLayout x:Name="CurrentItem" Grid.Row="0"/>
+            <Button x:Name="SaveAndReturn" Text="Сохранить" Grid.Row="1"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

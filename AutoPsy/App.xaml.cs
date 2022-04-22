@@ -6,10 +6,10 @@ namespace AutoPsy
 {
     public partial class App : Application
     {
-        private static Database.DatabaseConnector connector;
-        public static Database.DatabaseConnector Connector
+        private static Database.DatabaseConnector connector;        // переменная-коннектор для доступа к базе данных
+        public static Database.DatabaseConnector Connector      // свойство-коннектор на основе синглтона
         {
-            get
+            get     // геттер для коннектора
             {
                 if (connector == null)
                     connector = new Database.DatabaseConnector();
@@ -17,11 +17,23 @@ namespace AutoPsy
             }
         }
 
+        private static AutoPsy.Logic.Structures.DiseaseGraph graph;
+        public static AutoPsy.Logic.Structures.DiseaseGraph Graph
+        {
+            get
+            {
+                if (graph == null)
+                    graph = new AutoPsy.Logic.Structures.DiseaseGraph();
+                return graph;
+            }
+        }
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Pages.WelcomePage());
+            var graph = App.Graph;
+            MainPage = new NavigationPage(new Pages.WelcomePage());     // Загрузка начальной страницы
         }
 
         protected override void OnStart()

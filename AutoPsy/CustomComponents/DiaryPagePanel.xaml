@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPsy.CustomComponents.DiaryPagePanel">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" x:Name="TopicRow"></RowDefinition>
+            <RowDefinition Height="5*" x:Name="TextRow"></RowDefinition>
+            <RowDefinition Height="5*" x:Name="TagsRow"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Entry x:Name="TopicEntry" Text="Топик" Grid.Row="0" Focused="TopicEntry_Focused"></Entry>
+
+        <StackLayout Grid.Row="1">
+            <SwipeView>
+                <Editor x:Name="TextEditor" Text="Тут будет злоебучий текст" Focused="TextEditor_Focused"></Editor>
+            </SwipeView>
+        </StackLayout>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <SwipeView x:Name="TagsView" Grid.Column="0" Focused="TagsView_Focused">
+                <Grid x:Name="TagsContainer"></Grid>
+            </SwipeView>
+            <Button x:Name="AddTag" Text="+" Grid.Column="1" Clicked="AddTag_Clicked"></Button>
+        </Grid>
+    </Grid>
+    </StackLayout>
