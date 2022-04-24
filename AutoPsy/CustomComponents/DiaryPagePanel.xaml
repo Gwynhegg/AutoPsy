@@ -1,30 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.CustomComponents.DiaryPagePanel">
+
+    <DatePicker x:Name="DateOfRecord" DateSelected="DateOfRecord_DateSelected"></DatePicker>
+    <Entry x:Name="TopicEntry" Text="{x:Static res:DiaryPageDefault.Topic}" Focused="TopicEntry_Focused" Unfocused="TopicEntry_Unfocused"></Entry>
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*" x:Name="TopicRow"></RowDefinition>
-            <RowDefinition Height="5*" x:Name="TextRow"></RowDefinition>
-            <RowDefinition Height="5*" x:Name="TagsRow"></RowDefinition>
+            <RowDefinition Height="5*" x:Name="TopRow"></RowDefinition>
+            <RowDefinition Height="5*" x:Name="BottomRow"></RowDefinition>
         </Grid.RowDefinitions>
-        <Entry x:Name="TopicEntry" Text="Топик" Grid.Row="0" Focused="TopicEntry_Focused"></Entry>
 
-        <StackLayout Grid.Row="1">
-            <SwipeView>
-                <Editor x:Name="TextEditor" Text="Тут будет злоебучий текст" Focused="TextEditor_Focused"></Editor>
-            </SwipeView>
-        </StackLayout>
+        <ScrollView Grid.Row="0">
+            <Editor x:Name="TextEditor" Text="{x:Static res:DiaryPageDefault.MainText}" Focused="TextEditor_Focused" Unfocused="TextEditor_Unfocused"></Editor>
+        </ScrollView>
 
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <SwipeView x:Name="TagsView" Grid.Column="0" Focused="TagsView_Focused">
-                <Grid x:Name="TagsContainer"></Grid>
-            </SwipeView>
-            <Button x:Name="AddTag" Text="+" Grid.Column="1" Clicked="AddTag_Clicked"></Button>
-        </Grid>
+        <ListView x:Name="ListOfSymptoms" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                            <Label x:Name="NameOfSymptom" Text="{Binding SymptomeName}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
-    </StackLayout>
+    <Button x:Name="AddTag" Text="+" Clicked="AddTag_Clicked"></Button>
+</StackLayout>

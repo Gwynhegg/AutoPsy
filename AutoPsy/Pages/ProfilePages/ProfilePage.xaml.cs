@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace AutoPsy.Pages.ProfilePages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : ContentPage, ISynchronizablePage     // Страница персональных данных пользователя, а также журнал его посещений
+    public partial class ProfilePage : ContentPage, ISynchronizablePage, ISynchronizablePageWithQuery
     {
         private ObservableCollection<Database.Entities.UserExperience> experiencePages;     // Определяем коллекцию для хранения карт посещений
         private Database.Entities.User user;        // Определяем подключенного к системе юзера
@@ -30,7 +30,7 @@ namespace AutoPsy.Pages.ProfilePages
             experiencePages = new ObservableCollection<Database.Entities.UserExperience>();     // Создаем коллекцию карточек посещений
             user = App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);        // Получаем инстанс подключенного пользователя
 
-            SynchronizeExperiencePages();       // Синхронизируем найденные карты посещений пользователя
+            SynchronizeContentPages();       // Синхронизируем найденные карты посещений пользователя
 
             SetProfileName();       // Устанавливаем имя пользователя для отображения
         }
@@ -43,16 +43,16 @@ namespace AutoPsy.Pages.ProfilePages
 
         private void DateNavigatorStart_DateSelected(object sender, DateChangedEventArgs e)     // При каждой смене дат синхронизируем найденные карточки с заданным интервалом
         {
-            SynchronizeExperiencePages();
+            SynchronizeContentPages();
         }
 
         private void DateNavigatorEnd_DateSelected(object sender, DateChangedEventArgs e)       // При каждой смене дат синхронизируем найденные карточки с заданным интервалом
         {
             if (DateNavigatorEnd.Date < DateNavigatorStart.Date) DateNavigatorEnd.Date = DateNavigatorStart.Date;
-            SynchronizeExperiencePages();
+            SynchronizeContentPages();
         }
 
-        private void SynchronizeExperiencePages()
+        public void SynchronizeContentPages()
         {
             if (!App.Connector.IsTableExisted<Database.Entities.UserExperience>()) return;      // проверяем существование таблицы с карточками посещений
 
@@ -76,9 +76,9 @@ namespace AutoPsy.Pages.ProfilePages
             ExperienceCarouselView.ItemsSource = experiencePages;       // Отображаем колллекцию на форме
         }
 
-        public void SynchronizeContentPages(CustomComponents.UserExperiencePanel experiencePanel)
+        public void SynchronizeContentPages(CustomComponents.IСustomComponent experiencePanel)
         {
-            var addedExperience = experiencePanel.experienceHandler.GetUserExperience();
+            var addedExperience = (experiencePanel as CustomComponents.UserExperiencePanel).experienceHandler.GetUserExperience();
             if (addedExperience.Appointment.Year >= DateNavigatorStart.Date.Year &&
                 addedExperience.Appointment.Month >= DateNavigatorStart.Date.Month &&
                 addedExperience.Appointment.Day >= DateNavigatorStart.Date.Day &&
@@ -95,7 +95,7 @@ namespace AutoPsy.Pages.ProfilePages
             }
         }
 
-        private void SetProfileName()
+            private void SetProfileName()
         {
             var age = DateTime.Now.Year - user.BirthDate.Year;
             if (DateTime.Now.DayOfYear < user.BirthDate.DayOfYear)

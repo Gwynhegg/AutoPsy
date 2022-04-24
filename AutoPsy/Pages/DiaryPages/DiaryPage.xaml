@@ -7,7 +7,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="0.5*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
@@ -17,12 +17,39 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <DatePicker x:Name="DateNavigatorStart" Grid.Column="0"></DatePicker>
-                <DatePicker x:Name="DateNavigatorEnd" Grid.Column="2"></DatePicker>
+                <DatePicker x:Name="DateNavigatorStart" Grid.Column="0" DateSelected="DateNavigatorStart_DateSelected"></DatePicker>
+                <DatePicker x:Name="DateNavigatorEnd" Grid.Column="2" DateSelected="DateNavigatorEnd_DateSelected"></DatePicker>
             </Grid>
 
 
-            <CarouselView Grid.Row="1"></CarouselView>
+            <CarouselView x:Name="PagesCarouselView"  Grid.Row="1">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout IsEnabled="False">
+                            <Label Text="Дата записи"></Label>
+                            <DatePicker Date="{Binding DateOfRecord}"></DatePicker>
+                            <Label Text="{Binding Topic}"></Label>
+                            <Label Text="{Binding MainText}"></Label>
+                            <Frame>
+                                <StackLayout>
+                                    <Label></Label>
+                                    <ListView x:Name="ListOfSymptoms">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+                                                        <Label x:Name="SymptomName" Text="{Binding SymptomeName}"></Label>
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
 
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -31,9 +58,9 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Text="P" Grid.Column="1"></Button>
-                <Button Text="E" Grid.Column="2"></Button>
-                <Button Text="D" Grid.Column="3"></Button>
+                <Button x:Name="PrintPages" Text="P" Grid.Column="1" Clicked="PrintPages_Clicked"></Button>
+                <Button x:Name="EditPages" Text="E" Grid.Column="2" Clicked="EditPages_Clicked"></Button>
+                <Button x:Name="DeletePages" Text="D" Grid.Column="3" Clicked="DeletePages_Clicked"></Button>
             </Grid>
             
                 <Grid Grid.Row="3">
@@ -43,7 +70,7 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Button Text="Анализ" Grid.Column="0"></Button>
-                    <Button Text="?" Grid.Column="1"></Button>
+                    <Button x:Name="InfoButton" Text="?" Grid.Column="1" Clicked="InfoButton_Clicked"></Button>
                 <Button x:Name="AddButton" Text="+" Grid.Column="2" Clicked="AddButton_Clicked"></Button>
                 </Grid>
         </Grid>

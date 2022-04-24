@@ -22,14 +22,14 @@ namespace AutoPsy.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class AuxiliaryResources {
+    public class DiaryPageDefault {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AuxiliaryResources() {
+        internal DiaryPageDefault() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace AutoPsy.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.AuxiliaryResources", typeof(AuxiliaryResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.DiaryPageDefault", typeof(DiaryPageDefault).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,29 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Упс!.
+        ///   Ищет локализованную строку, похожую на Добавьте симптом.
         /// </summary>
-        public static string AlertMessage {
+        public static string AddSymptom {
             get {
-                return ResourceManager.GetString("AlertMessage", resourceCulture);
+                return ResourceManager.GetString("AddSymptom", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на ОК.
+        ///   Ищет локализованную строку, похожую на Можешь писать здесь все, что посчитаешь нужным.
         /// </summary>
-        public static string ButtonOK {
+        public static string MainText {
             get {
-                return ResourceManager.GetString("ButtonOK", resourceCulture);
+                return ResourceManager.GetString("MainText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Кажется, вы забыли что-нибудь написать или указать дату.
+        ///   Ищет локализованную строку, похожую на Введи заголовок страницы.
         /// </summary>
-        public static string DiaryAlertMessage {
+        public static string Topic {
             get {
-                return ResourceManager.GetString("DiaryAlertMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Кажется, вы забыли указать дату и диагноз.
-        /// </summary>
-        public static string ExperienceAlertMessage {
-            get {
-                return ResourceManager.GetString("ExperienceAlertMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Кажется, вы неправильно указали дозировку.
-        /// </summary>
-        public static string MedicineMessage {
-            get {
-                return ResourceManager.GetString("MedicineMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Не указано.
-        /// </summary>
-        public static string NotMentioned {
-            get {
-                return ResourceManager.GetString("NotMentioned", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Кажется, вы забыли указать имя и фамилию.
-        /// </summary>
-        public static string RegisterAlertMessage {
-            get {
-                return ResourceManager.GetString("RegisterAlertMessage", resourceCulture);
+                return ResourceManager.GetString("Topic", resourceCulture);
             }
         }
     }

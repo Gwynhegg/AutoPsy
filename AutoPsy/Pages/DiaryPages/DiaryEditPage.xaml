@@ -9,7 +9,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <StackLayout x:Name="CurrentItem" Grid.Row="0"/>
-            <Button x:Name="SaveAndReturn" Text="Сохранить" Grid.Row="1"></Button>
+            <Button x:Name="SaveAndReturn" Text="Сохранить" Grid.Row="1" Clicked="SaveAndReturn_Clicked"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

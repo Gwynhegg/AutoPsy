@@ -10,10 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace AutoPsy.CustomComponents
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserExperiencePanel : StackLayout
+    public partial class UserExperiencePanel : StackLayout, AutoPsy.CustomComponents.IСustomComponent
     {
         public Database.Entities.UserExperienceHandler experienceHandler { get; private set; }
-        public UserExperiencePanel() { }
         public UserExperiencePanel(bool enabled)
         {
             InitializeComponent();
@@ -34,6 +33,7 @@ namespace AutoPsy.CustomComponents
 
             var currentUser = App.Connector.currentConnectedUser;
             experienceHandler = new Database.Entities.UserExperienceHandler(currentUser) { stateMode = 1};
+
             SynchronizeData(userExperience);
         }
 
@@ -41,11 +41,11 @@ namespace AutoPsy.CustomComponents
         {
             experienceHandler.CopyUserExperience(userExperience);
 
-            AppointmentDate.Date = userExperience.Appointment;
-            ClinicEntry.Text = userExperience.NameOfClinic;
-            DoctorEntry.Text = userExperience.TreatingDoctor;
-            DiagnosisEntry.Text = userExperience.Diagnosis;
-            ScoreSlider.Value = userExperience.Score;
+            AppointmentDate.Date = experienceHandler.GetAppointmentDate();
+            ClinicEntry.Text = experienceHandler.GetClinic();
+            DoctorEntry.Text = experienceHandler.GetDoctor();
+            DiagnosisEntry.Text = experienceHandler.GetDiagnosis();
+            ScoreSlider.Value = experienceHandler.GetScore();
             experienceHandler.RecreateListOfMedicine(userExperience);
             ListOfMedicine.ItemsSource = experienceHandler.GetMedicine();
             

@@ -78,9 +78,9 @@ namespace AutoPsy.Database.Entities
             UserExperience clone = new UserExperience();
             clone.id = this.id;
             clone.appointment = this.appointment;
-            clone.nameOfClinic = String.Copy(this.nameOfClinic);
-            clone.indexOfMedicine = String.Copy(this.indexOfMedicine);
-            clone.treatingDoctor = String.Copy(this.treatingDoctor);
+            if (this.NameOfClinic != null) clone.nameOfClinic = String.Copy(this.nameOfClinic);
+            if (this.IndexOfMedicine != null) clone.indexOfMedicine = String.Copy(this.indexOfMedicine);
+            if (this.TreatingDoctor != null) clone.treatingDoctor = String.Copy(this.treatingDoctor);
             clone.diagnosis = String.Copy(this.diagnosis);
             clone.score = this.score;
             clone.userId = this.userId;

@@ -11,25 +11,48 @@ using Xamarin.Forms.Xaml;
 namespace AutoPsy.CustomComponents
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DiaryPagePanel : StackLayout
+    public partial class DiaryPagePanel : StackLayout, AutoPsy.CustomComponents.IСustomComponent
     {
-        private List<string> symptoms;
         private string[] symptomNames;
 
-        private Database.Entities.DiaryHandler diaryHandler;
+        public Database.Entities.DiaryHandler diaryHandler { get; private set; }
         private ContentPage parent;
-        public DiaryPagePanel(ContentPage parent)
+        public DiaryPagePanel(bool enabled, ContentPage parent)
         {
             InitializeComponent();
+
+            this.Children.All(x => x.IsEnabled = enabled);
             this.parent = parent;
 
-            SwipeItem deleteSwipeItem = new SwipeItem() { Text = "Delete" };
-            deleteSwipeItem.Invoked += OnDeleteSwipeItemInvoked;
-            TagsView.LeftItems.Add(deleteSwipeItem);
-
-            symptoms = new List<string>();
-            diaryHandler = new Database.Entities.DiaryHandler();
+            var currentUser = App.Connector.currentConnectedUser;
+            diaryHandler = new Database.Entities.DiaryHandler(currentUser) { stateMode = 0};
+            DateOfRecord.Date = DateTime.Now;
+            diaryHandler.SetDate(DateOfRecord.Date);
             GetSymptomCollection();
+        }
+
+        public DiaryPagePanel(bool enabled, ContentPage parent, Database.Entities.DiaryPage diaryPage)
+        {
+            InitializeComponent();
+
+            this.Children.All(x => x.IsEnabled = enabled);
+            this.parent = parent;
+
+            var currentUser = App.Connector.currentConnectedUser;
+            diaryHandler = new Database.Entities.DiaryHandler(currentUser) { stateMode = 1};
+
+            SynchronizeData(diaryPage);
+            GetSymptomCollection();
+        }
+
+        private void SynchronizeData(Database.Entities.DiaryPage diaryPage)
+        {
+            diaryHandler.CopyDiaryPage(diaryPage);
+            DateOfRecord.Date = diaryHandler.GetDate();
+            TopicEntry.Text = diaryHandler.GetTopic();
+            TextEditor.Text = diaryHandler.GetMainText();
+            diaryHandler.RecreateSymptomData(diaryPage);
+            ListOfSymptoms.ItemsSource = diaryHandler.GetSymptoms();
         }
 
         private void GetSymptomCollection()
@@ -42,54 +65,59 @@ namespace AutoPsy.CustomComponents
                 symptomNames[iterator++] = symp;
         }
 
-        private void TopicEntry_Focused(object sender, FocusEventArgs e)
-        {
-            UpperFocus();
-        }
-
-        private void TextEditor_Focused(object sender, FocusEventArgs e)
-        {
-            UpperFocus();
-        }
-
-        private void TagsView_Focused(object sender, FocusEventArgs e)
-        {
-            LowerFocus();
-        }
-
         private async void AddTag_Clicked(object sender, EventArgs e)
         {
             var result = await parent.DisplayActionSheet("Выберите симптом", "Отмена", null, symptomNames);
 
             if (result != null)
             {
-                if (!symptoms.Contains(result))
+                if (!diaryHandler.ContainsSymptom(result))
                 {
-                    symptoms.Add(result);
-                    diaryHandler.AddSymptom(result);
-                    TagsContainer.Children.Add(new Label() { Text = result, HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center });
+                    var symptom = new Database.Entities.Symptom() { SymptomeName = result };
+                    diaryHandler.AddSymptom(symptom);
+                    ListOfSymptoms.ItemsSource = diaryHandler.GetSymptoms();
                 }
             }
-            LowerFocus();
         }
 
-        private void UpperFocus()
+        public void TrySave()
         {
-            TagsRow.Height = new GridLength(2, GridUnitType.Star);
-            TopicRow.Height = new GridLength(2, GridUnitType.Star);
-            TextRow.Height = new GridLength(5, GridUnitType.Star);
+            TopicEntry.Unfocus(); TextEditor.Unfocus();
+           
+            if (diaryHandler.CheckCorrectness())
+                diaryHandler.CreateDiaryPageInfo();
+            else throw new Exception();
         }
 
-        private void LowerFocus()
+        private void DateOfRecord_DateSelected(object sender, DateChangedEventArgs e)
         {
-            TagsRow.Height = new GridLength(5, GridUnitType.Star);
-            TopicRow.Height = new GridLength(2, GridUnitType.Star);
-            TextRow.Height = new GridLength(2, GridUnitType.Star);
+            diaryHandler.SetDate(DateOfRecord.Date);
         }
 
-        private void OnDeleteSwipeItemInvoked(object sender, EventArgs e)
+        private void TopicEntry_Focused(object sender, FocusEventArgs e)
         {
+            if (TopicEntry.Text.Equals(AutoPsy.Resources.DiaryPageDefault.Topic)) TopicEntry.Text = "";
+        }
 
+        private void TopicEntry_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (!TopicEntry.Text.Equals("") && !TopicEntry.Text.Equals(AutoPsy.Resources.DiaryPageDefault.Topic))
+                diaryHandler.AddTopic(TopicEntry.Text);
+            else
+                TopicEntry.Text = AutoPsy.Resources.DiaryPageDefault.Topic;
+        }
+
+        private void TextEditor_Focused(object sender, FocusEventArgs e)
+        {
+            if (TextEditor.Text.Equals(AutoPsy.Resources.DiaryPageDefault.MainText)) TextEditor.Text = "";
+        }
+
+        private void TextEditor_Unfocused(object sender, FocusEventArgs e)
+        {
+            if (!TextEditor.Text.Equals("") && !TextEditor.Text.Equals(AutoPsy.Resources.DiaryPageDefault.MainText))
+                diaryHandler.SetMainText(TextEditor.Text);
+            else
+                TextEditor.Text = AutoPsy.Resources.DiaryPageDefault.MainText;
         }
     }
 }

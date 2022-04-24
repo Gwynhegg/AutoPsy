@@ -117,25 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AlertMessage" xml:space="preserve">
-    <value>Упс!</value>
+  <data name="AddSymptom" xml:space="preserve">
+    <value>Добавьте симптом</value>
   </data>
-  <data name="ButtonOK" xml:space="preserve">
-    <value>ОК</value>
+  <data name="MainText" xml:space="preserve">
+    <value>Можешь писать здесь все, что посчитаешь нужным</value>
   </data>
-  <data name="DiaryAlertMessage" xml:space="preserve">
-    <value>Кажется, вы забыли что-нибудь написать или указать дату</value>
-  </data>
-  <data name="ExperienceAlertMessage" xml:space="preserve">
-    <value>Кажется, вы забыли указать дату и диагноз</value>
-  </data>
-  <data name="MedicineMessage" xml:space="preserve">
-    <value>Кажется, вы неправильно указали дозировку</value>
-  </data>
-  <data name="NotMentioned" xml:space="preserve">
-    <value>Не указано</value>
-  </data>
-  <data name="RegisterAlertMessage" xml:space="preserve">
-    <value>Кажется, вы забыли указать имя и фамилию</value>
+  <data name="Topic" xml:space="preserve">
+    <value>Введи заголовок страницы</value>
   </data>
 </root>

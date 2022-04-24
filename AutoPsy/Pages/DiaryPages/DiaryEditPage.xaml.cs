@@ -13,11 +13,38 @@ namespace AutoPsy.Pages.DiaryPages
     public partial class DiaryEditPage : ContentPage
     {
         private CustomComponents.DiaryPagePanel pagePanel;
-        public DiaryEditPage()
+        private ISynchronizablePage parentPage;
+
+        public DiaryEditPage(ISynchronizablePage page)
         {
             InitializeComponent();
-            pagePanel = new CustomComponents.DiaryPagePanel(this);      // создаем панель для ввода
+            parentPage = page;
+            pagePanel = new CustomComponents.DiaryPagePanel(enabled:true, this);      // создаем панель для ввода
             CurrentItem.Children.Insert(0, pagePanel);
+        }
+        public DiaryEditPage(ISynchronizablePage parentPage, Database.Entities.DiaryPage diaryPage)
+        {
+            InitializeComponent();
+            this.parentPage = parentPage;
+
+            // Перегружаем панель для ввода, заполняя уже существующие поля
+            pagePanel = new CustomComponents.DiaryPagePanel(enabled: true, this, diaryPage);
+            CurrentItem.Children.Insert(0, pagePanel);
+        }
+
+
+        private async void SaveAndReturn_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                pagePanel.TrySave();      // пытаемся сохранить данные на панели
+                parentPage.SynchronizeContentPages(pagePanel);        // синхронизиуем данные со страницей-родителем
+                await Navigation.PopModalAsync();       // уходим с этой страницы
+            }
+            catch (Exception ex)        // в случае возникновения ошибки уведомляем об этом
+            {
+                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.DiaryAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
+            }
         }
     }
 }

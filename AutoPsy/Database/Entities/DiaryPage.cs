@@ -7,7 +7,7 @@ using System.ComponentModel;
 namespace AutoPsy.Database.Entities
 {
     [Table("DiaryPages")]
-    public class DiaryPage : INotifyPropertyChanged
+    public class DiaryPage : INotifyPropertyChanged, ICloneable
     {
         private int id;
         [PrimaryKey, AutoIncrement]
@@ -15,6 +15,22 @@ namespace AutoPsy.Database.Entities
         {
             get { return id; }
             set { this.id = value; OnPropertyChanged(nameof(Id)); }
+        }
+
+        private int userId;
+        [NotNull]
+        public int UserId
+        {
+            get { return userId; }
+            set { this.userId = value; OnPropertyChanged(nameof(UserId)); }
+        }
+
+        private DateTime dateOfRecord;
+        [NotNull]
+        public DateTime DateOfRecord
+        {
+            get { return dateOfRecord;}
+            set { this.dateOfRecord = value; OnPropertyChanged(nameof(DateOfRecord)); }
         }
         
 
@@ -45,6 +61,18 @@ namespace AutoPsy.Database.Entities
         {
             this.PropertyChanged?.Invoke(this,
               new PropertyChangedEventArgs(propertyName));
+        }
+
+        public object Clone()
+        {
+            var page = new DiaryPage();
+            page.Id = this.Id;
+            page.userId = this.UserId;
+            page.mainText = String.Copy(this.MainText);
+            if (this.Topic != null) page.Topic = String.Copy(this.Topic);
+            page.DateOfRecord = this.DateOfRecord;
+            if (this.AttachedSymptoms != null) page.AttachedSymptoms = String.Copy(this.AttachedSymptoms);
+            return page;
         }
     }
 }

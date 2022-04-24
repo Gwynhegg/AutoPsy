@@ -90,6 +90,36 @@ namespace AutoPsy.Database.Entities
         {
             return userExperience;
         }
+        public DateTime GetAppointmentDate()
+        {
+            return userExperience.Appointment;
+        }
+
+        public string GetClinic()
+        {
+            if (userExperience.NameOfClinic != null)
+                return userExperience.NameOfClinic;
+            else 
+                return AutoPsy.Resources.AuxiliaryResources.NotMentioned;
+        }
+
+        public string GetDoctor()
+        {
+            if (userExperience.TreatingDoctor != null)
+                return userExperience.TreatingDoctor;
+            else
+                return AutoPsy.Resources.AuxiliaryResources.NotMentioned;
+        }
+
+        public string GetDiagnosis()
+        {
+            return userExperience.Diagnosis;
+        }
+
+        public int GetScore()
+        {
+            return userExperience.Score;
+        }
 
         public bool CheckCorrectness()
         {
@@ -119,6 +149,8 @@ namespace AutoPsy.Database.Entities
 
         public void RecreateListOfMedicine(Database.Entities.UserExperience userExperience)
         {
+            if (userExperience.IndexOfMedicine == null) return;
+
             string[] medicineRequest = userExperience.IndexOfMedicine.Split('\\');
 
             foreach (string subRequest in medicineRequest)

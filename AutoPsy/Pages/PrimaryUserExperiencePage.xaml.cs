@@ -27,9 +27,9 @@ namespace AutoPsy.Pages
         }
 
         // Метод для синхронизации текущей формы и коллекции с созданной карточкой посещений
-        public void SynchronizeContentPages(CustomComponents.UserExperiencePanel experiencePanel)
+        public void SynchronizeContentPages(CustomComponents.IСustomComponent experiencePanel)
         {
-            var addedExperience = experiencePanel.experienceHandler.GetUserExperience();        // через класс обёртку получаем инстанс карточки
+            var addedExperience = (experiencePanel as AutoPsy.CustomComponents.UserExperiencePanel).experienceHandler.GetUserExperience();        // через класс обёртку получаем инстанс карточки
 
             // Пытаемся найти карточку с таким же ID в коллекции
             int indexOfElement = experiencePages.IndexOf(experiencePages.Where(x => x.Id == addedExperience.Id).FirstOrDefault());

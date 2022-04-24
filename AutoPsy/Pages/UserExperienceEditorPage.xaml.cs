@@ -14,7 +14,7 @@ namespace AutoPsy.Pages
     {
         CustomComponents.UserExperiencePanel experiencePanel;       // панель для ввода пользовательских данных
         private ISynchronizablePage parentPage;     // страница-родитель текущей для передачи и обновления данных
-
+        public byte StateMode { get; private set; }
         public UserExperienceEditorPage(ISynchronizablePage parentPage)     // поскольку страниц-родителей может быть две, используем интерфейс
         {
             InitializeComponent();

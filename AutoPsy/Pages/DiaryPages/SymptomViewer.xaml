@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPsy.Pages.DiaryPages.SymptomViewer">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <SearchBar Grid.Row="0" Placeholder="Введите название симтома, болезни или категории"></SearchBar>
+            <Label Grid.Row="1"></Label>
+            <Label Grid.Row="2"></Label>
+            
+            <ListView Grid.Row="4">
+                
+            </ListView>
+
+            <ListView Grid.Row="6">
+                
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
