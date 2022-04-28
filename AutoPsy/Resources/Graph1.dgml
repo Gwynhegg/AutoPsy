@@ -10,29 +10,29 @@
 	  <Node Id="Psychosomatic" Label="Психосоматические расстройства"></Node>
 	  <Node Id="Suicidal" Label="Суицидальное поведение и селф-харм"></Node>
 	  <!--Названия расстройств-->
-	  <Node Id="GenAnxietyDis" Label="Тревожное расстройство" Category="Anxiety"></Node>
-	  <Node Id="PanicAnxietyDis" Label="Паническое расстройство" Category="Anxiety"></Node>
-	  <Node Id="AdapAnxietyDis" Label="Адаптивное расстройство" Category="Anxiety"></Node>
-	  <Node Id="DepersonDis" Lanel="Дереализационное расстройство" Category="Dissociative"></Node>
-	  <Node Id="DisAmnesia" Label="Диссоциативная амнезия" Category="Dissociative"></Node>
-	  <Node Id="DisPersDis" Label="Диссоциативное расстройство личности" Category="Dissociative"></Node>
-	  <Node Id="Anorexia" Label="Анорексия" Category="Eating"></Node>
-	  <Node Id="Bulimia" Label="Булимия" Category="Eating"></Node>
-	  <Node Id="BipolarDis" Label="Биполярное расстройство" Category="Mood"></Node>
-	  <Node Id="DepressDis" Label="Депрессивное расстройство" Category="Mood"></Node>
-	  <Node Id="DisMorphDis" Label="Дисморфическое расстройство" Category="Obsessive"></Node>
-	  <Node Id="ObsessDis" Label="Обсессивно-компульсивное расстройство" Category="Obsessive"></Node>
-	  <Node Id="AntiSocDis" Label="Антисоциальное расстройство" Category="Personality"></Node>
-	  <Node Id="EvasionDis" Label="Уклоняющееся расстройство" Category="Personality"></Node>
-	  <Node Id="HysteriaDis" Label="Истерическое расстройство" Category="Personality"></Node>
-	  <Node Id="ObsCompDis" Label="Обсессивно-компульсивное расстройство" Category="Personality"></Node>
-	  <Node Id="ParanoidDis" Label="Параноидальное расстройство" Category="Personality"></Node>
-	  <Node Id="SchizoidDis" Label="Шизоидное расстройство" Category="Personality"></Node>
-	  <Node Id="DelusDis" Label="Бредовое расстройство" Category="Schizophrenia"></Node>
-	  <Node Id="SchizophreniaDis" Label="Шизофрения" Category="Schizophrenia"></Node>
-	  <Node Id="SomaticDis" Label="Конверсионное расстройство" Category="Psychosomatic"></Node>
-	  <Node Id="SelfHarmDis" Label="Членовредительство" Category="Suicidal"></Node>
-	  <Node Id="SuicidalBehavior" Label="суицидальное поведение" Category="Suicidal"></Node>
+	  <Node Id="GenAnxietyDis" Label="Проявление тревоги" Category="Anxiety"></Node>
+	  <Node Id="PanicAnxietyDis" Label="Проявление паники" Category="Anxiety"></Node>
+	  <Node Id="AdapAnxietyDis" Label="Проявление дезадаптации" Category="Anxiety"></Node>
+	  <Node Id="DepersonDis" Lanel="Проявление дереализации" Category="Dissociative"></Node>
+	  <Node Id="DisAmnesia" Label="Проявление диссоциативной амнезии" Category="Dissociative"></Node>
+	  <Node Id="DisPersDis" Label="Проявление расстройства личности" Category="Dissociative"></Node>
+	  <Node Id="Anorexia" Label="Проявление анорексии" Category="Eating"></Node>
+	  <Node Id="Bulimia" Label="Проявление булимии" Category="Eating"></Node>
+	  <Node Id="BipolarDis" Label="Маниакально-депрессивное проявление" Category="Mood"></Node>
+	  <Node Id="DepressDis" Label="Депрессивное проявление" Category="Mood"></Node>
+	  <Node Id="DisMorphDis" Label="Проявление дисморфии" Category="Obsessive"></Node>
+	  <Node Id="ObsessDis" Label="Проявление навязчивых состояний" Category="Obsessive"></Node>
+	  <Node Id="AntiSocDis" Label="Проявление антисоциального поведения" Category="Personality"></Node>
+	  <Node Id="EvasionDis" Label="Проявление уклоняющегося поведения" Category="Personality"></Node>
+	  <Node Id="HysteriaDis" Label="Проявление истерического поведения" Category="Personality"></Node>
+	  <Node Id="ObsCompDis" Label="Проявление компульсивного поведения" Category="Personality"></Node>
+	  <Node Id="ParanoidDis" Label="Проявление паранойидального поведения" Category="Personality"></Node>
+	  <Node Id="SchizoidDis" Label="Проявление шизоидного расстройства" Category="Personality"></Node>
+	  <Node Id="DelusDis" Label="Проявление бредового расстройства" Category="Schizophrenia"></Node>
+	  <Node Id="SchizophreniaDis" Label="Проявление шизофренического поведения" Category="Schizophrenia"></Node>
+	  <Node Id="SomaticDis" Label="Проявление конверсионного поведения" Category="Psychosomatic"></Node>
+	  <Node Id="SelfHarmDis" Label="Проявление самоповреждения" Category="Suicidal"></Node>
+	  <Node Id="SuicidalBehavior" Label="Проявление суицидального поведения" Category="Suicidal"></Node>
 
 	  <!--Симптомы расстройств-->
 	  <Node Id="Dysphea" Label="Одышка" Category="Symptoms"></Node>

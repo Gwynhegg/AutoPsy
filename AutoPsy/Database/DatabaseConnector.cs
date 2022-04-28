@@ -73,5 +73,10 @@ namespace AutoPsy.Database
         {
             this.sqliteConnection.Close();
         }
+
+        public List<Entities.DiaryPage> SelectDiaryData(DateTime dateStart, DateTime dateEnd)
+        {
+            return this.sqliteConnection.Table<Entities.DiaryPage>().Where(x => x.DateOfRecord >= dateStart && x.DateOfRecord <= dateEnd).ToList();
+        }
     }
 }

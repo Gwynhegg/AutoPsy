@@ -62,7 +62,7 @@ namespace AutoPsy.CustomComponents
             symptomNames = new string[temp.Length];
 
             foreach (var symp in temp)
-                symptomNames[iterator++] = symp;
+                symptomNames[iterator++] = symp.Value;
         }
 
         private async void AddTag_Clicked(object sender, EventArgs e)

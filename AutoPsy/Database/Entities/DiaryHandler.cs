@@ -89,7 +89,7 @@ namespace AutoPsy.Database.Entities
 
         private void CodifySymptomsData()
         {
-            string codifiedSymptoms = "";
+            string codifiedSymptoms = String.Empty;
             foreach (Symptom symp in symptoms)
                 codifiedSymptoms += String.Concat(symp.SymptomeName, '\\');
             page.AttachedSymptoms = codifiedSymptoms;
@@ -100,6 +100,7 @@ namespace AutoPsy.Database.Entities
             if (page.AttachedSymptoms == null) return;
 
             string[] codifiedSymptoms = page.AttachedSymptoms.Split('\\');
+            Array.Resize(ref codifiedSymptoms, codifiedSymptoms.Length - 1);
             foreach(string symp in codifiedSymptoms)
                 symptoms.Add(new Symptom() { SymptomeName = symp });
         }

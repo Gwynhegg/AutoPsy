@@ -137,5 +137,10 @@ namespace AutoPsy.Pages.DiaryPages
         {
             await Navigation.PushModalAsync(new SymptomViewer());
         }
+
+        private async void AnalyzeButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new DiaryAnalysisPage());
+        }
     }
 }

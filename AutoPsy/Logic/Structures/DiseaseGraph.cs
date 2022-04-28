@@ -9,29 +9,66 @@ namespace AutoPsy.Logic.Structures
 {
     public class DiseaseGraph
     {
-        private HashSet<CategoryNode> categories;
-        private HashSet<DiseaseNode> diseases;
-        private HashSet<SymptomNode> symptoms;
-        private HashSet<Link> links;
+        private List<CategoryNode> categories;
+        private List<DiseaseNode> diseases;
+        private List<SymptomNode> symptoms;
+        private List<Link> links;
+        private INode[] nodes;
 
         public DiseaseGraph()
         {
-            categories = new HashSet<CategoryNode>();
-            diseases = new HashSet<DiseaseNode>();
-            symptoms = new HashSet<SymptomNode>();
-            links = new HashSet<Link>();
+            categories = new List<CategoryNode>();
+            diseases = new List<DiseaseNode>();
+            symptoms = new List<SymptomNode>();
+            links = new List<Link>();
 
             ParseData();
         }
 
-        public string[] GetSymptomNodes()
+        public string[] SearchAncestorsLink(string target)
         {
-            string[] nodes = new string[symptoms.Count];
-            int iterator = 0;
-            foreach (var node in symptoms)
-                nodes[iterator++] = node.Value;
+            var queryLinks = links.Where(x => x.Target.Equals(target)).Select(x => x.Source);
+            var querySources = nodes.Where(x => queryLinks.Contains(x.Id)).Select(x => x.Value);
+            return querySources.ToArray();
+        }
+
+        public string[] SearchAncestorsLinkId(string target)
+        {
+            var queryLinks = links.Where(x => x.Target.Equals(target)).Select(x => x.Source);
+            return queryLinks.ToArray();
+        }
+
+        public string[] SearchDescendersLink(string source)
+        {
+            var queryLinks = links.Where(x => x.Source.Equals(source)).Select(x => x.Target);
+            var querySources = nodes.Where(x => queryLinks.Contains(x.Id)).Select(x => x.Value);
+            return querySources.ToArray();
+        }
+
+        public INode[] GetSymptomNodes()
+        {
+            return symptoms.ToArray();
+        }
+
+        public INode[] GetDiseasesNodes()
+        {
+            return diseases.ToArray();
+        }
+
+        public INode[] GetCategoryNodes()
+        {
+            return categories.ToArray();
+        }
+
+        public INode[] GetAllItems()
+        {  
             return nodes;
         }
+        public string GetNodeId(string value)
+        {
+            return nodes.First(x => x.Value.Equals(value)).Id;
+        }
+
 
         private void ParseData()
         {
@@ -63,10 +100,19 @@ namespace AutoPsy.Logic.Structures
 
             foreach (XmlNode node in links)
                 this.links.Add(new Link(node.Attributes[0].Value, node.Attributes[1].Value));
+
+            this.nodes = new INode[categories.Count + diseases.Count + symptoms.Count];
+            this.nodes = GetSymptomNodes().Union(GetDiseasesNodes().Union(GetCategoryNodes())).ToArray();
         }
     }
 
-    public class CategoryNode
+    public interface INode
+    {
+        string Id { get; }
+        string Value { get; set; }
+    }
+
+    public class CategoryNode : INode
     {
         private string id, value;
         public CategoryNode(string id, string value)
@@ -74,9 +120,19 @@ namespace AutoPsy.Logic.Structures
             this.id = id;
             this.value = value;
         }
+        public string Id
+        {
+            get { return this.id; }
+        }
+
+        public string Value
+        {
+            get { return value; }
+            set { this.value = value; }
+        }
     }
 
-    public class DiseaseNode
+    public class DiseaseNode : INode
     {
         private string id, value, category;
 
@@ -86,9 +142,25 @@ namespace AutoPsy.Logic.Structures
             this.value = value;
             this.category = category;
         }
+
+        public string Id
+        {
+            get { return id;}
+        }
+        public string Value
+        {
+            get { return value; }
+            set { this.value = value; }
+        }
+
+        public string Category
+        {
+            get { return category; }
+            set { category = value; }
+        }
     }
 
-    public class SymptomNode
+    public class SymptomNode : INode
     {
         private string id, value;
         public SymptomNode(string id, string value)
@@ -97,15 +169,32 @@ namespace AutoPsy.Logic.Structures
             this.value = value;
         }
 
+        public string Id
+        {
+            get { return id;}
+        }
         public string Value
         {
             get { return value; }
+            set { this.value = value; }
         }
     }
 
     public class Link
     {
+        private string idSource, idTarget;
         private string source, target;
+        public string Source
+        {
+            get { return source; }
+            set { source = value; }
+        }
+
+        public string Target
+        {
+            get { return target; }
+            set { target = value; }
+        }
 
         public Link(string source, string target)
         {

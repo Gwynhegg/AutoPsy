@@ -5,25 +5,61 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
             </Grid.RowDefinitions>
-            <SearchBar Grid.Row="0" Placeholder="Введите название симтома, болезни или категории"></SearchBar>
-            <Label Grid.Row="1"></Label>
-            <Label Grid.Row="2"></Label>
-            
-            <ListView Grid.Row="4">
-                
+            <SearchBar x:Name="searchBar" Grid.Row="0" Placeholder="Введите название симтома, болезни или категории" TextChanged="SearchBar_TextChanged"></SearchBar>
+
+
+            <Label x:Name="NameOfEntity" Grid.Row="1"></Label>
+            <Label x:Name="DescriptionOfEntity" Grid.Row="2"></Label>
+                     
+
+            <ListView x:Name="SearchResults" Grid.Row="1" Grid.RowSpan="4" IsVisible="False" ItemSelected="SearchResults_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                                <Label x:Name="NameOfDescender" Text="{Binding}"></Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
 
-            <ListView Grid.Row="6">
-                
+            <ListView x:Name="AncestorsList" Grid.Row="3">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ScrollView>
+                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand" >
+                                    <Label x:Name="NameOfSymptom" Text="{Binding}"></Label>
+                                </StackLayout>
+                            </ScrollView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
+
+            <ListView x:Name="DescendersList" Grid.Row="4">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ScrollView>
+                                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
+                                    <Label x:Name="NameOfAncestor" Text="{Binding}"></Label>
+                                </StackLayout>
+                            </ScrollView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button x:Name="BackButton" Grid.Row="5" Clicked="BackButton_Clicked"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

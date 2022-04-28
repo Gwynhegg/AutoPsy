@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace AutoPsy.Pages.ProfilePages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    
     public partial class PersonalDataPage : ContentPage
     {
         private Database.Entities.UserHandler userHandler;

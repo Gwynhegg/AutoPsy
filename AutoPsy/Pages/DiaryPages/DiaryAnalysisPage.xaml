@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             x:Class="AutoPsy.Pages.DiaryPages.DiaryAnalysisPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <DatePicker x:Name="DateNavigatorStart" Grid.Column="0" DateSelected="DateNavigatorStart_DateSelected"></DatePicker>
+                <DatePicker x:Name="DateNavigatorEnd" Grid.Column="2" DateSelected="DateNavigatorEnd_DateSelected"></DatePicker>
+            </Grid>
+            <Button x:Name="ContinueButton" Grid.Row="1" Clicked="ContinueButton_Clicked" IsEnabled="False"></Button>
+            <chart:ChartView x:Name="Chart" Grid.Row="2"></chart:ChartView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
