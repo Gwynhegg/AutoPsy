@@ -44,13 +44,9 @@ namespace AutoPsy.Pages.DiaryPages
             // Выбираем те из них, даты которых попадают в заданный интервал
             var queryPages = App.Connector.SelectAll<Database.Entities.DiaryPage>().
                 Where(
-                x => x.DateOfRecord.Year >= DateNavigatorStart.Date.Year &&
-                x.DateOfRecord.Month >= DateNavigatorStart.Date.Month &&
-                x.DateOfRecord.Day >= DateNavigatorStart.Date.Day &&
-                x.DateOfRecord.Year <= DateNavigatorEnd.Date.Year &&
-                x.DateOfRecord.Month <= DateNavigatorEnd.Date.Month &&
-                x.DateOfRecord.Day <= DateNavigatorEnd.Date.Day
-                ).Cast<Database.Entities.DiaryPage>().ToList();
+                x => DateTime.Compare(x.DateOfRecord, DateNavigatorStart.Date) >=0 &&
+                DateTime.Compare(x.DateOfRecord, DateNavigatorEnd.Date) <=0)
+                .Cast<Database.Entities.DiaryPage>().ToList();
 
             // Отображаем количество доступных для анализа данных, попадающих в заданный интервал
             AnalyzeButton.Text = String.Format(AutoPsy.Resources.AuxiliaryResources.AnalysisPlaceholder, queryPages.Count);
@@ -72,12 +68,8 @@ namespace AutoPsy.Pages.DiaryPages
         public void SynchronizeContentPages(CustomComponents.IСustomComponent diaryPanel)
         {
             var addedPage = (diaryPanel as CustomComponents.DiaryPagePanel).diaryHandler.GetDiaryPage();
-            if (addedPage.DateOfRecord.Year >= DateNavigatorStart.Date.Year &&
-                addedPage.DateOfRecord.Month >= DateNavigatorStart.Date.Month &&
-                addedPage.DateOfRecord.Day >= DateNavigatorStart.Date.Day &&
-                addedPage.DateOfRecord.Year <= DateNavigatorEnd.Date.Year &&
-                addedPage.DateOfRecord.Month <= DateNavigatorEnd.Date.Month &&
-                addedPage.DateOfRecord.Day <= DateNavigatorEnd.Date.Day)
+            if (DateTime.Compare(addedPage.DateOfRecord, DateNavigatorStart.Date) >= 0 &&
+                DateTime.Compare(addedPage.DateOfRecord, DateNavigatorEnd.Date) <= 0)
             {
                 var index = diaryPages.IndexOf(this.diaryPages.FirstOrDefault(x => x.Id == addedPage.Id));
                 if (index != -1)
@@ -156,7 +148,7 @@ namespace AutoPsy.Pages.DiaryPages
         private async void AnalyzeButton_Clicked(object sender, EventArgs e)
         {
 
-            await Navigation.PushModalAsync(new DiaryAnalysisPage(DateNavigatorStart.Date, DateNavigatorEnd.Date));
+            await Navigation.PushModalAsync(new AnalysisTabsPage(DateNavigatorStart.Date, DateNavigatorEnd.Date));
         }
     }
 }

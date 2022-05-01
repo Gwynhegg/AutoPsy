@@ -13,14 +13,14 @@ using Xamarin.Forms.Xaml;
 namespace AutoPsy.CustomComponents
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ChartHandler : Grid
+    public partial class BarChartHandler : Grid
     {
         ChartController chartController;
         string[] statNames;
         Dictionary<string, DiaryResultRecords> statValues;
         ObservableCollection<ChartElementModel> setOfElements;
         byte currentPage = 0;
-        public ChartHandler(Dictionary<string, DiaryResultRecords> choosedStats, params string[] values)
+        public BarChartHandler(Dictionary<string, DiaryResultRecords> choosedStats, params string[] values)
         {
             InitializeComponent();
 
@@ -41,7 +41,7 @@ namespace AutoPsy.CustomComponents
             setOfElements = new ObservableCollection<ChartElementModel>();
             foreach (var pair in statValues)
             {
-                if (pair.Value.Count == 1 && AuxServices.RemoveZerosRule.CheckRule(statNames[currentPage])) continue;
+                if (pair.Value.Count == 1 && AuxServices.DeleteRules.CheckZeroRule(statNames[currentPage])) continue;
                 setOfElements.Add(new ChartElementModel()
                 {
                     Name = App.Graph.GetNodeValue(pair.Key),
@@ -51,7 +51,7 @@ namespace AutoPsy.CustomComponents
 
             ParameterPicker.ItemsSource = setOfElements;
 
-            chartController = new BarChartController(setOfElements.Select(x => (float)(x.Value)).ToList(), setOfElements.Select(x => x.Name).ToList());
+            chartController = new BarChartController(setOfElements.Select(x => (float)x.Value).ToList(), setOfElements.Select(x => x.Name).ToList());
         }
 
 
@@ -60,6 +60,7 @@ namespace AutoPsy.CustomComponents
             List<int> indexes = new List<int>();
             foreach (var item in ParameterPicker.SelectedItems)
                 indexes.Add(setOfElements.IndexOf(item as ChartElementModel));
+            if (indexes.Count ==0) return;
             chartController.AddValuesToChart(indexes);
             CurrentChart.Chart = chartController.GetChart();
         }

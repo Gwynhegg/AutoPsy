@@ -4,9 +4,9 @@ using System.Text;
 
 namespace AutoPsy.AuxServices
 {
-    public static class RemoveZerosRule
+    public static class DeleteRules
     {
-        public static bool CheckRule(string parameter)
+        public static bool CheckZeroRule(string parameter)
         {
             switch (parameter)
             {

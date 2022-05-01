@@ -88,6 +88,15 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Назад.
+        /// </summary>
+        public static string BackButton {
+            get {
+                return ResourceManager.GetString("BackButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на ОК.
         /// </summary>
         public static string ButtonOK {

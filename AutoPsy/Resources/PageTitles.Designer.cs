@@ -22,14 +22,14 @@ namespace AutoPsy.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MainPageTitles {
+    public class PageTitles {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainPageTitles() {
+        internal PageTitles() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace AutoPsy.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.MainPageTitles", typeof(MainPageTitles).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.PageTitles", typeof(PageTitles).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,15 @@ namespace AutoPsy.Resources {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Графики.
+        /// </summary>
+        public static string Charts {
+            get {
+                return ResourceManager.GetString("Charts", resourceCulture);
             }
         }
         
@@ -93,6 +102,15 @@ namespace AutoPsy.Resources {
         public static string Results {
             get {
                 return ResourceManager.GetString("Results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Статистика.
+        /// </summary>
+        public static string Stats {
+            get {
+                return ResourceManager.GetString("Stats", resourceCulture);
             }
         }
         

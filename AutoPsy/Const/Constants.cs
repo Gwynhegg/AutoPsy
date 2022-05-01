@@ -14,5 +14,6 @@ namespace AutoPsy.Const
         public const string MIN_INTERVAL = "Минимальный интервал";
         public const string MAX_INTERVAL = "Максимальный интервал";
         public const string AVERAGE_INTERVAL = "Средний интервал";
+        public const string DATA_ENTRIES = "График вхождений";
     }
 }

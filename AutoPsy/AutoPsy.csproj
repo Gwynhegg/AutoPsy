@@ -40,6 +40,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="CustomComponents\BarChartHandler.xaml.cs">
+      <DependentUpon>BarChartHandler.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -60,10 +63,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>DiaryPageDefault.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\MainPageTitles.Designer.cs">
+    <Compile Update="Resources\PageTitles.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>MainPageTitles.resx</DependentUpon>
+      <DependentUpon>PageTitles.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\PasswordDefault.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -98,10 +101,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="CustomComponents\ChartHandler.xaml">
+    <EmbeddedResource Update="CustomComponents\BarChartHandler.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="CustomComponents\DiaryPagePanel.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CustomComponents\LinearChartHandler.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="CustomComponents\UserExperiencePanel.xaml">
@@ -113,6 +119,9 @@
     <EmbeddedResource Update="Pages\CreatePasswordPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\DiaryPages\AnalysisTabsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\DiaryPages\DiaryAnalysisPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -120,6 +129,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\DiaryPages\DiaryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\DiaryPages\LinearAnalysisPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\DiaryPages\SymptomViewer.xaml">
@@ -171,9 +183,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DiaryPageDefault.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\MainPageTitles.resx">
+    <EmbeddedResource Update="Resources\PageTitles.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>MainPageTitles.Designer.cs</LastGenOutput>
+      <LastGenOutput>PageTitles.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\PasswordDefault.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

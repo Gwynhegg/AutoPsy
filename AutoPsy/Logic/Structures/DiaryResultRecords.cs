@@ -28,7 +28,6 @@ namespace AutoPsy.Logic.Structures
                 default: return 0; break;
             }
         }
-
         // Метод для высчитывания стат. величин
         public void Calculate(DateTime[] dates, int[] values)
         {

@@ -2,7 +2,7 @@
 <Grid xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chart="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-             x:Class="AutoPsy.CustomComponents.ChartHandler">
+             x:Class="AutoPsy.CustomComponents.BarChartHandler">
     <Grid.RowDefinitions>
         <RowDefinition Height="1*"></RowDefinition>
         <RowDefinition Height="8*"></RowDefinition>

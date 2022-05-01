@@ -59,13 +59,9 @@ namespace AutoPsy.Pages.ProfilePages
             // Выбираем те из них, даты которых попадают в заданный интервал
             var queryPages = App.Connector.SelectAll<Database.Entities.UserExperience>().
                 Where(
-                x => x.Appointment.Year >= DateNavigatorStart.Date.Year &&
-                x.Appointment.Month >= DateNavigatorStart.Date.Month &&
-                x.Appointment.Day >= DateNavigatorStart.Date.Day &&
-                x.Appointment.Year <= DateNavigatorEnd.Date.Year &&
-                x.Appointment.Month <= DateNavigatorEnd.Date.Month &&
-                x.Appointment.Day <= DateNavigatorEnd.Date.Day
-                ).Cast<Database.Entities.UserExperience>().ToList();
+                x => DateTime.Compare(x.Appointment, DateNavigatorStart.Date) >= 0 &&
+                DateTime.Compare(x.Appointment, DateNavigatorEnd.Date) <= 0)
+                .Cast<Database.Entities.UserExperience>().ToList();
 
             if (queryPages.Count == 0) return;      // Если таковых нет, возвращаемся
 
@@ -79,12 +75,8 @@ namespace AutoPsy.Pages.ProfilePages
         public void SynchronizeContentPages(CustomComponents.IСustomComponent experiencePanel)
         {
             var addedExperience = (experiencePanel as CustomComponents.UserExperiencePanel).experienceHandler.GetUserExperience();
-            if (addedExperience.Appointment.Year >= DateNavigatorStart.Date.Year &&
-                addedExperience.Appointment.Month >= DateNavigatorStart.Date.Month &&
-                addedExperience.Appointment.Day >= DateNavigatorStart.Date.Day &&
-                addedExperience.Appointment.Year <= DateNavigatorEnd.Date.Year &&
-                addedExperience.Appointment.Month <= DateNavigatorEnd.Date.Month &&
-                addedExperience.Appointment.Day <= DateNavigatorEnd.Date.Day)
+            if (DateTime.Compare(addedExperience.Appointment, DateNavigatorStart.Date) >= 0 &&
+                DateTime.Compare(addedExperience.Appointment, DateNavigatorEnd.Date) <= 0)
             {
                 var index = experiencePages.IndexOf(experiencePages.FirstOrDefault(x => x.Id == addedExperience.Id));
                 if (index != -1)

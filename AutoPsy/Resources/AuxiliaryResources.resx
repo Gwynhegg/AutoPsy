@@ -126,6 +126,9 @@
   <data name="AnalysisPlaceholder" xml:space="preserve">
     <value>Анализ ({0} записи/ей</value>
   </data>
+  <data name="BackButton" xml:space="preserve">
+    <value>Назад</value>
+  </data>
   <data name="ButtonOK" xml:space="preserve">
     <value>ОК</value>
   </data>

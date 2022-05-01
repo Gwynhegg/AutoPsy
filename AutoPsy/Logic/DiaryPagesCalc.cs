@@ -13,7 +13,7 @@ namespace AutoPsy.Logic
         private List<Structures.DiaryPagesCut> pageCuts;
 
         // Метод инициализации работы с блоком стат. обработки.
-        public void ProcessRecords(List<Database.Entities.DiaryPage> pages)     // В м=блок передается набор выбранных записей из дневника
+        public void ProcessRecords(List<Database.Entities.DiaryPage> pages)     // В блок передается набор выбранных записей из дневника
         {
             nodes = App.Graph.GetAllItems();        // Поулчаем все узлы из графа
             statRecords = new Dictionary<string, Structures.DiaryResultRecords>();      // Инициализируем библиотеку для хранения результатов

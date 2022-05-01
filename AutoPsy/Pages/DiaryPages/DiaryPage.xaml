@@ -23,7 +23,7 @@
             </Grid>
 
 
-            <CarouselView x:Name="PagesCarouselView"  Grid.Row="1">
+            <CarouselView x:Name="PagesCarouselView"  Grid.Row="1" Loop="False">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout IsEnabled="False">

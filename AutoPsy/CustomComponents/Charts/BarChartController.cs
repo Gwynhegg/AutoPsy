@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microcharts;
+using System.Linq;
 namespace AutoPsy.CustomComponents.Charts
 {
     public class BarChartController : ChartController
