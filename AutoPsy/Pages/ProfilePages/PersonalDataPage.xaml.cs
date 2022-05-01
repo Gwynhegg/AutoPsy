@@ -13,21 +13,24 @@ namespace AutoPsy.Pages.ProfilePages
     
     public partial class PersonalDataPage : ContentPage
     {
-        private Database.Entities.UserHandler userHandler;
-        private Database.Entities.User backupUser;
-        private ProfilePage parentPage;
+        private Database.Entities.UserHandler userHandler;      // класс-обертка для управления записями о пользователе
+        private Database.Entities.User backupUser;      // на данной форме мы изменяем клона первоначальной записи чтобы избежать повреждения или замены данных
+        private ProfilePage parentPage;     // ссылка на родительскую страницу
         public PersonalDataPage(ProfilePage parent)
         {
             InitializeComponent();
             parentPage = parent;
 
             userHandler = new Database.Entities.UserHandler();
-            userHandler.Clone(App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser));
-            backupUser = userHandler.GetUser();
 
-            SetCurrentData();
+            // Клонируем данные о текущем пользователе в хэндлер
+            userHandler.Clone(App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser));
+            backupUser = userHandler.GetUser();     // достаем оттуда юзера
+
+            SetCurrentData();       // актуализируем данные на форме
         }
 
+        // Метод для синхронизации данных. В нем все поля устанавливаются в позиции, привязанные к текущему юзеру
         private void SetCurrentData()
         {
             SurnameEntry.Text = userHandler.GetUserSurname();
@@ -62,34 +65,36 @@ namespace AutoPsy.Pages.ProfilePages
 
         private void SurnameEntry_Unfocused(object sender, FocusEventArgs e)
         {
-            if (SurnameEntry.Text == "") SurnameEntry.Text = backupUser.PersonSurname;
+            if (SurnameEntry.Text == String.Empty) SurnameEntry.Text = backupUser.PersonSurname;
             else userHandler.AddSurnameToUser(SurnameEntry.Text);
         }
 
         private void NameEntry_Unfocused(object sender, FocusEventArgs e)
         {
-            if (NameEntry.Text == "") NameEntry.Text = backupUser.PersonName;
+            if (NameEntry.Text == String.Empty) NameEntry.Text = backupUser.PersonName;
             else userHandler.AddNameToUser(NameEntry.Text);
         }
 
+        // Метод выхода и сохранения данных
         private async void SaveAndQuit_Clicked(object sender, EventArgs e)
         {
+            // Активируем механизмы передачи данных
             SurnameEntry.Unfocus(); NameEntry.Unfocus(); PatronymicEntry.Unfocus();
 
-            userHandler.UpdateUserInfo();
+            userHandler.UpdateUserInfo();       // обновляем информацию о пользователе
 
-            parentPage.RefreshData();
-            await Navigation.PopModalAsync();
+            parentPage.RefreshData();       // передаем измененные данные для отображения на родительской форме
+            await Navigation.PopModalAsync();       // уходим на предыдущую форму
         }
 
         private void PatronymicEntry_Focused(object sender, FocusEventArgs e)
         {
-            if (PatronymicEntry.Text == AutoPsy.Resources.UserDefault.UserPatronymic) PatronymicEntry.Text = "";
+            if (PatronymicEntry.Text == AutoPsy.Resources.UserDefault.UserPatronymic) PatronymicEntry.Text = String.Empty;
         }
 
         private void PatronymicEntry_Unfocused(object sender, FocusEventArgs e)
         {
-            if (PatronymicEntry.Text == "") PatronymicEntry.Text = backupUser.PersonPatronymic;
+            if (PatronymicEntry.Text == String.Empty) PatronymicEntry.Text = backupUser.PersonPatronymic;
             else userHandler.AddPatronymicToUser(PatronymicEntry.Text);
         }
     }

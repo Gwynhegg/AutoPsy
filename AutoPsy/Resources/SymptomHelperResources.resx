@@ -117,31 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add" xml:space="preserve">
-    <value>Добавить</value>
+  <data name="HasNoChilds" xml:space="preserve">
+    <value>У данного узла нет детей</value>
   </data>
-  <data name="Clinic" xml:space="preserve">
-    <value>Клиника</value>
+  <data name="HasNoParents" xml:space="preserve">
+    <value>У данного узла нет родителей</value>
   </data>
-  <data name="DateOfAppointment" xml:space="preserve">
-    <value>Дата приема</value>
-  </data>
-  <data name="Diagnosis" xml:space="preserve">
-    <value>Диагноз</value>
-  </data>
-  <data name="Doctor" xml:space="preserve">
-    <value>Лечащий врач</value>
-  </data>
-  <data name="Dosage" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="Medicine" xml:space="preserve">
-    <value>Препараты</value>
-  </data>
-  <data name="NameOfMedicine" xml:space="preserve">
-    <value>Название препарата</value>
-  </data>
-  <data name="Score" xml:space="preserve">
-    <value>Оценка приема</value>
+  <data name="SearchString" xml:space="preserve">
+    <value>Введите название симтома, болезни или категории</value>
   </data>
 </root>

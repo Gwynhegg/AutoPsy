@@ -5,9 +5,10 @@ namespace AutoPsy.Logic
 {
     public static class Hashing
     {
-        public static string HashPassword(string password)
+        // Статическая вспомогательная библиотека для хэширования пароля и последующего его хранения
+        public static string HashPassword(string password)      // Метод для хэширования пароля
         {
-            byte[] salt;
+            byte[] salt;        // При хэшировании используется соль для повышения безопасности
             byte[] buffer2;
             if (password == null)
             {
@@ -23,7 +24,7 @@ namespace AutoPsy.Logic
             Buffer.BlockCopy(buffer2, 0, dst, 0x11, 0x20);
             return Convert.ToBase64String(dst);
         }
-        public static bool VerifyHashedPassword(string hashedPassword, string password)
+        public static bool VerifyHashedPassword(string hashedPassword, string password)     // Метод для верификации введенного пароля с существующим хэшем
         {
             byte[] buffer4;
             if (hashedPassword == null)

@@ -14,22 +14,24 @@ namespace AutoPsy.Pages.DiaryPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SymptomViewer : ContentPage
     {
-        private Logic.Structures.INode[] guideInfo;
-        ObservableCollection<string> searchResults;
+        private Logic.Structures.INode[] guideInfo;     // массив для хранения всех узлов графа
+        ObservableCollection<string> searchResults;     // коллекция, в которой будут отображены результаты поиска
         public SymptomViewer()
         {
             InitializeComponent();
-            guideInfo = App.Graph.GetAllItems();
+            guideInfo = App.Graph.GetAllItems();        // получаем все элементы графа и сохраняем в массив
             searchResults = new ObservableCollection<string>();
         }
 
+        // Событие, возникающее при изменении текста в строке поиска
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            if (searchBar.Text != "")
+            if (searchBar.Text != String.Empty)
             {
-                SetInfoPanelInto(false);
+                SetInfoPanelInto(false);        // Изменяем состояние панели (подробнее ниже)
 
+                // Ищем все возможные совпадения введенного текста по массиву и выдаем их в виде списка совпадений
                 var query = guideInfo.Where(x => x.Value.ToLower().Contains(searchBar.Text.ToLower()));
                 searchResults.Clear();
                 foreach(var item in query)
@@ -39,27 +41,30 @@ namespace AutoPsy.Pages.DiaryPages
             }
         }
 
+        // Метод, вызываемый при выборе конкретного симптома
         private void SearchResults_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            SetInfoPanelInto(true);
+            SetInfoPanelInto(true);     // Изменяем состояние панели (подробнее ниже)
 
-            
-
+            // Отображаем информацию о выбранном объекте
             var selectedItem = SearchResults.SelectedItem as string;
             NameOfEntity.Text = selectedItem;
             DescriptionOfEntity.Text = "ОПИСАНИЕ";
 
-            string itemId = guideInfo.First(x => x.Value == selectedItem).Id;
+            string itemId = guideInfo.First(x => x.Value == selectedItem).Id;       // Получаем Id выбранного объекта
 
+            // Ищем всех родителей данного узла, и если находим - отображаем их в коллекции и на экране
             var ancestors = App.Graph.SearchAncestorsLink(itemId);
-            if (ancestors != null) AncestorsList.ItemsSource = ancestors; else AncestorsList.ItemsSource = "Не родителей";
+            if (ancestors != null) AncestorsList.ItemsSource = ancestors; else AncestorsList.ItemsSource = AutoPsy.Resources.SymptomHelperResources.HasNoParents;
 
+            // Ищем всех детей данного узла, и если находим - отображаем их в коллекции и на экране
             var descenders = App.Graph.SearchDescendersLink(itemId);
-            if (descenders != null) DescendersList.ItemsSource = descenders; else DescendersList.ItemsSource = "Нет детей";
+            if (descenders != null) DescendersList.ItemsSource = descenders; else DescendersList.ItemsSource = AutoPsy.Resources.SymptomHelperResources.HasNoChilds;
         }
 
-        private void SetInfoPanelInto(bool type)
+        private void SetInfoPanelInto(bool type)        // Метод для изменения состояния панели
         {
+            // При значениях true отображается поле описания, а также список родителей и детей. Остальные поля скрываются
             NameOfEntity.IsVisible = type;
             DescriptionOfEntity.IsVisible = type;
             DescendersList.IsVisible = type;
@@ -68,6 +73,8 @@ namespace AutoPsy.Pages.DiaryPages
             DescriptionOfEntity.IsEnabled = type;
             DescendersList.IsEnabled = type;
             AncestorsList.IsEnabled = type;
+
+            // В противном случае - отображаем строку и панель поиска, скрывая остальное
             SearchResults.IsVisible = !type;
             SearchResults.IsEnabled = !type;
         }

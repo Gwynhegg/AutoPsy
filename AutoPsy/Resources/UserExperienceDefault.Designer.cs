@@ -79,6 +79,15 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Дата приема.
+        /// </summary>
+        public static string DateOfAppointment {
+            get {
+                return ResourceManager.GetString("DateOfAppointment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Диагноз.
         /// </summary>
         public static string Diagnosis {

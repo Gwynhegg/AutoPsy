@@ -61,6 +61,15 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Хорошая попытка!.
+        /// </summary>
+        public static string AccessDeniedAlertMessage {
+            get {
+                return ResourceManager.GetString("AccessDeniedAlertMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Упс!.
         /// </summary>
         public static string AlertMessage {
@@ -70,11 +79,38 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Анализ ({0} записи/ей.
+        /// </summary>
+        public static string AnalysisPlaceholder {
+            get {
+                return ResourceManager.GetString("AnalysisPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на ОК.
         /// </summary>
         public static string ButtonOK {
             get {
                 return ResourceManager.GetString("ButtonOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отмена.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Продолжить.
+        /// </summary>
+        public static string Continue {
+            get {
+                return ResourceManager.GetString("Continue", resourceCulture);
             }
         }
         
@@ -106,6 +142,24 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Пока у вас нет записей для удаления.
+        /// </summary>
+        public static string NoRecordsToDeleteAlertMessage {
+            get {
+                return ResourceManager.GetString("NoRecordsToDeleteAlertMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пока у вас нет записей для редактирования.
+        /// </summary>
+        public static string NoRecordsToEditAlertMessage {
+            get {
+                return ResourceManager.GetString("NoRecordsToEditAlertMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Не указано.
         /// </summary>
         public static string NotMentioned {
@@ -120,6 +174,51 @@ namespace AutoPsy.Resources {
         public static string RegisterAlertMessage {
             get {
                 return ResourceManager.GetString("RegisterAlertMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Сохранить.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Настройки.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Успех!.
+        /// </summary>
+        public static string Success {
+            get {
+                return ResourceManager.GetString("Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на К анализу.
+        /// </summary>
+        public static string ToAnalysis {
+            get {
+                return ResourceManager.GetString("ToAnalysis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Введенный пароль не совпадает с заданным. Попробуйте еще раз!.
+        /// </summary>
+        public static string WrongPasswordAlertMessage {
+            get {
+                return ResourceManager.GetString("WrongPasswordAlertMessage", resourceCulture);
             }
         }
     }

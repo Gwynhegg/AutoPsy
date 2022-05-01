@@ -71,17 +71,17 @@ namespace AutoPsy.CustomComponents
 
         private void DoctorEntry_Focused(object sender, FocusEventArgs e)
         {
-            if (DoctorEntry.Text == AutoPsy.Resources.UserExperienceDefault.Doctor) DoctorEntry.Text = "";
+            if (DoctorEntry.Text == AutoPsy.Resources.UserExperienceDefault.Doctor) DoctorEntry.Text = String.Empty;
         }
 
         private void DiagnosisEntry_Focused(object sender, FocusEventArgs e)
         {
-            if (DiagnosisEntry.Text == AutoPsy.Resources.UserExperienceDefault.Diagnosis) DiagnosisEntry.Text = "";
+            if (DiagnosisEntry.Text == AutoPsy.Resources.UserExperienceDefault.Diagnosis) DiagnosisEntry.Text = String.Empty;
         }
 
         private void ClinicEntry_Unfocused(object sender, FocusEventArgs e)
         {
-            if (ClinicEntry.Text != "" && ClinicEntry.Text != AutoPsy.Resources.UserExperienceDefault.Clinic)
+            if (ClinicEntry.Text != String.Empty && ClinicEntry.Text != AutoPsy.Resources.UserExperienceDefault.Clinic)
                 experienceHandler.AddNameOfClinic(ClinicEntry.Text);
             else
                 ClinicEntry.Text = AutoPsy.Resources.UserExperienceDefault.Clinic;
@@ -89,7 +89,7 @@ namespace AutoPsy.CustomComponents
 
         private void DoctorEntry_Unfocused(object sender, FocusEventArgs e)
         {
-            if (DoctorEntry.Text != "" && DoctorEntry.Text != AutoPsy.Resources.UserExperienceDefault.Doctor)
+            if (DoctorEntry.Text != String.Empty && DoctorEntry.Text != AutoPsy.Resources.UserExperienceDefault.Doctor)
                 experienceHandler.AddTreatingDoctor(DoctorEntry.Text);
             else
                 DoctorEntry.Text = AutoPsy.Resources.UserExperienceDefault.Doctor;
@@ -97,7 +97,7 @@ namespace AutoPsy.CustomComponents
 
         private void DiagnosisEntry_Unfocused(object sender, FocusEventArgs e)
         {
-            if (DiagnosisEntry.Text != "" && DiagnosisEntry.Text != AutoPsy.Resources.UserExperienceDefault.Diagnosis)
+            if (DiagnosisEntry.Text != String.Empty && DiagnosisEntry.Text != AutoPsy.Resources.UserExperienceDefault.Diagnosis)
                 experienceHandler.AddDiagnosis(DiagnosisEntry.Text);
             else
                 DiagnosisEntry.Text = AutoPsy.Resources.UserExperienceDefault.Diagnosis;
@@ -117,7 +117,7 @@ namespace AutoPsy.CustomComponents
         private void NameOfMedicine_Unfocused(object sender, FocusEventArgs e)
         {
             var entryMedicine = sender as Entry;
-            if (entryMedicine.Equals("")) entryMedicine.Text = AutoPsy.Resources.UserExperienceDefault.NameOfMedicine;
+            if (entryMedicine.Equals(String.Empty)) entryMedicine.Text = AutoPsy.Resources.UserExperienceDefault.NameOfMedicine;
         }
 
         private async void Dosage_TextChanged(object sender, TextChangedEventArgs e)
@@ -125,7 +125,7 @@ namespace AutoPsy.CustomComponents
             Entry entryDosage = sender as Entry;
             try
             {
-                if (entryDosage.Text != "") experienceHandler.SetCurrentMedicineDosage(entryDosage.Text);
+                if (entryDosage.Text != String.Empty) experienceHandler.SetCurrentMedicineDosage(entryDosage.Text);
             }
             catch
             {
@@ -136,7 +136,7 @@ namespace AutoPsy.CustomComponents
         private void NameOfMedicine_TextChanged(object sender, TextChangedEventArgs e)
         {
             var entryMedicine = sender as Entry;
-            if (entryMedicine.Text != "" && entryMedicine.Text != AutoPsy.Resources.UserExperienceDefault.NameOfMedicine) experienceHandler.SetCurrentMedicineName(entryMedicine.Text);
+            if (entryMedicine.Text != String.Empty && entryMedicine.Text != AutoPsy.Resources.UserExperienceDefault.NameOfMedicine) experienceHandler.SetCurrentMedicineName(entryMedicine.Text);
         }
 
         private void AppointmentDate_DateSelected(object sender, DateChangedEventArgs e)

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.DiaryPages.SymptomViewer">
     <ContentPage.Content>
         <Grid>
@@ -12,7 +13,7 @@
                 <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
             </Grid.RowDefinitions>
-            <SearchBar x:Name="searchBar" Grid.Row="0" Placeholder="Введите название симтома, болезни или категории" TextChanged="SearchBar_TextChanged"></SearchBar>
+            <SearchBar x:Name="searchBar" Grid.Row="0" Placeholder="{x:Static res:SymptomHelperResources.SearchString}" TextChanged="SearchBar_TextChanged"></SearchBar>
 
 
             <Label x:Name="NameOfEntity" Grid.Row="1"></Label>

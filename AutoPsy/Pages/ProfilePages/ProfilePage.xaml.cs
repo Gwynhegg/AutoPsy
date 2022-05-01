@@ -101,7 +101,7 @@ namespace AutoPsy.Pages.ProfilePages
             if (DateTime.Now.DayOfYear < user.BirthDate.DayOfYear)
                 age++;
 
-            var userDataString = String.Join(" ", user.PersonSurname, user.PersonName, String.Format("({0} лет/года)", age));
+            var userDataString = String.Join(" ", user.PersonSurname, user.PersonName, String.Format(AutoPsy.Resources.UserDefault.UserAgePlaceholder, age));
             PersonalDataButton.Text = userDataString;
         }
 
@@ -116,7 +116,7 @@ namespace AutoPsy.Pages.ProfilePages
         {
             if (experiencePages.Count == 0)
             {
-                await DisplayAlert("Упс!", "Пока у вас нет записей для редактирования", "OK");
+                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.NoRecordsToEditAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
                 return;
             }
             var temp = ExperienceCarouselView.CurrentItem as AutoPsy.Database.Entities.UserExperience;
@@ -129,7 +129,7 @@ namespace AutoPsy.Pages.ProfilePages
         {
             if (experiencePages.Count == 0)
             {
-                await DisplayAlert("Упс!", "Пока у вас нет записей для удаления", "OK");
+                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.NoRecordsToDeleteAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
                 return;
             }
 

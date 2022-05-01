@@ -120,8 +120,17 @@
   <data name="AddSymptom" xml:space="preserve">
     <value>Добавьте симптом</value>
   </data>
+  <data name="FileSavePlaceholder" xml:space="preserve">
+    <value>Файл успешно сохранен в {0}</value>
+  </data>
   <data name="MainText" xml:space="preserve">
     <value>Можешь писать здесь все, что посчитаешь нужным</value>
+  </data>
+  <data name="SaveErrorAlertMessage" xml:space="preserve">
+    <value>Не удалось создать файл</value>
+  </data>
+  <data name="SelectSymptom" xml:space="preserve">
+    <value>Выберите симптом</value>
   </data>
   <data name="Topic" xml:space="preserve">
     <value>Введи заголовок страницы</value>

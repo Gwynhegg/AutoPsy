@@ -70,11 +70,38 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Файл успешно сохранен в {0}.
+        /// </summary>
+        public static string FileSavePlaceholder {
+            get {
+                return ResourceManager.GetString("FileSavePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Можешь писать здесь все, что посчитаешь нужным.
         /// </summary>
         public static string MainText {
             get {
                 return ResourceManager.GetString("MainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Не удалось создать файл.
+        /// </summary>
+        public static string SaveErrorAlertMessage {
+            get {
+                return ResourceManager.GetString("SaveErrorAlertMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Выберите симптом.
+        /// </summary>
+        public static string SelectSymptom {
+            get {
+                return ResourceManager.GetString("SelectSymptom", resourceCulture);
             }
         }
         

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.DiaryPages.DiaryEditPage">
     <ContentPage.Content>
         <Grid>
@@ -9,7 +10,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <StackLayout x:Name="CurrentItem" Grid.Row="0"/>
-            <Button x:Name="SaveAndReturn" Text="Сохранить" Grid.Row="1" Clicked="SaveAndReturn_Clicked"></Button>
+            <Button x:Name="SaveAndReturn" Text="{x:Static res:AuxiliaryResources.Save}" Grid.Row="1" Clicked="SaveAndReturn_Clicked"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

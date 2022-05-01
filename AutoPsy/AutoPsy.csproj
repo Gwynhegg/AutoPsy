@@ -20,8 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microcharts.Forms" Version="0.9.5.9" />
+    <PackageReference Include="Microcharts" Version="0.9.5.9" />
+    <PackageReference Include="Microcharts.Forms" Version="1.0.0-preview1" />
     <PackageReference Include="PdfSharpCore" Version="1.3.16" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.88.0-preview.256" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
@@ -48,10 +50,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AuxiliaryResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\DiaryAnalysisResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DiaryAnalysisResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\DiaryPageDefault.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>DiaryPageDefault.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\MainPageTitles.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MainPageTitles.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\PasswordDefault.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -62,6 +74,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>PrivacyPolicy.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\SymptomHelperResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SymptomHelperResources.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\TableNames.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -81,6 +98,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="CustomComponents\ChartHandler.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="CustomComponents\DiaryPagePanel.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -143,9 +163,17 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AuxiliaryResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\DiaryAnalysisResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DiaryAnalysisResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\DiaryPageDefault.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>DiaryPageDefault.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\MainPageTitles.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainPageTitles.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\PasswordDefault.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -154,6 +182,10 @@
     <EmbeddedResource Update="Resources\PrivacyPolicy.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PrivacyPolicy.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\SymptomHelperResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SymptomHelperResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\TableNames.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -167,9 +199,5 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserExperienceDefault.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="CustomComponents\Charts\" />
   </ItemGroup>
 </Project>

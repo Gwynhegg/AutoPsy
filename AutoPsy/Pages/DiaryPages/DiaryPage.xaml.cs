@@ -28,17 +28,18 @@ namespace AutoPsy.Pages.DiaryPages
             DateNavigatorStart.Date = DateTime.Now;
             DateNavigatorEnd.Date = DateTime.Now;
 
-            SynchronizeContentPages();
+            SynchronizeContentPages();      // Синхронизируем информацию на странице согласно найденным записям
         }
 
+        // Событие добавления новой записи в дневник
         private async void AddButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new DiaryEditPage(this));
         }
 
-        public void SynchronizeContentPages()
+        public void SynchronizeContentPages()       // Метод для синхронизации данных на форме с базой (обычный)
         {
-            if (!App.Connector.IsTableExisted<Database.Entities.DiaryPage>()) return;      // проверяем существование таблицы с карточками посещений
+            if (!App.Connector.IsTableExisted<Database.Entities.DiaryPage>()) return;      // проверяем существование таблицы с записями дневника
 
             // Выбираем те из них, даты которых попадают в заданный интервал
             var queryPages = App.Connector.SelectAll<Database.Entities.DiaryPage>().
@@ -51,15 +52,23 @@ namespace AutoPsy.Pages.DiaryPages
                 x.DateOfRecord.Day <= DateNavigatorEnd.Date.Day
                 ).Cast<Database.Entities.DiaryPage>().ToList();
 
+            // Отображаем количество доступных для анализа данных, попадающих в заданный интервал
+            AnalyzeButton.Text = String.Format(AutoPsy.Resources.AuxiliaryResources.AnalysisPlaceholder, queryPages.Count);
+            if (queryPages.Count > 0) AnalyzeButton.IsEnabled = true; else AnalyzeButton.IsEnabled = false;
+
             if (queryPages.Count == 0) return;      // Если таковых нет, возвращаемся
 
             diaryPages.Clear();
             foreach (var dairyPage in queryPages)      // Иначе помещаем каждую из них в коллекцию
                 diaryPages.Add(dairyPage);
 
-            PagesCarouselView.ItemsSource = diaryPages;       // Отображаем колллекцию на форме          
+            PagesCarouselView.ItemsSource = diaryPages;       // Отображаем колллекцию на форме
+                                                              
+
         }
 
+        // Отличие данного метода от предыдущего - чтобы не тянуть данные каждый раз из базы данных (что при большом объеме информации
+        // ощутимо, достаточно  просто добавить созданную на другом экране страницу в локальный список страниц
         public void SynchronizeContentPages(CustomComponents.IСustomComponent diaryPanel)
         {
             var addedPage = (diaryPanel as CustomComponents.DiaryPagePanel).diaryHandler.GetDiaryPage();
@@ -76,21 +85,27 @@ namespace AutoPsy.Pages.DiaryPages
                 else
                     diaryPages.Add(addedPage);
                 PagesCarouselView.ItemsSource = diaryPages;
+
+                AnalyzeButton.Text = String.Format(AutoPsy.Resources.AuxiliaryResources.AnalysisPlaceholder, diaryPages.Count);
+                if (diaryPages.Count > 0) AnalyzeButton.IsEnabled = true; else AnalyzeButton.IsEnabled = false;
             }
         }
 
+        // Метод для создания файла с данными выбранных записей
         private async void PrintPages_Clicked(object sender, EventArgs e)
         {
             try
             {
+                // получаем директорию документов на устройстве Android
                 var directory = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, Android.OS.Environment.DirectoryDocuments);
 
+                // С помощью статического класса - библиотеки создаем документ и сохраняем по указанному пути
                 AuxServices.PdfWriter.CreateDocument(App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser), diaryPages.ToList());
-                await DisplayAlert("Успех!", String.Format("Файл успешно сохранен в {0}", directory), "OK");
+                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.Success, String.Format(AutoPsy.Resources.DiaryPageDefault.FileSavePlaceholder, directory), AutoPsy.Resources.AuxiliaryResources.ButtonOK);
             }
             catch
             {
-                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, "Не удалось создать PDF-файл", AutoPsy.Resources.AuxiliaryResources.ButtonOK);
+                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.DiaryPageDefault.SaveErrorAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
             }
         }
 
@@ -98,7 +113,7 @@ namespace AutoPsy.Pages.DiaryPages
         {
             if (diaryPages.Count == 0)
             {
-                await DisplayAlert("Упс!", "Пока у вас нет записей для редактирования", "OK");
+                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.NoRecordsToEditAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
                 return;
             }
             var temp = PagesCarouselView.CurrentItem as AutoPsy.Database.Entities.DiaryPage;
@@ -110,7 +125,7 @@ namespace AutoPsy.Pages.DiaryPages
         {
             if (diaryPages.Count == 0)
             {
-                await DisplayAlert("Упс!", "Пока у вас нет записей для удаления", "OK");
+                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.NoRecordsToDeleteAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
                 return;
             }
 
@@ -140,7 +155,8 @@ namespace AutoPsy.Pages.DiaryPages
 
         private async void AnalyzeButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new DiaryAnalysisPage());
+
+            await Navigation.PushModalAsync(new DiaryAnalysisPage(DateNavigatorStart.Date, DateNavigatorEnd.Date));
         }
     }
 }

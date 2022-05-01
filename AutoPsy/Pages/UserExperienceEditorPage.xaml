@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:cust="clr-namespace:AutoPsy.CustomComponents"
+             xmlns:res ="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.UserExperienceEditorPage">
     <ContentPage.Content>
         <Grid>
@@ -10,7 +11,7 @@
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <StackLayout x:Name="CurrentItem"></StackLayout>
-            <Button x:Name="SaveAndReturn" Text="Сохранить" Clicked="SaveAndReturn_Clicked" Grid.Row="1"></Button>
+            <Button x:Name="SaveAndReturn" Text="{x:Static res:AuxiliaryResources.Save}" Clicked="SaveAndReturn_Clicked" Grid.Row="1"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

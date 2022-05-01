@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FemaleSex" xml:space="preserve">
+    <value>Женский пол</value>
+  </data>
+  <data name="HasExperience" xml:space="preserve">
+    <value>Имеется ли у вас опыт лечения?</value>
+  </data>
+  <data name="MaleSex" xml:space="preserve">
+    <value>Мужской пол</value>
+  </data>
+  <data name="UnknownSex" xml:space="preserve">
+    <value>Не указывать</value>
+  </data>
+  <data name="UserAgePlaceholder" xml:space="preserve">
+    <value>({0} лет/года)</value>
+  </data>
   <data name="UserName" xml:space="preserve">
     <value>Имя</value>
   </data>

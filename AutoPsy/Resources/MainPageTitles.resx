@@ -117,31 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add" xml:space="preserve">
-    <value>Добавить</value>
+  <data name="Diary" xml:space="preserve">
+    <value>Дневник</value>
   </data>
-  <data name="Clinic" xml:space="preserve">
-    <value>Клиника</value>
+  <data name="Main" xml:space="preserve">
+    <value>Главная</value>
   </data>
-  <data name="DateOfAppointment" xml:space="preserve">
-    <value>Дата приема</value>
+  <data name="Profile" xml:space="preserve">
+    <value>Профиль</value>
   </data>
-  <data name="Diagnosis" xml:space="preserve">
-    <value>Диагноз</value>
+  <data name="Results" xml:space="preserve">
+    <value>Отчеты</value>
   </data>
-  <data name="Doctor" xml:space="preserve">
-    <value>Лечащий врач</value>
-  </data>
-  <data name="Dosage" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="Medicine" xml:space="preserve">
-    <value>Препараты</value>
-  </data>
-  <data name="NameOfMedicine" xml:space="preserve">
-    <value>Название препарата</value>
-  </data>
-  <data name="Score" xml:space="preserve">
-    <value>Оценка приема</value>
+  <data name="Table" xml:space="preserve">
+    <value>Таблица</value>
   </data>
 </root>

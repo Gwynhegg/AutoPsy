@@ -6,11 +6,12 @@
             xmlns:table="clr-namespace:AutoPsy.Pages.TablePages"
             xmlns:report="clr-namespace:AutoPsy.Pages.ReportPages"
             xmlns:root="clr-namespace:AutoPsy.Pages.MainPages"
+            xmlns:res="clr-namespace:AutoPsy.Resources"
     x:Class="AutoPsy.Pages.MainPage">
     <!--Pages can be added as references or inline-->
-  <profile:ProfilePage Title="Профиль" />
-  <diary:DiaryPage Title="Дневник" />
-  <root:RootPage Title="Главная"/>
-  <table:TablePage Title="Таблица" />
-  <report:ReportPage Title="Отчёт" />
+  <profile:ProfilePage Title="{x:Static res:MainPageTitles.Profile}" />
+    <diary:DiaryPage Title="{x:Static res:MainPageTitles.Diary}" />
+    <root:RootPage Title="{x:Static res:MainPageTitles.Main}"/>
+    <table:TablePage Title="{x:Static res:MainPageTitles.Table}" />
+    <report:ReportPage Title="{x:Static res:MainPageTitles.Results}" />
 </TabbedPage>

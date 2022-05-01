@@ -12,7 +12,7 @@ namespace AutoPsy.Pages.DiaryPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiaryEditPage : ContentPage
     {
-        private CustomComponents.DiaryPagePanel pagePanel;
+        private CustomComponents.DiaryPagePanel pagePanel;      
         private ISynchronizablePage parentPage;
 
         public DiaryEditPage(ISynchronizablePage page)

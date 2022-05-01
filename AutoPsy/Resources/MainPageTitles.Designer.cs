@@ -22,14 +22,14 @@ namespace AutoPsy.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class UserDefault {
+    public class MainPageTitles {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal UserDefault() {
+        internal MainPageTitles() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace AutoPsy.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.UserDefault", typeof(UserDefault).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.MainPageTitles", typeof(MainPageTitles).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,74 +61,47 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Женский пол.
+        ///   Ищет локализованную строку, похожую на Дневник.
         /// </summary>
-        public static string FemaleSex {
+        public static string Diary {
             get {
-                return ResourceManager.GetString("FemaleSex", resourceCulture);
+                return ResourceManager.GetString("Diary", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Имеется ли у вас опыт лечения?.
+        ///   Ищет локализованную строку, похожую на Главная.
         /// </summary>
-        public static string HasExperience {
+        public static string Main {
             get {
-                return ResourceManager.GetString("HasExperience", resourceCulture);
+                return ResourceManager.GetString("Main", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Мужской пол.
+        ///   Ищет локализованную строку, похожую на Профиль.
         /// </summary>
-        public static string MaleSex {
+        public static string Profile {
             get {
-                return ResourceManager.GetString("MaleSex", resourceCulture);
+                return ResourceManager.GetString("Profile", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Не указывать.
+        ///   Ищет локализованную строку, похожую на Отчеты.
         /// </summary>
-        public static string UnknownSex {
+        public static string Results {
             get {
-                return ResourceManager.GetString("UnknownSex", resourceCulture);
+                return ResourceManager.GetString("Results", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на ({0} лет/года).
+        ///   Ищет локализованную строку, похожую на Таблица.
         /// </summary>
-        public static string UserAgePlaceholder {
+        public static string Table {
             get {
-                return ResourceManager.GetString("UserAgePlaceholder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Имя.
-        /// </summary>
-        public static string UserName {
-            get {
-                return ResourceManager.GetString("UserName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Отчество.
-        /// </summary>
-        public static string UserPatronymic {
-            get {
-                return ResourceManager.GetString("UserPatronymic", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Фамилия.
-        /// </summary>
-        public static string UserSurname {
-            get {
-                return ResourceManager.GetString("UserSurname", resourceCulture);
+                return ResourceManager.GetString("Table", resourceCulture);
             }
         }
     }

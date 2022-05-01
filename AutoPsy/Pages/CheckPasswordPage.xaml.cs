@@ -29,8 +29,8 @@ namespace AutoPsy.Pages
                 }
                 else
                 {
-                    await DisplayAlert("Упс!", "Хорошая попытка!", "ОК");       // Иначе выводим сообщение об ошибке
-                    PasswordField.Text = "";
+                    await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.AccessDeniedAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);       // Иначе выводим сообщение об ошибке
+                    PasswordField.Text = String.Empty;
                 }
             }
         }

@@ -48,7 +48,7 @@ namespace AutoPsy.Pages
 
             if (experiencePages.Count == 0)     // если коллекция не содержит записей, то выводим сообщение об ошибке
             {
-                await DisplayAlert("Упс!", "Пока у вас нет записей для редактирования", "OK");
+                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.NoRecordsToEditAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
                 return;
             }
             var temp = ExperienceCarouselView.CurrentItem as AutoPsy.Database.Entities.UserExperience;      // Если есть, получаем выбранный инстанс
@@ -61,7 +61,7 @@ namespace AutoPsy.Pages
         {
             if (experiencePages.Count == 0)     // если коллекция не содержит записей, то выводим сообщение об ошибке
             {
-                await DisplayAlert("Упс!", "Пока у вас нет записей для удаления", "OK");
+                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.NoRecordsToDeleteAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
                 return;
             }
 

@@ -34,13 +34,13 @@
                 <Entry x:Name="PatronymicEntry" Text="{x:Static res:UserDefault.UserPatronymic}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Focused="PatronymicEntry_Focused" Unfocused="PatronymicEntry_Unfocused"></Entry>
                 <DatePicker x:Name="BirthDate" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" DateSelected="BirthDate_DateSelected"></DatePicker>
                 <StackLayout x:Name="GenderFrame" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
-                    <RadioButton x:Name="MaleOption" Content="Мужской пол" CheckedChanged="Option_CheckedChanged"></RadioButton>
-                    <RadioButton x:Name="FemaleOption" Content="Женский пол" CheckedChanged="Option_CheckedChanged"></RadioButton>
-                    <RadioButton x:Name="NonOption" Content="Не указывать" IsChecked="True" CheckedChanged="Option_CheckedChanged"></RadioButton>
+                    <RadioButton x:Name="MaleOption" Content="{x:Static res:UserDefault.MaleSex}" CheckedChanged="Option_CheckedChanged"></RadioButton>
+                    <RadioButton x:Name="FemaleOption" Content="{x:Static res:UserDefault.FemaleSex}" CheckedChanged="Option_CheckedChanged"></RadioButton>
+                    <RadioButton x:Name="NonOption" Content="{x:Static res:UserDefault.UnknownSex}" IsChecked="True" CheckedChanged="Option_CheckedChanged"></RadioButton>
                 </StackLayout>
                 <CheckBox x:Name="HasExperience" Grid.Row="6" Grid.Column="1" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"></CheckBox>
-                <Label Text="Имеется ли у вас опыт лечения?" Grid.Row="6" Grid.Column="0" VerticalTextAlignment="Center"></Label>
-                <Button x:Name="Continue" Text="Далее" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Clicked="Continue_Clicked"></Button>
+                <Label Text="{x:Static res:UserDefault.HasExperience}" Grid.Row="6" Grid.Column="0" VerticalTextAlignment="Center"></Label>
+                <Button x:Name="Continue" Text="{x:Static res:AuxiliaryResources.Continue}" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Clicked="Continue_Clicked"></Button>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

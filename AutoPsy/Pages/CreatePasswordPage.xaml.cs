@@ -22,8 +22,8 @@ namespace AutoPsy.Pages
         private void ResetButton_Clicked(object sender, EventArgs e)        // Событие при нажатии на кнопку сброса пароля
         {
             isFirstStep = true;     // Возвраш=щаемся на первый шаг
-            PasswordField.Text = "";   
-            passwordInstance = "";      // Очищаем значение пароля
+            PasswordField.Text = String.Empty;   
+            passwordInstance = String.Empty;      // Очищаем значение пароля
             StepLabel.Text = AutoPsy.Resources.PasswordDefault.FirstStep;
         }
 
@@ -35,7 +35,7 @@ namespace AutoPsy.Pages
                 {
                     passwordInstance = PasswordField.Text;      // Присваиваем переменной значение поля
                     isFirstStep = false;        // Изменяем шаг на второй
-                    PasswordField.Text = "";
+                    PasswordField.Text = String.Empty;
                     StepLabel.Text = AutoPsy.Resources.PasswordDefault.SecondStep;
                 }
                 else
@@ -52,8 +52,8 @@ namespace AutoPsy.Pages
                     }
                     else
                     {
-                        await DisplayAlert("Упс!", "Введенный пароль не совпадает с заданным. Попробуйте еще раз!", "ОК");
-                        PasswordField.Text = "";
+                        await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.WrongPasswordAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
+                        PasswordField.Text = String.Empty;
                     }
                 }
             }

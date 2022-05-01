@@ -67,7 +67,7 @@ namespace AutoPsy.CustomComponents
 
         private async void AddTag_Clicked(object sender, EventArgs e)
         {
-            var result = await parent.DisplayActionSheet("Выберите симптом", "Отмена", null, symptomNames);
+            var result = await parent.DisplayActionSheet(AutoPsy.Resources.DiaryPageDefault.SelectSymptom, AutoPsy.Resources.AuxiliaryResources.Cancel, null, symptomNames);
 
             if (result != null)
             {
@@ -96,12 +96,12 @@ namespace AutoPsy.CustomComponents
 
         private void TopicEntry_Focused(object sender, FocusEventArgs e)
         {
-            if (TopicEntry.Text.Equals(AutoPsy.Resources.DiaryPageDefault.Topic)) TopicEntry.Text = "";
+            if (TopicEntry.Text.Equals(AutoPsy.Resources.DiaryPageDefault.Topic)) TopicEntry.Text = String.Empty;
         }
 
         private void TopicEntry_Unfocused(object sender, FocusEventArgs e)
         {
-            if (!TopicEntry.Text.Equals("") && !TopicEntry.Text.Equals(AutoPsy.Resources.DiaryPageDefault.Topic))
+            if (!TopicEntry.Text.Equals(String.Empty) && !TopicEntry.Text.Equals(AutoPsy.Resources.DiaryPageDefault.Topic))
                 diaryHandler.AddTopic(TopicEntry.Text);
             else
                 TopicEntry.Text = AutoPsy.Resources.DiaryPageDefault.Topic;
@@ -109,12 +109,12 @@ namespace AutoPsy.CustomComponents
 
         private void TextEditor_Focused(object sender, FocusEventArgs e)
         {
-            if (TextEditor.Text.Equals(AutoPsy.Resources.DiaryPageDefault.MainText)) TextEditor.Text = "";
+            if (TextEditor.Text.Equals(AutoPsy.Resources.DiaryPageDefault.MainText)) TextEditor.Text = String.Empty;
         }
 
         private void TextEditor_Unfocused(object sender, FocusEventArgs e)
         {
-            if (!TextEditor.Text.Equals("") && !TextEditor.Text.Equals(AutoPsy.Resources.DiaryPageDefault.MainText))
+            if (!TextEditor.Text.Equals(String.Empty) && !TextEditor.Text.Equals(AutoPsy.Resources.DiaryPageDefault.MainText))
                 diaryHandler.SetMainText(TextEditor.Text);
             else
                 TextEditor.Text = AutoPsy.Resources.DiaryPageDefault.MainText;

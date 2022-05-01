@@ -57,22 +57,22 @@ namespace AutoPsy.Pages
 
         private void SurnameEntry_Focused(object sender, FocusEventArgs e)
         {
-            if (SurnameEntry.Text == AutoPsy.Resources.UserDefault.UserSurname) SurnameEntry.Text = "";
+            if (SurnameEntry.Text == AutoPsy.Resources.UserDefault.UserSurname) SurnameEntry.Text = String.Empty;
         }
 
         private void NameEntry_Focused(object sender, FocusEventArgs e)
         {
-            if (NameEntry.Text == AutoPsy.Resources.UserDefault.UserName) NameEntry.Text = "";
+            if (NameEntry.Text == AutoPsy.Resources.UserDefault.UserName) NameEntry.Text = String.Empty;
         }
 
         private void PatronymicEntry_Focused(object sender, FocusEventArgs e)
         {
-            if (PatronymicEntry.Text == AutoPsy.Resources.UserDefault.UserPatronymic) PatronymicEntry.Text = "";
+            if (PatronymicEntry.Text == AutoPsy.Resources.UserDefault.UserPatronymic) PatronymicEntry.Text = String.Empty;
         }
 
         private void SurnameEntry_Unfocused(object sender, FocusEventArgs e)         // если введено корректное значение, заносим данные в обертку
         {
-            if (SurnameEntry.Text != "" && SurnameEntry.Text != AutoPsy.Resources.UserDefault.UserSurname)
+            if (SurnameEntry.Text != String.Empty && SurnameEntry.Text != AutoPsy.Resources.UserDefault.UserSurname)
                 userHandler.AddSurnameToUser(SurnameEntry.Text);
             else
                 SurnameEntry.Text = AutoPsy.Resources.UserDefault.UserSurname;
@@ -80,7 +80,7 @@ namespace AutoPsy.Pages
 
         private void NameEntry_Unfocused(object sender, FocusEventArgs e)        // если введено корректное значение, заносим данные в обертку
         {
-            if (NameEntry.Text != "" && NameEntry.Text != AutoPsy.Resources.UserDefault.UserName)
+            if (NameEntry.Text != String.Empty && NameEntry.Text != AutoPsy.Resources.UserDefault.UserName)
                 userHandler.AddNameToUser(NameEntry.Text);
             else
                 NameEntry.Text = AutoPsy.Resources.UserDefault.UserName;
@@ -88,7 +88,7 @@ namespace AutoPsy.Pages
 
         private void PatronymicEntry_Unfocused(object sender, FocusEventArgs e)     // если введено корректное значение, заносим данные в обертку
         {
-            if (PatronymicEntry.Text != "" && PatronymicEntry.Text != AutoPsy.Resources.UserDefault.UserPatronymic)
+            if (PatronymicEntry.Text != String.Empty && PatronymicEntry.Text != AutoPsy.Resources.UserDefault.UserPatronymic)
                 userHandler.AddPatronymicToUser(PatronymicEntry.Text);
             else
                 PatronymicEntry.Text = AutoPsy.Resources.UserDefault.UserPatronymic;

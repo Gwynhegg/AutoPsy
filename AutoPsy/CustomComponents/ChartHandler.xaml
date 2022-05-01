@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             x:Class="AutoPsy.CustomComponents.ChartHandler">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="1*"></RowDefinition>
+        <RowDefinition Height="8*"></RowDefinition>
+        <RowDefinition Height="3*"></RowDefinition>
+    </Grid.RowDefinitions>
+    <Grid Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="BackwardButton" Text="Туда" Clicked="BackButton_Clicked"></Button>
+        <Button x:Name="ForwardButton" Text="Сюда" Clicked="ForwardButton_Clicked" Grid.Column="2"></Button>
+        <Label x:Name="StatText" Grid.Column="1"></Label>
+
+    </Grid>
+    <chart:ChartView x:Name="CurrentChart" Grid.Row="1"></chart:ChartView>
+    <CollectionView x:Name="ParameterPicker" Grid.Row="2" ItemsSource="{Binding ChartElementModel}" IsEnabled="True" IsVisible="true" SelectionMode="Multiple" SelectionChanged="ParameterPicker_SelectionChanged">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{Binding Name}" Margin="5,5,5,5"></Label>
+                    <Label Text="{Binding Value}" Grid.Column="1" Margin="5,5,5,5"></Label>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</Grid>

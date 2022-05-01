@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,46 +16,73 @@ namespace AutoPsy.Pages.DiaryPages
     public partial class DiaryAnalysisPage : ContentPage
     {
         private int pageFound = 0;
-        private List<Database.Entities.DiaryPage> diaryPages;
-        public DiaryAnalysisPage()
+        private List<Database.Entities.DiaryPage> diaryPages;       // Коллекция, содержащая выбранные записи из дневника
+        private Logic.DiaryPagesCalc diaryCalc;     // Класс для статистической обработки записей
+        public DiaryAnalysisPage(DateTime start, DateTime end)
         {
             InitializeComponent();
-            diaryPages = new List<Database.Entities.DiaryPage>();
+            DateNavigatorStart.Date = start;
+            DateNavigatorEnd.Date = end;
+
+            diaryPages = App.Connector.SelectData(start, end);     // По переданным в конструкторе параметрам получаем данные из таблицы
+
+            diaryCalc = new Logic.DiaryPagesCalc();     // Инициализируем класс стат. обработки
+            diaryCalc.ProcessRecords(diaryPages);       // Передаем данные и производим базовую обработку - сортировку, инициализацию, создание вспомогательных структур 
+            diaryCalc.RecursiveFilling();       // Заполняем данные для последующей обработки методом обхода графа в глубину
+            diaryCalc.StatisticCalculation();       // Высчитываем статистику по каждому вхождению
+
+            ChartsSelector.IsVisible = true;
+
+            ShowSymptomsButton_Clicked(ShowSymptomsButton, new EventArgs());        // отображаем результаты
+
         }
 
-        private void ContinueButton_Clicked(object sender, EventArgs e)
+        // Метод для отображения симптомов и привязанной к ним статистикой
+        private void ShowSymptomsButton_Clicked(object sender, EventArgs e)
         {
-            var diaryCalc = new Logic.DiaryPagesCalc();
-            diaryCalc.ProcessRecords(diaryPages);
-            diaryCalc.RecursiveFilling();
-            diaryCalc.StatisticCalculation();
+            // Чтобы избежать утечек памяти, обновляем компонент для отображения графиков при каждой смене категории
+            if (MainGrid.Children.Last() is CustomComponents.ChartHandler) MainGrid.Children.Remove(MainGrid.Children.Last());
 
-            // ВОТ ТУТ НАЧНЕТСЯ МАГИЯ С ГРАФИКАМИ
-            var results = diaryCalc.GetOnlySymptoms();
+            ChartsSelector.IsVisible = true;
+            var choosedStats = diaryCalc.GetOnlySymptoms();     // Отображаем симптомы
+
+            // Создаем объект отображения графиков по указанным в аргументах статистических величин
+            var chartHandler = new CustomComponents.ChartHandler(choosedStats, 
+                Const.Constants.STAT_COUNT, Const.Constants.MIN_INTERVAL, Const.Constants.MAX_INTERVAL, 
+                Const.Constants.AVERAGE_INTERVAL);
+
+            MainGrid.Children.Add(chartHandler, 0, 2);
         }
 
-        private void SynchronizeDate()
+        // Метод для отображения проявлений и привязанной к ним статистикой, остальное аналогично
+        private void ShowDiseasesButton_Clicked(object sender, EventArgs e)
         {
-            diaryPages = App.Connector.SelectDiaryData(DateNavigatorStart.Date, DateNavigatorEnd.Date);
-            pageFound = diaryPages.Count;
-            if (pageFound != 0)
-            {
-                var countTitle = String.Format("Найдено: {0} записей. Продолжаем?", pageFound);
-                ContinueButton.Text = countTitle;
-                ContinueButton.IsEnabled = true;
-            }
-            else ContinueButton.IsEnabled = false;
+            if (MainGrid.Children.Last() is CustomComponents.ChartHandler) MainGrid.Children.Remove(MainGrid.Children.Last());
+
+            var choosedStats = diaryCalc.GetOnlyDisplays();
+            var chartHandler = new CustomComponents.ChartHandler(choosedStats,
+                Const.Constants.STAT_COUNT, Const.Constants.MAX_VALUE, Const.Constants.AVERAGE_VALUE,
+                Const.Constants.MIN_INTERVAL, Const.Constants.MAX_INTERVAL, Const.Constants.AVERAGE_INTERVAL);
+
+            MainGrid.Children.Add(chartHandler, 0, 2);
         }
 
-        private void DateNavigatorStart_DateSelected(object sender, DateChangedEventArgs e)
+        // Метод для отображения категорий и привязанной к ним статистикой, остальное аналогично
+        private void ShowCategories_Clicked(object sender, EventArgs e)
         {
-            SynchronizeDate();
+            if (MainGrid.Children.Last() is CustomComponents.ChartHandler) MainGrid.Children.Remove(MainGrid.Children.Last());
+
+            var choosedStats = diaryCalc.GetOnlyCategories();
+            var chartHandler = new CustomComponents.ChartHandler(choosedStats,
+                Const.Constants.STAT_COUNT, Const.Constants.MAX_VALUE, Const.Constants.AVERAGE_VALUE,
+                Const.Constants.MIN_INTERVAL, Const.Constants.MAX_INTERVAL, Const.Constants.AVERAGE_INTERVAL);
+
+            MainGrid.Children.Add(chartHandler, 0, 2);
         }
 
-        private void DateNavigatorEnd_DateSelected(object sender, DateChangedEventArgs e)
+        private async void ReturnButton_Clicked(object sender, EventArgs e)
         {
-            if (DateNavigatorEnd.Date < DateNavigatorStart.Date) DateNavigatorEnd.Date = DateNavigatorStart.Date;
-            SynchronizeDate();
+            await Navigation.PopModalAsync();
         }
     }
 }

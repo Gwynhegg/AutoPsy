@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.ProfilePages.ProfilePage">
     <ContentPage.Content>
         <Grid x:Name="ProfileGrid">
@@ -18,7 +19,7 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Image BackgroundColor="Azure"  Grid.Column="1"></Image>
-                <Button x:Name="SettingsButton" Text="Настройки" Grid.Column="2"></Button>
+                <Button x:Name="SettingsButton" Text="{x:Static res:AuxiliaryResources.Settings}" Grid.Column="2"></Button>
             </Grid>
             
             <Button x:Name="PersonalDataButton" Grid.Row="1" Clicked="PersonalDataButton_Clicked"></Button>
@@ -39,7 +40,7 @@
                         <StackLayout IsEnabled="False">
                             <Label Text="{Binding NameOfClinic}"></Label>
                             <Label Text="{Binding TreatingDoctor}"></Label>
-                            <Label Text="Дата приема"></Label>
+                            <Label Text="{x:Static res:UserExperienceDefault.DateOfAppointment}"></Label>
                             <DatePicker Date="{Binding Appointment}"></DatePicker>
                             <Label Text="{Binding Diagnosis}"></Label>
                             <Frame>

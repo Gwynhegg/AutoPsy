@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.PrimaryUserExperiencePage">
     <ContentPage.Content>
         <Grid>
@@ -25,7 +26,7 @@
                         <StackLayout>
                             <Label Text="{Binding NameOfClinic}"></Label>
                             <Label Text="{Binding TreatingDoctor}"></Label>
-                            <Label Text="Дата приема"></Label>
+                            <Label Text="{x:Static res:UserExperienceDefault.DateOfAppointment}"></Label>
                             <DatePicker Date="{Binding Appointment}"></DatePicker>
                             <Label Text="{Binding Diagnosis}"></Label>
                             <Frame>
@@ -50,7 +51,7 @@
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
-            <Button x:Name="MoveForward" Text="Далее" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Clicked="MoveForward_Clicked"></Button>
+            <Button x:Name="MoveForward" Text="{x:Static res:AuxiliaryResources.Continue}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Clicked="MoveForward_Clicked"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
