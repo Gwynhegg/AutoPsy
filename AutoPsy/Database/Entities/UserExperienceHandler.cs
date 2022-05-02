@@ -38,7 +38,7 @@ namespace AutoPsy.Database.Entities
 
         public void AddAppointment(DateTime appointmentDate)
         {
-            userExperience.Appointment = appointmentDate;
+            userExperience.Appointment = appointmentDate.Date;
         }
 
         public void AddDiagnosis(string diagnosis)

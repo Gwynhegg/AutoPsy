@@ -64,7 +64,7 @@ namespace AutoPsy.Database.Entities
 
         public void SetDate(DateTime dateTime)
         {
-            page.DateOfRecord = dateTime;
+            page.DateOfRecord = dateTime.Date;
         }
 
         public DateTime GetDate()

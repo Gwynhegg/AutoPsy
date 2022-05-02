@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace AutoPsy.Logic.Structures
 {
@@ -31,6 +32,7 @@ namespace AutoPsy.Logic.Structures
         // Метод для высчитывания стат. величин
         public void Calculate(DateTime[] dates, int[] values)
         {
+            MergeEntries(ref dates, ref values);
             dataEntries = new Dictionary<DateTime, int>();
             dataEntries.Add(dates[0], values[0]);
             Count = dates.Length;       // Установка показателя количества встреченных вхождений объекта
@@ -47,7 +49,7 @@ namespace AutoPsy.Logic.Structures
 
                 for (int i = 1; i < Count; i++)
                 {
-                    dataEntries.Add(dates[i], values[i]);
+                    if (!dataEntries.ContainsKey(dates[i])) dataEntries.Add(dates[i], values[i]); else dataEntries[dates[i]] += values[i];
 
                     // Вычисление текущего интервала между записями и сравнение со связанными параметрами
                     var currInterval = (dates[i] - dates[i - 1]).Days;
@@ -72,6 +74,25 @@ namespace AutoPsy.Logic.Structures
                 MaxValue = values[0];
                 AverageValue = values[0];
             }
+        }
+
+        private static void MergeEntries(ref DateTime[] dates, ref int[] values)
+        {
+            int iterator = 0;
+            List<DateTime> tempDates = dates.ToList();
+            List<int> tempValues = values.ToList();
+            while (iterator < tempDates.Count - 1)
+            {
+                if (DateTime.Compare(tempDates[iterator].Date, tempDates[iterator + 1].Date) == 0)
+                {
+                    tempDates.RemoveAt(iterator + 1);
+                    tempValues[iterator] += tempValues[iterator + 1];
+                }
+                else iterator++;
+            }
+
+            dates = tempDates.ToArray();
+            values = tempValues.ToArray();
         }
     }
 }

@@ -57,7 +57,9 @@ namespace AutoPsy.Logic
                 foreach (var page in pageCuts)      // Удаляем обработанный элемент из каждого из срезов
                     page.Nodes.Remove(node.Key);
 
-                if (pageCuts.First().Nodes.Count == 0) pageCuts.RemoveAt(0);        // Если элементов в текущем срезе не осталось - удаляем его и переходим к следующему
+                for (int i = pageCuts.Count - 1; i >= 0; i--)
+                    if (pageCuts[i].Nodes.Count == 0) pageCuts.RemoveAt(i);     // Если элементов в текущем срезе не осталось - удаляем его и переходим к следующему
+                //if (pageCuts.First().Nodes.Count == 0) pageCuts.RemoveAt(0);        
             }
         }
 

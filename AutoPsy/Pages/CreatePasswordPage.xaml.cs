@@ -12,7 +12,7 @@ namespace AutoPsy.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreatePasswordPage : ContentPage       // Страница создания пароля
     {
-        private string passwordInstance = "";       // Создаем пустую строку для хранения
+        private string passwordInstance = String.Empty;       // Создаем пустую строку для хранения
         private bool isFirstStep = true;        // Первый шаг - задание пароля, второй - его повторение
         public CreatePasswordPage()
         {

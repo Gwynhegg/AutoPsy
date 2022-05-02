@@ -55,7 +55,6 @@ namespace AutoPsy.Pages.ProfilePages
         public void SynchronizeContentPages()
         {
             if (!App.Connector.IsTableExisted<Database.Entities.UserExperience>()) return;      // проверяем существование таблицы с карточками посещений
-
             // Выбираем те из них, даты которых попадают в заданный интервал
             var queryPages = App.Connector.SelectAll<Database.Entities.UserExperience>().
                 Where(
