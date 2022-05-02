@@ -16,5 +16,15 @@ namespace AutoPsy.Pages.TablePages
         {
             InitializeComponent();
         }
+
+        private void AnalyzeButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void FullVersionButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new FullVersionTablePage());
+        }
     }
 }

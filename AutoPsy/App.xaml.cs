@@ -28,11 +28,23 @@ namespace AutoPsy
             }
         }
 
+        private static AutoPsy.Logic.Structures.TableEntitiesGraph tableGraph;
+        public static AutoPsy.Logic.Structures.TableEntitiesGraph TableGraph
+        {
+            get
+            {
+                if (tableGraph == null)
+                    tableGraph = new AutoPsy.Logic.Structures.TableEntitiesGraph();
+                return tableGraph;
+            }
+        }
+
         public App()
         {
             InitializeComponent();
 
             var graph = App.Graph;
+            var table = App.TableGraph;
             MainPage = new NavigationPage(new Pages.WelcomePage());     // Загрузка начальной страницы
         }
 

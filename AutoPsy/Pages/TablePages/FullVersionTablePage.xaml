@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPsy.Pages.TablePages.FullVersionTablePage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="8*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <DatePicker x:Name="DateNavigationStart" Grid.Column="0"></DatePicker>
+                <DatePicker x:Name="DateNavigationEnd" Grid.Column="2"></DatePicker>
+            </Grid>
+            <ScrollView Orientation="Both" Grid.Row="1">
+                <Grid x:Name="MainField"></Grid>
+            </ScrollView>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="AddField" Grid.Column="1" Text="+" Clicked="AddField_Clicked"></Button>
+                <Button x:Name="DeleteField" Grid.Column="2" Text="D" Clicked="DeleteField_Clicked"></Button>
+
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

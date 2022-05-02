@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using AutoPsy.Database.Entities;
 
 namespace AutoPsy.Logic
 {
     public class DiaryPagesCalc
     {
-        Structures.INode[] nodes;
+        INode[] nodes;
         private Dictionary<string, Structures.DiaryResultRecords> statRecords;
         private List<Database.Entities.DiaryPage> pages;
         private List<Structures.DiaryPagesCut> pageCuts;
@@ -24,6 +25,8 @@ namespace AutoPsy.Logic
         // Метод обхода графа с целью заполнения структур - срезов
         public void RecursiveFilling()
         {
+            TryToMergeData();
+
             foreach (var page in pages)
             {
                 // Создаем срез с конкретно указанной датой
@@ -98,6 +101,28 @@ namespace AutoPsy.Logic
             var splitted = page.AttachedSymptoms.Split('\\');
             Array.Resize(ref splitted, splitted.Length - 1);
             return splitted;
+        }
+
+        private string CodifySymptoms(string[] symptoms)
+        {
+            return String.Join("\\", symptoms);
+        }
+
+        private void TryToMergeData()
+        {
+            int iterator = 0;
+            while (iterator < pages.Count - 1)
+            {
+                if (DateTime.Compare(pages[iterator].DateOfRecord.Date, pages[iterator + 1].DateOfRecord.Date) == 0)
+                {
+                    var firstSymptoms = PartiallyRecreateSymptoms(pages[iterator]);
+                    var secondSymptoms = PartiallyRecreateSymptoms(pages[iterator + 1]);
+                    var resultSymptoms = firstSymptoms.Union(secondSymptoms).ToArray();
+                    pages[iterator].AttachedSymptoms = CodifySymptoms(resultSymptoms);
+                    pages.RemoveAt(iterator + 1);
+                }
+                else iterator++;
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace AutoPsy.Database.Entities
         {
             userExperience = new UserExperience();
             userExperience.UserId = userId;
-            userExperience.Diagnosis = "";
+            userExperience.Diagnosis = String.Empty;
             listOfMedicine = new ObservableCollection<Medicine>();
         }
 

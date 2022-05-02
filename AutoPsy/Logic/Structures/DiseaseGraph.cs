@@ -4,6 +4,7 @@ using System.Text;
 using System.Xml;
 using Android.Content.Res;
 using System.Linq;
+using AutoPsy.Database.Entities;
 
 namespace AutoPsy.Logic.Structures
 {
@@ -96,11 +97,11 @@ namespace AutoPsy.Logic.Structures
             foreach (XmlNode node in nodes)
                 if (node.NodeType != XmlNodeType.Comment)       // При разрезке желательно игнорировать записи комментариев
                 {
-                    if (node.Attributes.Count == 2)     // Если узео имеет только два атрибута, то он является категорией
+                    if (node.Attributes.Count == 2)     // Если узел имеет только два атрибута, то он является категорией
                         categories.Add(new CategoryNode(node.Attributes[0].Value, node.Attributes[1].Value));
                     else
                     {
-                        if (node.Attributes["Category"].Value.Equals("Symptoms"))       // Если в категории атрибута указано, что это симптом, то создаем узел симтома
+                        if (node.Attributes[Const.Constants.GRAPH_ATTRIBUTE_CATEGORY].Value.Equals(Const.Constants.SYMPTOMS_TAG))       // Если в категории атрибута указано, что это симптом, то создаем узел симтома
                             symptoms.Add(new SymptomNode(node.Attributes[0].Value, node.Attributes[1].Value));
                         else
                             diseases.Add(new DiseaseNode(node.Attributes[0].Value, node.Attributes[1].Value, node.Attributes[2].Value));        // Иначе - проявления
@@ -115,100 +116,5 @@ namespace AutoPsy.Logic.Structures
         }
     }
 
-    public interface INode
-    {
-        string Id { get; }
-        string Value { get; set; }
-    }       // Общий интерфейс для узлов
-
-    public class CategoryNode : INode
-    {
-        private string id, value;
-        public CategoryNode(string id, string value)
-        {
-            this.id = id;
-            this.value = value;
-        }
-        public string Id
-        {
-            get { return this.id; }
-        }
-
-        public string Value
-        {
-            get { return value; }
-            set { this.value = value; }
-        }
-    }       // Класс узлов-категорий
-
-    public class DiseaseNode : INode
-    {
-        private string id, value, category;
-
-        public DiseaseNode(string id, string value, string category)
-        {
-            this.id = id;
-            this.value = value;
-            this.category = category;
-        }
-
-        public string Id
-        {
-            get { return id;}
-        }
-        public string Value
-        {
-            get { return value; }
-            set { this.value = value; }
-        }
-
-        public string Category
-        {
-            get { return category; }
-            set { category = value; }
-        }
-    }       // Класс узлов-проявлений
-
-    public class SymptomNode : INode        // Класс узлов-симптомов
-    {
-        private string id, value;
-        public SymptomNode(string id, string value)
-        {
-            this.id = id;
-            this.value = value;
-        }
-
-        public string Id
-        {
-            get { return id;}
-        }
-        public string Value
-        {
-            get { return value; }
-            set { this.value = value; }
-        }
-    }
-
-    public class Link
-    {
-        private string idSource, idTarget;
-        private string source, target;
-        public string Source
-        {
-            get { return source; }
-            set { source = value; }
-        }
-
-        public string Target
-        {
-            get { return target; }
-            set { target = value; }
-        }
-
-        public Link(string source, string target)
-        {
-            this.source = source;
-            this.target = target;
-        }
-    }       // Класс ребер графа
+    
 }

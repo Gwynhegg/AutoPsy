@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoPsy.Database.Entities;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace AutoPsy.Pages.DiaryPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SymptomViewer : ContentPage
     {
-        private Logic.Structures.INode[] guideInfo;     // массив для хранения всех узлов графа
+        private INode[] guideInfo;     // массив для хранения всех узлов графа
         ObservableCollection<string> searchResults;     // коллекция, в которой будут отображены результаты поиска
         public SymptomViewer()
         {
@@ -77,11 +78,6 @@ namespace AutoPsy.Pages.DiaryPages
             // В противном случае - отображаем строку и панель поиска, скрывая остальное
             SearchResults.IsVisible = !type;
             SearchResults.IsEnabled = !type;
-        }
-
-        private async void BackButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
         }
     }
 }

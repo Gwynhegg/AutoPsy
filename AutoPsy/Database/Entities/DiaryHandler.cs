@@ -74,7 +74,7 @@ namespace AutoPsy.Database.Entities
 
         public bool CheckCorrectness()
         {
-            if (page.MainText != null && page.MainText != "" && page.DateOfRecord != null) return true; else return false;
+            if (page.MainText != null && page.MainText != String.Empty && page.DateOfRecord != null) return true; else return false;
         }
 
         public void CreateDiaryPageInfo()

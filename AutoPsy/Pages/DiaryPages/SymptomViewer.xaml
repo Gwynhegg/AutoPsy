@@ -11,7 +11,6 @@
                 <RowDefinition Height="5*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
             </Grid.RowDefinitions>
             <SearchBar x:Name="searchBar" Grid.Row="0" Placeholder="{x:Static res:SymptomHelperResources.SearchString}" TextChanged="SearchBar_TextChanged"></SearchBar>
 
@@ -59,8 +58,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-            <Button x:Name="BackButton" Grid.Row="5" Clicked="BackButton_Clicked"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
