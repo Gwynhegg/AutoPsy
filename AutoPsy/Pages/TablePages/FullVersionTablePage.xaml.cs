@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoPsy.CustomComponents;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,74 +14,50 @@ namespace AutoPsy.Pages.TablePages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FullVersionTablePage : ContentPage
     {
-        private Database.Entities.TableEntityHandler entityHandler;
+        private TableGridHandler recomendationsGridHandler;
+        private TableGridHandler conditionsGridHandler;
+        private TableGridHandler triggersGridHandler;
+
         public FullVersionTablePage()
         {
             InitializeComponent();
-            entityHandler = new Database.Entities.TableEntityHandler();
+
 
             DateNavigationEnd.Date = DateTime.Now.Date;
             DateNavigationStart.Date = DateTime.Now.Date.AddDays(-5);
+
+            recomendationsGridHandler = new CustomComponents.TableHandlers.RecomendationsGridHandler("Рекомендации", DateNavigationStart.Date, DateNavigationEnd.Date);
+            conditionsGridHandler = new CustomComponents.TableHandlers.RecomendationsGridHandler("Состояния", DateNavigationStart.Date, DateNavigationEnd.Date);
+            triggersGridHandler = new CustomComponents.TableHandlers.TriggersGridHandler("Триггеры", DateNavigationStart.Date, DateNavigationEnd.Date);
 
             SynchronizeContentPages();
         }
 
         private void SynchronizeContentPages()
         {
-            MainField.ColumnDefinitions.Clear();
-            MainField.RowDefinitions.Clear();
 
-            MainField.RowDefinitions.Add(new RowDefinition() { Height = 50 });
-            MainField.ColumnDefinitions.Add(new ColumnDefinition() { Width = 200 });
-            int iterator = 1;
+            if (recomendationsGridHandler.GetEntityHandler().CheckEntityExisted<Database.Entities.TableRecomendation>())
+                FillHandlersInfo(recomendationsGridHandler);
 
-            for (DateTime i = DateNavigationStart.Date; i <= DateNavigationEnd.Date; i = i.AddDays(1))
-            {
-                MainField.ColumnDefinitions.Add(new ColumnDefinition() { Width = 50 });
-                MainField.Children.Add(new Label() { Text = i.ToShortDateString() }, iterator++, 0);
-            }
+            if (conditionsGridHandler.GetEntityHandler().CheckEntityExisted<Database.Entities.TableCondition>())
+                FillHandlersInfo(conditionsGridHandler);
 
-            if (entityHandler.CheckEntityExisted<Database.Entities.TableRecomendation>()) 
-            {
-                MainField.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star)});
-                MainField.Children.Add(new Label() { Text = "Рекомендации" }, MainField.RowDefinitions.Count - 1, 0);
-                var filterResults = entityHandler.SelectRecomendations(DateNavigationStart.Date, DateNavigationEnd.Date);
-                GetDateTimeResults(filterResults);
-            }
+            conditionsGridHandler.FillTableInformation();
 
-            if (entityHandler.CheckEntityExisted<Database.Entities.TableCondition>())
-            {
-                MainField.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
-                MainField.Children.Add(new Label() { Text = "Состояния" }, MainField.RowDefinitions.Count - 1, 0);
-                var filterResults = entityHandler.SelectConditions(DateNavigationStart.Date, DateNavigationEnd.Date);
-                GetDateTimeResults(filterResults);
-            }
-
-            if (entityHandler.CheckEntityExisted<Database.Entities.TableTrigger>())
-            {
-                MainField.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
-                MainField.Children.Add(new Label() { Text = "Триггеры" }, MainField.RowDefinitions.Count - 1, 0);
-                var filterResults = entityHandler.SelectTriggers(DateNavigationStart.Date, DateNavigationEnd.Date);
-                GetDateTimeResults(filterResults);
-            }
+            if (triggersGridHandler.GetEntityHandler().CheckEntityExisted<Database.Entities.TableTrigger>())
+                FillHandlersInfo(triggersGridHandler);
         }
 
-        private void GetDateTimeResults(List<ITableEntity> entities)
+        private void FillHandlersInfo(TableGridHandler handler)
         {
-            foreach (var entity in entities)
-            {
-                MainField.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });
-                MainField.Children.Add(new Label() { Text = entity.Name }, MainField.RowDefinitions.Count - 1, 0);
-
-                int iterator = 1;
-                for (DateTime i = DateNavigationStart.Date; i <= DateNavigationEnd.Date; i = i.AddDays(1))
-                    MainField.Children.Add(new Button() { Text = entityHandler.GetEntityValueString(entity.Name, i) }, iterator++, MainField.ColumnDefinitions.Count - 1);
-            }
+            handler.FillTableInformation();
+            MainField.RowDefinitions.Add(new RowDefinition());
+            MainField.Children.Add(handler.mainGrid, 0, MainField.RowDefinitions.Count - 1);
         }
 
         public void GetParameter(string parameter)
         {
-            entityHandler.AddParameter(parameter);
+            //entityHandler.AddParameter(parameter);
             SynchronizeContentPages();
         }
 

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPsy.CustomComponents.SliderPopUp">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="ParameterName" Text="Тут будет параметр"></Label>
+            <Label Text="Пожалуйста, оцените свое состояние"></Label>
+            <StackLayout x:Name="ParameterValue"></StackLayout>
+            <Label x:Name="HelperText" Text="Тут будет вспомогательный текст"></Label>
+            <Switch ></Switch>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="CancelButton" Text="Отмена" Clicked="CancelButton_Clicked"></Button>
+                <Button x:Name="AcceptButton" Text="ОК" Clicked="AcceptButton_Clicked" Grid.Column="1"></Button>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

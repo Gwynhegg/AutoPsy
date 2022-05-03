@@ -7,11 +7,11 @@ namespace AutoPsy.Database.Entities
 {
     public class TableEntityHandler
     {
-        private Dictionary<string, Dictionary<DateTime, byte>> tableController;
+        private Dictionary<string, List<ITableEntity>> tableController;
         
         public TableEntityHandler()
         {
-            tableController = new Dictionary<string, Dictionary<DateTime, byte>>();
+            tableController = new Dictionary<string, List<ITableEntity>>();
         }
 
         public bool CheckEntityExisted<T>() where T : new()
@@ -26,17 +26,17 @@ namespace AutoPsy.Database.Entities
 
         public byte GetEntityValue(string name, DateTime date)
         {
-            return tableController[name][date];
+            return tableController[name].Where(x => DateTime.Compare(date.Date, x.Time) == 0).Select(x => x.Value).First();
         }
 
         public void AddParameter(string parameter)
         {
-            tableController.Add(parameter, new Dictionary<DateTime, byte>());
+            tableController.Add(parameter, new List<ITableEntity>());
         }
 
         public string GetEntityValueString(string name, DateTime date)
         {
-            return tableController[name][date].ToString();
+            return tableController[name].Where(x => DateTime.Compare(date.Date, x.Time) == 0).Select(x => x.Value).First().ToString();
         }
 
         public List<ITableEntity> SelectRecomendations(DateTime start, DateTime end)
@@ -60,11 +60,11 @@ namespace AutoPsy.Database.Entities
             foreach (var item in items)
                 if (!tableController.ContainsKey(item.Name))
                 {
-                    tableController.Add(item.Name, new Dictionary<DateTime, byte>());
-                    tableController[item.Name].Add(item.Time, item.Value);
+                    tableController.Add(item.Name, new List<ITableEntity>());
+                    tableController[item.Name].Add(item);
                 }
                 else
-                    tableController[item.Name].Add(item.Time, item.Value);
+                    tableController[item.Name].Add(item);
         }
     }
 }
