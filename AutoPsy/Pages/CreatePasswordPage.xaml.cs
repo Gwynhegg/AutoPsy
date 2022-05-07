@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoPsy.Resources;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +15,14 @@ namespace AutoPsy.Pages
     {
         private string passwordInstance = String.Empty;       // Создаем пустую строку для хранения
         private bool isFirstStep = true;        // Первый шаг - задание пароля, второй - его повторение
-        public CreatePasswordPage()
-        {
-            InitializeComponent();
-        }
+        public CreatePasswordPage() => InitializeComponent();
 
         private void ResetButton_Clicked(object sender, EventArgs e)        // Событие при нажатии на кнопку сброса пароля
         {
             isFirstStep = true;     // Возвраш=щаемся на первый шаг
             PasswordField.Text = String.Empty;   
             passwordInstance = String.Empty;      // Очищаем значение пароля
-            StepLabel.Text = AutoPsy.Resources.PasswordDefault.FirstStep;
+            StepLabel.Text = PasswordDefault.FirstStep;
         }
 
         private async void PasswordField_TextChanged(object sender, TextChangedEventArgs e)     // Метод изменения поля ввода пароля
@@ -36,7 +34,7 @@ namespace AutoPsy.Pages
                     passwordInstance = PasswordField.Text;      // Присваиваем переменной значение поля
                     isFirstStep = false;        // Изменяем шаг на второй
                     PasswordField.Text = String.Empty;
-                    StepLabel.Text = AutoPsy.Resources.PasswordDefault.SecondStep;
+                    StepLabel.Text = PasswordDefault.SecondStep;
                 }
                 else
                 {
@@ -52,7 +50,7 @@ namespace AutoPsy.Pages
                     }
                     else
                     {
-                        await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.WrongPasswordAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
+                        await DisplayAlert(Alerts.AlertMessage, Alerts.WrongPasswordAlertMessage, AuxiliaryResources.ButtonOK);
                         PasswordField.Text = String.Empty;
                     }
                 }

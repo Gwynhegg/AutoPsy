@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microcharts;
 using SkiaSharp;
+using AutoPsy.AuxServices;
 
 namespace AutoPsy.CustomComponents.Charts
 {
@@ -18,7 +19,7 @@ namespace AutoPsy.CustomComponents.Charts
             this.labels = labels;
             colors = new List<SKColor>();
             foreach (var label in labels)
-                colors.Add(AuxServices.ColorPicker.GetRandomColor());
+                colors.Add(ColorPicker.GetRandomColor());
         }
 
         public abstract void AddValuesToChart(List<int> indexes);

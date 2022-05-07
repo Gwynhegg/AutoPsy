@@ -47,15 +47,9 @@ namespace AutoPsy.CustomComponents
             parameterSwitch.Toggled += SwitchToggled;
         }
 
-        private async void CancelButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
-        }
+        private async void CancelButton_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
-        private async void AcceptButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopModalAsync();
-        }
+        private async void AcceptButton_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 
         private void SliderValueChanged(object sender, EventArgs e) => value = (byte)(sender as Slider).Value;
 

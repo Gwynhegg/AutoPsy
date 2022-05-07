@@ -117,40 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AnalysisPlaceholder" xml:space="preserve">
-    <value>Анализ ({0} записи/ей</value>
-  </data>
-  <data name="BackButton" xml:space="preserve">
-    <value>Назад</value>
-  </data>
-  <data name="ButtonOK" xml:space="preserve">
-    <value>ОК</value>
-  </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Отмена</value>
-  </data>
-  <data name="Continue" xml:space="preserve">
-    <value>Продолжить</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value>Нет</value>
-  </data>
-  <data name="NotMentioned" xml:space="preserve">
-    <value>Не указано</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Сохранить</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Настройки</value>
-  </data>
-  <data name="Success" xml:space="preserve">
-    <value>Успех!</value>
-  </data>
-  <data name="ToAnalysis" xml:space="preserve">
-    <value>К анализу</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Да</value>
+  <data name="CheckState" xml:space="preserve">
+    <value>Пожалуйста, оцените свое состояние</value>
   </data>
 </root>

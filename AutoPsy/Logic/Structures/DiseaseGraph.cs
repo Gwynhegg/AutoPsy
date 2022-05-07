@@ -4,6 +4,7 @@ using System.Text;
 using System.Xml;
 using Android.Content.Res;
 using System.Linq;
+using AutoPsy.Const;
 using AutoPsy.Database.Entities;
 
 namespace AutoPsy.Logic.Structures
@@ -80,12 +81,12 @@ namespace AutoPsy.Logic.Structures
         {
             var document = new XmlDocument();       // Создаем обработчик XML-документа
             var assets = Android.App.Application.Context.Assets;        // Открываем папку ассетов
-            document.Load(assets.Open(AutoPsy.Const.Constants.GRAPH_NAME));     // считываем XML-Документ (предсталвение графа)
+            document.Load(assets.Open(Constants.GRAPH_NAME));     // считываем XML-Документ (предсталвение графа)
 
             // Считываем ребра графа
-            var nodeLinks = document.SelectSingleNode("/*[local-name()='DirectedGraph']/*[local-name()='Links']");
+            var nodeLinks = document.SelectSingleNode(Constants.SYMPTOM_GRAPH_LINKS);
             // Считываем узлы графа
-            var nodes = document.SelectSingleNode("/*[local-name()='DirectedGraph']/*[local-name()='Nodes']");
+            var nodes = document.SelectSingleNode(Constants.SYMPTOM_GRAPH_PATH);
 
             // Нарезаем считанные данные в структуру графа
             CutNodesAndLinks(nodeLinks, nodes);

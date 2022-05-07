@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoPsy.Resources;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,7 @@ namespace AutoPsy.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CheckPasswordPage : ContentPage        // Форма авторизации - первоначальный вход в приложение
     {
-        public CheckPasswordPage()
-        {
-            InitializeComponent();
-        }
+        public CheckPasswordPage() => InitializeComponent();
 
         private async void PasswordField_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -29,7 +27,7 @@ namespace AutoPsy.Pages
                 }
                 else
                 {
-                    await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.AccessDeniedAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);       // Иначе выводим сообщение об ошибке
+                    await DisplayAlert(Alerts.AlertMessage, Alerts.AccessDeniedAlertMessage, AuxiliaryResources.ButtonOK);       // Иначе выводим сообщение об ошибке
                     PasswordField.Text = String.Empty;
                 }
             }

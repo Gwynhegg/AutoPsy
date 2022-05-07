@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using AutoPsy.Resources;
 
 namespace AutoPsy.Logic.Structures
 {
@@ -18,16 +19,13 @@ namespace AutoPsy.Logic.Structures
 
         public double GetStatValue(string parameter)        // Акцессор для получения стат. результатов по параметру
         {
-            switch (parameter)
-            {
-                case Const.Constants.STAT_COUNT: return Count; break;
-                case Const.Constants.MAX_VALUE: return MaxValue; break;
-                case Const.Constants.AVERAGE_VALUE: return AverageValue; break;
-                case Const.Constants.MIN_INTERVAL: return MinInterval; break;
-                case Const.Constants.MAX_INTERVAL: return MaxInterval; break;
-                case Const.Constants.AVERAGE_INTERVAL: return AverageInterval; break;
-                default: return 0; break;
-            }
+            if (parameter.Equals(Constants.STAT_COUNT)) return Count;
+            if (parameter.Equals(Constants.MAX_VALUE)) return MaxValue;
+            if (parameter.Equals(Constants.AVERAGE_VALUE)) return AverageValue;
+            if (parameter.Equals(Constants.MIN_INTERVAL)) return MinInterval;
+            if (parameter.Equals(Constants.MAX_INTERVAL)) return MaxInterval;
+            if (parameter.Equals(Constants.AVERAGE_INTERVAL)) return AverageInterval;
+            return 0;
         }
         // Метод для высчитывания стат. величин
         public void Calculate(DateTime[] dates, int[] values)

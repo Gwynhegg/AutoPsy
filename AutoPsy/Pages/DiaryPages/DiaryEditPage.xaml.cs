@@ -1,4 +1,7 @@
 ﻿using System;
+using AutoPsy.CustomComponents;
+using AutoPsy.Resources;
+using AutoPsy.Database.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,14 +15,14 @@ namespace AutoPsy.Pages.DiaryPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiaryEditPage : ContentPage
     {
-        private CustomComponents.DiaryPagePanel pagePanel;      
+        private DiaryPagePanel pagePanel;      
         private ISynchronizablePage parentPage;
 
         public DiaryEditPage(ISynchronizablePage page)
         {
             InitializeComponent();
             parentPage = page;
-            pagePanel = new CustomComponents.DiaryPagePanel(enabled:true, this);      // создаем панель для ввода
+            pagePanel = new DiaryPagePanel(enabled:true, this);      // создаем панель для ввода
             CurrentItem.Children.Insert(0, pagePanel);
         }
         public DiaryEditPage(ISynchronizablePage parentPage, Database.Entities.DiaryPage diaryPage)
@@ -28,7 +31,7 @@ namespace AutoPsy.Pages.DiaryPages
             this.parentPage = parentPage;
 
             // Перегружаем панель для ввода, заполняя уже существующие поля
-            pagePanel = new CustomComponents.DiaryPagePanel(enabled: true, this, diaryPage);
+            pagePanel = new DiaryPagePanel(enabled: true, this, diaryPage);
             CurrentItem.Children.Insert(0, pagePanel);
         }
 
@@ -43,7 +46,7 @@ namespace AutoPsy.Pages.DiaryPages
             }
             catch (Exception ex)        // в случае возникновения ошибки уведомляем об этом
             {
-                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.DiaryAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
+                await DisplayAlert(Alerts.AlertMessage, Alerts.DiaryAlertMessage, AuxiliaryResources.ButtonOK);
             }
         }
     }

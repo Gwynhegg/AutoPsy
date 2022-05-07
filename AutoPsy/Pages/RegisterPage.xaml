@@ -7,9 +7,9 @@
         <StackLayout>
             <StackLayout x:Name="LoginOptions" IsVisible="true" HorizontalOptions="FillAndExpand" Margin="5" VerticalOptions="Fill">
                 <Image BackgroundColor="Aqua"></Image>
-                <Button x:Name="LoginVK" Text="Войти через ВК" Clicked="LoginVK_Clicked"></Button>
-                <Label Text="Или" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
-                <Button x:Name="Register" Text="Пройти регистрацию" Clicked="Register_Clicked"></Button>
+                <Button x:Name="LoginVK" Text="{x:Static res:RegisterResources.LoginVK}" Clicked="LoginVK_Clicked"></Button>
+                <Label Text="{x:Static res:RegisterResources.Or}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                <Button x:Name="Register" Text="{x:Static res:RegisterResources.Register}" Clicked="Register_Clicked"></Button>
             </StackLayout>
 
             <Grid x:Name="RegisterForm" IsVisible="false" ColumnSpacing="2" HorizontalOptions="FillAndExpand" Margin="10" RowSpacing="5" VerticalOptions="FillAndExpand">

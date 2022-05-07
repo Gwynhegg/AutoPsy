@@ -22,24 +22,24 @@ namespace AutoPsy.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class DiaryPageDefault {
+    internal class RegisterResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal DiaryPageDefault() {
+        internal RegisterResources() {
         }
         
         /// <summary>
         ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.DiaryPageDefault", typeof(DiaryPageDefault).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.RegisterResources", typeof(RegisterResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace AutoPsy.Resources {
         ///   обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,47 +61,29 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Добавьте симптом.
+        ///   Ищет локализованную строку, похожую на Войти через ВК.
         /// </summary>
-        public static string AddSymptom {
+        internal static string LoginVK {
             get {
-                return ResourceManager.GetString("AddSymptom", resourceCulture);
+                return ResourceManager.GetString("LoginVK", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Файл успешно сохранен в {0}.
+        ///   Ищет локализованную строку, похожую на Или.
         /// </summary>
-        public static string FileSavePlaceholder {
+        internal static string Or {
             get {
-                return ResourceManager.GetString("FileSavePlaceholder", resourceCulture);
+                return ResourceManager.GetString("Or", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Можешь писать здесь все, что посчитаешь нужным.
+        ///   Ищет локализованную строку, похожую на Пройти регистрацию.
         /// </summary>
-        public static string MainText {
+        internal static string Register {
             get {
-                return ResourceManager.GetString("MainText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Выберите симптом.
-        /// </summary>
-        public static string SelectSymptom {
-            get {
-                return ResourceManager.GetString("SelectSymptom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Введи заголовок страницы.
-        /// </summary>
-        public static string Topic {
-            get {
-                return ResourceManager.GetString("Topic", resourceCulture);
+                return ResourceManager.GetString("Register", resourceCulture);
             }
         }
     }

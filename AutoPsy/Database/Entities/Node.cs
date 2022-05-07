@@ -80,7 +80,6 @@ namespace AutoPsy.Database.Entities
 
     public class Link
     {
-        private string idSource, idTarget;
         private string source, target;
         public string Source
         {

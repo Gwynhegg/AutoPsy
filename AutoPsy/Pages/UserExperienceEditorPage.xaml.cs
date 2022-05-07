@@ -1,4 +1,6 @@
 ﻿using System;
+using AutoPsy.CustomComponents;
+using AutoPsy.Resources;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,14 +14,14 @@ namespace AutoPsy.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserExperienceEditorPage : ContentPage
     {
-        CustomComponents.UserExperiencePanel experiencePanel;       // панель для ввода пользовательских данных
+        UserExperiencePanel experiencePanel;       // панель для ввода пользовательских данных
         private ISynchronizablePage parentPage;     // страница-родитель текущей для передачи и обновления данных
         public byte StateMode { get; private set; }
         public UserExperienceEditorPage(ISynchronizablePage parentPage)     // поскольку страниц-родителей может быть две, используем интерфейс
         {
             InitializeComponent();
             this.parentPage = parentPage;
-            experiencePanel = new CustomComponents.UserExperiencePanel(enabled: true);      // создаем панель для ввода
+            experiencePanel = new UserExperiencePanel(enabled: true);      // создаем панель для ввода
             CurrentItem.Children.Insert(0, experiencePanel);
         }
 
@@ -30,7 +32,7 @@ namespace AutoPsy.Pages
             this.parentPage = parentPage;
 
             // Перегружаем панель для ввода, заполняя уже существующие поля
-            experiencePanel = new CustomComponents.UserExperiencePanel(enabled: true, userExperience);
+            experiencePanel = new UserExperiencePanel(enabled: true, userExperience);
             CurrentItem.Children.Insert(0, experiencePanel);
         }
 
@@ -44,7 +46,7 @@ namespace AutoPsy.Pages
             }
             catch (Exception ex)        // в случае возникновения ошибки уведомляем об этом
             {
-                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.ExperienceAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
+                await DisplayAlert(Alerts.AlertMessage, Alerts.ExperienceAlertMessage, AuxiliaryResources.ButtonOK);
             }
         }
     }

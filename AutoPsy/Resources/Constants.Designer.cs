@@ -22,24 +22,24 @@ namespace AutoPsy.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class DiaryPageDefault {
+    internal class Constants {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal DiaryPageDefault() {
+        internal Constants() {
         }
         
         /// <summary>
         ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.DiaryPageDefault", typeof(DiaryPageDefault).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.Constants", typeof(Constants).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace AutoPsy.Resources {
         ///   обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,47 +61,92 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Добавьте симптом.
+        ///   Ищет локализованную строку, похожую на Средний интервал.
         /// </summary>
-        public static string AddSymptom {
+        internal static string AVERAGE_INTERVAL {
             get {
-                return ResourceManager.GetString("AddSymptom", resourceCulture);
+                return ResourceManager.GetString("AVERAGE_INTERVAL", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Файл успешно сохранен в {0}.
+        ///   Ищет локализованную строку, похожую на Среднее значение.
         /// </summary>
-        public static string FileSavePlaceholder {
+        internal static string AVERAGE_VALUE {
             get {
-                return ResourceManager.GetString("FileSavePlaceholder", resourceCulture);
+                return ResourceManager.GetString("AVERAGE_VALUE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Можешь писать здесь все, что посчитаешь нужным.
+        ///   Ищет локализованную строку, похожую на Состояния.
         /// </summary>
-        public static string MainText {
+        internal static string CONDITIONS_TAG_RUS {
             get {
-                return ResourceManager.GetString("MainText", resourceCulture);
+                return ResourceManager.GetString("CONDITIONS_TAG_RUS", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Выберите симптом.
+        ///   Ищет локализованную строку, похожую на График вхождений.
         /// </summary>
-        public static string SelectSymptom {
+        internal static string DATA_ENTRIES {
             get {
-                return ResourceManager.GetString("SelectSymptom", resourceCulture);
+                return ResourceManager.GetString("DATA_ENTRIES", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Введи заголовок страницы.
+        ///   Ищет локализованную строку, похожую на Максимальный интервал.
         /// </summary>
-        public static string Topic {
+        internal static string MAX_INTERVAL {
             get {
-                return ResourceManager.GetString("Topic", resourceCulture);
+                return ResourceManager.GetString("MAX_INTERVAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Максимальное значение.
+        /// </summary>
+        internal static string MAX_VALUE {
+            get {
+                return ResourceManager.GetString("MAX_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Минимальный интервал.
+        /// </summary>
+        internal static string MIN_INTERVAL {
+            get {
+                return ResourceManager.GetString("MIN_INTERVAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Рекомендации.
+        /// </summary>
+        internal static string RECOMENDATIONS_TAG_RUS {
+            get {
+                return ResourceManager.GetString("RECOMENDATIONS_TAG_RUS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Количество.
+        /// </summary>
+        internal static string STAT_COUNT {
+            get {
+                return ResourceManager.GetString("STAT_COUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Триггеры.
+        /// </summary>
+        internal static string TRIGGERS_TAG_RUS {
+            get {
+                return ResourceManager.GetString("TRIGGERS_TAG_RUS", resourceCulture);
             }
         }
     }

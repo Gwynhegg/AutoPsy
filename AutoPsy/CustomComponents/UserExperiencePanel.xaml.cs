@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AutoPsy.Database.Entities;
+using AutoPsy.Resources;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -10,9 +12,9 @@ using Xamarin.Forms.Xaml;
 namespace AutoPsy.CustomComponents
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserExperiencePanel : StackLayout, AutoPsy.CustomComponents.IСustomComponent
+    public partial class UserExperiencePanel : StackLayout, IСustomComponent
     {
-        public Database.Entities.UserExperienceHandler experienceHandler { get; private set; }
+        public UserExperienceHandler experienceHandler { get; private set; }
         public UserExperiencePanel(bool enabled)
         {
             InitializeComponent();
@@ -22,22 +24,22 @@ namespace AutoPsy.CustomComponents
             AppointmentDate.MaximumDate = DateTime.Now;
 
             var currentUser = App.Connector.currentConnectedUser;
-            experienceHandler = new Database.Entities.UserExperienceHandler(currentUser) { stateMode = 0};
+            experienceHandler = new UserExperienceHandler(currentUser) { stateMode = 0};
             experienceHandler.AddAppointment(DateTime.Now);
         }
 
-        public UserExperiencePanel(bool enabled, Database.Entities.UserExperience userExperience)       // ПРОБЛЕМА С ОТОБРАЖЕНИЕМ МЕДИКАМЕНТОВ
+        public UserExperiencePanel(bool enabled, UserExperience userExperience)       //---------------TODO: ПРОБЛЕМА С ОТОБРАЖЕНИЕМ МЕДИКАМЕНТОВ
         {
             InitializeComponent();
             this.Children.All(x => x.IsEnabled = enabled);
 
             var currentUser = App.Connector.currentConnectedUser;
-            experienceHandler = new Database.Entities.UserExperienceHandler(currentUser) { stateMode = 1};
+            experienceHandler = new UserExperienceHandler(currentUser) { stateMode = 1};
 
             SynchronizeData(userExperience);
         }
 
-        private void SynchronizeData(Database.Entities.UserExperience userExperience)
+        private void SynchronizeData(UserExperience userExperience)
         {
             experienceHandler.CopyUserExperience(userExperience);
 
@@ -66,41 +68,41 @@ namespace AutoPsy.CustomComponents
 
         private void ClinicEntry_Focused(object sender, FocusEventArgs e)
         {
-            if (ClinicEntry.Text == AutoPsy.Resources.UserExperienceDefault.Clinic) ClinicEntry.Text = "";
+            if (ClinicEntry.Text == UserExperienceDefault.Clinic) ClinicEntry.Text = String.Empty;
         }
 
         private void DoctorEntry_Focused(object sender, FocusEventArgs e)
         {
-            if (DoctorEntry.Text == AutoPsy.Resources.UserExperienceDefault.Doctor) DoctorEntry.Text = String.Empty;
+            if (DoctorEntry.Text == UserExperienceDefault.Doctor) DoctorEntry.Text = String.Empty;
         }
 
         private void DiagnosisEntry_Focused(object sender, FocusEventArgs e)
         {
-            if (DiagnosisEntry.Text == AutoPsy.Resources.UserExperienceDefault.Diagnosis) DiagnosisEntry.Text = String.Empty;
+            if (DiagnosisEntry.Text == UserExperienceDefault.Diagnosis) DiagnosisEntry.Text = String.Empty;
         }
 
         private void ClinicEntry_Unfocused(object sender, FocusEventArgs e)
         {
-            if (ClinicEntry.Text != String.Empty && ClinicEntry.Text != AutoPsy.Resources.UserExperienceDefault.Clinic)
+            if (ClinicEntry.Text != String.Empty && ClinicEntry.Text != UserExperienceDefault.Clinic)
                 experienceHandler.AddNameOfClinic(ClinicEntry.Text);
             else
-                ClinicEntry.Text = AutoPsy.Resources.UserExperienceDefault.Clinic;
+                ClinicEntry.Text = UserExperienceDefault.Clinic;
         }
 
         private void DoctorEntry_Unfocused(object sender, FocusEventArgs e)
         {
-            if (DoctorEntry.Text != String.Empty && DoctorEntry.Text != AutoPsy.Resources.UserExperienceDefault.Doctor)
+            if (DoctorEntry.Text != String.Empty && DoctorEntry.Text != UserExperienceDefault.Doctor)
                 experienceHandler.AddTreatingDoctor(DoctorEntry.Text);
             else
-                DoctorEntry.Text = AutoPsy.Resources.UserExperienceDefault.Doctor;
+                DoctorEntry.Text = UserExperienceDefault.Doctor;
         }
 
         private void DiagnosisEntry_Unfocused(object sender, FocusEventArgs e)
         {
-            if (DiagnosisEntry.Text != String.Empty && DiagnosisEntry.Text != AutoPsy.Resources.UserExperienceDefault.Diagnosis)
+            if (DiagnosisEntry.Text != String.Empty && DiagnosisEntry.Text != UserExperienceDefault.Diagnosis)
                 experienceHandler.AddDiagnosis(DiagnosisEntry.Text);
             else
-                DiagnosisEntry.Text = AutoPsy.Resources.UserExperienceDefault.Diagnosis;
+                DiagnosisEntry.Text = UserExperienceDefault.Diagnosis;
         }
 
         private void ScoreSlider_ValueChanged(object sender, ValueChangedEventArgs e)
@@ -111,13 +113,13 @@ namespace AutoPsy.CustomComponents
         private void Entry_Focused(object sender, FocusEventArgs e)
         {
             var entry = sender as Entry;
-            if (entry.Text == AutoPsy.Resources.UserExperienceDefault.NameOfMedicine || entry.Text == AutoPsy.Resources.UserExperienceDefault.Dosage) entry.Text = "";
+            if (entry.Text == UserExperienceDefault.NameOfMedicine || entry.Text == UserExperienceDefault.Dosage) entry.Text = String.Empty;
         }
 
         private void NameOfMedicine_Unfocused(object sender, FocusEventArgs e)
         {
             var entryMedicine = sender as Entry;
-            if (entryMedicine.Equals(String.Empty)) entryMedicine.Text = AutoPsy.Resources.UserExperienceDefault.NameOfMedicine;
+            if (entryMedicine.Equals(String.Empty)) entryMedicine.Text = UserExperienceDefault.NameOfMedicine;
         }
 
         private async void Dosage_TextChanged(object sender, TextChangedEventArgs e)
@@ -129,14 +131,14 @@ namespace AutoPsy.CustomComponents
             }
             catch
             {
-                entryDosage.Text = AutoPsy.Resources.UserExperienceDefault.Dosage;
+                entryDosage.Text = UserExperienceDefault.Dosage;
             }
         }
 
         private void NameOfMedicine_TextChanged(object sender, TextChangedEventArgs e)
         {
             var entryMedicine = sender as Entry;
-            if (entryMedicine.Text != String.Empty && entryMedicine.Text != AutoPsy.Resources.UserExperienceDefault.NameOfMedicine) experienceHandler.SetCurrentMedicineName(entryMedicine.Text);
+            if (entryMedicine.Text != String.Empty && entryMedicine.Text != UserExperienceDefault.NameOfMedicine) experienceHandler.SetCurrentMedicineName(entryMedicine.Text);
         }
 
         private void AppointmentDate_DateSelected(object sender, DateChangedEventArgs e)

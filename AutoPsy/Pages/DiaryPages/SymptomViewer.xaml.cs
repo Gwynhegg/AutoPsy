@@ -49,8 +49,8 @@ namespace AutoPsy.Pages.DiaryPages
 
             // Отображаем информацию о выбранном объекте
             var selectedItem = SearchResults.SelectedItem as string;
-            NameOfEntity.Text = selectedItem;
-            DescriptionOfEntity.Text = "ОПИСАНИЕ";
+            NameOfEntity.Text = selectedItem; 
+            DescriptionOfEntity.Text = "ОПИСАНИЕ"; // --------------------TODO: ЕСЛИ БУДЕТ ВРЕМЯ, ДОБАВИТЬ ОПИСАНИЕ СИМПТОМАМ
 
             string itemId = guideInfo.First(x => x.Value == selectedItem).Id;       // Получаем Id выбранного объекта
 

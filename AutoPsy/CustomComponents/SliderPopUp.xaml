@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.CustomComponents.SliderPopUp">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="ParameterName" Text="Тут будет параметр"></Label>
-            <Label Text="Пожалуйста, оцените свое состояние"></Label>
+            <Label x:Name="ParameterName"></Label>
+            <Label Text="{x:Static res:TableResources.CheckState}"></Label>
             <StackLayout x:Name="ParameterValue"></StackLayout>
             <Label x:Name="HelperText" Text="Тут будет вспомогательный текст"></Label>
             <Switch ></Switch>

@@ -32,7 +32,7 @@ namespace AutoPsy.CustomComponents.Charts
             var regression = Logic.LinearRegression.CreateMovingAverageRegression(values[index], averageInterval, 2);
             if (regression != null)
                 foreach (var item in regression)
-                    entries.Add(new ChartEntry(item.Value) { Color = SkiaSharp.SKColor.Parse("#777777"), Label = item.Key.ToShortDateString(), ValueLabel = item.Value.ToString() });
+                    entries.Add(new ChartEntry(item.Value) { Color = SKColor.Parse("#777777"), Label = item.Key.ToShortDateString(), ValueLabel = item.Value.ToString() });
 
             chart = new LineChart() { Entries = entries, LabelOrientation = Orientation.Horizontal, LabelTextSize = 20, ValueLabelOrientation = Orientation.Horizontal  };
         }

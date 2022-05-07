@@ -126,9 +126,6 @@
   <data name="MainText" xml:space="preserve">
     <value>Можешь писать здесь все, что посчитаешь нужным</value>
   </data>
-  <data name="SaveErrorAlertMessage" xml:space="preserve">
-    <value>Не удалось создать файл</value>
-  </data>
   <data name="SelectSymptom" xml:space="preserve">
     <value>Выберите симптом</value>
   </data>

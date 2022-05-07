@@ -19,7 +19,8 @@ namespace AutoPsy.Pages
 
             if (usersExisted)       // если пользователь существует, то...
                 Navigation.PushModalAsync(new CheckPasswordPage());     // переходим на страницу для ввода пароля
-            else SetPrivacyPoliceView();        // иначе отображаем условия работы с приложением для нового пользователя
+            else 
+                SetPrivacyPoliceView();        // иначе отображаем условия работы с приложением для нового пользователя
         }
 
         // Метод нажатия на кнопку согласия перенаправляет на страницу регистрации

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using AutoPsy.Resources;
 using System.Linq;
 
 namespace AutoPsy.Database.Entities
@@ -12,13 +13,13 @@ namespace AutoPsy.Database.Entities
         public UserHandler()
         {
             user = new User();
-            user.PersonName = "";
-            user.PersonSurname = "";
+            user.PersonName = String.Empty;
+            user.PersonSurname = String.Empty;
         }
 
         public void AddNameToUser(string name)
         {
-            if (name == null || name == "") throw new ArgumentException();
+            if (name == null || name == String.Empty) throw new ArgumentException();
             user.PersonName = name;
         }
 
@@ -29,7 +30,7 @@ namespace AutoPsy.Database.Entities
 
         public void AddSurnameToUser(string surname)
         {
-            if (surname == null || surname == "") throw new ArgumentException();
+            if (surname == null || surname == String.Empty) throw new ArgumentException();
             user.PersonSurname = surname;
         }
 
@@ -40,7 +41,7 @@ namespace AutoPsy.Database.Entities
 
         public void AddPatronymicToUser(string patronymic)
         {
-            if (patronymic == null || patronymic == "Отчество") patronymic = "";
+            if (patronymic == null || patronymic == UserDefault.UserPatronymic) patronymic = String.Empty;
             user.PersonPatronymic = patronymic;
         }
 
@@ -76,14 +77,14 @@ namespace AutoPsy.Database.Entities
 
         public bool CheckCorrectness()
         {
-            if (user.PersonName != "" && user.PersonSurname != "" && 
-                user.PersonName != AutoPsy.Resources.UserDefault.UserName &&
-                user.PersonSurname != AutoPsy.Resources.UserDefault.UserSurname) return true; else return false;
+            if (user.PersonName != String.Empty && user.PersonSurname != String.Empty && 
+                user.PersonName != UserDefault.UserName &&
+                user.PersonSurname != UserDefault.UserSurname) return true; else return false;
         }
 
         public void CreateUserInfo()
         {
-            if (user.Gender == null) user.Gender = "Не указывать";
+            if (user.Gender == null) user.Gender = UserDefault.UnknownSex;
             App.Connector.CreateAndInsertData<User>(user);
         }
 

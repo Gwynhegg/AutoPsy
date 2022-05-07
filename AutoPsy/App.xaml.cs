@@ -17,10 +17,14 @@ namespace AutoPsy
             }
         }
 
-        private static AutoPsy.Logic.Structures.DiseaseGraph graph;
-        public static AutoPsy.Logic.Structures.DiseaseGraph Graph
+        // Был избран именно такой вариант доступа к графам с данными, так как поднятие
+        // и загрузку данных лучше осуществлять единоразово при запуске приложения, после чего
+        // возможен доступ к ним из любой точки приложения
+
+        private static AutoPsy.Logic.Structures.DiseaseGraph graph;     // переменная-коннектор для доступа к структуре графа для дневника
+        public static AutoPsy.Logic.Structures.DiseaseGraph Graph       // свойство-коннектор на основе синглтона
         {
-            get
+            get     // геттер для графа
             {
                 if (graph == null)
                     graph = new AutoPsy.Logic.Structures.DiseaseGraph();
@@ -28,10 +32,10 @@ namespace AutoPsy
             }
         }
 
-        private static AutoPsy.Logic.Structures.TableEntitiesGraph tableGraph;
-        public static AutoPsy.Logic.Structures.TableEntitiesGraph TableGraph
+        private static AutoPsy.Logic.Structures.TableEntitiesGraph tableGraph;      // переменная-коннектор для доступа к структуре данных для таблицы
+        public static AutoPsy.Logic.Structures.TableEntitiesGraph TableGraph        // свойство-коннектор на основе синглтона
         {
-            get
+            get     // геттер для графа с таблицей
             {
                 if (tableGraph == null)
                     tableGraph = new AutoPsy.Logic.Structures.TableEntitiesGraph();
@@ -43,8 +47,10 @@ namespace AutoPsy
         {
             InitializeComponent();
 
+            // поднимаем графы
             var graph = App.Graph;
             var table = App.TableGraph;
+
             MainPage = new NavigationPage(new Pages.WelcomePage());     // Загрузка начальной страницы
         }
 
@@ -58,6 +64,7 @@ namespace AutoPsy
 
         protected override void OnResume()
         {
+            MainPage = new NavigationPage(new Pages.CheckPasswordPage());
         }
     }
 }

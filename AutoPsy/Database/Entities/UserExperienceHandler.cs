@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using AutoPsy.Resources;
 
 namespace AutoPsy.Database.Entities
 {
@@ -49,14 +50,16 @@ namespace AutoPsy.Database.Entities
         public void AddMedicine()
         {
             if (listOfMedicine.Count == 0) {
-                listOfMedicine.Add(new Medicine() { NameOfMedicine = AutoPsy.Resources.UserExperienceDefault.NameOfMedicine, Dosage = Double.Parse(AutoPsy.Resources.UserExperienceDefault.Dosage) });
+                listOfMedicine.Add(new Medicine() { NameOfMedicine = UserExperienceDefault.NameOfMedicine,
+                    Dosage = Double.Parse(UserExperienceDefault.Dosage) });
                 return;
             }
 
             var item = listOfMedicine.Last();
 
-            if (!item.NameOfMedicine.Equals(AutoPsy.Resources.UserExperienceDefault.NameOfMedicine) && item.NameOfMedicine != "")
-                listOfMedicine.Add(new Medicine() { NameOfMedicine = AutoPsy.Resources.UserExperienceDefault.NameOfMedicine, Dosage = Double.Parse(AutoPsy.Resources.UserExperienceDefault.Dosage) });         
+            if (!item.NameOfMedicine.Equals(UserExperienceDefault.NameOfMedicine) && item.NameOfMedicine != String.Empty)
+                listOfMedicine.Add(new Medicine() { NameOfMedicine = UserExperienceDefault.NameOfMedicine, 
+                    Dosage = Double.Parse(UserExperienceDefault.Dosage) });         
         }
 
         public void SetCurrentMedicineName(string name)
@@ -100,7 +103,7 @@ namespace AutoPsy.Database.Entities
             if (userExperience.NameOfClinic != null)
                 return userExperience.NameOfClinic;
             else 
-                return AutoPsy.Resources.AuxiliaryResources.NotMentioned;
+                return AuxiliaryResources.NotMentioned;
         }
 
         public string GetDoctor()
@@ -108,7 +111,7 @@ namespace AutoPsy.Database.Entities
             if (userExperience.TreatingDoctor != null)
                 return userExperience.TreatingDoctor;
             else
-                return AutoPsy.Resources.AuxiliaryResources.NotMentioned;
+                return AuxiliaryResources.NotMentioned;
         }
 
         public string GetDiagnosis()
@@ -123,7 +126,7 @@ namespace AutoPsy.Database.Entities
 
         public bool CheckCorrectness()
         {
-            if (userExperience.Appointment != null && userExperience.Diagnosis != "" && userExperience.Diagnosis != AutoPsy.Resources.UserExperienceDefault.Diagnosis) return true; else return false;
+            if (userExperience.Appointment != null && userExperience.Diagnosis != String.Empty && userExperience.Diagnosis != UserExperienceDefault.Diagnosis) return true; else return false;
         }
 
         public void CreateUserExperienceInfo()
@@ -138,7 +141,7 @@ namespace AutoPsy.Database.Entities
 
         private void CodifyListOfMedicine()
         {
-            string codifiedMedicine = "";
+            string codifiedMedicine = String.Empty;
             foreach (Medicine medicine in listOfMedicine)
             {
                 string temp = String.Join("/", medicine.NameOfMedicine, medicine.Dosage);

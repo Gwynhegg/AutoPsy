@@ -1,4 +1,6 @@
 ﻿using System;
+using AutoPsy.Database.Entities;
+using AutoPsy.Resources;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,11 +14,11 @@ namespace AutoPsy.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegisterPage : ContentPage
     {
-        private Database.Entities.UserHandler userHandler;      // класс-обертка для управления классом пользователем на основе конструктора
+        private UserHandler userHandler;      // класс-обертка для управления классом пользователем на основе конструктора
         public RegisterPage()
         {
             InitializeComponent();
-            userHandler = new Database.Entities.UserHandler();
+            userHandler = new UserHandler();
             userHandler.SetBirtdDate(DateTime.Now);     // устанавливаем дату по умолчанию
         }
 
@@ -46,7 +48,7 @@ namespace AutoPsy.Pages
             }
             else
             {
-                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.AlertMessage, AutoPsy.Resources.AuxiliaryResources.RegisterAlertMessage, AutoPsy.Resources.AuxiliaryResources.ButtonOK);
+                await DisplayAlert(Alerts.AlertMessage, Alerts.RegisterAlertMessage, AuxiliaryResources.ButtonOK);
             }
         }
 
@@ -57,41 +59,41 @@ namespace AutoPsy.Pages
 
         private void SurnameEntry_Focused(object sender, FocusEventArgs e)
         {
-            if (SurnameEntry.Text == AutoPsy.Resources.UserDefault.UserSurname) SurnameEntry.Text = String.Empty;
+            if (SurnameEntry.Text == UserDefault.UserSurname) SurnameEntry.Text = String.Empty;
         }
 
         private void NameEntry_Focused(object sender, FocusEventArgs e)
         {
-            if (NameEntry.Text == AutoPsy.Resources.UserDefault.UserName) NameEntry.Text = String.Empty;
+            if (NameEntry.Text == UserDefault.UserName) NameEntry.Text = String.Empty;
         }
 
         private void PatronymicEntry_Focused(object sender, FocusEventArgs e)
         {
-            if (PatronymicEntry.Text == AutoPsy.Resources.UserDefault.UserPatronymic) PatronymicEntry.Text = String.Empty;
+            if (PatronymicEntry.Text == UserDefault.UserPatronymic) PatronymicEntry.Text = String.Empty;
         }
 
         private void SurnameEntry_Unfocused(object sender, FocusEventArgs e)         // если введено корректное значение, заносим данные в обертку
         {
-            if (SurnameEntry.Text != String.Empty && SurnameEntry.Text != AutoPsy.Resources.UserDefault.UserSurname)
+            if (SurnameEntry.Text != String.Empty && SurnameEntry.Text != UserDefault.UserSurname)
                 userHandler.AddSurnameToUser(SurnameEntry.Text);
             else
-                SurnameEntry.Text = AutoPsy.Resources.UserDefault.UserSurname;
+                SurnameEntry.Text = UserDefault.UserSurname;
         }
 
         private void NameEntry_Unfocused(object sender, FocusEventArgs e)        // если введено корректное значение, заносим данные в обертку
         {
-            if (NameEntry.Text != String.Empty && NameEntry.Text != AutoPsy.Resources.UserDefault.UserName)
+            if (NameEntry.Text != String.Empty && NameEntry.Text != UserDefault.UserName)
                 userHandler.AddNameToUser(NameEntry.Text);
             else
-                NameEntry.Text = AutoPsy.Resources.UserDefault.UserName;
+                NameEntry.Text = UserDefault.UserName;
         }
 
         private void PatronymicEntry_Unfocused(object sender, FocusEventArgs e)     // если введено корректное значение, заносим данные в обертку
         {
-            if (PatronymicEntry.Text != String.Empty && PatronymicEntry.Text != AutoPsy.Resources.UserDefault.UserPatronymic)
+            if (PatronymicEntry.Text != String.Empty && PatronymicEntry.Text != UserDefault.UserPatronymic)
                 userHandler.AddPatronymicToUser(PatronymicEntry.Text);
             else
-                PatronymicEntry.Text = AutoPsy.Resources.UserDefault.UserPatronymic;
+                PatronymicEntry.Text = UserDefault.UserPatronymic;
         }
 
         private void Option_CheckedChanged(object sender, CheckedChangedEventArgs e)

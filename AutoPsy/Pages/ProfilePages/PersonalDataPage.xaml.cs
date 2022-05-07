@@ -1,4 +1,6 @@
 ﻿using System;
+using AutoPsy.Database.Entities;
+using AutoPsy.Resources;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,18 +15,18 @@ namespace AutoPsy.Pages.ProfilePages
     
     public partial class PersonalDataPage : ContentPage
     {
-        private Database.Entities.UserHandler userHandler;      // класс-обертка для управления записями о пользователе
-        private Database.Entities.User backupUser;      // на данной форме мы изменяем клона первоначальной записи чтобы избежать повреждения или замены данных
+        private UserHandler userHandler;      // класс-обертка для управления записями о пользователе
+        private User backupUser;      // на данной форме мы изменяем клона первоначальной записи чтобы избежать повреждения или замены данных
         private ProfilePage parentPage;     // ссылка на родительскую страницу
         public PersonalDataPage(ProfilePage parent)
         {
             InitializeComponent();
             parentPage = parent;
 
-            userHandler = new Database.Entities.UserHandler();
+            userHandler = new UserHandler();
 
             // Клонируем данные о текущем пользователе в хэндлер
-            userHandler.Clone(App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser));
+            userHandler.Clone(App.Connector.SelectData<User>(App.Connector.currentConnectedUser));
             backupUser = userHandler.GetUser();     // достаем оттуда юзера
 
             SetCurrentData();       // актуализируем данные на форме
@@ -37,7 +39,7 @@ namespace AutoPsy.Pages.ProfilePages
             NameEntry.Text = userHandler.GetUserName();
 
             if (userHandler.GetUserPatronymic() is null) 
-                PatronymicEntry.Text = AutoPsy.Resources.UserDefault.UserPatronymic; 
+                PatronymicEntry.Text = UserDefault.UserPatronymic; 
             else 
                 PatronymicEntry.Text = userHandler.GetUserPatronymic();
 
@@ -89,7 +91,7 @@ namespace AutoPsy.Pages.ProfilePages
 
         private void PatronymicEntry_Focused(object sender, FocusEventArgs e)
         {
-            if (PatronymicEntry.Text == AutoPsy.Resources.UserDefault.UserPatronymic) PatronymicEntry.Text = String.Empty;
+            if (PatronymicEntry.Text == UserDefault.UserPatronymic) PatronymicEntry.Text = String.Empty;
         }
 
         private void PatronymicEntry_Unfocused(object sender, FocusEventArgs e)

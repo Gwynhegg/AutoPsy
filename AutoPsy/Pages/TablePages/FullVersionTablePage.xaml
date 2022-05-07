@@ -6,30 +6,42 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="8*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
+            
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <DatePicker x:Name="DateNavigationStart" Grid.Column="0"></DatePicker>
-                <DatePicker x:Name="DateNavigationEnd" Grid.Column="2"></DatePicker>
+                <DatePicker x:Name="DateNavigationStart" Grid.Column="0" DateSelected="DateNavigationStart_DateSelected"></DatePicker>
+                <DatePicker x:Name="DateNavigationEnd" Grid.Column="2" DateSelected="DateNavigationEnd_DateSelected"></DatePicker>
             </Grid>
-            <ScrollView Orientation="Both" Grid.Row="1">
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="StepBackward" Text="ТУДА" Clicked="StepBackward_Clicked"></Button>
+                <Label x:Name="CurrentStepLabel" Grid.Column="1"></Label>
+                <Button x:Name="StepForward" Text="СЮДА" Grid.Column="2" Clicked="StepForward_Clicked"></Button>
+            </Grid>
+            
+            <ScrollView Orientation="Both" Grid.Row="2">
                 <Grid x:Name="MainField"></Grid>
             </ScrollView>
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="AddField" Grid.Column="1" Text="+" Clicked="AddField_Clicked"></Button>
-                <Button x:Name="DeleteField" Grid.Column="2" Text="D" Clicked="DeleteField_Clicked"></Button>
-
+                <Button x:Name="AddField" Grid.Column="2" Text="+" Clicked="AddField_Clicked"></Button>
             </Grid>
         </Grid>
     </ContentPage.Content>

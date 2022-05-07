@@ -22,24 +22,24 @@ namespace AutoPsy.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class AuxiliaryResources {
+    internal class Alerts {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AuxiliaryResources() {
+        internal Alerts() {
         }
         
         /// <summary>
         ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.AuxiliaryResources", typeof(AuxiliaryResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.Alerts", typeof(Alerts).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace AutoPsy.Resources {
         ///   обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,110 +61,101 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Анализ ({0} записи/ей.
+        ///   Ищет локализованную строку, похожую на Хорошая попытка!.
         /// </summary>
-        public static string AnalysisPlaceholder {
+        internal static string AccessDeniedAlertMessage {
             get {
-                return ResourceManager.GetString("AnalysisPlaceholder", resourceCulture);
+                return ResourceManager.GetString("AccessDeniedAlertMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Назад.
+        ///   Ищет локализованную строку, похожую на Упс!.
         /// </summary>
-        public static string BackButton {
+        internal static string AlertMessage {
             get {
-                return ResourceManager.GetString("BackButton", resourceCulture);
+                return ResourceManager.GetString("AlertMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на ОК.
+        ///   Ищет локализованную строку, похожую на .
         /// </summary>
-        public static string ButtonOK {
+        internal static string DeleteStringWarning {
             get {
-                return ResourceManager.GetString("ButtonOK", resourceCulture);
+                return ResourceManager.GetString("DeleteStringWarning", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Отмена.
+        ///   Ищет локализованную строку, похожую на Кажется, вы забыли что-нибудь написать или указать дату.
         /// </summary>
-        public static string Cancel {
+        internal static string DiaryAlertMessage {
             get {
-                return ResourceManager.GetString("Cancel", resourceCulture);
+                return ResourceManager.GetString("DiaryAlertMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Продолжить.
+        ///   Ищет локализованную строку, похожую на Кажется, вы забыли указать дату и диагноз.
         /// </summary>
-        public static string Continue {
+        internal static string ExperienceAlertMessage {
             get {
-                return ResourceManager.GetString("Continue", resourceCulture);
+                return ResourceManager.GetString("ExperienceAlertMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Нет.
+        ///   Ищет локализованную строку, похожую на Кажется, вы неправильно указали дозировку.
         /// </summary>
-        public static string No {
+        internal static string MedicineMessage {
             get {
-                return ResourceManager.GetString("No", resourceCulture);
+                return ResourceManager.GetString("MedicineMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Не указано.
+        ///   Ищет локализованную строку, похожую на Пока у вас нет записей для удаления.
         /// </summary>
-        public static string NotMentioned {
+        internal static string NoRecordsToDeleteAlertMessage {
             get {
-                return ResourceManager.GetString("NotMentioned", resourceCulture);
+                return ResourceManager.GetString("NoRecordsToDeleteAlertMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Сохранить.
+        ///   Ищет локализованную строку, похожую на Пока у вас нет записей для редактирования.
         /// </summary>
-        public static string Save {
+        internal static string NoRecordsToEditAlertMessage {
             get {
-                return ResourceManager.GetString("Save", resourceCulture);
+                return ResourceManager.GetString("NoRecordsToEditAlertMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Настройки.
+        ///   Ищет локализованную строку, похожую на Кажется, вы забыли указать имя и фамилию.
         /// </summary>
-        public static string Settings {
+        internal static string RegisterAlertMessage {
             get {
-                return ResourceManager.GetString("Settings", resourceCulture);
+                return ResourceManager.GetString("RegisterAlertMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Успех!.
+        ///   Ищет локализованную строку, похожую на Не удалось создать файл.
         /// </summary>
-        public static string Success {
+        internal static string SaveErrorAlertMessage {
             get {
-                return ResourceManager.GetString("Success", resourceCulture);
+                return ResourceManager.GetString("SaveErrorAlertMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на К анализу.
+        ///   Ищет локализованную строку, похожую на Введенный пароль не совпадает с заданным. Попробуйте еще раз!.
         /// </summary>
-        public static string ToAnalysis {
+        internal static string WrongPasswordAlertMessage {
             get {
-                return ResourceManager.GetString("ToAnalysis", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Да.
-        /// </summary>
-        public static string Yes {
-            get {
-                return ResourceManager.GetString("Yes", resourceCulture);
+                return ResourceManager.GetString("WrongPasswordAlertMessage", resourceCulture);
             }
         }
     }

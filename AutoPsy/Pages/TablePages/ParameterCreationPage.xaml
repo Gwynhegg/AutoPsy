@@ -13,7 +13,8 @@
 
             <Picker x:Name="TypePicker" Title="Вид записи" SelectedIndexChanged="TypePicker_SelectedIndexChanged"></Picker>
             <Picker x:Name="EntityPicker" IsEnabled="False" Grid.Row="1"></Picker>
-            <Button x:Name="SaveButton" Text="Сохранить" Grid.Row="2" Clicked="SaveButton_Clicked"></Button>
+            <Slider x:Name="ImportanceSetter" Minimum="0" Maximum="5" Value="3" Grid.Row="2" MinimumTrackColor="Green" MaximumTrackColor="Red"></Slider>
+            <Button x:Name="SaveButton" Text="Сохранить" Grid.Row="3" Clicked="SaveButton_Clicked"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

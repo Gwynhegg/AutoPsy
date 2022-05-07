@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Collections.ObjectModel;
 using System.Linq;
+using AutoPsy.Resources;
 
 namespace AutoPsy.Database.Entities
 {
@@ -16,7 +17,7 @@ namespace AutoPsy.Database.Entities
         {
             page = new DiaryPage();
             page.UserId = userId;
-            page.Topic = "Не указано";
+            page.Topic = AuxiliaryResources.NotMentioned;
             symptoms = new ObservableCollection<Symptom>();
         }
 
@@ -34,7 +35,7 @@ namespace AutoPsy.Database.Entities
             if (page.Topic != null)
                 return page.Topic;
             else
-                return AutoPsy.Resources.AuxiliaryResources.NotMentioned;
+                return AuxiliaryResources.NotMentioned;
         }
 
         public void SetMainText(string text)

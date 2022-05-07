@@ -117,40 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AnalysisPlaceholder" xml:space="preserve">
-    <value>Анализ ({0} записи/ей</value>
+  <data name="AccessDeniedAlertMessage" xml:space="preserve">
+    <value>Хорошая попытка!</value>
   </data>
-  <data name="BackButton" xml:space="preserve">
-    <value>Назад</value>
+  <data name="AlertMessage" xml:space="preserve">
+    <value>Упс!</value>
   </data>
-  <data name="ButtonOK" xml:space="preserve">
-    <value>ОК</value>
+  <data name="DeleteStringWarning" xml:space="preserve">
+    <value />
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Отмена</value>
+  <data name="DiaryAlertMessage" xml:space="preserve">
+    <value>Кажется, вы забыли что-нибудь написать или указать дату</value>
   </data>
-  <data name="Continue" xml:space="preserve">
-    <value>Продолжить</value>
+  <data name="ExperienceAlertMessage" xml:space="preserve">
+    <value>Кажется, вы забыли указать дату и диагноз</value>
   </data>
-  <data name="No" xml:space="preserve">
-    <value>Нет</value>
+  <data name="MedicineMessage" xml:space="preserve">
+    <value>Кажется, вы неправильно указали дозировку</value>
   </data>
-  <data name="NotMentioned" xml:space="preserve">
-    <value>Не указано</value>
+  <data name="NoRecordsToDeleteAlertMessage" xml:space="preserve">
+    <value>Пока у вас нет записей для удаления</value>
   </data>
-  <data name="Save" xml:space="preserve">
-    <value>Сохранить</value>
+  <data name="NoRecordsToEditAlertMessage" xml:space="preserve">
+    <value>Пока у вас нет записей для редактирования</value>
   </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Настройки</value>
+  <data name="RegisterAlertMessage" xml:space="preserve">
+    <value>Кажется, вы забыли указать имя и фамилию</value>
   </data>
-  <data name="Success" xml:space="preserve">
-    <value>Успех!</value>
+  <data name="SaveErrorAlertMessage" xml:space="preserve">
+    <value>Не удалось создать файл</value>
   </data>
-  <data name="ToAnalysis" xml:space="preserve">
-    <value>К анализу</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Да</value>
+  <data name="WrongPasswordAlertMessage" xml:space="preserve">
+    <value>Введенный пароль не совпадает с заданным. Попробуйте еще раз!</value>
   </data>
 </root>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using AutoPsy.Resources;
 
 namespace AutoPsy.AuxServices
 {
@@ -8,16 +9,13 @@ namespace AutoPsy.AuxServices
     {
         public static bool CheckZeroRule(string parameter)
         {
-            switch (parameter)
-            {
-                case Const.Constants.STAT_COUNT: return false; break;
-                case Const.Constants.MAX_VALUE: return false; break;
-                case Const.Constants.AVERAGE_VALUE: return true; break;
-                case Const.Constants.MIN_INTERVAL: return true; break;
-                case Const.Constants.MAX_INTERVAL: return true; break;
-                case Const.Constants.AVERAGE_INTERVAL: return true; break;
-                default: return false; break;
-            }
+            if (parameter.Equals(Constants.STAT_COUNT)) return false;
+            if (parameter.Equals(Constants.MAX_VALUE)) return false;
+            if (parameter.Equals(Constants.AVERAGE_VALUE)) return true;
+            if (parameter.Equals(Constants.MIN_INTERVAL)) return true;
+            if (parameter.Equals(Constants.MAX_INTERVAL)) return true;
+            if (parameter.Equals(Constants.AVERAGE_INTERVAL)) return true;
+            return false;
         }
     }
 }

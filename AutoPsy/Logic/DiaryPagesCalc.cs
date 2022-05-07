@@ -1,4 +1,5 @@
 ﻿using System;
+using AutoPsy.Database;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
@@ -10,11 +11,11 @@ namespace AutoPsy.Logic
     {
         INode[] nodes;
         private Dictionary<string, Structures.DiaryResultRecords> statRecords;
-        private List<Database.Entities.DiaryPage> pages;
+        private List<DiaryPage> pages;
         private List<Structures.DiaryPagesCut> pageCuts;
 
         // Метод инициализации работы с блоком стат. обработки.
-        public void ProcessRecords(List<Database.Entities.DiaryPage> pages)     // В блок передается набор выбранных записей из дневника
+        public void ProcessRecords(List<DiaryPage> pages)     // В блок передается набор выбранных записей из дневника
         {
             nodes = App.Graph.GetAllItems();        // Поулчаем все узлы из графа
             statRecords = new Dictionary<string, Structures.DiaryResultRecords>();      // Инициализируем библиотеку для хранения результатов
@@ -94,7 +95,7 @@ namespace AutoPsy.Logic
 
 
         // Поскольку данные в базе хранятся в виде цельной строки с разделителями, необходимо преобразовать запись в удобообрабатываемый вид
-        private string[] PartiallyRecreateSymptoms(Database.Entities.DiaryPage page)
+        private string[] PartiallyRecreateSymptoms(DiaryPage page)
         {
             if (page.AttachedSymptoms == null) return null;
 

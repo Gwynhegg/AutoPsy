@@ -22,14 +22,14 @@ namespace AutoPsy.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class DiaryPageDefault {
+    public class TableResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal DiaryPageDefault() {
+        internal TableResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace AutoPsy.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.DiaryPageDefault", typeof(DiaryPageDefault).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AutoPsy.Resources.TableResources", typeof(TableResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,11 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Добавьте симптом.
+        ///   Ищет локализованную строку, похожую на Пожалуйста, оцените свое состояние.
         /// </summary>
-        public static string AddSymptom {
+        public static string CheckState {
             get {
-                return ResourceManager.GetString("AddSymptom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Файл успешно сохранен в {0}.
-        /// </summary>
-        public static string FileSavePlaceholder {
-            get {
-                return ResourceManager.GetString("FileSavePlaceholder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Можешь писать здесь все, что посчитаешь нужным.
-        /// </summary>
-        public static string MainText {
-            get {
-                return ResourceManager.GetString("MainText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Выберите симптом.
-        /// </summary>
-        public static string SelectSymptom {
-            get {
-                return ResourceManager.GetString("SelectSymptom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Введи заголовок страницы.
-        /// </summary>
-        public static string Topic {
-            get {
-                return ResourceManager.GetString("Topic", resourceCulture);
+                return ResourceManager.GetString("CheckState", resourceCulture);
             }
         }
     }

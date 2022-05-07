@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using SQLite;
 using System.Text;
+using AutoPsy.Resources;
 
 namespace AutoPsy.Database.Entities
 {
@@ -25,14 +26,14 @@ namespace AutoPsy.Database.Entities
             set { this.userId = value; OnPropertyChanged(nameof(UserId)); }
         }
 
-        private string nameOfClinic = "Не указано";
+        private string nameOfClinic = AuxiliaryResources.NotMentioned;
         public string NameOfClinic
         {
             get { return nameOfClinic; }
             set { this.nameOfClinic = value; OnPropertyChanged(nameof(NameOfClinic)); }
         }
 
-        private string treatingDoctor = "Не указано";
+        private string treatingDoctor = AuxiliaryResources.NotMentioned;
         public string TreatingDoctor
         {
             get { return treatingDoctor; }

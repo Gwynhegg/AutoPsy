@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AutoPsy.Resources;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,8 +13,6 @@ namespace AutoPsy.Pages.DiaryPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AnalysisTabsPage : TabbedPage
     {
-        private List<Database.Entities.DiaryPage> diaryPages;       // Коллекция, содержащая выбранные записи из дневника
-
         public AnalysisTabsPage(DateTime start, DateTime end)
         {
             InitializeComponent();
@@ -25,9 +24,9 @@ namespace AutoPsy.Pages.DiaryPages
             diaryCalc.StatisticCalculation();       // Высчитываем статистику по каждому вхождению
 
             this.Children.Add(new DiaryAnalysisPage(diaryCalc));
-            this.Children.Last().Title = AutoPsy.Resources.PageTitles.Stats;
+            this.Children.Last().Title = PageTitles.Stats;
             this.Children.Add(new LinearAnalysisPage(diaryCalc));
-            this.Children.Last().Title = AutoPsy.Resources.PageTitles.Charts;
+            this.Children.Last().Title = PageTitles.Charts;
         }
     }
 }

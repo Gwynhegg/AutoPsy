@@ -45,10 +45,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\Alerts.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Alerts.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\AuxiliaryResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AuxiliaryResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Constants.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Constants.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\DiaryAnalysisResources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -75,6 +85,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>PrivacyPolicy.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\RegisterResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RegisterResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\SymptomHelperResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -84,6 +99,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>TableNames.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\TableResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TableResources.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\UserDefault.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -108,6 +128,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="CustomComponents\SliderPopUp.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CustomComponents\TableHandlers\EntityButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CustomComponents\TableHandlers\EntityLabel.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="CustomComponents\UserExperiencePanel.xaml">
@@ -164,7 +190,13 @@
     <EmbeddedResource Update="Pages\TablePages\ParameterCreationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\TablePages\ParameterUpdatePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\TablePages\TablePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\TablePages\ValueSetterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\UserExperienceEditorPage.xaml">
@@ -177,9 +209,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Alerts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Alerts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\AuxiliaryResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AuxiliaryResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Constants.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Constants.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\DiaryAnalysisResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -201,6 +241,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PrivacyPolicy.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\RegisterResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegisterResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\SymptomHelperResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>SymptomHelperResources.Designer.cs</LastGenOutput>
@@ -208,6 +252,10 @@
     <EmbeddedResource Update="Resources\TableNames.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TableNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\TableResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TableResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\UserDefault.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
