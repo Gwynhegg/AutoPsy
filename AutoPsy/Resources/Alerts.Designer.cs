@@ -79,7 +79,7 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на .
+        ///   Ищет локализованную строку, похожую на Вы уверены, что хотите удалить параметр?.
         /// </summary>
         internal static string DeleteStringWarning {
             get {
@@ -147,6 +147,15 @@ namespace AutoPsy.Resources {
         internal static string SaveErrorAlertMessage {
             get {
                 return ResourceManager.GetString("SaveErrorAlertMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вы уверены, что хотите обновить параметр?.
+        /// </summary>
+        internal static string UpdateStringWarning {
+            get {
+                return ResourceManager.GetString("UpdateStringWarning", resourceCulture);
             }
         }
         

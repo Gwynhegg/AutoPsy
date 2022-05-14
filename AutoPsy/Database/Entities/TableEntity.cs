@@ -8,13 +8,21 @@ namespace AutoPsy.Database.Entities
 {
     public interface ITableEntity
     {
+        [PrimaryKey, AutoIncrement]
         int Id { get; set; }
+        [NotNull]
         string Type { get; set; }
+        [NotNull]
         string IdValue { get; set; }
+        [NotNull]
         string Name { get; set; }
+        [NotNull]
         byte Value { get; set; }
+        [NotNull]
         DateTime Time { get; set; }
+        [NotNull]
         byte Importance { get; set; }
+        ITableEntity Clone(DateTime time);
     }
 
     [Table("Recomendations")]
@@ -79,8 +87,15 @@ namespace AutoPsy.Database.Entities
             this.PropertyChanged?.Invoke(this,
               new PropertyChangedEventArgs(propertyName));
         }
+
+        public ITableEntity Clone(DateTime time)
+        {
+            var clone = new TableRecomendation() { Type = type, IdValue = idValue, Name = name, Time = time, Value = value, Importance = importance };
+            return clone;
+        }
     }
 
+    [Table("TableConditions")]
     public class TableCondition : ITableEntity
     {
         private int id;
@@ -141,8 +156,15 @@ namespace AutoPsy.Database.Entities
             this.PropertyChanged?.Invoke(this,
               new PropertyChangedEventArgs(propertyName));
         }
+
+        public ITableEntity Clone(DateTime time)
+        {
+            var clone = new TableCondition() { Type = type, IdValue = idValue, Name = name, Time = time, Value = value, Importance = importance };
+            return clone;
+        }
     }
 
+    [Table("TableTriggers")]
     public class TableTrigger : ITableEntity
     {
         private int id;
@@ -202,6 +224,12 @@ namespace AutoPsy.Database.Entities
         {
             this.PropertyChanged?.Invoke(this,
               new PropertyChangedEventArgs(propertyName));
+        }
+
+        public ITableEntity Clone(DateTime time)
+        {
+            var clone = new TableTrigger() { Type = type, IdValue = idValue, Name = name, Time = time, Value = value, Importance = importance };
+            return clone;
         }
     }
 }

@@ -26,13 +26,12 @@
   <Node Id="Obsession" Label="Навязчивые мысли" Category="Triggers"></Node>
   <Node Id="Rapid" Label="Ускорение речи и мышления" Category="Triggers"></Node>
   <Node Id="Switch" Label="Перепад настроения" Category="Triggers"></Node>
-  <Node Id="EverEating" Label="Переедание" Category="Triggers"></Node>
+  <Node Id="OverEating" Label="Переедание" Category="Triggers"></Node>
   <Node Id="Hallucinations" Label="Галлюцинации" Category="Triggers"></Node>
   <Node Id="SelfHarm" Label="Самоповреждение" Category="Triggers"></Node>
   <Node Id="Derealization" Label="Приступ дереализации" Category="Triggers"></Node>
   <Node Id="Suicide" Label="Суицидальные действия" Category="Triggers"></Node>
   <Node Id="Hysteria" Label="Приступ истерики" Category="Triggers"></Node>
-  <Node Id="Derealization" Label="Приступ дереализации" Category="Triggers"></Node>
   <Node Id="Insomnia" Label="Бессонница" Category="Triggers"></Node>
   <Node Id="Horrors" Label="Кошмарные сновидения" Category="Triggers"></Node>
 

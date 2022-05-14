@@ -23,6 +23,10 @@ namespace AutoPsy.Database
 
         public bool IsTableExisted<T>() where T : new()
         {
+            //this.sqliteConnection.DropTable<Entities.TableRecomendation>();
+            //this.sqliteConnection.DropTable<Entities.TableCondition>();
+            //this.sqliteConnection.DropTable<Entities.TableTrigger>();
+
             // ЗАГЛУШКА ДЛЯ ПРОВЕРКИ РЕГИСТРАЦИИ
             //this.sqliteConnection.DropTable<Entities.DiaryPage>();
             //this.sqliteConnection.DropTable<Entities.UserExperience>();

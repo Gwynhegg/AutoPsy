@@ -8,6 +8,7 @@ namespace AutoPsy.AuxServices
 {
     public static class DiaryResultsSorter
     {
+        // Вспомогательный класс для упорядочивания записей в дневника по определенному статистическому показателю
         public static Dictionary<string, Logic.Structures.DiaryResultRecords> GetSortedRecords(Dictionary<string, Logic.Structures.DiaryResultRecords> records, string parameter)
         {
             if (parameter.Equals(Constants.STAT_COUNT)) return records.OrderByDescending(x => x.Value.Count).ToDictionary(x => x.Key, x => x.Value);

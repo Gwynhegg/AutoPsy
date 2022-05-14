@@ -120,4 +120,13 @@
   <data name="CheckState" xml:space="preserve">
     <value>Пожалуйста, оцените свое состояние</value>
   </data>
+  <data name="Conditions" xml:space="preserve">
+    <value>Состояния</value>
+  </data>
+  <data name="Recommendations" xml:space="preserve">
+    <value>Рекомендации</value>
+  </data>
+  <data name="Triggers" xml:space="preserve">
+    <value>Триггеры</value>
+  </data>
 </root>

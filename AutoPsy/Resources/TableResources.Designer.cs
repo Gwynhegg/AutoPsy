@@ -68,5 +68,32 @@ namespace AutoPsy.Resources {
                 return ResourceManager.GetString("CheckState", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Состояния.
+        /// </summary>
+        public static string Conditions {
+            get {
+                return ResourceManager.GetString("Conditions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Рекомендации.
+        /// </summary>
+        public static string Recommendations {
+            get {
+                return ResourceManager.GetString("Recommendations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Триггеры.
+        /// </summary>
+        public static string Triggers {
+            get {
+                return ResourceManager.GetString("Triggers", resourceCulture);
+            }
+        }
     }
 }

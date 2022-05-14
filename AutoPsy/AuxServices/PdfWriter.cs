@@ -8,7 +8,7 @@ using AutoPsy.AuxServices;
 namespace AutoPsy.AuxServices
 {
 
-    public static class PdfWriter
+    public static class PdfWriter       // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ДОДЕЛАТЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     {
         public static void CreateDocument(Database.Entities.User user, List<Database.Entities.DiaryPage> diaryPages)
         {

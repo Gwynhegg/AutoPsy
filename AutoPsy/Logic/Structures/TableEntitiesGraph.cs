@@ -29,6 +29,11 @@ namespace AutoPsy.Logic.Structures
             return tableEntities.Where(x => x.Name.Equals(name)).First().IdValue;
         }
 
+        public string GetNameByIdString(string idString)
+        {
+            return tableEntities.Where(x => x.IdValue.Equals(idString)).First().Name;
+        }
+
         public ITableEntity[] GetRecomendations()
         {
             return recomendations.ToArray();

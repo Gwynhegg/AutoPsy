@@ -7,6 +7,7 @@ namespace AutoPsy.AuxServices
 {
     public static class DeleteRules
     {
+        // Вспомогательный класс для проверки правил удаления записей из набора результатов
         public static bool CheckZeroRule(string parameter)
         {
             if (parameter.Equals(Constants.STAT_COUNT)) return false;

@@ -124,7 +124,7 @@
     <value>Упс!</value>
   </data>
   <data name="DeleteStringWarning" xml:space="preserve">
-    <value />
+    <value>Вы уверены, что хотите удалить параметр?</value>
   </data>
   <data name="DiaryAlertMessage" xml:space="preserve">
     <value>Кажется, вы забыли что-нибудь написать или указать дату</value>
@@ -146,6 +146,9 @@
   </data>
   <data name="SaveErrorAlertMessage" xml:space="preserve">
     <value>Не удалось создать файл</value>
+  </data>
+  <data name="UpdateStringWarning" xml:space="preserve">
+    <value>Вы уверены, что хотите обновить параметр?</value>
   </data>
   <data name="WrongPasswordAlertMessage" xml:space="preserve">
     <value>Введенный пароль не совпадает с заданным. Попробуйте еще раз!</value>

@@ -37,7 +37,7 @@
             <CarouselView x:Name="ExperienceCarouselView" Loop="False" Margin="10, 10, 10, 10" Grid.Row="3">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout IsEnabled="False">
+                        <StackLayout IsEnabled="False" BackgroundColor="AliceBlue">
                             <Label Text="{Binding NameOfClinic}"></Label>
                             <Label Text="{Binding TreatingDoctor}"></Label>
                             <Label Text="{x:Static res:UserExperienceDefault.DateOfAppointment}"></Label>
@@ -73,9 +73,11 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="AddButton" Text="A" Grid.Column="1" Clicked="AddButton_Clicked"></Button>
+                <ImageButton x:Name="AddButton" Source="plus1.png" Grid.Column="1" Clicked="AddButton_Clicked" BackgroundColor="Transparent" Aspect="AspectFit"></ImageButton>
+                <!--<Button x:Name="AddButton" Text="A" Grid.Column="1" Clicked="AddButton_Clicked" IsVisible="false"></Button>-->
                 <Button x:Name="EditButton" Text="E" Grid.Column="2" Clicked="EditButton_Clicked"></Button>
-                <Button x:Name="DeleteButton" Text="D" Grid.Column="3" Clicked="DeleteButton_Clicked"></Button>
+                <ImageButton x:Name="DeleteButton" Source="delete1.png" Grid.Column="3" Clicked="DeleteButton_Clicked" BackgroundColor="Transparent" Aspect="AspectFit"></ImageButton>
+                <!--<Button x:Name="DeleteButton" Text="D" Grid.Column="3" Clicked="DeleteButton_Clicked"></Button>-->
             </Grid>
         </Grid>
     </ContentPage.Content>

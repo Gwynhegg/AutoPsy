@@ -9,6 +9,7 @@ using AutoPsy.Resources;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.ComponentModel;
 
 namespace AutoPsy.Pages.TablePages
 {
@@ -20,6 +21,10 @@ namespace AutoPsy.Pages.TablePages
         private TableGridHandler triggersGridHandler;
 
         private byte initialStep = 0;
+        public byte InitialStep
+        {
+            get { return initialStep; }
+        }
         public FullVersionTablePage()
         {
             InitializeComponent();
@@ -32,6 +37,10 @@ namespace AutoPsy.Pages.TablePages
             DateNavigationStart.Date = DateTime.Now.Date;
             DateNavigationEnd.Date = DateTime.Now.Date;
 
+            recomendationsGridHandler = new CustomComponents.TableHandlers.RecomendationsGridHandler(this, DateNavigationStart.Date.AddDays(-7), DateNavigationEnd.Date);
+            conditionsGridHandler = new CustomComponents.TableHandlers.ConditionsGridHandler(this, DateNavigationStart.Date.AddDays(-7), DateNavigationEnd.Date);
+            triggersGridHandler = new CustomComponents.TableHandlers.TriggersGridHandler(this, DateNavigationStart.Date.AddDays(-7), DateNavigationEnd.Date);
+
             DateNavigationStart.Date = DateNavigationStart.Date.AddDays(-7);
 
             SynchronizeContentPage(initialStep);
@@ -41,27 +50,21 @@ namespace AutoPsy.Pages.TablePages
         {
             switch (currentStep)
             {
-                case 0: recomendationsGridHandler = new CustomComponents.TableHandlers.RecomendationsGridHandler(DateNavigationStart.Date, DateNavigationEnd.Date);
-                    return recomendationsGridHandler;
-
-                case 1: conditionsGridHandler = new CustomComponents.TableHandlers.ConditionsGridHandler(DateNavigationStart.Date, DateNavigationEnd.Date);
-                    return conditionsGridHandler;
-
-                case 2: triggersGridHandler = new CustomComponents.TableHandlers.TriggersGridHandler(DateNavigationStart.Date, DateNavigationEnd.Date);
-                    return triggersGridHandler;  
-
+                case 0: return recomendationsGridHandler;
+                case 1: return conditionsGridHandler;
+                case 2: return triggersGridHandler;  
                 default: return null;
             }
         }
-        private void SynchronizeContentPage(byte currentStep)
+        public void SynchronizeContentPage(byte currentStep)
         {
-            if (initialStep == 0) StepBackward.IsEnabled = false; else StepBackward.IsEnabled = true;
-            if (initialStep == 2) StepForward.IsEnabled = false; else StepForward.IsEnabled = true;
-
             var currentTable = RefreshTable(currentStep);
-
+          
             if (currentTable.GetEntityHandler().CheckEntityExisted())
+            {
+                initialStep = currentStep;
                 FillHandlersInfo(currentTable);
+            }
         }
 
         private void FillHandlersInfo(TableGridHandler handler)
@@ -75,12 +78,14 @@ namespace AutoPsy.Pages.TablePages
         public void AddRecomendationParameter(string parameter, byte importance)
         {
             recomendationsGridHandler.AddParameter(parameter, importance);
+            initialStep = 0;
             FillHandlersInfo(recomendationsGridHandler);
         }
 
         public void AddConditionParameter(string parameter, byte importance)
         {
             conditionsGridHandler.AddParameter(parameter, importance);
+            initialStep = 1;
             FillHandlersInfo(conditionsGridHandler);
 
         }
@@ -88,6 +93,7 @@ namespace AutoPsy.Pages.TablePages
         public void AddTriggerParameter(string parameter, byte importance)
         {
             triggersGridHandler.AddParameter(parameter, importance);
+            initialStep = 2;
             FillHandlersInfo(triggersGridHandler);
         }
 
@@ -104,6 +110,8 @@ namespace AutoPsy.Pages.TablePages
             else
                     DateNavigationEnd.Date = DateNavigationStart.Date.AddDays(Const.Constants.WEEK);
 
+            var table = RefreshTable(initialStep);
+            table.UpdateDateTimes(DateNavigationStart.Date, DateNavigationEnd.Date);
             SynchronizeContentPage(initialStep);
 
         }
@@ -120,14 +128,23 @@ namespace AutoPsy.Pages.TablePages
 
         }
 
-        private void StepBackward_Clicked(object sender, EventArgs e)
+ 
+        private void RecomendationsButton_Clicked(object sender, EventArgs e)
         {
-            SynchronizeContentPage(--initialStep);
+            initialStep = 0;
+            SynchronizeContentPage(initialStep);
         }
 
-        private void StepForward_Clicked(object sender, EventArgs e)
+        private void TriggersButton_Clicked(object sender, EventArgs e)
         {
-            SynchronizeContentPage(++initialStep);
+            initialStep = 2;
+            SynchronizeContentPage(initialStep);
+        }
+
+        private void CondtionsButton_Clicked(object sender, EventArgs e)
+        {
+            initialStep = 1;
+            SynchronizeContentPage(initialStep);
         }
     }
 }

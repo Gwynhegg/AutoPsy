@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage Background="Gray" BackgroundColor="Gray" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AutoPsy.Pages.TablePages.ParameterUpdatePage">
     <ContentPage.Content>
-        <Grid>
+        <Grid Margin="20,50" BackgroundColor="AntiqueWhite">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
@@ -16,7 +16,8 @@
             </Grid.ColumnDefinitions>
 
             <Label x:Name="ParameterLabel" Grid.ColumnSpan="2"></Label>
-            <Slider x:Name="ImportanceSetter" Minimum="0" Maximum="5" Value="3" Grid.Row="2" MinimumTrackColor="Green" MaximumTrackColor="Red" Grid.ColumnSpan="2"></Slider>
+            <Slider x:Name="ImportanceSetter" Minimum="0" Maximum="5" Grid.Row="2" MinimumTrackColor="Green" MaximumTrackColor="Red" Grid.ColumnSpan="2"></Slider>
+            <Button x:Name="SaveButton" Text="Сохранить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Clicked="SaveButton_Clicked"></Button>
             <Button x:Name="DeleteButton" Text="D" Grid.Row="3" Grid.Column="2" Clicked="DeleteButton_Clicked"></Button>
         </Grid>
        

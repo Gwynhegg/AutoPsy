@@ -1,35 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.TablePages.FullVersionTablePage">
     <ContentPage.Content>
-        <Grid>
+        <Grid x:Name="MainGrid">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="8*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                <DatePicker x:Name="DateNavigationStart" Grid.Column="0" DateSelected="DateNavigationStart_DateSelected"></DatePicker>
-                <DatePicker x:Name="DateNavigationEnd" Grid.Column="2" DateSelected="DateNavigationEnd_DateSelected"></DatePicker>
+                <DatePicker x:Name="DateNavigationStart" Grid.Column="0" DateSelected="DateNavigationStart_DateSelected"/>
+                <DatePicker x:Name="DateNavigationEnd" Grid.Column="2" DateSelected="DateNavigationEnd_DateSelected"/>
             </Grid>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                    <ColumnDefinition Width="4*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="StepBackward" Text="ТУДА" Clicked="StepBackward_Clicked"></Button>
-                <Label x:Name="CurrentStepLabel" Grid.Column="1"></Label>
-                <Button x:Name="StepForward" Text="СЮДА" Grid.Column="2" Clicked="StepForward_Clicked"></Button>
+                <Button x:Name="RecommendationsButton" Text="{x:Static res:TableResources.Recommendations}" Clicked="RecomendationsButton_Clicked" Grid.Column="0"/>
+                <Button x:Name="CondtionsButton" Text="{x:Static res:TableResources.Conditions}" Clicked="CondtionsButton_Clicked" Grid.Column="1"/>
+                <Button x:Name="TriggersButton" Text="{x:Static res:TableResources.Triggers}" Clicked="TriggersButton_Clicked" Grid.Column="2"/>
             </Grid>
             
             <ScrollView Orientation="Both" Grid.Row="2">
@@ -37,11 +38,11 @@
             </ScrollView>
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="AddField" Grid.Column="2" Text="+" Clicked="AddField_Clicked"></Button>
+                <Button x:Name="AddField" Grid.Column="2" Text="+" Clicked="AddField_Clicked"/>
             </Grid>
         </Grid>
     </ContentPage.Content>

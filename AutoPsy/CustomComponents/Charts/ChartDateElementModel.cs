@@ -5,16 +5,16 @@ using System.Text;
 
 namespace AutoPsy.CustomComponents.Charts
 {
-    public class ChartDateElementModel : INotifyPropertyChanged
+    public class ChartDateElementModel : INotifyPropertyChanged     // вспомогательный класс для отображения динамического списка элементов статистики
     {
-        private string name;
+        private string name;        // названия элементов статистики
         public string Name
         {
             get { return name; }
             set { name = value; OnPropertyChanged(nameof(Name)); }
         }
 
-        private Dictionary<DateTime, int> values;
+        private Dictionary<DateTime, int> values;       // статистические виличины, определенные по датам
         public Dictionary<DateTime, int> Values
         {
             get { return values; }

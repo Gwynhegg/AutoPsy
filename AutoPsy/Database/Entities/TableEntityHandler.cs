@@ -15,6 +15,7 @@ namespace AutoPsy.Database.Entities
         }
 
         public abstract bool CheckEntityExisted();
+
         public byte GetEntityValue(string name, DateTime date)
         {
             return tableController[name].Where(x => DateTime.Compare(date.Date, x.Time) == 0).Select(x => x.Value).First();
@@ -26,13 +27,20 @@ namespace AutoPsy.Database.Entities
                 tableController.Add(parameter, new List<ITableEntity>());
         }
 
-        public void AddEntity(string parameter, ITableEntity entity)
+        public void AddEntity<T>(string parameter, ITableEntity entity)
         {
-            tableController[parameter].Add(entity);
-            CreateTableEntity(entity);
+            if (tableController[parameter].FirstOrDefault(x => x.IdValue.Equals(entity.IdValue) && DateTime.Compare(x.Time, entity.Time) == 0) == null)
+            {
+                tableController[parameter].Add(entity);
+                CreateTableEntity<T>(entity);
+            }
+
         }
 
-        public abstract void CreateTableEntity(ITableEntity entity);
+        public void CreateTableEntity<T>(ITableEntity entity)
+        {
+            App.Connector.CreateAndInsertData<T>(entity);
+        }
 
         public List<byte?> GetValues(int lastIndex, DateTime start, DateTime end)
         {
@@ -46,10 +54,20 @@ namespace AutoPsy.Database.Entities
             return result;
         }
 
+        public List<string> GetFilterResults(DateTime start, DateTime end)
+        {
+            return tableController.Where(x => x.Value.Any(t => t.Time >= start && t.Time <= end)).Select(x => x.Key).ToList();
+        }
+
+        public List<ITableEntity> GetEntities(string parameter)
+        {
+            return tableController[parameter];
+        }
+
         public bool ContainsEntity(ITableEntity entity)
         {
             foreach (var record in tableController.Keys)
-                if (record.Equals(entity.Name)) return true;
+                if (record.Equals(entity.IdValue)) return true;
             return false;
         }
 
@@ -58,42 +76,49 @@ namespace AutoPsy.Database.Entities
             return tableController[name].Where(x => DateTime.Compare(date.Date, x.Time) == 0).Select(x => x.Value).FirstOrDefault().ToString();
         }
 
-        public List<ITableEntity> SelectRecomendations(DateTime start, DateTime end)
-        {
-            return App.TableGraph.GetRecomendations().Where(x => tableController.ContainsKey(x.Name)).ToList();
-        }
-
-        public List<ITableEntity> SelectConditions(DateTime start, DateTime end)
-        {
-            return App.TableGraph.GetConditions().Where(x => tableController.ContainsKey(x.Name)).ToList();
-        }
-
-        public List<ITableEntity> SelectTriggers(DateTime start, DateTime end)
-        {
-            return App.TableGraph.GetTriggers().Where(x => tableController.ContainsKey(x.Name)).ToList();
-        }
-
         protected void SelectAllItems<T>() where T : new()
         {
             var items = App.Connector.SelectAll<T>().Cast<ITableEntity>();
             foreach (var item in items)
-                if (!tableController.ContainsKey(item.Name))
+                if (!tableController.ContainsKey(item.IdValue))
                 {
-                    tableController.Add(item.Name, new List<ITableEntity>());
-                    tableController[item.Name].Add(item);
+                    tableController.Add(item.IdValue, new List<ITableEntity>());
+                    tableController[item.IdValue].Add(item);
                 }
                 else
-                    tableController[item.Name].Add(item);
+                    tableController[item.IdValue].Add(item);
+        }
+
+        public void DeleteParameter(string parameter)
+        {
+            var selectedItemsToDelete = tableController.Where(x => x.Key.Equals(parameter)).Select(x => x.Value);
+            tableController.Remove(parameter);
+            foreach (var item in selectedItemsToDelete)
+                App.Connector.DeleteData(item);
+        }
+
+        public void UpdateParameter<T>(string parameter, byte newValue)
+        {
+            var selectedItemsToUpdate = tableController[parameter];
+            foreach (var item in selectedItemsToUpdate)
+            {
+                item.Importance = newValue;
+                App.Connector.UpdateData<T>(item);
+            }
+        }
+
+        public void UpdateEntityValue<T>(ITableEntity entity) where T : new()
+        {
+            var request =  App.Connector.SelectData<T>(entity.Id);
+            if (request == null) 
+                App.Connector.CreateAndInsertData<T>(entity);
+            else
+                App.Connector.UpdateData<T>(entity);
         }
     }
 
     public class RecomendationTableEntityHandler : TableEntityHandler
     {
-        public override void CreateTableEntity(ITableEntity entity)
-        {
-            App.Connector.CreateAndInsertData<TableRecomendation>(entity);
-        }
-
         public override bool CheckEntityExisted()
         {
             if (App.Connector.IsTableExisted<TableRecomendation>())
@@ -108,10 +133,6 @@ namespace AutoPsy.Database.Entities
 
     public class CondtiionTableEntityHandler : TableEntityHandler
     {
-        public override void CreateTableEntity(ITableEntity entity)
-        {
-            App.Connector.CreateAndInsertData<TableCondition>(entity);
-        }
         public override bool CheckEntityExisted()
         {
             if (App.Connector.IsTableExisted<TableCondition>())
@@ -125,10 +146,6 @@ namespace AutoPsy.Database.Entities
 
     public class TriggerTableEntityHandler : TableEntityHandler
     {
-        public override void CreateTableEntity(ITableEntity entity)
-        {
-            App.Connector.CreateAndInsertData<TableTrigger>(entity);
-        }
         public override bool CheckEntityExisted()
         {
             if (App.Connector.IsTableExisted<TableTrigger>())
