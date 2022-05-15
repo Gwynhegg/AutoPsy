@@ -8,7 +8,7 @@ namespace AutoPsy.Database.Entities
     public abstract class TableEntityHandler
     {
         protected Dictionary<string, List<ITableEntity>> tableController;
-        
+
         public TableEntityHandler()
         {
             tableController = new Dictionary<string, List<ITableEntity>>();
@@ -42,16 +42,10 @@ namespace AutoPsy.Database.Entities
             App.Connector.CreateAndInsertData<T>(entity);
         }
 
-        public List<byte?> GetValues(int lastIndex, DateTime start, DateTime end)
+        public Dictionary<string, List<ITableEntity>> GetValues(DateTime start, DateTime end)
         {
-            var result = new List<byte?>();
-            var records = tableController.ElementAt(lastIndex).Value;
-            for (var date = start; date <= end; date = date.AddDays(1))
-            {
-                var record = records.Where(x => x.Time == date).FirstOrDefault();
-                if (record != null) result.Add(record.Value); else result.Add(null);
-            }
-            return result;
+            if (!CheckEntityExisted()) return null;
+            return tableController;
         }
 
         public List<string> GetFilterResults(DateTime start, DateTime end)
@@ -64,6 +58,11 @@ namespace AutoPsy.Database.Entities
             return tableController[parameter];
         }
 
+        public List<string> GetAllParameters()
+        {
+            return tableController.Keys.Select(x => App.TableGraph.GetNameByIdString(x)).ToList();
+        }
+
         public bool ContainsEntity(ITableEntity entity)
         {
             foreach (var record in tableController.Keys)
@@ -71,9 +70,11 @@ namespace AutoPsy.Database.Entities
             return false;
         }
 
-        public string GetEntityValueString(string name, DateTime date)
+        public bool ContainsParameter(string parameter)
         {
-            return tableController[name].Where(x => DateTime.Compare(date.Date, x.Time) == 0).Select(x => x.Value).FirstOrDefault().ToString();
+            foreach (var key in tableController.Keys)
+                if (key.Equals(parameter)) return true;
+            return false;
         }
 
         protected void SelectAllItems<T>() where T : new()
@@ -109,12 +110,29 @@ namespace AutoPsy.Database.Entities
 
         public void UpdateEntityValue<T>(ITableEntity entity) where T : new()
         {
-            var request =  App.Connector.SelectData<T>(entity.Id);
-            if (request == null) 
+            var request = App.Connector.SelectData<T>(entity.Id);
+            if (request == null)
                 App.Connector.CreateAndInsertData<T>(entity);
             else
                 App.Connector.UpdateData<T>(entity);
         }
+
+        public static void StaticUpdateEntityValue<T>(ITableEntity entity) where T : new()
+        {
+            var request = App.Connector.SelectData<T>(entity.Id);
+            if (request == null)
+                App.Connector.CreateAndInsertData<T>(entity);
+            else
+                App.Connector.UpdateData<T>(entity);
+        }
+
+        public static void UpdateEntityValue(ITableEntity entity)
+        {
+            if (entity is TableRecomendation) StaticUpdateEntityValue<TableRecomendation>(entity);
+            if (entity is TableCondition) StaticUpdateEntityValue<TableCondition>(entity);
+            if (entity is TableTrigger) StaticUpdateEntityValue<TableTrigger>(entity);
+        }
+
     }
 
     public class RecomendationTableEntityHandler : TableEntityHandler

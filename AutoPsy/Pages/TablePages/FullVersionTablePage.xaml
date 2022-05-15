@@ -42,6 +42,7 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
+                <Button x:Name="AnalyzeButton" Text="Анализ" Grid.Column="0" Clicked="AnalyzeButton_Clicked"></Button>
                 <Button x:Name="AddField" Grid.Column="2" Text="+" Clicked="AddField_Clicked"/>
             </Grid>
         </Grid>

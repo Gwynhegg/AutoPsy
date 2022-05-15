@@ -76,10 +76,10 @@ namespace AutoPsy.CustomComponents
                 {
                     var entity = entities.FirstOrDefault(x => x.Time == i);     // пытаемся получить элемент, удовлетворяющий условию совпадения дат
                     if (entity == null)     // если такой не найдет, создаем по шаблону "фантомный элемент"
-                        mainGrid.Children.Add(new TableHandlers.EntityButton(entityPattern.Clone(i), this) { BackgroundColor = Color.Gray }, iterator++, mainGrid.RowDefinitions.Count - 1);
+                        mainGrid.Children.Add(new TableHandlers.EntityButton(entityPattern.Clone(i), this), iterator++, mainGrid.RowDefinitions.Count - 1);
                     else
                         // иначе создаем реальный элемент
-                        mainGrid.Children.Add(new TableHandlers.EntityButton(entity, this) { Value = entity.Value.ToString(), BackgroundColor = Color.Green }, iterator++, mainGrid.RowDefinitions.Count - 1);
+                        mainGrid.Children.Add(new TableHandlers.EntityButton(entity, this), iterator++, mainGrid.RowDefinitions.Count - 1);
                 }
             }
         }

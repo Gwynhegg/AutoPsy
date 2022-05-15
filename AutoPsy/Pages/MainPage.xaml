@@ -12,6 +12,6 @@
   <profile:ProfilePage Title="{x:Static res:PageTitles.Profile}" />
     <diary:DiaryPage Title="{x:Static res:PageTitles.Diary}" />
     <root:RootPage Title="{x:Static res:PageTitles.Main}"/>
-    <table:TablePage Title="{x:Static res:PageTitles.Table}" />
+    <table:FullVersionTablePage Title="{x:Static res:PageTitles.Table}" />
     <report:ReportPage Title="{x:Static res:PageTitles.Results}" />
 </TabbedPage>

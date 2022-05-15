@@ -52,13 +52,11 @@ namespace AutoPsy.Pages.TablePages
         {
             var element = sender as Slider;
             value = (byte)element.Value;
-            element.ThumbColor = AuxServices.ColorPicker.ColorScheme[value];
         }
         private void SwitchElementToggled(object sender, EventArgs e)
         {
             var element = sender as Switch;
             if (element.IsToggled) value = 1; else value = 0;
-            element.OnColor = AuxServices.ColorPicker.CriticalScheme[value];
         }
     }
 }

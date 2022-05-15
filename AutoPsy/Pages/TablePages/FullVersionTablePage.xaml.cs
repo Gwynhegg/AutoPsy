@@ -146,5 +146,10 @@ namespace AutoPsy.Pages.TablePages
             initialStep = 1;
             SynchronizeContentPage(initialStep);
         }
+
+        private async void AnalyzeButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new AnalysysSelectionPage());
+        }
     }
 }

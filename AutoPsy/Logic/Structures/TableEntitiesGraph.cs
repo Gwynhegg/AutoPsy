@@ -24,6 +24,15 @@ namespace AutoPsy.Logic.Structures
             ParseData();
         }
 
+        public string GetParameterType(string parameter)
+        {
+            if (recomendations.FirstOrDefault(x => x.IdValue.Equals(parameter)) != null) return Const.Constants.ENTITY_RECOMENDATION;
+            if (conditions.FirstOrDefault(x => x.IdValue.Equals(parameter)) != null) return Const.Constants.ENTITY_CONDITION;
+            if (triggers.FirstOrDefault(x => x.IdValue.Equals(parameter)) != null) return Const.Constants.ENTITY_TRIGGER;
+            return null;
+
+        }
+
         public string GetIdStringByName(string name)        // Метод для получения строки ID по имени объекта
         {
             return tableEntities.Where(x => x.Name.Equals(name)).First().IdValue;

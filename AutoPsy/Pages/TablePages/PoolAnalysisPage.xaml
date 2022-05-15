@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart ="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             x:Class="AutoPsy.Pages.TablePages.PoolAnalysisPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Text="До"></Label>
+            <ScrollView Grid.Row="1" x:Name="PastScrollView" Orientation="Horizontal">
+                <chart:ChartView x:Name="PastChart" HorizontalOptions ="FillAndExpand"></chart:ChartView>
+            </ScrollView>
+            <Label Text="После" Grid.Row="2"></Label>
+            <ScrollView x:Name="PostScrollView" Grid.Row="3" Orientation="Horizontal">
+                <chart:ChartView x:Name="PostChart"></chart:ChartView>
+            </ScrollView>
+            <CollectionView x:Name="ItemsCollection" Grid.Row="4" SelectionMode="Single" SelectionChanged="ItemsCollection_SelectionChanged"></CollectionView>
+            <Button x:Name="SaveButton" Text="Сохранить" Grid.Row="5" Clicked="SaveButton_Clicked"></Button>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

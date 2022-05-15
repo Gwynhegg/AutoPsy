@@ -90,7 +90,7 @@ namespace AutoPsy.Database.Entities
 
         public ITableEntity Clone(DateTime time)
         {
-            var clone = new TableRecomendation() { Type = type, IdValue = idValue, Name = name, Time = time, Value = value, Importance = importance };
+            var clone = new TableRecomendation() { Type = type, IdValue = idValue, Name = name, Time = time, Value = 0, Importance = importance };
             return clone;
         }
     }
@@ -159,7 +159,7 @@ namespace AutoPsy.Database.Entities
 
         public ITableEntity Clone(DateTime time)
         {
-            var clone = new TableCondition() { Type = type, IdValue = idValue, Name = name, Time = time, Value = value, Importance = importance };
+            var clone = new TableCondition() { Type = type, IdValue = idValue, Name = name, Time = time, Value = 0, Importance = importance };
             return clone;
         }
     }
@@ -228,7 +228,7 @@ namespace AutoPsy.Database.Entities
 
         public ITableEntity Clone(DateTime time)
         {
-            var clone = new TableTrigger() { Type = type, IdValue = idValue, Name = name, Time = time, Value = value, Importance = importance };
+            var clone = new TableTrigger() { Type = type, IdValue = idValue, Name = name, Time = time, Value = 0, Importance = importance };
             return clone;
         }
     }

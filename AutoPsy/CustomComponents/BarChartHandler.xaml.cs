@@ -15,7 +15,7 @@ namespace AutoPsy.CustomComponents
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BarChartHandler : Grid
     {
-        ChartController chartController;
+        BarChartController chartController;
         string[] statNames;
         Dictionary<string, DiaryResultRecords> statValues;
         ObservableCollection<ChartElementModel> setOfElements;
@@ -36,10 +36,10 @@ namespace AutoPsy.CustomComponents
             if (currentPage == statNames.Length - 1) ForwardButton.IsEnabled = false; else ForwardButton.IsEnabled = true;
 
             StatText.Text = statNames[currentPage];
-            statValues = AuxServices.DiaryResultsSorter.GetSortedRecords(statValues, statNames[currentPage]);
+            var choosedStatValues = AuxServices.DiaryResultsSorter.GetSortedRecords(statValues, statNames[currentPage]);
 
             setOfElements = new ObservableCollection<ChartElementModel>();
-            foreach (var pair in statValues)
+            foreach (var pair in choosedStatValues)
             {
                 if (pair.Value.Count == 1 && AuxServices.DeleteRules.CheckZeroRule(statNames[currentPage])) continue;
                 setOfElements.Add(new ChartElementModel()
