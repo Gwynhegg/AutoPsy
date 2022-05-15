@@ -149,7 +149,7 @@ namespace AutoPsy.Pages.TablePages
 
         private async void AnalyzeButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new AnalysysSelectionPage());
+            await Navigation.PushModalAsync(new AnalysisSelectionPage());
         }
     }
 }

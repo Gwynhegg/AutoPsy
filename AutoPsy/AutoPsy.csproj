@@ -40,6 +40,9 @@
     <Compile Update="CustomComponents\BarChartHandler.xaml.cs">
       <DependentUpon>BarChartHandler.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\TablePages\AnalysisSelectionPage.xaml.cs">
+      <DependentUpon>AnalysisSelectionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -184,7 +187,7 @@
     <EmbeddedResource Update="Pages\ReportPages\ReportPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\TablePages\AnalysysSelectionPage.xaml">
+    <EmbeddedResource Update="Pages\TablePages\AnalysisSelectionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\TablePages\FullVersionTablePage.xaml">

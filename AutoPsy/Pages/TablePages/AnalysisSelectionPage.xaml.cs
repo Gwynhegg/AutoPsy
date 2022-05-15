@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace AutoPsy.Pages.TablePages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AnalysysSelectionPage : ContentPage
+    public partial class AnalysisSelectionPage : ContentPage
     {
         private Dictionary<string, List<ITableEntity>> entityValues = new Dictionary<string, List<ITableEntity>>();
         private List<TableEntityHandler> handlers = new List<TableEntityHandler>()
@@ -20,7 +20,7 @@ namespace AutoPsy.Pages.TablePages
             new CondtiionTableEntityHandler(),
             new TriggerTableEntityHandler()
         };
-        public AnalysysSelectionPage()
+        public AnalysisSelectionPage()
         {
             InitializeComponent();
             DateNavigationStart.MinimumDate = DateTime.Now - (DateTime.Now - new DateTime(1950, 1, 1));
