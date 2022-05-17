@@ -17,7 +17,7 @@ namespace AutoPsy.Logic
             List<float> rightHandStepping = new List<float>();      // массив, содержащий элементы правостороннего обхода
             List<float> leftHandStepping = new List<float>();       // массив, содержащий элементы левостороннего обхода
 
-            float leftCurrentState = baseState[0], rightCurrentState = baseState[baseState.Count - 1];
+            float leftCurrentState = baseState[0]; 
            
             for (int i = 0; i < baseState.Count; i++)       // последовательно идем по значениям слева направо
             {
@@ -26,6 +26,7 @@ namespace AutoPsy.Logic
                 if (leftCurrentState - 1 >= 1) leftHandStepping.Add(leftCurrentState--); else leftHandStepping.Add(leftCurrentState);       // с каждым шагом уменьшаем счетчик значения (уменьшаем влияние)
             }
 
+            float rightCurrentState = baseState[baseState.Count - 1];
             for (int i = baseState.Count - 1; i >= 0; i--)      // последовательно идет по значениям справа налево
             {
                 if (rightCurrentState < leftHandStepping[i])        // если при обходе справа встречаем значение выше...
@@ -42,7 +43,7 @@ namespace AutoPsy.Logic
         {
             List<float> result = new List<float>();     // инициализируем результирующий массив
             for (int i = 0; i < baseState.Count; i++)       
-                result.Add((float)(Math.Ceiling((baseState[i] + leftState[i] + rightState[i]) / 3)));       // вычисляем среднее по трем расчитанным массивам
+                result.Add((float)Math.Ceiling((baseState[i] + leftState[i] + rightState[i]) / 3));       // вычисляем среднее по трем расчитанным массивам
             return result;      // возвращаем результат
         }
 

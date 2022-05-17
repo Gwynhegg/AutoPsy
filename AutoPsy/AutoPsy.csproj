@@ -93,6 +93,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>RegisterResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\StatValues.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>StatValues.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\SymptomHelperResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -131,6 +136,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="CustomComponents\SliderPopUp.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CustomComponents\StatisticsCanvasLine.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="CustomComponents\TableHandlers\EntityButton.xaml">
@@ -202,6 +210,9 @@
     <EmbeddedResource Update="Pages\TablePages\PoolAnalysisPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\TablePages\PreProcessingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\TablePages\TableStatisticsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -253,6 +264,10 @@
     <EmbeddedResource Update="Resources\RegisterResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RegisterResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\StatValues.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>StatValues.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\SymptomHelperResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
