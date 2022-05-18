@@ -2,5 +2,5 @@
 <ScrollView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AutoPsy.CustomComponents.StatisticsCanvasLine">
-    <StackLayout x:Name="ResultContainer" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></StackLayout>
+    <FlexLayout x:Name="ResultContainer" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Position="Relative" JustifyContent="SpaceBetween" Direction="Column"></FlexLayout>
 </ScrollView>

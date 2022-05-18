@@ -117,8 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ASYMMETRY_VALUE" xml:space="preserve">
+    <value>Показатель асимметрии: {0:F2}</value>
+  </data>
   <data name="AVERAGE_VOLUME" xml:space="preserve">
     <value>Среднее значение: {0:F2}</value>
+  </data>
+  <data name="DEVIATION_DIFFERENCE" xml:space="preserve">
+    <value>Разница между средним и отклонением: {0:F2}</value>
+  </data>
+  <data name="DISPERSION" xml:space="preserve">
+    <value>Дисперсия: {0:F2}</value>
+  </data>
+  <data name="DISTRIBUTION_RANGE_LABEL" xml:space="preserve">
+    <value>Ряд распределения</value>
+  </data>
+  <data name="DISTRIBUTION_RATIO" xml:space="preserve">
+    <value>Соотношение распределения</value>
+  </data>
+  <data name="DYNAMIC_RANGE_LABEL" xml:space="preserve">
+    <value>Ряд динамики (или изменение величины прироста)</value>
   </data>
   <data name="FREQUENCY" xml:space="preserve">
     <value>Частота {0}: </value>
@@ -126,11 +144,20 @@
   <data name="GEOMETRIC_AVERAGE" xml:space="preserve">
     <value>Среднее геометрическое: {0:F2}</value>
   </data>
+  <data name="OSCILLATION_COEF" xml:space="preserve">
+    <value>Коэффициент осцилляции: {0:P2}</value>
+  </data>
   <data name="RELATIONAL_FREQUENCY" xml:space="preserve">
-    <value>, что составляет {0:P2} % от общего.</value>
+    <value>, что составляет {0:P2} от общего.</value>
+  </data>
+  <data name="STANDART_DEVIATION" xml:space="preserve">
+    <value>Среднеквадратичное отклонение: {0:F2}</value>
   </data>
   <data name="STAT_MODA" xml:space="preserve">
     <value>Мода: {0}</value>
+  </data>
+  <data name="VARIATION_COEF" xml:space="preserve">
+    <value>Коэффициент вариации: {0:P2}</value>
   </data>
   <data name="WEIGHTED_AVERAGE_VOLUME" xml:space="preserve">
     <value>Среднее взвешенное значение: {0:F2}</value>

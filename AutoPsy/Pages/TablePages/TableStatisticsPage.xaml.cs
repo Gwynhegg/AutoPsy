@@ -46,8 +46,21 @@ namespace AutoPsy.Pages.TablePages
             var basicStatistic = statisticProcessor.GetBasicStatistics(currentItem.Value, isTrigger);
             statisticCanvas.ShowBasicStatistic(basicStatistic);
 
-            var dynamicRange = statisticProcessor.CalculateDynamicValue(currentItem.Value);
-            statisticCanvas.ShowDynamicRange(dynamicRange);
+            if (!isTrigger)
+            {
+                var dynamicRange = statisticProcessor.CalculateDynamicValue(currentItem.Value);
+                statisticCanvas.ShowDynamicRange(dynamicRange);
+            }
+
+
+            var distributionRange = statisticProcessor.GetDistributionRange(isTrigger);
+            statisticCanvas.ShowDistributionRange(distributionRange);
+            if (!isTrigger)
+            {
+                var distributionStatistic = statisticProcessor.GetDistributionStatistic(distributionRange);
+                statisticCanvas.ShowDistributionStatistic(distributionStatistic);
+            }
+
 
         }
         private void BackwardButton_Clicked(object sender, EventArgs e)

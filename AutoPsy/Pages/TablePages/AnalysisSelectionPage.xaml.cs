@@ -34,9 +34,9 @@ namespace AutoPsy.Pages.TablePages
 
         }
 
-        private void FullRegression_Clicked(object sender, EventArgs e)
+        private async void FullCorellation_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushModalAsync(new HeatMapPage(calculatedValues));
         }
 
         private void DistributionAnalysis_Clicked(object sender, EventArgs e)

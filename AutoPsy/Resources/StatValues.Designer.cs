@@ -61,11 +61,65 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Показатель асимметрии: {0:F2}.
+        /// </summary>
+        public static string ASYMMETRY_VALUE {
+            get {
+                return ResourceManager.GetString("ASYMMETRY_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Среднее значение: {0:F2}.
         /// </summary>
         public static string AVERAGE_VOLUME {
             get {
                 return ResourceManager.GetString("AVERAGE_VOLUME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Разница между средним и отклонением: {0:F2}.
+        /// </summary>
+        public static string DEVIATION_DIFFERENCE {
+            get {
+                return ResourceManager.GetString("DEVIATION_DIFFERENCE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Дисперсия: {0:F2}.
+        /// </summary>
+        public static string DISPERSION {
+            get {
+                return ResourceManager.GetString("DISPERSION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ряд распределения.
+        /// </summary>
+        public static string DISTRIBUTION_RANGE_LABEL {
+            get {
+                return ResourceManager.GetString("DISTRIBUTION_RANGE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Соотношение распределения.
+        /// </summary>
+        public static string DISTRIBUTION_RATIO {
+            get {
+                return ResourceManager.GetString("DISTRIBUTION_RATIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ряд динамики (или изменение величины прироста).
+        /// </summary>
+        public static string DYNAMIC_RANGE_LABEL {
+            get {
+                return ResourceManager.GetString("DYNAMIC_RANGE_LABEL", resourceCulture);
             }
         }
         
@@ -88,11 +142,29 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на , что составляет {0:P2} % от общего..
+        ///   Ищет локализованную строку, похожую на Коэффициент осцилляции: {0:P2}.
+        /// </summary>
+        public static string OSCILLATION_COEF {
+            get {
+                return ResourceManager.GetString("OSCILLATION_COEF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на , что составляет {0:P2} от общего..
         /// </summary>
         public static string RELATIONAL_FREQUENCY {
             get {
                 return ResourceManager.GetString("RELATIONAL_FREQUENCY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Среднеквадратичное отклонение: {0:F2}.
+        /// </summary>
+        public static string STANDART_DEVIATION {
+            get {
+                return ResourceManager.GetString("STANDART_DEVIATION", resourceCulture);
             }
         }
         
@@ -102,6 +174,15 @@ namespace AutoPsy.Resources {
         public static string STAT_MODA {
             get {
                 return ResourceManager.GetString("STAT_MODA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Коэффициент вариации: {0:P2}.
+        /// </summary>
+        public static string VARIATION_COEF {
+            get {
+                return ResourceManager.GetString("VARIATION_COEF", resourceCulture);
             }
         }
         

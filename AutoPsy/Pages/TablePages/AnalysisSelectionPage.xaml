@@ -12,11 +12,9 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="StatisticsButton" Grid.Column="0" Text="Статистический анализ" Clicked="StatisticsButton_Clicked"></Button>
-                <Button x:Name="HeatMap" Grid.Column="1" Text="Множественная регрессия" Clicked="FullRegression_Clicked"></Button>
-                <Button x:Name="DistributionAnalysis" Grid.Column="2" Text="Ряды распределения" Clicked="DistributionAnalysis_Clicked"></Button>
+                <Button x:Name="HeatMap" Grid.Column="1" Text="Множественная корреляция" Clicked="FullCorellation_Clicked"></Button>
             </Grid>
 
             <Grid Grid.Row="1">

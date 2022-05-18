@@ -51,9 +51,34 @@ namespace AutoPsy.CustomComponents
 
         public void ShowDynamicRange(List<float> values)
         {
+
+            var label = new Label() { Text = AutoPsy.Resources.StatValues.DYNAMIC_RANGE_LABEL };
             var chartHandler = new Charts.StatLinearChartController(values, dates);
             chartHandler.CreateChart();
+            ResultContainer.Children.Add(label);
             ResultContainer.Children.Add(new ChartView() { Chart = chartHandler.GetChart(), HeightRequest = 300 });
+        }
+
+        public void ShowDistributionRange(List<float> values)
+        {
+            var label = new Label() { Text = AutoPsy.Resources.StatValues.DISTRIBUTION_RANGE_LABEL };
+            var chartHandler = new Charts.StatLinearChartController(values);
+            chartHandler.CreateChart();
+            var donutLabel = new Label() { Text = AutoPsy.Resources.StatValues.DISTRIBUTION_RATIO };
+            var donutChartHandler = new Charts.DonutChartController(values);
+            donutChartHandler.CreateChart();
+            ResultContainer.Children.Add(label);
+            ResultContainer.Children.Add(new ChartView() { Chart = chartHandler.GetChart(), HeightRequest = 300 });
+            ResultContainer.Children.Add(donutLabel);
+            ResultContainer.Children.Add(new ChartView() { Chart = donutChartHandler.GetChart(), HeightRequest = 300 });
+        }
+
+        public void ShowDistributionStatistic(List<string> values)
+        {
+            var stackLayout = new StackLayout() { HeightRequest = 300 };
+            foreach (var entry in values)
+                stackLayout.Children.Add(new Label() { Text = entry });
+            ResultContainer.Children.Add(stackLayout);
         }
     }
 }
