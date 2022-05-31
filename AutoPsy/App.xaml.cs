@@ -64,7 +64,7 @@ namespace AutoPsy
 
         protected override void OnResume()
         {
-            MainPage = new NavigationPage(new Pages.CheckPasswordPage());
+            MainPage = new NavigationPage(new Pages.WelcomePage());
         }
     }
 }

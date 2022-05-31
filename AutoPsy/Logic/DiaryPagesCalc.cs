@@ -63,7 +63,6 @@ namespace AutoPsy.Logic
 
                 for (int i = pageCuts.Count - 1; i >= 0; i--)
                     if (pageCuts[i].Nodes.Count == 0) pageCuts.RemoveAt(i);     // Если элементов в текущем срезе не осталось - удаляем его и переходим к следующему
-                //if (pageCuts.First().Nodes.Count == 0) pageCuts.RemoveAt(0);        
             }
         }
 
@@ -109,18 +108,18 @@ namespace AutoPsy.Logic
             return String.Join("\n", symptoms);
         }
 
-        private void TryToMergeData()
+        private void TryToMergeData()       // алгоритм слияния записей
         {
-            int iterator = 0;
-            while (iterator < pages.Count - 1)
+            int iterator = 0;       
+            while (iterator < pages.Count - 1)      // пока итератор не дошел до конца списка...
             {
-                if (DateTime.Compare(pages[iterator].DateOfRecord.Date, pages[iterator + 1].DateOfRecord.Date) == 0)
+                if (DateTime.Compare(pages[iterator].DateOfRecord.Date, pages[iterator + 1].DateOfRecord.Date) == 0)        // если даты текущего листа совпадают со следующим
                 {
-                    var firstSymptoms = PartiallyRecreateSymptoms(pages[iterator]);
-                    var secondSymptoms = PartiallyRecreateSymptoms(pages[iterator + 1]);
-                    var resultSymptoms = firstSymptoms.Union(secondSymptoms).ToArray();
-                    pages[iterator].AttachedSymptoms = CodifySymptoms(resultSymptoms);
-                    pages.RemoveAt(iterator + 1);
+                    var firstSymptoms = PartiallyRecreateSymptoms(pages[iterator]);     // получаем симптомы первого листа
+                    var secondSymptoms = PartiallyRecreateSymptoms(pages[iterator + 1]);        // получаем симптомы второго листа
+                    var resultSymptoms = firstSymptoms.Union(secondSymptoms).ToArray();     // объединяем симптомы логической функцией
+                    pages[iterator].AttachedSymptoms = CodifySymptoms(resultSymptoms);      // сохраняем изменения
+                    pages.RemoveAt(iterator + 1);       // удаляем дублирующий лист
                 }
                 else iterator++;
             }

@@ -43,7 +43,7 @@ namespace AutoPsy.Pages.TablePages
             var max = 1;
             foreach (var item in tree)
             {
-                var query = item.Key.Count(x => x == '+');
+                var query = item.Key.Count(x => x == '+') + 1;
                 if (query > max) max = query;
             }
 
