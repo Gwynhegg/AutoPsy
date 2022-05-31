@@ -95,5 +95,14 @@ namespace AutoPsy.Resources {
                 return ResourceManager.GetString("SecondStep", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пропустить.
+        /// </summary>
+        public static string SkipStep {
+            get {
+                return ResourceManager.GetString("SkipStep", resourceCulture);
+            }
+        }
     }
 }

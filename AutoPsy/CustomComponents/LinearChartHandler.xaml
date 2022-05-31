@@ -2,28 +2,32 @@
 <Grid xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chart="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.CustomComponents.LinearChartHandler">
     <Grid.RowDefinitions>
         <RowDefinition Height="1*"></RowDefinition>
         <RowDefinition Height="8*"></RowDefinition>
         <RowDefinition Height="3*"></RowDefinition>
+        <RowDefinition Height="1*"></RowDefinition>
     </Grid.RowDefinitions>
 
-    <Label x:Name="StatText"></Label>
-    
-    <chart:ChartView x:Name="CurrentChart" Grid.Row="1"></chart:ChartView>
+    <Label x:Name="StatText" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+    <chart:ChartView x:Name="CurrentChart" Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></chart:ChartView>
     <CollectionView x:Name="ParameterPicker" Grid.Row="2" ItemsSource="{Binding ChartElementModel}" IsEnabled="True" IsVisible="true" SelectionMode="Single" SelectionChanged="ParameterPicker_SelectionChanged">
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Label Text="{Binding Name}" Margin="5,5,5,5"></Label>
-                    <Label Text="{Binding Value}" Grid.Column="1" Margin="5,5,5,5"></Label>
-                </Grid>
+                <Label Text="{Binding Name}" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Margin="5,0,0,0"></Label>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
+
+
+    <Grid Grid.Row="3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="PrognosisText" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+        <Stepper x:Name="PrognosysFar" Minimum="0" Maximum="7" Grid.Column="1" Value="3" ValueChanged="PrognosysFar_ValueChanged" VerticalOptions="CenterAndExpand" Increment="1" HorizontalOptions="CenterAndExpand" ></Stepper>
+    </Grid>
 </Grid>

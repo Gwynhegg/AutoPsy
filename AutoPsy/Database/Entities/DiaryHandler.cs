@@ -92,7 +92,7 @@ namespace AutoPsy.Database.Entities
         {
             string codifiedSymptoms = String.Empty;
             foreach (Symptom symp in symptoms)
-                codifiedSymptoms += String.Concat(symp.SymptomeName, '\\');
+                codifiedSymptoms += String.Concat(symp.SymptomeName, '\n');
             page.AttachedSymptoms = codifiedSymptoms;
         }
 
@@ -100,7 +100,7 @@ namespace AutoPsy.Database.Entities
         {
             if (page.AttachedSymptoms == null) return;
 
-            string[] codifiedSymptoms = page.AttachedSymptoms.Split('\\');
+            string[] codifiedSymptoms = page.AttachedSymptoms.Split('\n');
             Array.Resize(ref codifiedSymptoms, codifiedSymptoms.Length - 1);
             foreach(string symp in codifiedSymptoms)
                 symptoms.Add(new Symptom() { SymptomeName = symp });

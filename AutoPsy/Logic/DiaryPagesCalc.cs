@@ -99,14 +99,14 @@ namespace AutoPsy.Logic
         {
             if (page.AttachedSymptoms == null) return null;
 
-            var splitted = page.AttachedSymptoms.Split('\\');
+            var splitted = page.AttachedSymptoms.Split('\n');
             Array.Resize(ref splitted, splitted.Length - 1);
             return splitted;
         }
 
         private string CodifySymptoms(string[] symptoms)
         {
-            return String.Join("\\", symptoms);
+            return String.Join("\n", symptoms);
         }
 
         private void TryToMergeData()

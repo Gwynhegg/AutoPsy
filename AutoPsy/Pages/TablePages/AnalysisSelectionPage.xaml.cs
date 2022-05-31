@@ -29,9 +29,9 @@ namespace AutoPsy.Pages.TablePages
             await Navigation.PushModalAsync(new TableStatisticsPage(calculatedValues, start, end));
         }
 
-        private void SimplePrognosys_Clicked(object sender, EventArgs e)
+        private async void SimplePrognosys_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushModalAsync(new SimpleRegressionPage(calculatedValues, start, end));
         }
 
         private async void FullCorellation_Clicked(object sender, EventArgs e)
@@ -39,18 +39,21 @@ namespace AutoPsy.Pages.TablePages
             await Navigation.PushModalAsync(new HeatMapPage(calculatedValues));
         }
 
-        private void DistributionAnalysis_Clicked(object sender, EventArgs e)
+        private async void ClusterAnalysis_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushModalAsync(new ClusterHierarchyPage(calculatedValues));
         }
 
-        private void ClusterAnalysis_Clicked(object sender, EventArgs e)
+        protected override bool OnBackButtonPressed()
         {
-
+            NavigateToMainAsync();
+            return true;
         }
 
-        private async void PoolAnalysis_Clicked(object sender, EventArgs e)
+        private async Task NavigateToMainAsync()
         {
+            await Navigation.PushModalAsync(new MainPage());
+
         }
     }
 }

@@ -74,6 +74,8 @@ namespace AutoPsy.Pages.DiaryPages
             DescriptionOfEntity.IsEnabled = type;
             DescendersList.IsEnabled = type;
             AncestorsList.IsEnabled = type;
+            ChildsLabel.IsVisible = type;
+            ParentsLabel.IsVisible = type;
 
             // В противном случае - отображаем строку и панель поиска, скрывая остальное
             SearchResults.IsVisible = !type;

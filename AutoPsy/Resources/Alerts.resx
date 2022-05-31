@@ -123,6 +123,9 @@
   <data name="AlertMessage" xml:space="preserve">
     <value>Упс!</value>
   </data>
+  <data name="DeleteAllWarning" xml:space="preserve">
+    <value>Вы собираетесь удалить ВСЮ информацию. Продолжить?</value>
+  </data>
   <data name="DeleteStringWarning" xml:space="preserve">
     <value>Вы уверены, что хотите удалить параметр?</value>
   </data>

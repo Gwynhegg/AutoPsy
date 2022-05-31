@@ -13,12 +13,12 @@ namespace AutoPsy.CustomComponents.TableHandlers
         {
             entityHandler = new RecomendationTableEntityHandler();      // переопределения обработчика сущностей
         }
-        public override void AddParameter(string parameter, byte importance)        // метод для добавления параметра в таблицу
+        public override void AddParameter(string parameter)        // метод для добавления параметра в таблицу
         {
-            base.AddParameter(parameter, importance);       // вызов родительского метода
+            base.AddParameter(parameter);       // вызов родительского метода
             
             // создание стартовой сущности для инициализации параметра и задание ее первоначальных значений
-            var entity = new TableRecomendation() { IdValue = parameter, Name = App.TableGraph.GetNameByIdString(parameter), Importance = importance, Time = end.Date, Value = 1, Type = "Recomendation" };
+            var entity = new TableRecomendation() { IdValue = parameter, Name = App.TableGraph.GetNameByIdString(parameter), Time = end.Date, Value = 1, Type = "Recomendation" };
 
             entityHandler.AddEntity<TableRecomendation>(parameter, entity);     // передача сущности в обработчик для последующего добавления
         }
@@ -52,11 +52,11 @@ namespace AutoPsy.CustomComponents.TableHandlers
         {
             entityHandler = new CondtiionTableEntityHandler();
         }
-        public override void AddParameter(string parameter, byte importance)
+        public override void AddParameter(string parameter)
         {
-            base.AddParameter(parameter, importance);
+            base.AddParameter(parameter);
 
-            var entity = new TableCondition() { IdValue = parameter, Name = App.TableGraph.GetNameByIdString(parameter), Importance = importance, Time = end.Date, Value = 1, Type = "Condition" };
+            var entity = new TableCondition() { IdValue = parameter, Name = App.TableGraph.GetNameByIdString(parameter), Time = end.Date, Value = 1, Type = "Condition" };
 
             entityHandler.AddEntity<TableCondition>(parameter, entity);
         }
@@ -92,11 +92,11 @@ namespace AutoPsy.CustomComponents.TableHandlers
             entityHandler = new TriggerTableEntityHandler();
         }
 
-        public override void AddParameter(string parameter, byte importance)
+        public override void AddParameter(string parameter)
         {
-            base.AddParameter(parameter, importance);
+            base.AddParameter(parameter);
 
-            var entity = new TableTrigger() { IdValue = parameter, Name = App.TableGraph.GetNameByIdString(parameter), Importance = importance, Time = end.Date, Value = 0, Type = "Trigger" };
+            var entity = new TableTrigger() { IdValue = parameter, Name = App.TableGraph.GetNameByIdString(parameter), Time = end.Date, Value = 0, Type = "Trigger" };
 
             entityHandler.AddEntity<TableTrigger>(parameter, entity);
         }

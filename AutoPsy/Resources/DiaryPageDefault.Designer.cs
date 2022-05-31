@@ -70,6 +70,15 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Дата создания.
+        /// </summary>
+        public static string CreationDate {
+            get {
+                return ResourceManager.GetString("CreationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Файл успешно сохранен в {0}.
         /// </summary>
         public static string FileSavePlaceholder {
@@ -102,6 +111,15 @@ namespace AutoPsy.Resources {
         public static string Topic {
             get {
                 return ResourceManager.GetString("Topic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Заголовок.
+        /// </summary>
+        public static string TopicText {
+            get {
+                return ResourceManager.GetString("TopicText", resourceCulture);
             }
         }
     }

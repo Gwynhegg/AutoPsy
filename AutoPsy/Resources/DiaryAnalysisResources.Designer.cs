@@ -79,6 +79,15 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Дальность прогноза: {0}.
+        /// </summary>
+        public static string PrognosisFar {
+            get {
+                return ResourceManager.GetString("PrognosisFar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Симптомы.
         /// </summary>
         public static string Symptoms {

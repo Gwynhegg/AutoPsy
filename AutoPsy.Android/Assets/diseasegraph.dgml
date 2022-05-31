@@ -21,7 +21,7 @@
 	  <Node Id="BipolarDis" Label="Биполярное расстройство" Category="Mood"></Node>
 	  <Node Id="DepressDis" Label="Депрессивное расстройство" Category="Mood"></Node>
 	  <Node Id="DisMorphDis" Label="Дисморфическое расстройство" Category="Obsessive"></Node>
-	  <Node Id="ObsessDis" Label="Обсессивно-компульсивное расстройство" Category="Obsessive"></Node>
+	  <Node Id="ObsessDis" Label="Обсессивное расстройство" Category="Obsessive"></Node>
 	  <Node Id="AntiSocDis" Label="Антисоциальное расстройство" Category="Personality"></Node>
 	  <Node Id="EvasionDis" Label="Уклоняющееся расстройство" Category="Personality"></Node>
 	  <Node Id="HysteriaDis" Label="Истерическое расстройство" Category="Personality"></Node>
@@ -32,7 +32,7 @@
 	  <Node Id="SchizophreniaDis" Label="Шизофрения" Category="Schizophrenia"></Node>
 	  <Node Id="SomaticDis" Label="Конверсионное расстройство" Category="Psychosomatic"></Node>
 	  <Node Id="SelfHarmDis" Label="Членовредительство" Category="Suicidal"></Node>
-	  <Node Id="SuicidalBehavior" Label="суицидальное поведение" Category="Suicidal"></Node>
+	  <Node Id="SuicidalBehavior" Label="Суицидальное поведение" Category="Suicidal"></Node>
 
 	  <!--Симптомы расстройств-->
 	  <Node Id="Dysphea" Label="Одышка" Category="Symptoms"></Node>

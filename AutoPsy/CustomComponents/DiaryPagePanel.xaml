@@ -1,33 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.CustomComponents.DiaryPagePanel">
 
-    <DatePicker x:Name="DateOfRecord" DateSelected="DateOfRecord_DateSelected"></DatePicker>
-    <Entry x:Name="TopicEntry" Text="{x:Static res:DiaryPageDefault.Topic}" Focused="TopicEntry_Focused" Unfocused="TopicEntry_Unfocused"></Entry>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="1*"></RowDefinition>
+        <RowDefinition Height="1*"></RowDefinition>
+        <RowDefinition Height="10*"></RowDefinition>
+        <RowDefinition Height="1*"></RowDefinition>
+    </Grid.RowDefinitions>
+    <DatePicker x:Name="DateOfRecord" DateSelected="DateOfRecord_DateSelected" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"></DatePicker>
+    <Entry x:Name="TopicEntry" Grid.Row="1" Text="{x:Static res:DiaryPageDefault.Topic}" Focused="TopicEntry_Focused" Unfocused="TopicEntry_Unfocused" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" FontSize="Medium"></Entry>
 
-    <Grid>
+    <Grid Grid.Row="2">
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*" x:Name="TopRow"></RowDefinition>
-            <RowDefinition Height="5*" x:Name="BottomRow"></RowDefinition>
+            <RowDefinition Height="1*" x:Name="TopRow"></RowDefinition>
+            <RowDefinition Height="1*" x:Name="BottomRow"></RowDefinition>
         </Grid.RowDefinitions>
 
         <ScrollView Grid.Row="0">
-            <Editor x:Name="TextEditor" Text="{x:Static res:DiaryPageDefault.MainText}" Focused="TextEditor_Focused" Unfocused="TextEditor_Unfocused"></Editor>
+            <Editor x:Name="TextEditor" Text="{x:Static res:DiaryPageDefault.MainText}" Focused="TextEditor_Focused" Unfocused="TextEditor_Unfocused" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" FontSize="Medium"></Editor>
         </ScrollView>
 
-        <ListView x:Name="ListOfSymptoms" Grid.Row="1">
+        <Frame  Grid.Row="1">
+            <ListView x:Name="ListOfSymptoms">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                            <Label x:Name="NameOfSymptom" Text="{Binding SymptomeName}"></Label>
+                            <Label x:Name="NameOfSymptom" Text="{Binding SymptomeName}" FontSize="Medium" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand"></Label>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        </Frame>
+
     </Grid>
-    <Button x:Name="AddTag" Text="+" Clicked="AddTag_Clicked"></Button>
-</StackLayout>
+    <Button x:Name="AddTag" Grid.Row="3" Text="{x:Static res:DiaryPageDefault.AddSymptom}" Clicked="AddTag_Clicked" BackgroundColor="#74A594" FontSize="Large" TextColor="#FFFFFF" HorizontalOptions="EndAndExpand"></Button>
+</Grid>

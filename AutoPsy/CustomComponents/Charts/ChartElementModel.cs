@@ -14,8 +14,8 @@ namespace AutoPsy.CustomComponents.Charts
             set { name = value; OnPropertyChanged(nameof(Name)); }
         }
 
-        private double value;       // значение определенного статистического показателя элемента
-        public double Value
+        private string value;       // значение определенного статистического показателя элемента
+        public string Value
         {
             get { return value; }
             set { this.value = value; OnPropertyChanged(nameof(Value)); }

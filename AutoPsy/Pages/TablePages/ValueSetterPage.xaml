@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage BackgroundColor="Gray" Background="Gray" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.TablePages.ValueSetterPage">
     <ContentPage.Content>
-        <Grid Margin="50,80" BackgroundColor="AntiqueWhite"  x:Name="MainGrid">
+        <Grid WidthRequest="300" HeightRequest="150" BackgroundColor="#FFFFFF"  x:Name="MainGrid" VerticalOptions="Center" HorizontalOptions="Center" Padding="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="5*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
             </Grid.RowDefinitions>
             
-            <Label Text="Укажите значение" Grid.Row="0"></Label>
+            <Label Text="{x:Static res:AuxiliaryResources.SetValue}" Grid.Row="0" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" FontSize="Medium"></Label>
 
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                
-                <Button x:Name="SaveValueButton" Text="+" Grid.Column="1" Clicked="SaveValueButton_Clicked"></Button>
+                <ImageButton x:Name="SaveValueButton" Source="plus1.png" Grid.Column="1" Clicked="SaveValueButton_Clicked" Aspect="AspectFit" Background="Transparent" BackgroundColor="Transparent"></ImageButton>
             </Grid>
         </Grid>
     </ContentPage.Content>

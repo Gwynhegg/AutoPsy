@@ -79,6 +79,15 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Вы собираетесь удалить ВСЮ информацию. Продолжить?.
+        /// </summary>
+        internal static string DeleteAllWarning {
+            get {
+                return ResourceManager.GetString("DeleteAllWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Вы уверены, что хотите удалить параметр?.
         /// </summary>
         internal static string DeleteStringWarning {

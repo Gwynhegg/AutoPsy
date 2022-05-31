@@ -5,38 +5,20 @@ using System.Text;
 
 namespace AutoPsy.CustomComponents.Charts
 {
-    public class DonutChartController
+    public class DonutChartController : IChartController
     {
-        private List<float> values;
-        private List<string> labels;
-        private List<SkiaSharp.SKColor> color = new List<SkiaSharp.SKColor>();
+        protected List<ChartEntry> entries = new List<ChartEntry>();
         private Chart chart;        // элемент, представляющий собой итоговую диаграмму
 
         public DonutChartController(List<float> values)
         {
-            this.values = values;
-            labels = new List<string>();
             for (int i = 0; i < values.Count; i++)
-                labels.Add(i.ToString());
-            foreach (var label in labels)
-                color.Add(AuxServices.ColorPicker.GetRandomColor());
+                if (values[i] != 0) entries.Add(new ChartEntry(values[i]) { Color = AuxServices.ColorPicker.GetRandomColor(), Label = i.ToString("F1") });
         }
 
-        public void CreateChart()
+        public override Chart GetChart()     // метод для получения готовой диаграммы
         {
-            var entries = new List<ChartEntry>();       // инициализируем новый набор значений для диаграммы
-            for (int i = 0; i < values.Count; i++)
-                if (labels.Count < 10)
-                    entries.Add(new ChartEntry(values[i]) { Label = labels[i], Color = color[i] });
-                else
-                    entries.Add(new ChartEntry(values[i]) { Color = color[i] });
-
-            // Создаем новую линейную диаграмму с полученными значениями
-            chart = new DonutChart() { Entries = entries, LabelTextSize = 20 };
-        }
-
-        public Chart GetChart()     // метод для получения готовой диаграммы
-        {
+            chart = new DonutChart() { Entries = entries,  LabelTextSize = 40 };
             return chart;
         }
     }

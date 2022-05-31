@@ -5,13 +5,12 @@
              xmlns:res ="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.UserExperienceEditorPage">
     <ContentPage.Content>
-        <Grid>
+        <Grid Margin="5" x:Name="MainGrid">
             <Grid.RowDefinitions>
-                <RowDefinition Height="8*"></RowDefinition>
+                <RowDefinition Height="11*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
-            <StackLayout x:Name="CurrentItem"></StackLayout>
-            <Button x:Name="SaveAndReturn" Text="{x:Static res:AuxiliaryResources.Save}" Clicked="SaveAndReturn_Clicked" Grid.Row="1"></Button>
+            <Button x:Name="SaveAndReturn" Text="{x:Static res:AuxiliaryResources.Save}" Clicked="SaveAndReturn_Clicked" Grid.Row="1" FontSize="Large" BackgroundColor="#74A594" TextColor="#FFFFFF"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

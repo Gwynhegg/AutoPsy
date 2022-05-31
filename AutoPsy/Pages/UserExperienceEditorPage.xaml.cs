@@ -22,7 +22,7 @@ namespace AutoPsy.Pages
             InitializeComponent();
             this.parentPage = parentPage;
             experiencePanel = new UserExperiencePanel(enabled: true);      // создаем панель для ввода
-            CurrentItem.Children.Insert(0, experiencePanel);
+            MainGrid.Children.Add(experiencePanel, 0, 0);
         }
 
         // Если конструктор вызван с двумя аргументами, то это модификация пользовательских данных, которая немного отличается
@@ -33,7 +33,7 @@ namespace AutoPsy.Pages
 
             // Перегружаем панель для ввода, заполняя уже существующие поля
             experiencePanel = new UserExperiencePanel(enabled: true, userExperience);
-            CurrentItem.Children.Insert(0, experiencePanel);
+            MainGrid.Children.Add(experiencePanel, 0, 0);
         }
 
         private async void SaveAndReturn_Clicked(object sender, EventArgs e)

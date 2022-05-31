@@ -34,7 +34,7 @@ namespace AutoPsy.Pages.TablePages
             }
             else
             {
-                Slider sliderElement = new Slider();
+                Slider sliderElement = new Slider() { MinimumTrackColor = Color.Green, MaximumTrackColor = Color.Gray};
                 sliderElement.Minimum = 0; sliderElement.Maximum = 5; sliderElement.Value = 3;
                 sliderElement.ValueChanged += SliderValueChanged;
                 MainGrid.Children.Add(sliderElement, 0, 1);
@@ -51,7 +51,8 @@ namespace AutoPsy.Pages.TablePages
         private void SliderValueChanged(object sender, EventArgs e)
         {
             var element = sender as Slider;
-            value = (byte)element.Value;
+            value = (byte)Math.Round(element.Value);
+            element.MinimumTrackColor = AuxServices.ColorPicker.ColorScheme[value];
         }
         private void SwitchElementToggled(object sender, EventArgs e)
         {

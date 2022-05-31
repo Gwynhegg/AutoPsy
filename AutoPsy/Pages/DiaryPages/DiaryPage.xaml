@@ -4,11 +4,11 @@
              xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.DiaryPages.DiaryPage">
     <ContentPage.Content>
-        <Grid>
+        <Grid Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="5*"></RowDefinition>
-                <RowDefinition Height="0.5*"></RowDefinition>
+                <RowDefinition Height="8*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
@@ -18,61 +18,77 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <DatePicker x:Name="DateNavigatorStart" Grid.Column="0" DateSelected="DateNavigatorStart_DateSelected"></DatePicker>
-                <DatePicker x:Name="DateNavigatorEnd" Grid.Column="2" DateSelected="DateNavigatorEnd_DateSelected"></DatePicker>
+                <DatePicker x:Name="DateNavigatorStart" Grid.Column="0" DateSelected="DateNavigatorStart_DateSelected" FontSize="Medium" MaximumDate="2050-01-01" MinimumDate="1900-01-01" Visual="Material" HorizontalOptions="StartAndExpand"></DatePicker>
+                <DatePicker x:Name="DateNavigatorEnd" Grid.Column="2" DateSelected="DateNavigatorEnd_DateSelected" FontSize="Medium" MaximumDate="2050-01-01" MinimumDate="1900-01-01" Visual="Material" HorizontalOptions="EndAndExpand"></DatePicker>
             </Grid>
 
 
             <CarouselView x:Name="PagesCarouselView"  Grid.Row="1" Loop="False">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout IsEnabled="False">
-                            <Label Text="{x:Static res:UserExperienceDefault.DateOfAppointment}"></Label>
-                            <DatePicker Date="{Binding DateOfRecord}"></DatePicker>
-                            <Label Text="{Binding Topic}"></Label>
-                            <Label Text="{Binding MainText}"></Label>
-                            <Frame>
+                        <Frame BorderColor="#264469">
+                        <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="4*"></RowDefinition>
+                                    <RowDefinition Height="4*"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{x:Static res:DiaryPageDefault.CreationDate}" FontSize="Medium" TextColor="#606060" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+                                    <DatePicker Date="{Binding DateOfRecord}" Grid.Column="1" FontSize="Medium" MaximumDate="2050-01-01" MinimumDate="1900-01-01" Visual="Material" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"></DatePicker>
+                                </Grid>
+                            
+                                <Label Text="{x:Static res:DiaryPageDefault.TopicText}" Grid.Row="1" FontSize="Medium" TextColor="#606060" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+                                <Label Text="{Binding Topic}" Grid.Row="2" FontSize="Large" TextColor="#606060" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+
+                                <Frame BorderColor="#264469" Grid.Row="3">
+                                    <ScrollView>
+                                        <Label Text="{Binding MainText}" FontSize="Medium" TextColor="#000000" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></Label>
+                                    </ScrollView>
+                                </Frame>
+
+                                <Frame Grid.Row="4">
                                 <StackLayout>
-                                    <Label></Label>
-                                    <ListView x:Name="ListOfSymptoms">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <ViewCell>
-                                                    <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
-                                                        <Label x:Name="SymptomName" Text="{Binding SymptomeName}"></Label>
-                                                    </StackLayout>
-                                                </ViewCell>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
+                                        <Label Text="{x:Static res:DiaryAnalysisResources.Symptoms}" FontSize="Medium" TextColor="#606060" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+                                    <ScrollView>
+                                            <Label x:Name="Symptoms" Text="{Binding AttachedSymptoms}" FontSize="Medium" TextColor="#000000" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></Label>
+                                    </ScrollView>
                                 </StackLayout>
                             </Frame>
-                        </StackLayout>
+                        </Grid>
+                        </Frame>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
 
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="PrintPages" Text="P" Grid.Column="1" Clicked="PrintPages_Clicked"></Button>
-                <Button x:Name="EditPages" Text="E" Grid.Column="2" Clicked="EditPages_Clicked"></Button>
-                <Button x:Name="DeletePages" Text="D" Grid.Column="3" Clicked="DeletePages_Clicked"></Button>
+                <ImageButton x:Name="InfoButton" Source="question1.png" Grid.Column="1" Clicked="InfoButton_Clicked" Aspect="AspectFit" Background="Transparent" BackgroundColor="Transparent"></ImageButton>
+                <ImageButton x:Name="PrintPages" Source="print.png" Grid.Column="2" Clicked="PrintPages_Clicked" Aspect="AspectFit" Background="Transparent" BackgroundColor="Transparent"></ImageButton>
+                <ImageButton x:Name="EditPages" Source="pencil1.png" Grid.Column="3" Clicked="EditPages_Clicked" Aspect="AspectFit" Background="Transparent" BackgroundColor="Transparent"></ImageButton>
+                <ImageButton x:Name="DeletePages" Source="delete1.png" Grid.Column="4" Clicked="DeletePages_Clicked" Aspect="AspectFit" Background="Transparent" BackgroundColor="Transparent"></ImageButton>
             </Grid>
             
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="5*"></ColumnDefinition>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="AnalyzeButton" Text="{x:Static res:AuxiliaryResources.ToAnalysis}" Grid.Column="0" Clicked="AnalyzeButton_Clicked"></Button>
-                    <Button x:Name="InfoButton" Text="?" Grid.Column="1" Clicked="InfoButton_Clicked"></Button>
-                <Button x:Name="AddButton" Text="+" Grid.Column="2" Clicked="AddButton_Clicked"></Button>
+                <Button x:Name="AnalyzeButton" Text="{x:Static res:AuxiliaryResources.ToAnalysis}" Grid.Column="0" Clicked="AnalyzeButton_Clicked" FontSize="Medium" BackgroundColor="#74A594" TextColor="#FFFFFF"></Button>
+                <ImageButton x:Name="AddButton" Source="plus1.png" Grid.Column="1" Clicked="AddButton_Clicked" Aspect="AspectFit" Background="Transparent" BackgroundColor="Transparent"></ImageButton>
                 </Grid>
         </Grid>
         

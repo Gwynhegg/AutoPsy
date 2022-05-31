@@ -61,7 +61,16 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Анализ ({0} записи/ей.
+        ///   Ищет локализованную строку, похожую на После.
+        /// </summary>
+        public static string After {
+            get {
+                return ResourceManager.GetString("After", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Анализ ({0} записи/ей).
         /// </summary>
         public static string AnalysisPlaceholder {
             get {
@@ -75,6 +84,15 @@ namespace AutoPsy.Resources {
         public static string BackButton {
             get {
                 return ResourceManager.GetString("BackButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на До.
+        /// </summary>
+        public static string Before {
+            get {
+                return ResourceManager.GetString("Before", resourceCulture);
             }
         }
         
@@ -138,6 +156,15 @@ namespace AutoPsy.Resources {
         public static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Укажите значение.
+        /// </summary>
+        public static string SetValue {
+            get {
+                return ResourceManager.GetString("SetValue", resourceCulture);
             }
         }
         

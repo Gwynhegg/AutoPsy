@@ -75,24 +75,24 @@ namespace AutoPsy.Pages.TablePages
             MainField.Children.Add(handler.mainGrid, 0, 0);
         }
 
-        public void AddRecomendationParameter(string parameter, byte importance)
+        public void AddRecomendationParameter(string parameter)
         {
-            recomendationsGridHandler.AddParameter(parameter, importance);
+            recomendationsGridHandler.AddParameter(parameter);
             initialStep = 0;
             FillHandlersInfo(recomendationsGridHandler);
         }
 
-        public void AddConditionParameter(string parameter, byte importance)
+        public void AddConditionParameter(string parameter)
         {
-            conditionsGridHandler.AddParameter(parameter, importance);
+            conditionsGridHandler.AddParameter(parameter);
             initialStep = 1;
             FillHandlersInfo(conditionsGridHandler);
 
         }
 
-        public void AddTriggerParameter(string parameter, byte importance)
+        public void AddTriggerParameter(string parameter)
         {
-            triggersGridHandler.AddParameter(parameter, importance);
+            triggersGridHandler.AddParameter(parameter);
             initialStep = 2;
             FillHandlersInfo(triggersGridHandler);
         }

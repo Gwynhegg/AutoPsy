@@ -32,7 +32,7 @@ namespace AutoPsy.Pages.TablePages
             if (currentStep == entityValues.Count - 1) ForwardButton.IsEnabled = false; else ForwardButton.IsEnabled = true;
 
             var currentItem = entityValues.ElementAt(currentStep);
-            CurrentEntity.Text = currentItem.Key;
+            CurrentEntity.Text = App.TableGraph.GetNameByIdString(currentItem.Key);
 
             var statisticProcessor = new Logic.StatisticProcessor();
 

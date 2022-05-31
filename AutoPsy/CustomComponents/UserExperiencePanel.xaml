@@ -1,32 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.CustomComponents.UserExperiencePanel"
-             x:Name="TargetStackLayout">
-    <Entry x:Name="ClinicEntry" Text="{x:Static res:UserExperienceDefault.Clinic}" Focused="ClinicEntry_Focused" Unfocused="ClinicEntry_Unfocused"></Entry>
-    <Entry x:Name="DoctorEntry" Text="{x:Static res:UserExperienceDefault.Doctor}" Focused="DoctorEntry_Focused" Unfocused="DoctorEntry_Unfocused"></Entry>
-    <Label Text="{x:Static res:UserExperienceDefault.DateOfAppointment}"></Label>
-    <DatePicker x:Name="AppointmentDate" DateSelected="AppointmentDate_DateSelected"></DatePicker>
-    <Entry x:Name="DiagnosisEntry" Text="{x:Static res:UserExperienceDefault.Diagnosis}" Focused="DiagnosisEntry_Focused" Unfocused="DiagnosisEntry_Unfocused"></Entry>
-    <Frame>
+      Margin="5"
+             x:Name="TargetGridLayout">
+   
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+        </Grid.RowDefinitions>
+    
+    <Entry x:Name="ClinicEntry" Text="{x:Static res:UserExperienceDefault.Clinic}" Focused="ClinicEntry_Focused" Unfocused="ClinicEntry_Unfocused" FontSize="Medium" HorizontalOptions="FillAndExpand" Keyboard="Default" Margin="5" Visual="Material"></Entry>
+    <Entry x:Name="DoctorEntry" Text="{x:Static res:UserExperienceDefault.Doctor}" Grid.Row="1" Focused="DoctorEntry_Focused" Unfocused="DoctorEntry_Unfocused" FontSize="Medium" HorizontalOptions="FillAndExpand" Keyboard="Default" Margin="5" Visual="Material"></Entry>
+    <Grid Grid.Row="2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Text="{x:Static res:UserExperienceDefault.DateOfAppointment}" FontSize="Medium" TextColor="#606060" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Margin="5,0,0,0"></Label>
+        <DatePicker x:Name="AppointmentDate" DateSelected="AppointmentDate_DateSelected" Grid.Column="1"  FontSize="Medium" MaximumDate="2050-01-01" MinimumDate="1900-01-01" Visual="Material"></DatePicker>
+    </Grid>
+    
+    <Entry x:Name="DiagnosisEntry" Text="{x:Static res:UserExperienceDefault.Diagnosis}" Grid.Row="3" Focused="DiagnosisEntry_Focused" Unfocused="DiagnosisEntry_Unfocused" FontSize="Medium" HorizontalOptions="FillAndExpand" Keyboard="Default" Margin="5" Visual="Material"></Entry>
+    <Frame Grid.Row="4">
         <StackLayout>
-            <Label Text="{x:Static res:UserExperienceDefault.Medicine}"></Label>
+            <Label Text="{x:Static res:UserExperienceDefault.Medicine}" FontSize="Medium" HorizontalOptions="FillAndExpand" Margin="5" Visual="Material"></Label>
             <ListView x:Name="ListOfMedicine">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                                <Entry x:Name="NameOfMedicine" Text="{Binding NameOfMedicine}" Focused="Entry_Focused" Unfocused="NameOfMedicine_Unfocused" TextChanged="NameOfMedicine_TextChanged"></Entry>
-                                <Entry x:Name="Dosage" Text="{Binding Dosage}" Focused="Entry_Focused" TextChanged="Dosage_TextChanged"></Entry>
+                                <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                <Entry x:Name="NameOfMedicine" Text="{Binding NameOfMedicine}" Focused="Entry_Focused" Unfocused="NameOfMedicine_Unfocused" TextChanged="NameOfMedicine_TextChanged" FontSize="Medium" HorizontalOptions="FillAndExpand" Keyboard="Default" Visual="Material"></Entry>
+                                <Entry x:Name="Dosage" Text="{Binding Dosage}" Focused="Entry_Focused" TextChanged="Dosage_TextChanged" FontSize="Medium" HorizontalOptions="FillAndExpand" Keyboard="Numeric" Visual="Material"></Entry>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button x:Name="AddMedicine" Text="{x:Static res:UserExperienceDefault.Add}" Clicked="AddMedicine_Clicked"></Button>
+            <Button x:Name="AddMedicine" Text="{x:Static res:UserExperienceDefault.Add}" Clicked="AddMedicine_Clicked" BackgroundColor="#74A594" TextColor="#FFFFFF" VerticalOptions="End" HorizontalOptions="EndAndExpand" ></Button>
         </StackLayout>
     </Frame>
-    <Label Text="{x:Static res:UserExperienceDefault.Score}"></Label>
-    <Slider x:Name="ScoreSlider" Minimum="0" Maximum="10" Value="5" ValueChanged="ScoreSlider_ValueChanged"></Slider>
-</StackLayout>
+    <Grid Grid.Row="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Text="{x:Static res:UserExperienceDefault.Score}" FontSize="Medium" TextColor="#606060" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+        <Slider x:Name="ScoreSlider" Grid.Column="1" Minimum="0" Maximum="10" Value="5" ValueChanged="ScoreSlider_ValueChanged" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Visual="Material" MinimumTrackColor="#74A594" MaximumTrackColor="#393939"/>
+    </Grid>
+</Grid>

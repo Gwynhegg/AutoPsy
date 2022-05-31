@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoPsy.Pages.TablePages.ClusterHierarchyPage">
+    <ContentPage.Content>
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="NumOfElements" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+                <Stepper x:Name="NumStepper" Minimum="2"  Value="2" Grid.Column="1" ValueChanged="EpochsValue_ValueChanged" VerticalOptions="CenterAndExpand" Increment="1" HorizontalOptions="CenterAndExpand"></Stepper>
+            </Grid>
+
+            <StackLayout x:Name="Container" Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="5">
+            </StackLayout>
+        </Grid>
+
+
+    </ContentPage.Content>
+</ContentPage>

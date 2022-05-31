@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:AutoPsy.Resources"
+             x:Class="AutoPsy.Pages.ProfilePages.SettingsPage">
+    <ContentPage.Content>
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="7*"></RowDefinition>
+
+            </Grid.RowDefinitions>
+            <Button x:Name="ResetPassword" Text="{x:Static res:Settings.ResetPassword}" FontSize="Large" BackgroundColor="#74A594" TextColor="#FFFFFF" Clicked="ResetPassword_Clicked"></Button>
+            <Button x:Name="ResetData" Grid.Row="1" Text="{x:Static res:Settings.ResetData}" FontSize="Large" BackgroundColor="#74A594" TextColor="#FFFFFF" Clicked="ResetData_Clicked"></Button>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="ResetFrom" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" CheckedChanged="ResetFrom_CheckedChanged"></CheckBox>
+                <Label Text="{x:Static res:Settings.ResetDataFrom}" Grid.Column="1" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+                <DatePicker x:Name="DateResetFrom" Grid.Column="2" FontSize="Medium" Margin="5" MaximumDate="2050-01-01" MinimumDate="1900-01-01" Visual="Material" IsEnabled="False"></DatePicker>
+            </Grid>
+            <Button x:Name="DeleteAll" Grid.Row="3" Text="{x:Static res:Settings.DeleteAll}"  FontSize="Large" BackgroundColor="#74A594" TextColor="#FFFFFF" Clicked="DeleteAll_Clicked"></Button>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

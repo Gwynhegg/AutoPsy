@@ -4,14 +4,10 @@
             xmlns:profile ="clr-namespace:AutoPsy.Pages.ProfilePages"
             xmlns:diary="clr-namespace:AutoPsy.Pages.DiaryPages"
             xmlns:table="clr-namespace:AutoPsy.Pages.TablePages"
-            xmlns:report="clr-namespace:AutoPsy.Pages.ReportPages"
-            xmlns:root="clr-namespace:AutoPsy.Pages.MainPages"
             xmlns:res="clr-namespace:AutoPsy.Resources"
     x:Class="AutoPsy.Pages.MainPage">
     <!--Pages can be added as references or inline-->
   <profile:ProfilePage Title="{x:Static res:PageTitles.Profile}" />
     <diary:DiaryPage Title="{x:Static res:PageTitles.Diary}" />
-    <root:RootPage Title="{x:Static res:PageTitles.Main}"/>
     <table:FullVersionTablePage Title="{x:Static res:PageTitles.Table}" />
-    <report:ReportPage Title="{x:Static res:PageTitles.Results}" />
 </TabbedPage>

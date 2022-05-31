@@ -41,9 +41,12 @@ namespace AutoPsy.Pages.TablePages
             entityValues.Clear();
             entities.Clear();
             foreach (var handler in handlers)
-                foreach (var pair in handler.GetValues(DateNavigationStart.Date, DateNavigationEnd.Date))
+            {
+                var values = handler.GetValues(DateNavigationStart.Date, DateNavigationEnd.Date);
+                if (values is null) continue;
+                foreach (var pair in values)
                     entities.Add(pair.Key, pair.Value);
-
+            }    
             CreateFloatValues();
         }
 

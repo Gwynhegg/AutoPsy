@@ -38,7 +38,7 @@ namespace AutoPsy.CustomComponents
         }
 
         // Метод для вызова добавления параметра (переопределяется в классах-наследниках)
-        public virtual void AddParameter(string parameter, byte importance) => entityHandler.AddParameter(parameter);
+        public virtual void AddParameter(string parameter) => entityHandler.AddParameter(parameter);
 
         public abstract void DeleteParameter(string parameter);     // метод удаления параметра. Специфичный, поэтому полностью переопределяется в наследниках
 
@@ -86,7 +86,7 @@ namespace AutoPsy.CustomComponents
 
         private void ClearGrid(DateTime start, DateTime end)        // метод для очистки и пересобрания таблицы
         {
-            mainGrid = new Grid();      // инициализируем новую таблицу
+            mainGrid = new Grid() { VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.StartAndExpand, ColumnSpacing = 2, RowSpacing = 2};      // инициализируем новую таблицу
             mainGrid.RowDefinitions.Add(new RowDefinition() { Height = 50 });       // создаем базовые строки и столбцы
             mainGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = 200 });
 
@@ -97,7 +97,7 @@ namespace AutoPsy.CustomComponents
                 mainGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = 50 });      // создаем соответствующий столбец
                 var day = i.Day.ToString().Length < 2 ? String.Concat("0", i.Day) : i.Day.ToString();       // получаем строку для отображения дня
                 var month = i.Month.ToString().Length < 2 ? String.Concat("0", i.Month) : i.Month.ToString();       // получаем строку для отображения месяца
-                mainGrid.Children.Add(new Label() { Text = String.Concat(day, ".", month) }, indexator++, 0);       // соединяем строки и помещаем в новый столбец
+                mainGrid.Children.Add(new Label() { Text = String.Concat(day, ".", month), VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand }, indexator++, 0);       // соединяем строки и помещаем в новый столбец
             }    
         }
     }

@@ -23,7 +23,6 @@ namespace AutoPsy.Pages.TablePages
             this.entity = entity;
 
             ParameterLabel.Text = entity.Name;
-            ImportanceSetter.Value = entity.Importance;
         }
 
         private async void DeleteButton_Clicked(object sender, EventArgs e)
@@ -40,17 +39,6 @@ namespace AutoPsy.Pages.TablePages
 
         private async void SaveButton_Clicked(object sender, EventArgs e)
         {
-            if (ImportanceSetter.Value != entity.Importance)
-            {
-                bool answer = await DisplayAlert(Alerts.AlertMessage, Alerts.UpdateStringWarning, AuxiliaryResources.Yes, AuxiliaryResources.No);
-                if (answer)
-                {
-                    tableGridHandler.UpdateParameter(entity.IdValue, (byte)ImportanceSetter.Value);
-                    await Navigation.PopModalAsync();
-                }
-                else return;
-            }
-            else
                 await Navigation.PopModalAsync();
         }
     }

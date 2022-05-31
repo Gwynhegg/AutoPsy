@@ -17,14 +17,12 @@ namespace AutoPsy.Pages.TablePages
             InitializeComponent();
 
             var correlationMatrix = CreateCorrelationMatrix(values);
-            CreateMatrixGrid(correlationMatrix, values.Count - 1);
+            CreateMatrixGrid(correlationMatrix, values.Count, values.Keys.Select(x => App.TableGraph.GetNameByIdString(x)).ToList());
             
         }
 
-        private void CreateMatrixGrid(List<(string, string, float, int, int)> matrix, int matrixSize)
+        private void CreateMatrixGrid(List<(float, int, int)> matrix, int matrixSize, List<string> labels)
         {
-            MatrixContainer.RowDefinitions.Add(new RowDefinition() { Height = 200 });
-            MatrixContainer.ColumnDefinitions.Add(new ColumnDefinition() { Width = 200 });
 
             for (int i = 0; i < matrixSize + 1; i++)
             {
@@ -32,30 +30,33 @@ namespace AutoPsy.Pages.TablePages
                 MatrixContainer.ColumnDefinitions.Add(new ColumnDefinition() { Width = 100 });
             }
 
+            for (int i = 0; i < matrixSize; i++)
+            {
+                MatrixContainer.Children.Add(new Button() { Text = labels[i], VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#74A594"), TextColor = Color.White, FontSize = 14, Padding = 0.5 }, i + 1, 0);
+                MatrixContainer.Children.Add(new Button() { Text = labels[i], VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.FillAndExpand, BackgroundColor = Color.FromHex("#74A594"), TextColor = Color.White, FontSize = 14, Padding = 0.5 }, 0, i + 1);
+            }
+
             foreach (var row in matrix)
             {
-                var leftBorder = row.Item5;
-                var upperBorder = row.Item4;
+                var leftBorder = row.Item3 + 1;
+                var upperBorder = row.Item2 + 1;
+                var value = (float)((int)(Math.Abs(row.Item1) * 20 + 0.0499999)) / 20;
 
-                MatrixContainer.Children.Add(new Label() { Text = row.Item2}, leftBorder + 1, 0);
-                MatrixContainer.Children.Add(new Label() { Text = row.Item1}, 0, upperBorder + 1); 
-
-                var value = (float)((int)(Math.Abs(row.Item3) * 20 + 0.0499999)) / 20;
-
-                MatrixContainer.Children.Add(new Button() { Text = row.Item1 + row.Item2, BackgroundColor = AuxServices.ColorPicker.MatrixCriticityColor[value]}, leftBorder + 1, upperBorder + 1);
+                MatrixContainer.Children.Add(new Button() { Text = value.ToString("F2"), BackgroundColor = AuxServices.ColorPicker.MatrixCriticityColor[value], FontSize = 20, TextColor = Color.White}, leftBorder, upperBorder);
+                MatrixContainer.Children.Add(new Button() { Text = value.ToString("F2"), BackgroundColor = AuxServices.ColorPicker.MatrixCriticityColor[value], FontSize = 20, TextColor = Color.White }, upperBorder, leftBorder);
             }
         }
 
 
-        private List<(string, string, float, int, int)> CreateCorrelationMatrix(Dictionary<string, List<float>> values)
+        private List<(float, int, int)> CreateCorrelationMatrix(Dictionary<string, List<float>> values)
         {
-            var correlationMatrix = new List<(string, string, float, int, int)>();
+            var correlationMatrix = new List<(float, int, int)>();
 
             for (int i = 0; i < values.Count; i++)
                 for (int j = i + 1; j < values.Count; j++)
                 {
                     var correlationValue = Logic.CorrelationProcessor.CalculateCorrelationValue(values.ElementAt(i).Value, values.ElementAt(j).Value);
-                    correlationMatrix.Add((values.ElementAt(i).Key, values.ElementAt(j).Key, correlationValue, i, j));
+                    correlationMatrix.Add((correlationValue, i, j));
                 }
             return correlationMatrix;
         }

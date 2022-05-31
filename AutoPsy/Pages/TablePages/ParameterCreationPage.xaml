@@ -1,20 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage Background="Gray" BackgroundColor="Gray" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.TablePages.ParameterCreationPage">
     <ContentPage.Content>
-        <Grid Margin="20,50" BackgroundColor="AntiqueWhite">
+        <Grid WidthRequest="250" HeightRequest="400" Margin="5" BackgroundColor="#FFFFFF" VerticalOptions="Center" HorizontalOptions="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Picker x:Name="TypePicker" Title="Вид записи" SelectedIndexChanged="TypePicker_SelectedIndexChanged"></Picker>
-            <Picker x:Name="EntityPicker" IsEnabled="False" Grid.Row="1"></Picker>
-            <Slider x:Name="ImportanceSetter" Minimum="0" Maximum="5" Value="3" Grid.Row="2" MinimumTrackColor="Green" MaximumTrackColor="Red"></Slider>
-            <Button x:Name="SaveButton" Text="Сохранить" Grid.Row="3" Clicked="SaveButton_Clicked"></Button>
+            <Picker x:Name="TypePicker" Title="Вид записи" SelectedIndexChanged="TypePicker_SelectedIndexChanged" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" FontSize="Medium"></Picker>
+            <Picker x:Name="EntityPicker" IsEnabled="False" Grid.Row="1" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" FontSize="Medium"></Picker>
+            <Button x:Name="SaveButton" Text="{x:Static res:AuxiliaryResources.Save}" Grid.Row="2" Clicked="SaveButton_Clicked" BackgroundColor="#74A594" FontSize="Medium" TextColor="#FFFFFF"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

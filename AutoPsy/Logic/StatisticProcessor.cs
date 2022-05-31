@@ -65,8 +65,7 @@ namespace AutoPsy.Logic
 
         private string GetOscillationCoef(List<float> values)
         {
-
-            var scope = values.Max() - values.Min();
+            var scope = values.Max() - values.Where(x => x != 0).Min();
             var oscillation = scope / basicAverage;
 
             var result = String.Format(StatValues.OSCILLATION_COEF, oscillation);

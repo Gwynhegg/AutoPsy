@@ -21,40 +21,20 @@ namespace AutoPsy.Pages
             userHandler = new UserHandler();
             userHandler.SetBirtdDate(DateTime.Now);     // устанавливаем дату по умолчанию
         }
-
-        private void Register_Clicked(object sender, EventArgs e)
-        {
-            LoginOptions.IsVisible = false;
-            RegisterForm.IsVisible = true;
-        }
-
-        private void HideRegisterForm_Clicked(object sender, EventArgs e)
-        {
-            LoginOptions.IsVisible = true;
-            RegisterForm.IsVisible = false;
-        }
-
         private async void Continue_Clicked(object sender, EventArgs e)
         {
             NameEntry.Unfocus(); SurnameEntry.Unfocus(); PatronymicEntry.Unfocus();     // С помощью анфокуса принудительно заставляем сработать обработчик события
 
             if (userHandler.CheckCorrectness())     // проверяем корректность введенных данных
             {
-                userHandler.CreateUserInfo();       // если все нормально, вызываем метод создания юзера
+                userHandler.CreateUserInfo();
                 if (HasExperience.IsChecked)        // если пользователь указал, что у него имеется опыт...
-                    await Navigation.PushModalAsync(new PrimaryUserExperiencePage());       // переходим на страницу указания опыта
+                    await Navigation.PushModalAsync(new PrimaryUserExperiencePage(userHandler));       // переходим на страницу указания опыта
                 else
-                    await Navigation.PushModalAsync(new CreatePasswordPage());      // ... или на страницу задания пароля
-            }
+                    await Navigation.PushModalAsync(new CreatePasswordPage(userHandler));      // ... или на страницу задания пароля
+            }   
             else
-            {
                 await DisplayAlert(Alerts.AlertMessage, Alerts.RegisterAlertMessage, AuxiliaryResources.ButtonOK);
-            }
-        }
-
-        private void LoginVK_Clicked(object sender, EventArgs e)
-        {
-            // ЛОГИКА ДЛЯ ЛОГИНА ЧЕРЕЗ ВК
         }
 
         private void SurnameEntry_Focused(object sender, FocusEventArgs e)
@@ -100,12 +80,15 @@ namespace AutoPsy.Pages
         {
             if ((sender as RadioButton).IsChecked == true)      // если один из переключателей был выбран...
                 userHandler.SetGender((sender as RadioButton).Content.ToString());      // сохраняем данные и заносим в класс
+            else
+                return;
 
             foreach (RadioButton button in GenderFrame.Children)        // снимаем выделение с других переключателей на форме
                 if (!button.Content.Equals((sender as RadioButton).Content)) button.IsChecked = false;
         }
 
         // при смене даты на форме заносим изменения в обертку
-        private void BirthDate_DateSelected(object sender, DateChangedEventArgs e) => userHandler.SetBirtdDate(BirthDate.Date);      
+        private void BirthDate_DateSelected(object sender, DateChangedEventArgs e) => userHandler.SetBirtdDate(BirthDate.Date); 
+        
     }
 }

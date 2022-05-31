@@ -20,64 +20,52 @@ namespace AutoPsy.CustomComponents
             InitializeComponent();
             this.start = start;
             this.end = end;
-
-            SetDatesRange();
         }
 
-        private void SetDatesRange()        // метод для создания временного интервала и заполняющих его значений
-        {
-            for (DateTime i = start.Date; i <= end.Date; i = i.AddDays(1))
-            {
-                var day = i.Day.ToString().Length < 2 ? String.Concat("0", i.Day) : i.Day.ToString();       // получаем строку для отображения дня
-                var month = i.Month.ToString().Length < 2 ? String.Concat("0", i.Month) : i.Month.ToString();       // получаем строку для отображения месяца
-                dates.Add(String.Concat(day, ".", month));      // соединяем строки и помещаем в новый столбец
-            }
-        }
+
 
         public void DrawBasicGraph(List<float> values)
         {
-            var chartHandler = new Charts.StatLinearChartController(values, dates);
-            chartHandler.CreateChart();
-            ResultContainer.Children.Add(new ChartView() { Chart = chartHandler.GetChart(), HeightRequest = 150 });
+            var chartHandler = new Charts.StatLinearChartController();
+            chartHandler.AddValuesToChart(values, start, end);
+            ResultContainer.Children.Add(new ChartView() { Chart = chartHandler.GetChart(), HeightRequest = 300, VerticalOptions=LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand });
         }
 
         public void ShowBasicStatistic(List<string> values)
         {
-            var stackLayout = new StackLayout() { HeightRequest = 300 };
+            var stackLayout = new StackLayout() { HeightRequest = 300, Background = Brush.Transparent };
             foreach (var entry in values)
-                stackLayout.Children.Add(new Label() { Text = entry });
+                stackLayout.Children.Add(new Label() { Text = entry, VerticalOptions =  LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand });
             ResultContainer.Children.Add(stackLayout);
         }
 
         public void ShowDynamicRange(List<float> values)
         {
 
-            var label = new Label() { Text = AutoPsy.Resources.StatValues.DYNAMIC_RANGE_LABEL };
-            var chartHandler = new Charts.StatLinearChartController(values, dates);
-            chartHandler.CreateChart();
+            var label = new Label() { Text = AutoPsy.Resources.StatValues.DYNAMIC_RANGE_LABEL, Margin = 5, VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand };
+            var chartHandler = new Charts.StatLinearChartController();
+            chartHandler.AddValuesToChart(values, start, end);
             ResultContainer.Children.Add(label);
-            ResultContainer.Children.Add(new ChartView() { Chart = chartHandler.GetChart(), HeightRequest = 300 });
+            ResultContainer.Children.Add(new ChartView() { Chart = chartHandler.GetChart(), HeightRequest = 300, VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand });
         }
 
         public void ShowDistributionRange(List<float> values)
         {
-            var label = new Label() { Text = AutoPsy.Resources.StatValues.DISTRIBUTION_RANGE_LABEL };
+            var label = new Label() { Text = AutoPsy.Resources.StatValues.DISTRIBUTION_RANGE_LABEL, Margin = 5, VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand };
             var chartHandler = new Charts.StatLinearChartController(values);
-            chartHandler.CreateChart();
-            var donutLabel = new Label() { Text = AutoPsy.Resources.StatValues.DISTRIBUTION_RATIO };
+            var donutLabel = new Label() { Text = AutoPsy.Resources.StatValues.DISTRIBUTION_RATIO, Margin = 5, VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand };
             var donutChartHandler = new Charts.DonutChartController(values);
-            donutChartHandler.CreateChart();
             ResultContainer.Children.Add(label);
-            ResultContainer.Children.Add(new ChartView() { Chart = chartHandler.GetChart(), HeightRequest = 300 });
+            ResultContainer.Children.Add(new ChartView() { Chart = chartHandler.GetChart(), HeightRequest = 300, VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand });
             ResultContainer.Children.Add(donutLabel);
-            ResultContainer.Children.Add(new ChartView() { Chart = donutChartHandler.GetChart(), HeightRequest = 300 });
+            ResultContainer.Children.Add(new ChartView() { Chart = donutChartHandler.GetChart(), HeightRequest = 300, VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand });
         }
 
         public void ShowDistributionStatistic(List<string> values)
         {
-            var stackLayout = new StackLayout() { HeightRequest = 300 };
+            var stackLayout = new StackLayout() { HeightRequest = 200, Background = Brush.Transparent };
             foreach (var entry in values)
-                stackLayout.Children.Add(new Label() { Text = entry });
+                stackLayout.Children.Add(new Label() { Text = entry, VerticalOptions = LayoutOptions.FillAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand });
             ResultContainer.Children.Add(stackLayout);
         }
     }

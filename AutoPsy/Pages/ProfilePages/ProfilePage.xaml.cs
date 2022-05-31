@@ -91,7 +91,7 @@ namespace AutoPsy.Pages.ProfilePages
         {
             var age = DateTime.Now.Year - user.BirthDate.Year;
             if (DateTime.Now.DayOfYear < user.BirthDate.DayOfYear)
-                age++;
+                age--;
 
             var userDataString = String.Join(" ", user.PersonSurname, user.PersonName, String.Format(UserDefault.UserAgePlaceholder, age));
             PersonalDataButton.Text = userDataString;
@@ -131,5 +131,7 @@ namespace AutoPsy.Pages.ProfilePages
         }
 
         private async void PersonalDataButton_Clicked(object sender, EventArgs e) => await Navigation.PushModalAsync(new PersonalDataPage(this));
+
+        private async void SettingsButton_Clicked(object sender, EventArgs e) => await Navigation.PushModalAsync(new SettingsPage());
     }
 }

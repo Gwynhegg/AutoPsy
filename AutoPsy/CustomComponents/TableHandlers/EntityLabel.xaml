@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <StackLayout xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AutoPsy.CustomComponents.TableHandlers.EntityLabel">
-    <Button x:Name="LabelEntity" Clicked="LabelEntity_Clicked"></Button>
+             x:Class="AutoPsy.CustomComponents.TableHandlers.EntityLabel"
+             BackgroundColor="Transparent" Background="Transparent">
+    <Button x:Name="LabelEntity" Clicked="LabelEntity_Clicked" Background="Transparent" BackgroundColor="Transparent" FontSize="Micro" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></Button>
 </StackLayout>

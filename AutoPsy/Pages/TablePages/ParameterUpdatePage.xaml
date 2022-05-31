@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage Background="Gray" BackgroundColor="Gray" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.TablePages.ParameterUpdatePage">
     <ContentPage.Content>
-        <Grid Margin="20,50" BackgroundColor="AntiqueWhite">
+        <Grid WidthRequest="300" HeightRequest="150" Margin="5" BackgroundColor="#FFFFFF" VerticalOptions="Center" HorizontalOptions="Center" Padding="5">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -15,10 +14,9 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Label x:Name="ParameterLabel" Grid.ColumnSpan="2"></Label>
-            <Slider x:Name="ImportanceSetter" Minimum="0" Maximum="5" Grid.Row="2" MinimumTrackColor="Green" MaximumTrackColor="Red" Grid.ColumnSpan="2"></Slider>
-            <Button x:Name="SaveButton" Text="Сохранить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Clicked="SaveButton_Clicked"></Button>
-            <Button x:Name="DeleteButton" Text="D" Grid.Row="3" Grid.Column="2" Clicked="DeleteButton_Clicked"></Button>
+            <Label x:Name="ParameterLabel" Grid.ColumnSpan="2" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
+            <Button x:Name="SaveButton" Text="{x:Static res:AuxiliaryResources.Save}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Clicked="SaveButton_Clicked" BackgroundColor="#74A594" FontSize="Medium" TextColor="#FFFFFF"></Button>
+            <ImageButton x:Name="DeleteButton" Source="delete1.png" Grid.Row="1" Grid.Column="2" Clicked="DeleteButton_Clicked" Aspect="AspectFit" Background="Transparent" BackgroundColor="Transparent"></ImageButton>
         </Grid>
        
     </ContentPage.Content>

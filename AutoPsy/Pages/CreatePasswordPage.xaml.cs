@@ -13,9 +13,20 @@ namespace AutoPsy.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreatePasswordPage : ContentPage       // Страница создания пароля
     {
+        private Database.Entities.UserHandler userHandler;
         private string passwordInstance = String.Empty;       // Создаем пустую строку для хранения
         private bool isFirstStep = true;        // Первый шаг - задание пароля, второй - его повторение
-        public CreatePasswordPage() => InitializeComponent();
+        public CreatePasswordPage(Database.Entities.UserHandler userHandler)
+        {
+            InitializeComponent();
+            this.userHandler = userHandler;
+        }
+
+        public CreatePasswordPage()
+        {
+            userHandler = new Database.Entities.UserHandler();
+            userHandler.GetUser();
+        }
 
         private void ResetButton_Clicked(object sender, EventArgs e)        // Событие при нажатии на кнопку сброса пароля
         {
@@ -43,9 +54,9 @@ namespace AutoPsy.Pages
                     if (passwordInstance == PasswordField.Text)     // Если значение пароля и введенное повторно значения совпадают, то...
                     {
                         var hashedPassword = Logic.Hashing.HashPassword(passwordInstance);      // Хэшируем пароль для его безопасного хранения в базе
-                        var user = App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser);        // Получаем инстанс подключенного пользователя
-                        user.HashPassword = Logic.Hashing.HashPassword(passwordInstance);       // Присваиваем ему созданный пароль
-                        App.Connector.UpdateData<Database.Entities.User>(user);     // Обновляем данные о пользователе в базе
+
+                        userHandler.SetPassword(hashedPassword);
+                        userHandler.UpdateUserInfo();
                         await Navigation.PushModalAsync(new MainPage());        // Переходим на главную страницу
                     }
                     else
@@ -55,6 +66,13 @@ namespace AutoPsy.Pages
                     }
                 }
             }
+        }
+
+        private async void SkipButton_Clicked(object sender, EventArgs e)
+        {
+            userHandler.SetPassword(String.Empty);
+            userHandler.UpdateUserInfo();
+            await Navigation.PushModalAsync(new MainPage());
         }
     }
 }

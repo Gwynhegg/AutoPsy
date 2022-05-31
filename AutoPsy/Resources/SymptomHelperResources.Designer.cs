@@ -61,6 +61,15 @@ namespace AutoPsy.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Потомки.
+        /// </summary>
+        public static string Childs {
+            get {
+                return ResourceManager.GetString("Childs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на У данного узла нет детей.
         /// </summary>
         public static string HasNoChilds {
@@ -75,6 +84,15 @@ namespace AutoPsy.Resources {
         public static string HasNoParents {
             get {
                 return ResourceManager.GetString("HasNoParents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Родители.
+        /// </summary>
+        public static string Parents {
+            get {
+                return ResourceManager.GetString("Parents", resourceCulture);
             }
         }
         

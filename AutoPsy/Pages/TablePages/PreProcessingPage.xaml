@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.TablePages.PreProcessingPage">
     <ContentPage.Content>
-        <Grid>
+        <Grid Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="7*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
@@ -17,13 +19,13 @@
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <DatePicker x:Name="DateNavigationStart" Grid.Column="0" DateSelected="DateNavigationStart_DateSelected"></DatePicker>
-                <DatePicker x:Name="DateNavigationEnd" Grid.Column="2" DateSelected="DateNavigationEnd_DateSelected"></DatePicker>
+                <DatePicker x:Name="DateNavigationStart" Grid.Column="0" DateSelected="DateNavigationStart_DateSelected" FontSize="Medium" MaximumDate="2050-01-01" MinimumDate="1900-01-01" Visual="Material" HorizontalOptions="StartAndExpand"></DatePicker>
+                <DatePicker x:Name="DateNavigationEnd" Grid.Column="2" DateSelected="DateNavigationEnd_DateSelected" FontSize="Medium" MaximumDate="2050-01-01" MinimumDate="1900-01-01" Visual="Material" HorizontalOptions="EndAndExpand"></DatePicker>
             </Grid>
 
-            <Label x:Name="RequestMessage" Grid.Row="1" IsVisible="false"></Label>
-            <Button x:Name="PreprocessingButton" Text="Вперед!" Grid.Row="2" Clicked="PreprocessingButton_Clicked" IsVisible="false"></Button>
-            <Button x:Name="NoNeedButton" Text="Вперед!" Grid.Row="2" Clicked="NoNeedButton_Clicked" IsVisible="false"></Button>
+            <Label x:Name="RequestMessage" Grid.Row="1" IsVisible="false" FontSize="Medium"></Label>
+            <Button x:Name="PreprocessingButton" Text="{x:Static res:AuxiliaryResources.Continue}" Grid.Row="3" Clicked="PreprocessingButton_Clicked" IsVisible="false" FontSize="Large" BackgroundColor="#74A594" TextColor="#FFFFFF"></Button>
+            <Button x:Name="NoNeedButton" Text="{x:Static res:AuxiliaryResources.Continue}" Grid.Row="3" Clicked="NoNeedButton_Clicked" IsVisible="false" FontSize="Large" BackgroundColor="#74A594" TextColor="#FFFFFF"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

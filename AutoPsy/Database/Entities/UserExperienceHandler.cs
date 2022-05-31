@@ -10,7 +10,7 @@ namespace AutoPsy.Database.Entities
     public class UserExperienceHandler
     {
         private UserExperience userExperience;
-        private ObservableCollection<Database.Entities.Medicine> listOfMedicine;
+        private ObservableCollection<Medicine> listOfMedicine;
         public byte stateMode { get; set; } = 0;
 
         public UserExperienceHandler(int userId)
@@ -144,8 +144,8 @@ namespace AutoPsy.Database.Entities
             string codifiedMedicine = String.Empty;
             foreach (Medicine medicine in listOfMedicine)
             {
-                string temp = String.Join("/", medicine.NameOfMedicine, medicine.Dosage);
-                codifiedMedicine += String.Concat(temp, '\\');
+                string temp = String.Join(", ", medicine.NameOfMedicine, medicine.Dosage);
+                codifiedMedicine += String.Concat(temp, '\n');
             }
             userExperience.IndexOfMedicine = codifiedMedicine;
         }
@@ -154,12 +154,12 @@ namespace AutoPsy.Database.Entities
         {
             if (userExperience.IndexOfMedicine == null) return;
 
-            string[] medicineRequest = userExperience.IndexOfMedicine.Split('\\');
+            string[] medicineRequest = userExperience.IndexOfMedicine.Split('\n');
 
             foreach (string subRequest in medicineRequest)
             {
-                string[] tempString = subRequest.Split('/');
-                if (tempString.Length == 2) listOfMedicine.Add(new Medicine() { NameOfMedicine = tempString[0], Dosage = Double.Parse(tempString[1]) });
+                string[] tempString = subRequest.Split(',');
+                if (tempString.Length == 2) listOfMedicine.Add(new Medicine() { NameOfMedicine = tempString[0], Dosage = Double.Parse(tempString[1].Trim()) });
             }
         }
     }

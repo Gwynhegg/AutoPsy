@@ -123,6 +123,9 @@
   <data name="Diseases" xml:space="preserve">
     <value>Проявления</value>
   </data>
+  <data name="PrognosisFar" xml:space="preserve">
+    <value>Дальность прогноза: {0}</value>
+  </data>
   <data name="Symptoms" xml:space="preserve">
     <value>Симптомы</value>
   </data>

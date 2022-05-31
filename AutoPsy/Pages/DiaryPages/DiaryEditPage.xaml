@@ -4,13 +4,13 @@
              xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.DiaryPages.DiaryEditPage">
     <ContentPage.Content>
-        <Grid>
+        <Grid Margin="5">
             <Grid.RowDefinitions>
-                <RowDefinition Height="8*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
             <StackLayout x:Name="CurrentItem" Grid.Row="0"/>
-            <Button x:Name="SaveAndReturn" Text="{x:Static res:AuxiliaryResources.Save}" Grid.Row="1" Clicked="SaveAndReturn_Clicked"></Button>
+            <Button x:Name="SaveAndReturn" Text="{x:Static res:AuxiliaryResources.Save}" Grid.Row="1" Clicked="SaveAndReturn_Clicked" BackgroundColor="#74A594" FontSize="Large" TextColor="#FFFFFF"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

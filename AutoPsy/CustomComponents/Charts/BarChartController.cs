@@ -35,8 +35,10 @@ namespace AutoPsy.CustomComponents.Charts
                     Color = colors[indexes[i]], 
                     ValueLabel = values[indexes[i]].ToString()};
 
+            var textSize = (float)Math.Round((double)200 / entries.Count());
+            var valueTextSize = textSize / 1.2f;
             // Создаем диаграмму для отображения
-            chart = new BarChart() { Entries = entries, LabelOrientation = Orientation.Horizontal , LabelTextSize = 20, ValueLabelOrientation = Orientation.Horizontal};
+            chart = new BarChart() { Entries = entries, LabelOrientation = Orientation.Horizontal , LabelTextSize = textSize, ValueLabelTextSize = valueTextSize, ValueLabelOrientation = Orientation.Horizontal};
         }
 
         public void AddAllValuesToChart(bool useNormalColorScheme)
@@ -52,7 +54,10 @@ namespace AutoPsy.CustomComponents.Charts
             var entries = new ChartEntry[labels.Count];
             for (int i = 0; i < labels.Count; i++)
                     entries[i] = new ChartEntry(values[i]) { Color = colorScheme[(byte)values[i]] };
-            chart = new BarChart() { Entries = entries, LabelOrientation = Orientation.Horizontal, ValueLabelOrientation = Orientation.Horizontal, MaxValue = maxValue };
+
+            var textSize = (float)Math.Round((double)200 / entries.Count());
+            var valueTextSize = textSize / 1.2f;
+            chart = new BarChart() { Entries = entries, LabelOrientation = Orientation.Horizontal, ValueLabelOrientation = Orientation.Horizontal, LabelTextSize = textSize, ValueLabelTextSize = valueTextSize, MaxValue = maxValue };
 
         }
 

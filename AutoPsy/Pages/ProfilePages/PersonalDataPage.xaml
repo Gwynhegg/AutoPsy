@@ -4,18 +4,26 @@
              xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.ProfilePages.PersonalDataPage">
     <ContentPage.Content>
-        <StackLayout x:Name="PersonPanel">
-            
-            <Entry x:Name="SurnameEntry" Unfocused="SurnameEntry_Unfocused"></Entry>
-            <Entry x:Name="NameEntry" Unfocused="NameEntry_Unfocused"></Entry>
-            <Entry x:Name="PatronymicEntry" Focused="PatronymicEntry_Focused" Unfocused="PatronymicEntry_Unfocused"></Entry>
-            <DatePicker x:Name="BirthDate" DateSelected="BirthDate_DateSelected"></DatePicker>
-            <StackLayout x:Name="GenderFrame">
-                <RadioButton x:Name="MaleOption" Content="{x:Static res:UserDefault.MaleSex}" CheckedChanged="Option_CheckedChanged"></RadioButton>
-                <RadioButton x:Name="FemaleOption" Content="{x:Static res:UserDefault.FemaleSex}" CheckedChanged="Option_CheckedChanged"></RadioButton>
-                <RadioButton x:Name="NonOption" Content="{x:Static res:UserDefault.UnknownSex}" CheckedChanged="Option_CheckedChanged"></RadioButton>
+        <Grid x:Name="PersonPanel" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Entry x:Name="SurnameEntry" Unfocused="SurnameEntry_Unfocused" FontSize="Medium" HorizontalOptions="FillAndExpand" Keyboard="Default" Visual="Material"></Entry>
+            <Entry x:Name="NameEntry" Grid.Row="1" Unfocused="NameEntry_Unfocused" FontSize="Medium" HorizontalOptions="FillAndExpand" Keyboard="Default" Visual="Material"></Entry>
+            <Entry x:Name="PatronymicEntry" Grid.Row="2" Focused="PatronymicEntry_Focused" Unfocused="PatronymicEntry_Unfocused" FontSize="Medium" HorizontalOptions="FillAndExpand" Keyboard="Default" Visual="Material"></Entry>
+            <DatePicker x:Name="BirthDate" Grid.Row="3" DateSelected="BirthDate_DateSelected" FontSize="Medium" MaximumDate="2050-01-01" MinimumDate="1900-01-01" Visual="Material"></DatePicker>
+            <StackLayout x:Name="GenderFrame" Margin="5" Grid.Row="4">
+                <RadioButton x:Name="MaleOption" Content="{x:Static res:UserDefault.MaleSex}" CheckedChanged="Option_CheckedChanged" FontSize="Medium"></RadioButton>
+                <RadioButton x:Name="FemaleOption" Content="{x:Static res:UserDefault.FemaleSex}" CheckedChanged="Option_CheckedChanged" FontSize="Medium"></RadioButton>
+                <RadioButton x:Name="NonOption" Content="{x:Static res:UserDefault.UnknownSex}" CheckedChanged="Option_CheckedChanged" FontSize="Medium"></RadioButton>
             </StackLayout>
-            <Button x:Name="SaveAndQuit" Text="{x:Static res:AuxiliaryResources.Continue}" Clicked="SaveAndQuit_Clicked"></Button>
-        </StackLayout>
+            <Button x:Name="SaveAndQuit" Grid.Row="6" Text="{x:Static res:AuxiliaryResources.Continue}" Clicked="SaveAndQuit_Clicked" FontSize="Large" BackgroundColor="#74A594" TextColor="#FFFFFF"></Button>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

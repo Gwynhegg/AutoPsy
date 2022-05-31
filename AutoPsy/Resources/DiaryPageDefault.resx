@@ -120,6 +120,9 @@
   <data name="AddSymptom" xml:space="preserve">
     <value>Добавьте симптом</value>
   </data>
+  <data name="CreationDate" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
   <data name="FileSavePlaceholder" xml:space="preserve">
     <value>Файл успешно сохранен в {0}</value>
   </data>
@@ -131,5 +134,8 @@
   </data>
   <data name="Topic" xml:space="preserve">
     <value>Введи заголовок страницы</value>
+  </data>
+  <data name="TopicText" xml:space="preserve">
+    <value>Заголовок</value>
   </data>
 </root>

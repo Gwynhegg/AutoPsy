@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="After" xml:space="preserve">
+    <value>После</value>
+  </data>
   <data name="AnalysisPlaceholder" xml:space="preserve">
-    <value>Анализ ({0} записи/ей</value>
+    <value>Анализ ({0} записи/ей)</value>
   </data>
   <data name="BackButton" xml:space="preserve">
     <value>Назад</value>
+  </data>
+  <data name="Before" xml:space="preserve">
+    <value>До</value>
   </data>
   <data name="ButtonOK" xml:space="preserve">
     <value>ОК</value>
@@ -143,6 +149,9 @@
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
+  </data>
+  <data name="SetValue" xml:space="preserve">
+    <value>Укажите значение</value>
   </data>
   <data name="Success" xml:space="preserve">
     <value>Успех!</value>

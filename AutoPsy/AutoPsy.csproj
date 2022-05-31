@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
     <PackageReference Include="Microcharts" Version="0.9.5.9" />
     <PackageReference Include="Microcharts.Forms" Version="1.0.0-preview1" />
     <PackageReference Include="PdfSharpCore" Version="1.3.16" />
@@ -52,6 +53,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Alerts.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\AnalysisResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AnalysisResources.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\AuxiliaryResources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -92,6 +98,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>RegisterResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Settings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\StatValues.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -177,9 +188,6 @@
     <EmbeddedResource Update="Pages\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\MainPages\RootPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Pages\PrimaryUserExperiencePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -189,13 +197,16 @@
     <EmbeddedResource Update="Pages\ProfilePages\ProfilePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\ProfilePages\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\RegisterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\ReportPages\ReportPage.xaml">
+    <EmbeddedResource Update="Pages\TablePages\AnalysisSelectionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\TablePages\AnalysisSelectionPage.xaml">
+    <EmbeddedResource Update="Pages\TablePages\ClusterHierarchyPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\TablePages\FullVersionTablePage.xaml">
@@ -214,6 +225,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\TablePages\PreProcessingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\TablePages\SimpleRegressionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\TablePages\TableStatisticsPage.xaml">
@@ -235,6 +249,10 @@
     <EmbeddedResource Update="Resources\Alerts.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Alerts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AnalysisResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AnalysisResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\AuxiliaryResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -268,6 +286,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RegisterResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Settings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\StatValues.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>StatValues.Designer.cs</LastGenOutput>
@@ -292,5 +314,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserExperienceDefault.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Pages\TablePages\SimpleRegressionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 </Project>

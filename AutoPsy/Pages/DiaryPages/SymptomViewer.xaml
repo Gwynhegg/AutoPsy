@@ -4,34 +4,27 @@
              xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.DiaryPages.SymptomViewer">
     <ContentPage.Content>
-        <Grid>
+        <Grid Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
             </Grid.RowDefinitions>
             <SearchBar x:Name="searchBar" Grid.Row="0" Placeholder="{x:Static res:SymptomHelperResources.SearchString}" TextChanged="SearchBar_TextChanged"></SearchBar>
 
 
-            <Label x:Name="NameOfEntity" Grid.Row="1"></Label>
-            <Label x:Name="DescriptionOfEntity" Grid.Row="2"></Label>
+            <Label x:Name="NameOfEntity" Grid.Row="1" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+            <Label x:Name="DescriptionOfEntity" Grid.Row="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></Label>
                      
 
-            <ListView x:Name="SearchResults" Grid.Row="1" Grid.RowSpan="4" IsVisible="False" ItemSelected="SearchResults_ItemSelected">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                                <Label x:Name="NameOfDescender" Text="{Binding}"></Label>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
 
-            <ListView x:Name="AncestorsList" Grid.Row="3">
+
+            <Label IsVisible="False" x:Name="ParentsLabel" Text="{x:Static res:SymptomHelperResources.Parents}" Grid.Row="3" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+            <ListView x:Name="AncestorsList" Grid.Row="4">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -45,7 +38,8 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <ListView x:Name="DescendersList" Grid.Row="4">
+            <Label IsVisible="False" x:Name="ChildsLabel" Text="{x:Static res:SymptomHelperResources.Childs}" Grid.Row="5"  FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+            <ListView x:Name="DescendersList" Grid.Row="6">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -58,6 +52,19 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <ListView x:Name="SearchResults" Grid.Row="1" Grid.RowSpan="4" IsVisible="False" ItemSelected="SearchResults_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                                <Label x:Name="NameOfDescender" Text="{Binding}"></Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
         </Grid>
     </ContentPage.Content>
 </ContentPage>

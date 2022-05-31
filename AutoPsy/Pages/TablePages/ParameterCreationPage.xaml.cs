@@ -14,7 +14,7 @@ namespace AutoPsy.Pages.TablePages
     public partial class ParameterCreationPage : ContentPage        // форма для создания нового параметра
     {
         private FullVersionTablePage parent;        // родительский элемент для финальной передачи параметров
-        private delegate void AddMethod(string parameter, byte importance);     // делегат определяет, какая именно функция будет использована для создания параметра (3 типа)
+        private delegate void AddMethod(string parameter);     // делегат определяет, какая именно функция будет использована для создания параметра (3 типа)
         AddMethod addMethod;
         public ParameterCreationPage(FullVersionTablePage parent)       // в конструкторе класса передаем ссылку на родительский элемент
         {
@@ -54,7 +54,7 @@ namespace AutoPsy.Pages.TablePages
             if (CheckCorrectness())     // если данные заполнены корректно...
             {
                 var selectedItemIdValue = App.TableGraph.GetIdStringByName(EntityPicker.SelectedItem.ToString());       // получаем ID выбранно элемента
-                addMethod(selectedItemIdValue, (byte)ImportanceSetter.Value);       // отрабатываем метод, помещенный в делегат
+                addMethod(selectedItemIdValue);       // отрабатываем метод, помещенный в делегат
                 await Navigation.PopModalAsync();       // покидаем данную страницу
             }
             else

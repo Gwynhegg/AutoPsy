@@ -2,24 +2,26 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:res="clr-namespace:AutoPsy.Resources"
+             NavigationPage.HasNavigationBar="False"
              x:Class="AutoPsy.Pages.WelcomePage">
     <ContentPage.Content>
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="8*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <ContentView x:Name="LoadingView" IsVisible="true" Grid.RowSpan="2">
-                <Image BackgroundColor="#862727"></Image>
+            <ContentView x:Name="LoadingView" IsVisible="true">
+                <ActivityIndicator></ActivityIndicator>
             </ContentView>
 
-            <StackLayout x:Name="PolicyView" IsVisible="false">
-                <Image BackgroundColor="Aqua"></Image>
-                <ScrollView Grid.Row="0">
-                    <Label x:Name="PolicyText" Text="{x:Static res:PrivacyPolicy.MainText}"></Label>
+            <Grid x:Name="PolicyView" IsVisible="false" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"></RowDefinition>
+                    <RowDefinition Height="7*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image Source="biglogo.png" Aspect="AspectFit"></Image>
+                <ScrollView Grid.Row="1">
+                    <Label x:Name="PolicyText" Text="{x:Static res:PrivacyPolicy.MainText}" VerticalTextAlignment="Start"  HorizontalTextAlignment="Center" FontSize="Medium" Margin="0,5" HeightRequest="100"></Label>
                 </ScrollView>
-                <Button x:Name="AcceptPolicy" Text="{x:Static res:PrivacyPolicy.Accept}" Clicked ="AcceptPolicy_Clicked" Grid.Row="1"></Button>
-            </StackLayout>
+                <Button x:Name="AcceptPolicy" Text="{x:Static res:PrivacyPolicy.Accept}" Clicked ="AcceptPolicy_Clicked" Grid.Row="2" VerticalOptions="End" HorizontalOptions="Fill" BackgroundColor="#74A594" Margin="5" TextColor="#FFFFFF" FontSize="Large" HeightRequest="100"></Button>
+            </Grid>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

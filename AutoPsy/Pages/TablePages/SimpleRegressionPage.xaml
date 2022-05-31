@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             x:Class="AutoPsy.Pages.TablePages.SimpleRegressionPage">
+    <ContentPage.Content>
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="8*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" x:Name="ParameterSelector">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ImageButton x:Name="BackwardButton" Source="back1.png" Grid.Column="0" Clicked="BackwardButton_Clicked" BackgroundColor="Transparent" Aspect="AspectFit"></ImageButton>
+                <Label x:Name="CurrentEntity" Grid.Column="1" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                <ImageButton x:Name="ForwardButton" Source="forward1.png" Grid.Column="2" Clicked="ForwardButton_Clicked" BackgroundColor="Transparent" Aspect="AspectFit"></ImageButton>
+            </Grid>
+
+            <chart:ChartView x:Name="RegressionChart" Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></chart:ChartView>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="PrognosisText" FontSize="Medium" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+                <Stepper x:Name="EpochsValue" Minimum="0" Maximum="10" Value="3" Grid.Column="1" ValueChanged="EpochsValue_ValueChanged" VerticalOptions="CenterAndExpand" Increment="1" HorizontalOptions="CenterAndExpand"></Stepper>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

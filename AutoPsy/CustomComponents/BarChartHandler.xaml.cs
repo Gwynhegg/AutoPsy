@@ -45,13 +45,13 @@ namespace AutoPsy.CustomComponents
                 setOfElements.Add(new ChartElementModel()
                 {
                     Name = App.Graph.GetNodeValue(pair.Key),
-                    Value = pair.Value.GetStatValue(statNames[currentPage])
+                    Value = String.Format("{0:F2}",pair.Value.GetStatValue(statNames[currentPage]))
                 });
             }
 
             ParameterPicker.ItemsSource = setOfElements;
 
-            chartController = new BarChartController(setOfElements.Select(x => (float)x.Value).ToList(), setOfElements.Select(x => x.Name).ToList());
+            chartController = new BarChartController(setOfElements.Select(x => float.Parse(x.Value)).ToList(), setOfElements.Select(x => x.Name).ToList());
         }
 
 

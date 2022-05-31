@@ -16,10 +16,13 @@ namespace AutoPsy.Pages.DiaryPages
     public partial class LinearAnalysisPage : ContentPage
     {
         private DiaryPagesCalc diaryCalc;     // Класс для статистической обработки записей
-        public LinearAnalysisPage(DiaryPagesCalc diaryCalc)
+        private DateTime start, end;
+        public LinearAnalysisPage(DiaryPagesCalc diaryCalc, DateTime start, DateTime end)
         {
             InitializeComponent();
             this.diaryCalc = diaryCalc;
+            this.start = start;
+            this.end = end;
             ShowDiseasesButton_Clicked(ShowDiseasesButton, new EventArgs());
         }
 
@@ -33,7 +36,7 @@ namespace AutoPsy.Pages.DiaryPages
 
             // Создаем объект отображения графиков по указанным в аргументах статистических величин
             var chartHandler = new LinearChartHandler(choosedStats,
-                Constants.DATA_ENTRIES);
+                Constants.DATA_ENTRIES, start, end);
 
             MainGrid.Children.Add(chartHandler, 0, 0);
         }
@@ -48,7 +51,7 @@ namespace AutoPsy.Pages.DiaryPages
 
             // Создаем объект отображения графиков по указанным в аргументах статистических величин
             var chartHandler = new LinearChartHandler(choosedStats,
-                Constants.DATA_ENTRIES);
+                Constants.DATA_ENTRIES, start, end);
 
             MainGrid.Children.Add(chartHandler, 0, 0);
         }

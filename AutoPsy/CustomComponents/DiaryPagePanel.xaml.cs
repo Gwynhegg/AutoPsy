@@ -13,7 +13,7 @@ using Xamarin.Forms.Xaml;
 namespace AutoPsy.CustomComponents
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DiaryPagePanel : StackLayout, IСustomComponent     // Панель для отображения данных дневника пользователя
+    public partial class DiaryPagePanel : Grid, IСustomComponent     // Панель для отображения данных дневника пользователя
     {
         private string[] symptomNames;
 

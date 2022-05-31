@@ -25,7 +25,7 @@ namespace AutoPsy.Pages.DiaryPages
 
             this.Children.Add(new DiaryAnalysisPage(diaryCalc));
             this.Children.Last().Title = PageTitles.Stats;
-            this.Children.Add(new LinearAnalysisPage(diaryCalc));
+            this.Children.Add(new LinearAnalysisPage(diaryCalc, start, end));
             this.Children.Last().Title = PageTitles.Charts;
         }
     }

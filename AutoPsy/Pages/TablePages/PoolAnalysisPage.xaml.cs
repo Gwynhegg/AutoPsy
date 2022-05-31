@@ -85,6 +85,8 @@ namespace AutoPsy.Pages.TablePages
 
         private void ItemsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)       // при выборе элемента из коллекции срабатывает метод
         {
+            BeforeText.IsVisible = true; AfterText.IsVisible = true;
+
             var selectedParameter = App.TableGraph.GetIdStringByName(ItemsCollection.SelectedItem as string);       // получаем выбранный параметр
             
             // Создаем и отображаем график изначальных значений на форме

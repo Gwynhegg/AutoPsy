@@ -16,10 +16,12 @@ namespace AutoPsy.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PrimaryUserExperiencePage : ContentPage, ISynchronizablePage
     {
+        private UserHandler userHandler;
         private ObservableCollection<UserExperience> experiencePages;     // данная коллекция содержит "карточки посещений" пользователя с указанием базовой информации
-        public PrimaryUserExperiencePage()
+        public PrimaryUserExperiencePage(UserHandler userHandler)
         {
             InitializeComponent();
+            this.userHandler = userHandler;
             experiencePages = new ObservableCollection<UserExperience>();
         }
 
@@ -29,7 +31,7 @@ namespace AutoPsy.Pages
         private async void Button_Clicked(object sender, EventArgs e) => await Navigation.PushModalAsync(new UserExperienceEditorPage(this));
 
         // Метод для синхронизации текущей формы и коллекции с созданной карточкой посещений
-        public void SynchronizeContentPages(CustomComponents.IСustomComponent experiencePanel)
+        public void SynchronizeContentPages(IСustomComponent experiencePanel)
         {
             var addedExperience = (experiencePanel as UserExperiencePanel).experienceHandler.GetUserExperience();        // через класс обёртку получаем инстанс карточки
 
@@ -40,7 +42,6 @@ namespace AutoPsy.Pages
                 experiencePages.Add(addedExperience);     // добавляем ее в коллекцию
             else
                 experiencePages[indexOfElement] = addedExperience;      // ..иначе обновляем ее значение на полученное
-
             ExperienceCarouselView.ItemsSource = experiencePages;
         }
 
@@ -76,6 +77,6 @@ namespace AutoPsy.Pages
         }
 
         // Метод для перехода к следующей странице - созданию пароля
-        private async void MoveForward_Clicked(object sender, EventArgs e) => await Navigation.PushModalAsync(new CreatePasswordPage());
+        private async void MoveForward_Clicked(object sender, EventArgs e) => await Navigation.PushModalAsync(new CreatePasswordPage(userHandler));
     }
 }

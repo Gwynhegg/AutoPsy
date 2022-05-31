@@ -5,42 +5,39 @@
              x:Class="AutoPsy.Pages.RegisterPage">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout x:Name="LoginOptions" IsVisible="true" HorizontalOptions="FillAndExpand" Margin="5" VerticalOptions="Fill">
-                <Image BackgroundColor="Aqua"></Image>
-                <Button x:Name="LoginVK" Text="{x:Static res:RegisterResources.LoginVK}" Clicked="LoginVK_Clicked"></Button>
-                <Label Text="{x:Static res:RegisterResources.Or}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
-                <Button x:Name="Register" Text="{x:Static res:RegisterResources.Register}" Clicked="Register_Clicked"></Button>
-            </StackLayout>
-
-            <Grid x:Name="RegisterForm" IsVisible="false" ColumnSpacing="2" HorizontalOptions="FillAndExpand" Margin="10" RowSpacing="5" VerticalOptions="FillAndExpand">
+            <Grid x:Name="RegisterForm" ColumnSpacing="2" HorizontalOptions="FillAndExpand" Margin="10" RowSpacing="5" VerticalOptions="FillAndExpand">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
                     <RowDefinition Height="3*"></RowDefinition>
                     <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="6*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
 
-                <Button x:Name="HideRegisterForm" Text="X" Grid.Row="0" Grid.Column="1" Clicked="HideRegisterForm_Clicked" HorizontalOptions="End"></Button>
-                <Entry x:Name="SurnameEntry" Text="{x:Static res:UserDefault.UserSurname}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Focused="SurnameEntry_Focused" Unfocused="SurnameEntry_Unfocused"></Entry>
-                <Entry x:Name="NameEntry" Text="{x:Static res:UserDefault.UserName}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Focused="NameEntry_Focused" Unfocused="NameEntry_Unfocused"></Entry>
-                <Entry x:Name="PatronymicEntry" Text="{x:Static res:UserDefault.UserPatronymic}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Focused="PatronymicEntry_Focused" Unfocused="PatronymicEntry_Unfocused"></Entry>
-                <DatePicker x:Name="BirthDate" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" DateSelected="BirthDate_DateSelected"></DatePicker>
-                <StackLayout x:Name="GenderFrame" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
-                    <RadioButton x:Name="MaleOption" Content="{x:Static res:UserDefault.MaleSex}" CheckedChanged="Option_CheckedChanged"></RadioButton>
+                <Image Source="userico.png"></Image>
+                <Entry x:Name="SurnameEntry" Text="{x:Static res:UserDefault.UserSurname}" Grid.Row="1" Focused="SurnameEntry_Focused" Unfocused="SurnameEntry_Unfocused" FontSize="Medium" HorizontalOptions="FillAndExpand" Keyboard="Default" Margin="5" Visual="Material"/>
+                <Entry x:Name="NameEntry" Text="{x:Static res:UserDefault.UserName}" Grid.Row="2" Focused="NameEntry_Focused" Unfocused="NameEntry_Unfocused" FontSize="Medium" HorizontalOptions="FillAndExpand" Keyboard="Default" Margin="5" Visual="Material"></Entry>
+                <Entry x:Name="PatronymicEntry" Text="{x:Static res:UserDefault.UserPatronymic}" Grid.Row="3" Focused="PatronymicEntry_Focused" Unfocused="PatronymicEntry_Unfocused" FontSize="Medium" HorizontalOptions="FillAndExpand" Keyboard="Default" Margin="5" Visual="Material"></Entry>
+                <DatePicker x:Name="BirthDate" Grid.Row="4" DateSelected="BirthDate_DateSelected" FontSize="Medium" Margin="5" MaximumDate="2050-01-01" MinimumDate="1900-01-01" Visual="Material"/>
+                <StackLayout x:Name="GenderFrame" Grid.Row="5" Margin="5">
+                    <RadioButton x:Name="MaleOption" Content="{x:Static res:UserDefault.MaleSex}" CheckedChanged="Option_CheckedChanged" FontSize="Medium"/>
                     <RadioButton x:Name="FemaleOption" Content="{x:Static res:UserDefault.FemaleSex}" CheckedChanged="Option_CheckedChanged"></RadioButton>
                     <RadioButton x:Name="NonOption" Content="{x:Static res:UserDefault.UnknownSex}" IsChecked="True" CheckedChanged="Option_CheckedChanged"></RadioButton>
                 </StackLayout>
-                <CheckBox x:Name="HasExperience" Grid.Row="6" Grid.Column="1" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"></CheckBox>
-                <Label Text="{x:Static res:UserDefault.HasExperience}" Grid.Row="6" Grid.Column="0" VerticalTextAlignment="Center"></Label>
-                <Button x:Name="Continue" Text="{x:Static res:AuxiliaryResources.Continue}" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Clicked="Continue_Clicked"></Button>
+
+                <Grid Grid.Row="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="HasExperience" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand"></CheckBox>
+                    <Label Text="{x:Static res:UserDefault.HasExperience}"  Grid.Column="0" VerticalTextAlignment="Center" FontSize="Medium"></Label>
+                </Grid>
+
+                <Button x:Name="Continue" Text="{x:Static res:AuxiliaryResources.Continue}" Grid.Row="7" Clicked="Continue_Clicked" FontSize="Large" BackgroundColor="#74A594" TextColor="#FFFFFF"></Button>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

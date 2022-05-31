@@ -73,7 +73,6 @@ namespace AutoPsy.Database.Entities
         }
 
         private byte importance;
-        [NotNull]
         public byte Importance
         {
             get { return importance; }
@@ -143,7 +142,6 @@ namespace AutoPsy.Database.Entities
         }
 
         private byte importance;
-        [NotNull]
         public byte Importance
         {
             get { return importance; }
@@ -212,7 +210,6 @@ namespace AutoPsy.Database.Entities
         }
 
         private byte importance;
-        [NotNull]
         public byte Importance
         {
             get { return importance; }

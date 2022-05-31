@@ -4,80 +4,117 @@
              xmlns:res="clr-namespace:AutoPsy.Resources"
              x:Class="AutoPsy.Pages.ProfilePages.ProfilePage">
     <ContentPage.Content>
-        <Grid x:Name="ProfileGrid">
+        <Grid x:Name="ProfileGrid" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="1*"></RowDefinition>
                 <RowDefinition Height="10*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
+            <Image Source="userico.png" Aspect="AspectFit"></Image>
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="6*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Image BackgroundColor="Azure"  Grid.Column="1"></Image>
-                <Button x:Name="SettingsButton" Text="{x:Static res:AuxiliaryResources.Settings}" Grid.Column="2"></Button>
+                <Button x:Name="PersonalDataButton" Clicked="PersonalDataButton_Clicked" FontSize="Medium" BackgroundColor="#74A594" TextColor="#FFFFFF"></Button>
+                <ImageButton Source="settings1.png" x:Name="SettingsButton" Grid.Column="1" Background="Transparent" BackgroundColor="Transparent" Aspect="AspectFit" Clicked="SettingsButton_Clicked"></ImageButton>
             </Grid>
             
-            <Button x:Name="PersonalDataButton" Grid.Row="1" Clicked="PersonalDataButton_Clicked"></Button>
-
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <DatePicker x:Name="DateNavigatorStart" Grid.Column="0" DateSelected="DateNavigatorStart_DateSelected"></DatePicker>
-                <DatePicker x:Name="DateNavigatorEnd" Grid.Column="2" DateSelected="DateNavigatorEnd_DateSelected"></DatePicker>
+                <DatePicker x:Name="DateNavigatorStart" Grid.Column="0" DateSelected="DateNavigatorStart_DateSelected" FontSize="Medium" MaximumDate="2050-01-01" MinimumDate="1900-01-01" Visual="Material" HorizontalOptions="StartAndExpand"></DatePicker>
+                <DatePicker x:Name="DateNavigatorEnd" Grid.Column="2" DateSelected="DateNavigatorEnd_DateSelected"  FontSize="Medium" MaximumDate="2050-01-01" MinimumDate="1900-01-01" Visual="Material" HorizontalOptions="EndAndExpand"></DatePicker>
             </Grid>
-                        
-            <CarouselView x:Name="ExperienceCarouselView" Loop="False" Margin="10, 10, 10, 10" Grid.Row="3">
+
+            <CarouselView x:Name="ExperienceCarouselView" Loop="False" Grid.Row="3" Margin="5" HorizontalScrollBarVisibility="Always" IsScrollAnimated="True">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout IsEnabled="False" BackgroundColor="AliceBlue">
-                            <Label Text="{Binding NameOfClinic}"></Label>
-                            <Label Text="{Binding TreatingDoctor}"></Label>
-                            <Label Text="{x:Static res:UserExperienceDefault.DateOfAppointment}"></Label>
-                            <DatePicker Date="{Binding Appointment}"></DatePicker>
-                            <Label Text="{Binding Diagnosis}"></Label>
-                            <Frame>
-                                <StackLayout>
-                                    <Label></Label>
-                                    <ListView x:Name="ListOfMedicine">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <ViewCell>
-                                                    <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                                                        <Label x:Name="NameOfMedicine" Text="{Binding NameOfMedicine}"></Label>
-                                                        <Label x:Name="Dosage" Text="{Binding Dosage}"></Label>
-                                                    </StackLayout>
-                                                </ViewCell>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-                                </StackLayout>
-                            </Frame>
-                            <Slider Value="{Binding Score}"></Slider>
-                        </StackLayout>
+                        <Frame BorderColor="#264469">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                    <RowDefinition Height="3*"></RowDefinition>
+                                    <RowDefinition Height="1*"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{x:Static res:UserExperienceDefault.Clinic}" FontSize="Medium" TextColor="#606060" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" ></Label>
+                                    <Label Text="{Binding NameOfClinic}" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="Medium" TextColor="#000000" ></Label>
+                                </Grid>
+
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{x:Static res:UserExperienceDefault.Doctor}" FontSize="Medium" TextColor="#606060" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+                                    <Label Text="{Binding TreatingDoctor}" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="Medium" TextColor="#000000" ></Label>
+                                </Grid>
+
+                                <Grid Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{x:Static res:UserExperienceDefault.DateOfAppointment}" FontSize="Medium" TextColor="#606060" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+                                    <DatePicker Date="{Binding Appointment}" Grid.Column="1"  FontSize="Medium" MaximumDate="2050-01-01" MinimumDate="1900-01-01" Visual="Material" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand"></DatePicker>
+                                </Grid>
+                                
+
+                                <Grid Grid.Row="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{x:Static res:UserExperienceDefault.Diagnosis}" FontSize="Medium" TextColor="#606060" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+                                    <Label Text="{Binding Diagnosis}" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="Medium" TextColor="#000000" ></Label>
+                                </Grid>
+
+
+                                <Label Text="{x:Static res:UserExperienceDefault.Medicine}" Grid.Row="4" FontSize="Medium" TextColor="#606060" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" ></Label>
+                                <ScrollView Grid.Row="5">
+                                    <Label Text="{Binding IndexOfMedicine}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" FontSize="Medium" TextColor="#000000"></Label>
+                                </ScrollView>
+                                <Grid Grid.Row="6">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{x:Static res:UserExperienceDefault.Score}" FontSize="Medium" TextColor="#606060" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"></Label>
+                                    <Slider Value="{Binding Score}" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Visual="Material" MinimumTrackColor="#74A594" MaximumTrackColor="#393939"></Slider>
+                                </Grid>
+
+                            </Grid>
+                        </Frame>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>
 
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <ImageButton x:Name="AddButton" Source="plus1.png" Grid.Column="1" Clicked="AddButton_Clicked" BackgroundColor="Transparent" Aspect="AspectFit"></ImageButton>
-                <!--<Button x:Name="AddButton" Text="A" Grid.Column="1" Clicked="AddButton_Clicked" IsVisible="false"></Button>-->
-                <Button x:Name="EditButton" Text="E" Grid.Column="2" Clicked="EditButton_Clicked"></Button>
+                <ImageButton x:Name="EditButton" Source="pencil1.png" Grid.Column="2" Clicked="EditButton_Clicked" Background="Transparent" BackgroundColor="Transparent" Aspect="AspectFit"></ImageButton>
                 <ImageButton x:Name="DeleteButton" Source="delete1.png" Grid.Column="3" Clicked="DeleteButton_Clicked" BackgroundColor="Transparent" Aspect="AspectFit"></ImageButton>
-                <!--<Button x:Name="DeleteButton" Text="D" Grid.Column="3" Clicked="DeleteButton_Clicked"></Button>-->
             </Grid>
         </Grid>
     </ContentPage.Content>

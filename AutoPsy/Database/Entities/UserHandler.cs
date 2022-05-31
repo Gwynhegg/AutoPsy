@@ -70,13 +70,24 @@ namespace AutoPsy.Database.Entities
             return user.BirthDate;
         }
 
+        public void SetPassword(string password)
+        {
+            user.HashPassword = password;
+        }
+
         public User GetUser()
         {
             return user;
         }
 
+        public void SetUser()
+        {
+            this.user = App.Connector.SelectData<User>(App.Connector.currentConnectedUser);
+        }
+
         public bool CheckCorrectness()
         {
+            if (user.Gender == null) user.Gender = UserDefault.UnknownSex;
             if (user.PersonName != String.Empty && user.PersonSurname != String.Empty && 
                 user.PersonName != UserDefault.UserName &&
                 user.PersonSurname != UserDefault.UserSurname) return true; else return false;
@@ -84,7 +95,6 @@ namespace AutoPsy.Database.Entities
 
         public void CreateUserInfo()
         {
-            if (user.Gender == null) user.Gender = UserDefault.UnknownSex;
             App.Connector.CreateAndInsertData<User>(user);
         }
 

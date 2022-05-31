@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace AutoPsy.CustomComponents
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserExperiencePanel : StackLayout, IСustomComponent
+    public partial class UserExperiencePanel : Grid, IСustomComponent
     {
         public UserExperienceHandler experienceHandler { get; private set; }
         public UserExperiencePanel(bool enabled)

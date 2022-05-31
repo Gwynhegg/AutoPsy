@@ -30,6 +30,7 @@ namespace AutoPsy.Database
             // ЗАГЛУШКА ДЛЯ ПРОВЕРКИ РЕГИСТРАЦИИ
             //this.sqliteConnection.DropTable<Entities.DiaryPage>();
             //this.sqliteConnection.DropTable<Entities.UserExperience>();
+            //this.sqliteConnection.DropTable<Entities.User>();
 
             try
             {
@@ -52,6 +53,11 @@ namespace AutoPsy.Database
 
             if (item is Entities.User) currentConnectedUser = (item as Entities.User).Id;
 
+        }
+
+        public void DropTable<T>()
+        {
+            this.sqliteConnection.DropTable<T>();
         }
 
         public void UpdateData<T>(object item)      // Метод для обновления данных (с использованием дженериков)
