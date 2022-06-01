@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SQLite;
+﻿using SQLite;
 using System.ComponentModel;
 
 namespace AutoPsy.Database.Entities
@@ -13,24 +10,24 @@ namespace AutoPsy.Database.Entities
         [PrimaryKey, AutoIncrement]
         public int Id
         {
-            get { return id; }
-            set { this.id = value; OnPropertyChanged(nameof(Id)); }
+            get => this.id;
+            set { this.id = value; OnPropertyChanged(nameof(this.Id)); }
         }
 
         private string nameOfMedicine;
         [NotNull]
         public string NameOfMedicine
         {
-            get { return nameOfMedicine; }
-            set { this.nameOfMedicine = value; OnPropertyChanged(nameof(NameOfMedicine)); }
+            get => this.nameOfMedicine;
+            set { this.nameOfMedicine = value; OnPropertyChanged(nameof(this.NameOfMedicine)); }
         }
 
         private double dosage;
         [NotNull]
         public double Dosage
         {
-            get { return dosage; }
-            set { this.dosage = value; OnPropertyChanged(nameof(Dosage)); }
+            get => this.dosage;
+            set { this.dosage = value; OnPropertyChanged(nameof(this.Dosage)); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

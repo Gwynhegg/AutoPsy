@@ -1,12 +1,6 @@
-﻿using System;
-using AutoPsy.CustomComponents;
+﻿using AutoPsy.CustomComponents;
 using AutoPsy.Resources;
-using AutoPsy.Database.Entities;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,15 +9,15 @@ namespace AutoPsy.Pages.DiaryPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiaryEditPage : ContentPage
     {
-        private DiaryPagePanel pagePanel;      
-        private ISynchronizablePage parentPage;
+        private readonly DiaryPagePanel pagePanel;
+        private readonly ISynchronizablePage parentPage;
 
         public DiaryEditPage(ISynchronizablePage page)
         {
             InitializeComponent();
-            parentPage = page;
-            pagePanel = new DiaryPagePanel(enabled:true, this);      // создаем панель для ввода
-            CurrentItem.Children.Insert(0, pagePanel);
+            this.parentPage = page;
+            this.pagePanel = new DiaryPagePanel(enabled: true, this);      // создаем панель для ввода
+            this.CurrentItem.Children.Insert(0, this.pagePanel);
         }
         public DiaryEditPage(ISynchronizablePage parentPage, Database.Entities.DiaryPage diaryPage)
         {
@@ -31,8 +25,8 @@ namespace AutoPsy.Pages.DiaryPages
             this.parentPage = parentPage;
 
             // Перегружаем панель для ввода, заполняя уже существующие поля
-            pagePanel = new DiaryPagePanel(enabled: true, this, diaryPage);
-            CurrentItem.Children.Insert(0, pagePanel);
+            this.pagePanel = new DiaryPagePanel(enabled: true, this, diaryPage);
+            this.CurrentItem.Children.Insert(0, this.pagePanel);
         }
 
 
@@ -40,11 +34,11 @@ namespace AutoPsy.Pages.DiaryPages
         {
             try
             {
-                pagePanel.TrySave();      // пытаемся сохранить данные на панели
-                parentPage.SynchronizeContentPages(pagePanel);        // синхронизиуем данные со страницей-родителем
-                await Navigation.PopModalAsync();       // уходим с этой страницы
+                this.pagePanel.TrySave();      // пытаемся сохранить данные на панели
+                this.parentPage.SynchronizeContentPages(this.pagePanel);        // синхронизиуем данные со страницей-родителем
+                await this.Navigation.PopModalAsync();       // уходим с этой страницы
             }
-            catch (Exception ex)        // в случае возникновения ошибки уведомляем об этом
+            catch (Exception)        // в случае возникновения ошибки уведомляем об этом
             {
                 await DisplayAlert(Alerts.AlertMessage, Alerts.DiaryAlertMessage, AuxiliaryResources.ButtonOK);
             }

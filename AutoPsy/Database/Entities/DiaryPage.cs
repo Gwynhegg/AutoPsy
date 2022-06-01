@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SQLite;
+﻿using SQLite;
+using System;
 using System.ComponentModel;
 
 namespace AutoPsy.Database.Entities
@@ -13,65 +11,64 @@ namespace AutoPsy.Database.Entities
         [PrimaryKey, AutoIncrement]
         public int Id
         {
-            get { return id; }
-            set { this.id = value; OnPropertyChanged(nameof(Id)); }
+            get => this.id;
+            set { this.id = value; OnPropertyChanged(nameof(this.Id)); }
         }
 
         private int userId;
         [NotNull]
         public int UserId
         {
-            get { return userId; }
-            set { this.userId = value; OnPropertyChanged(nameof(UserId)); }
+            get => this.userId;
+            set { this.userId = value; OnPropertyChanged(nameof(this.UserId)); }
         }
 
         private DateTime dateOfRecord;
         [NotNull]
         public DateTime DateOfRecord
         {
-            get { return dateOfRecord;}
-            set { this.dateOfRecord = value; OnPropertyChanged(nameof(DateOfRecord)); }
+            get => this.dateOfRecord;
+            set { this.dateOfRecord = value; OnPropertyChanged(nameof(this.DateOfRecord)); }
         }
-        
+
 
         private string topic;
         public string Topic
         {
-            get { return topic; }
-            set { topic = value; OnPropertyChanged(nameof(Topic)); }
+            get => this.topic;
+            set { this.topic = value; OnPropertyChanged(nameof(this.Topic)); }
         }
 
         private string mainText;
         [NotNull]
         public string MainText
         {
-            get { return mainText; }
-            set { mainText = value; OnPropertyChanged(nameof(MainText)); }
+            get => this.mainText;
+            set { this.mainText = value; OnPropertyChanged(nameof(this.MainText)); }
         }
 
         private string attachedSymptoms;
         public string AttachedSymptoms
         {
-            get { return attachedSymptoms; }
-            set { attachedSymptoms = value; OnPropertyChanged(nameof(AttachedSymptoms)); }
+            get => this.attachedSymptoms;
+            set { this.attachedSymptoms = value; OnPropertyChanged(nameof(this.AttachedSymptoms)); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
-        {
-            this.PropertyChanged?.Invoke(this,
+        private void OnPropertyChanged(string propertyName) => this.PropertyChanged?.Invoke(this,
               new PropertyChangedEventArgs(propertyName));
-        }
 
         public object Clone()
         {
-            var page = new DiaryPage();
-            page.Id = this.Id;
-            page.userId = this.UserId;
-            page.mainText = String.Copy(this.MainText);
-            if (this.Topic != null) page.Topic = String.Copy(this.Topic);
+            var page = new DiaryPage
+            {
+                Id = this.Id,
+                userId = this.UserId,
+                mainText = string.Copy(this.MainText)
+            };
+            if (this.Topic != null) page.Topic = string.Copy(this.Topic);
             page.DateOfRecord = this.DateOfRecord;
-            if (this.AttachedSymptoms != null) page.AttachedSymptoms = String.Copy(this.AttachedSymptoms);
+            if (this.AttachedSymptoms != null) page.AttachedSymptoms = string.Copy(this.AttachedSymptoms);
             return page;
         }
     }

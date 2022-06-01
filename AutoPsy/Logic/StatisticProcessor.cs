@@ -1,8 +1,7 @@
-﻿using System;
+﻿using AutoPsy.Resources;
+using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using AutoPsy.Resources;
 
 namespace AutoPsy.Logic
 {
@@ -10,7 +9,7 @@ namespace AutoPsy.Logic
     {
         private int[] frequencyRate;
         private float moda;
-        private int[] weights = new int[] { 0, 3, 2, 1, 3, 5 };
+        private readonly int[] weights = new int[] { 0, 3, 2, 1, 3, 5 };
         private float basicAverage;
         private float weightedAverage;
         private float standartDeviation;
@@ -32,9 +31,9 @@ namespace AutoPsy.Logic
 
             var distributionRange = new List<float>();
             int min, max;
-            if (isTrigger) { min = 0; max = 1; } else { min = 1; max = 5;}
-            for (int i = min; i <= max; i++)
-                distributionRange.Add(frequencyRate[i]);
+            if (isTrigger) { min = 0; max = 1; } else { min = 1; max = 5; }
+            for (var i = min; i <= max; i++)
+                distributionRange.Add(this.frequencyRate[i]);
 
             return distributionRange;
         }
@@ -53,35 +52,35 @@ namespace AutoPsy.Logic
 
         private string GetAsymmetryValue()
         {
-            var result = String.Format(StatValues.ASYMMETRY_VALUE, (basicAverage - moda) / standartDeviation);
+            var result = string.Format(StatValues.ASYMMETRY_VALUE, (this.basicAverage - this.moda) / this.standartDeviation);
             return result;
         }
 
         private string GetVariationCoef()
         {
-            var result = String.Format(StatValues.VARIATION_COEF, standartDeviation / basicAverage);
+            var result = string.Format(StatValues.VARIATION_COEF, this.standartDeviation / this.basicAverage);
             return result;
         }
 
         private string GetOscillationCoef(List<float> values)
         {
             var scope = values.Max() - values.Where(x => x != 0).Min();
-            var oscillation = scope / basicAverage;
+            var oscillation = scope / this.basicAverage;
 
-            var result = String.Format(StatValues.OSCILLATION_COEF, oscillation);
+            var result = string.Format(StatValues.OSCILLATION_COEF, oscillation);
             return result;
         }
 
         private List<string> GetStandartDeviation(List<float> values)
         {
             var result = new List<string>();
-            standartDeviation = GetStandartDeviationValue(values, basicAverage);
-            result.Add(String.Format(StatValues.STANDART_DEVIATION, standartDeviation));
-            result.Add(String.Format(StatValues.DEVIATION_DIFFERENCE, Math.Abs(standartDeviation - basicAverage)));
+            this.standartDeviation = GetStandartDeviationValue(values, this.basicAverage);
+            result.Add(string.Format(StatValues.STANDART_DEVIATION, this.standartDeviation));
+            result.Add(string.Format(StatValues.DEVIATION_DIFFERENCE, Math.Abs(this.standartDeviation - this.basicAverage)));
             return result;
         }
 
-        public static float GetStandartDeviationValue(List<float> values, float average)
+        public static float GetStandartDeviationValue(List<float> values, float average)        // метод вычисления среднеквадратичного отклонения
         {
             var sum = 0.0d;
             foreach (var value in values)
@@ -94,7 +93,7 @@ namespace AutoPsy.Logic
 
         private string GetDispersion()
         {
-            var result = String.Format(StatValues.DISPERSION, Math.Pow(standartDeviation, 2));
+            var result = string.Format(StatValues.DISPERSION, Math.Pow(this.standartDeviation, 2));
             return result;
         }
 
@@ -104,23 +103,23 @@ namespace AutoPsy.Logic
             int min, max;
             if (isTrigger) { min = 0; max = 1; } else { min = 1; max = 5; };
             var frequencyList = new List<string>();
-            frequencyRate = new int[max + 1];
+            this.frequencyRate = new int[max + 1];
 
-            moda = 0;
+            this.moda = 0;
             var choosedModaValue = 0;
-            for (int i = min; i <= max; i++)
+            for (var i = min; i <= max; i++)
             {
                 var valueCount = values.Where(x => x == i).Count();
-                frequencyRate[i] = valueCount;
-                frequencyList.Add(String.Concat(String.Format(StatValues.FREQUENCY, i), valueCount.ToString(), String.Format(StatValues.RELATIONAL_FREQUENCY, (float)valueCount / values.Count)));
+                this.frequencyRate[i] = valueCount;
+                frequencyList.Add(string.Concat(string.Format(StatValues.FREQUENCY, i), valueCount.ToString(), string.Format(StatValues.RELATIONAL_FREQUENCY, (float)valueCount / values.Count)));
                 if (valueCount > choosedModaValue)
                 {
                     choosedModaValue = valueCount;
-                    moda = i;
+                    this.moda = i;
                 }
             }
 
-            frequencyList.Add(String.Format(StatValues.STAT_MODA, moda));
+            frequencyList.Add(string.Format(StatValues.STAT_MODA, this.moda));
 
             return frequencyList;
         }
@@ -129,13 +128,13 @@ namespace AutoPsy.Logic
         private string CalculateSimpleAverage(List<float> values)
         {
 
-            basicAverage = CalculateAverage(values);
-            var average = String.Format(StatValues.AVERAGE_VOLUME, basicAverage);
+            this.basicAverage = CalculateAverage(values);
+            var average = string.Format(StatValues.AVERAGE_VOLUME, this.basicAverage);
 
             return average;
         }
 
-        public static float CalculateAverage(List<float> values)
+        public static float CalculateAverage(List<float> values)        // метод вычисления среднего
         {
             var sum = 0.0f;
             foreach (var value in values)
@@ -152,17 +151,17 @@ namespace AutoPsy.Logic
             var weightsSum = 0;
             foreach (var value in values)
             {
-                sum += value * weights[(int)value];
-                weightsSum += weights[(int)value];
+                sum += value * this.weights[(int)value];
+                weightsSum += this.weights[(int)value];
             }
 
-            weightedAverage = weightsSum != 0 ? sum / weightsSum : 0;
-            var average = String.Format(StatValues.WEIGHTED_AVERAGE_VOLUME, weightedAverage);
+            this.weightedAverage = weightsSum != 0 ? sum / weightsSum : 0;
+            var average = string.Format(StatValues.WEIGHTED_AVERAGE_VOLUME, this.weightedAverage);
 
             return average;
         }
 
-        private string  CalculateGeometricalAverage(List<float> values)
+        private string CalculateGeometricalAverage(List<float> values)
         {
             var accumulation = 1.0f;
             foreach (var value in values)
@@ -170,15 +169,15 @@ namespace AutoPsy.Logic
 
             accumulation = (float)Math.Pow(accumulation, 1 / values.Count);
 
-            var average = String.Format(StatValues.GEOMETRIC_AVERAGE, accumulation);
+            var average = string.Format(StatValues.GEOMETRIC_AVERAGE, accumulation);
 
             return average;
         }
 
         public List<float> CalculateDynamicValue(List<float> values)
         {
-            List<float> dynamicRange = new List<float>() { 1.0f };
-            for (int i = 1; i < values.Count; i++)
+            var dynamicRange = new List<float>() { 1.0f };
+            for (var i = 1; i < values.Count; i++)
                 dynamicRange.Add(values[i] / values[i - 1]);
             return dynamicRange;
         }

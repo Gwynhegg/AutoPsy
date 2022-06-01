@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SkiaSharp;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,35 +9,35 @@ namespace AutoPsy.Pages.TablePages
     public partial class ClusterHierarchyPage : ContentPage
     {
         private int numOfElements = 2;
-        private Dictionary<string, float> tree;
+        private readonly Dictionary<string, float> tree;
 
         public ClusterHierarchyPage(Dictionary<string, List<float>> calculatedValues)
         {
             InitializeComponent();
 
-            tree = Logic.ClusterHierarchy.CreateHierarchyTree(calculatedValues);
+            this.tree = Logic.ClusterHierarchy.CreateHierarchyTree(calculatedValues);
 
-            NumStepper.Maximum = GetMaximumLength();
-            NumOfElements.Text = String.Format(AutoPsy.Resources.AnalysisResources.NumOfElements, numOfElements);
+            this.NumStepper.Maximum = GetMaximumLength();
+            this.NumOfElements.Text = string.Format(AutoPsy.Resources.AnalysisResources.NumOfElements, this.numOfElements);
 
             GraphTree();
         }
 
         private async void GraphTree()
         {
-            Container.Children.Clear();
+            this.Container.Children.Clear();
 
-            var elementsOfTree = GetElementsOfSize();
-            
+            List<string> elementsOfTree = GetElementsOfSize();
+
             foreach (var element in elementsOfTree)
-                Container.Children.Add(new Label() { Text = element, VerticalOptions = LayoutOptions.Start, HorizontalOptions = LayoutOptions.FillAndExpand, FontSize = 20});
-            if (elementsOfTree == null || elementsOfTree.Count == 0) Container.Children.Add(new Label() { Text = AutoPsy.Resources.AnalysisResources.NoClusters, VerticalOptions = LayoutOptions.Start, HorizontalOptions = LayoutOptions.FillAndExpand, FontSize = 20 });
+                this.Container.Children.Add(new Label() { Text = element, VerticalOptions = LayoutOptions.Start, HorizontalOptions = LayoutOptions.FillAndExpand, FontSize = 20 });
+            if (elementsOfTree == null || elementsOfTree.Count == 0) this.Container.Children.Add(new Label() { Text = AutoPsy.Resources.AnalysisResources.NoClusters, VerticalOptions = LayoutOptions.Start, HorizontalOptions = LayoutOptions.FillAndExpand, FontSize = 20 });
         }
 
         private int GetMaximumLength()
         {
             var max = 1;
-            foreach (var item in tree)
+            foreach (KeyValuePair<string, float> item in this.tree)
             {
                 var query = item.Key.Count(x => x == '+') + 1;
                 if (query > max) max = query;
@@ -52,17 +48,17 @@ namespace AutoPsy.Pages.TablePages
 
         private List<string> GetElementsOfSize()
         {
-            var elements = tree.Where(x => x.Key.Count(y => y == '+') == numOfElements - 1);
+            IEnumerable<KeyValuePair<string, float>> elements = this.tree.Where(x => x.Key.Count(y => y == '+') == this.numOfElements - 1);
             var list = new List<string>();
-            foreach (var item in elements)
-                list.Add(String.Concat(item.Key, " \n ", String.Format(AutoPsy.Resources.AnalysisResources.Shortage, item.Value.ToString("F2"))));
+            foreach (KeyValuePair<string, float> item in elements)
+                list.Add(string.Concat(item.Key, " \n ", string.Format(AutoPsy.Resources.AnalysisResources.Shortage, item.Value.ToString("F2"))));
             return list;
         }
 
         private void EpochsValue_ValueChanged(object sender, ValueChangedEventArgs e)
         {
-            numOfElements = (int)NumStepper.Value;
-            NumOfElements.Text = String.Format(AutoPsy.Resources.AnalysisResources.NumOfElements, numOfElements);
+            this.numOfElements = (int)this.NumStepper.Value;
+            this.NumOfElements.Text = string.Format(AutoPsy.Resources.AnalysisResources.NumOfElements, this.numOfElements);
             GraphTree();
         }
     }

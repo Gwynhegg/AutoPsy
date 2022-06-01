@@ -1,8 +1,6 @@
-﻿using System;
+﻿using AutoPsy.Resources;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using AutoPsy.Resources;
 
 namespace AutoPsy.AuxServices
 {

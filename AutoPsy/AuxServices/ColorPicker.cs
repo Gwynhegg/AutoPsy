@@ -1,7 +1,6 @@
 ﻿using SkiaSharp;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace AutoPsy.AuxServices
@@ -10,7 +9,7 @@ namespace AutoPsy.AuxServices
     {
         public static SKColor GetRandomColor()      // метод для получения случайного цвета для Microcharts
         {
-            Random random = new Random();
+            var random = new Random();
             var red = random.Next(140, 200);
             var green = random.Next(140, 200);
             var blue = random.Next(140, 200);

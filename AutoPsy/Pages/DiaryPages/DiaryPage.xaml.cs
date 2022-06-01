@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AutoPsy.CustomComponents;
+using AutoPsy.Resources;
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using AutoPsy.Database;
-using AutoPsy.Resources;
-using AutoPsy.CustomComponents;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,25 +12,25 @@ namespace AutoPsy.Pages.DiaryPages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DiaryPage : ContentPage, ISynchronizablePage, ISynchronizablePageWithQuery
     {
-        private ObservableCollection<Database.Entities.DiaryPage> diaryPages;     // Определяем коллекцию для хранения карт посещений
+        private readonly ObservableCollection<Database.Entities.DiaryPage> diaryPages;     // Определяем коллекцию для хранения карт посещений
         public DiaryPage()
         {
             InitializeComponent();
 
-            diaryPages = new ObservableCollection<Database.Entities.DiaryPage>();
+            this.diaryPages = new ObservableCollection<Database.Entities.DiaryPage>();
 
-            DateNavigatorStart.MinimumDate = DateTime.Now - (DateTime.Now - new DateTime(1950, 1, 1));
-            DateNavigatorStart.MaximumDate = DateTime.Now;
-            DateNavigatorEnd.MinimumDate = DateTime.Now - (DateTime.Now - new DateTime(1950, 1, 1));
-            DateNavigatorEnd.MaximumDate = DateTime.Now.AddHours(1);
-            DateNavigatorStart.Date = DateTime.Now;
-            DateNavigatorEnd.Date = DateTime.Now;
+            this.DateNavigatorStart.MinimumDate = DateTime.Now - (DateTime.Now - new DateTime(1950, 1, 1));
+            this.DateNavigatorStart.MaximumDate = DateTime.Now;
+            this.DateNavigatorEnd.MinimumDate = DateTime.Now - (DateTime.Now - new DateTime(1950, 1, 1));
+            this.DateNavigatorEnd.MaximumDate = DateTime.Now.AddHours(1);
+            this.DateNavigatorStart.Date = DateTime.Now;
+            this.DateNavigatorEnd.Date = DateTime.Now;
 
             SynchronizeContentPages();      // Синхронизируем информацию на странице согласно найденным записям
         }
 
         // Событие добавления новой записи в дневник
-        private async void AddButton_Clicked(object sender, EventArgs e) => await Navigation.PushModalAsync(new DiaryEditPage(this));
+        private async void AddButton_Clicked(object sender, EventArgs e) => await this.Navigation.PushModalAsync(new DiaryEditPage(this));
 
         public void SynchronizeContentPages()       // Метод для синхронизации данных на форме с базой (обычный)
         {
@@ -44,22 +39,22 @@ namespace AutoPsy.Pages.DiaryPages
             // Выбираем те из них, даты которых попадают в заданный интервал
             var queryPages = App.Connector.SelectAll<Database.Entities.DiaryPage>().
                 Where(
-                x => DateTime.Compare(x.DateOfRecord, DateNavigatorStart.Date) >=0 &&
-                DateTime.Compare(x.DateOfRecord, DateNavigatorEnd.Date) <=0)
+                x => DateTime.Compare(x.DateOfRecord, this.DateNavigatorStart.Date) >= 0 &&
+                DateTime.Compare(x.DateOfRecord, this.DateNavigatorEnd.Date) <= 0)
                 .Cast<Database.Entities.DiaryPage>().ToList();
 
             // Отображаем количество доступных для анализа данных, попадающих в заданный интервал
-            AnalyzeButton.Text = String.Format(AuxiliaryResources.AnalysisPlaceholder, queryPages.Count);
-            if (queryPages.Count > 0) AnalyzeButton.IsEnabled = true; else AnalyzeButton.IsEnabled = false;
+            this.AnalyzeButton.Text = string.Format(AuxiliaryResources.AnalysisPlaceholder, queryPages.Count);
+            if (queryPages.Count > 0) this.AnalyzeButton.IsEnabled = true; else this.AnalyzeButton.IsEnabled = false;
 
             if (queryPages.Count == 0) return;      // Если таковых нет, возвращаемся
 
-            diaryPages.Clear();
-            foreach (var dairyPage in queryPages)      // Иначе помещаем каждую из них в коллекцию
-                diaryPages.Add(dairyPage);
+            this.diaryPages.Clear();
+            foreach (Database.Entities.DiaryPage dairyPage in queryPages)      // Иначе помещаем каждую из них в коллекцию
+                this.diaryPages.Add(dairyPage);
 
-            PagesCarouselView.ItemsSource = diaryPages;       // Отображаем колллекцию на форме
-                                                              
+            this.PagesCarouselView.ItemsSource = this.diaryPages;       // Отображаем колллекцию на форме
+
 
         }
 
@@ -67,19 +62,19 @@ namespace AutoPsy.Pages.DiaryPages
         // ощутимо, достаточно  просто добавить созданную на другом экране страницу в локальный список страниц
         public void SynchronizeContentPages(IСustomComponent diaryPanel)
         {
-            var addedPage = (diaryPanel as DiaryPagePanel).diaryHandler.GetDiaryPage();
-            if (DateTime.Compare(addedPage.DateOfRecord, DateNavigatorStart.Date) >= 0 &&
-                DateTime.Compare(addedPage.DateOfRecord, DateNavigatorEnd.Date) <= 0)
+            Database.Entities.DiaryPage addedPage = (diaryPanel as DiaryPagePanel).diaryHandler.GetDiaryPage();
+            if (DateTime.Compare(addedPage.DateOfRecord, this.DateNavigatorStart.Date) >= 0 &&
+                DateTime.Compare(addedPage.DateOfRecord, this.DateNavigatorEnd.Date) <= 0)
             {
-                var index = diaryPages.IndexOf(this.diaryPages.FirstOrDefault(x => x.Id == addedPage.Id));
+                var index = this.diaryPages.IndexOf(this.diaryPages.FirstOrDefault(x => x.Id == addedPage.Id));
                 if (index != -1)
-                    diaryPages[index] = addedPage;
+                    this.diaryPages[index] = addedPage;
                 else
-                    diaryPages.Add(addedPage);
-                PagesCarouselView.ItemsSource = diaryPages;
+                    this.diaryPages.Add(addedPage);
+                this.PagesCarouselView.ItemsSource = this.diaryPages;
 
-                AnalyzeButton.Text = String.Format(AuxiliaryResources.AnalysisPlaceholder, diaryPages.Count);
-                if (diaryPages.Count > 0) AnalyzeButton.IsEnabled = true; else AnalyzeButton.IsEnabled = false;
+                this.AnalyzeButton.Text = string.Format(AuxiliaryResources.AnalysisPlaceholder, this.diaryPages.Count);
+                if (this.diaryPages.Count > 0) this.AnalyzeButton.IsEnabled = true; else this.AnalyzeButton.IsEnabled = false;
             }
         }
 
@@ -93,8 +88,8 @@ namespace AutoPsy.Pages.DiaryPages
                 var directory = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, Android.OS.Environment.DirectoryDocuments);
 
                 // С помощью статического класса - библиотеки создаем документ и сохраняем по указанному пути
-                AuxServices.PdfWriter.CreateDocument(App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser), diaryPages.ToList());
-                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.Success, String.Format(AutoPsy.Resources.DiaryPageDefault.FileSavePlaceholder, directory), AutoPsy.Resources.AuxiliaryResources.ButtonOK);
+                AuxServices.PdfWriter.CreateDocument(App.Connector.SelectData<Database.Entities.User>(App.Connector.currentConnectedUser), this.diaryPages.ToList());
+                await DisplayAlert(AutoPsy.Resources.AuxiliaryResources.Success, string.Format(AutoPsy.Resources.DiaryPageDefault.FileSavePlaceholder, directory), AutoPsy.Resources.AuxiliaryResources.ButtonOK);
             }
             catch
             {
@@ -104,28 +99,28 @@ namespace AutoPsy.Pages.DiaryPages
 
         private async void EditPages_Clicked(object sender, EventArgs e)
         {
-            if (diaryPages.Count == 0)
+            if (this.diaryPages.Count == 0)
             {
                 await DisplayAlert(Alerts.AlertMessage, Alerts.NoRecordsToEditAlertMessage, AuxiliaryResources.ButtonOK);
                 return;
             }
-            var temp = PagesCarouselView.CurrentItem as Database.Entities.DiaryPage;
+            var temp = this.PagesCarouselView.CurrentItem as Database.Entities.DiaryPage;
 
-            if (temp != null) await Navigation.PushModalAsync(new DiaryEditPage(this, temp));
+            if (temp != null) await this.Navigation.PushModalAsync(new DiaryEditPage(this, temp));
         }
 
         private async void DeletePages_Clicked(object sender, EventArgs e)
         {
-            if (diaryPages.Count == 0)
+            if (this.diaryPages.Count == 0)
             {
                 await DisplayAlert(Alerts.AlertMessage, Alerts.NoRecordsToDeleteAlertMessage, AuxiliaryResources.ButtonOK);
                 return;
             }
 
-            var temp = PagesCarouselView.CurrentItem as Database.Entities.DiaryPage;
+            var temp = this.PagesCarouselView.CurrentItem as Database.Entities.DiaryPage;
 
-            diaryPages.Remove(temp);
-            PagesCarouselView.ItemsSource = diaryPages;
+            this.diaryPages.Remove(temp);
+            this.PagesCarouselView.ItemsSource = this.diaryPages;
 
             if (temp != null) App.Connector.DeleteData(temp);
         }
@@ -134,12 +129,12 @@ namespace AutoPsy.Pages.DiaryPages
 
         private void DateNavigatorEnd_DateSelected(object sender, DateChangedEventArgs e)
         {
-            if (DateNavigatorEnd.Date < DateNavigatorStart.Date) DateNavigatorEnd.Date = DateNavigatorStart.Date;
+            if (this.DateNavigatorEnd.Date < this.DateNavigatorStart.Date) this.DateNavigatorEnd.Date = this.DateNavigatorStart.Date;
             SynchronizeContentPages();
         }
 
-        private async void InfoButton_Clicked(object sender, EventArgs e) => await Navigation.PushModalAsync(new SymptomViewer());
+        private async void InfoButton_Clicked(object sender, EventArgs e) => await this.Navigation.PushModalAsync(new SymptomViewer());
 
-        private async void AnalyzeButton_Clicked(object sender, EventArgs e) => await Navigation.PushModalAsync(new AnalysisTabsPage(DateNavigatorStart.Date, DateNavigatorEnd.Date));
+        private async void AnalyzeButton_Clicked(object sender, EventArgs e) => await this.Navigation.PushModalAsync(new AnalysisTabsPage(this.DateNavigatorStart.Date, this.DateNavigatorEnd.Date));
     }
 }

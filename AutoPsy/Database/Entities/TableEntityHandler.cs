@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace AutoPsy.Database.Entities
@@ -9,108 +8,93 @@ namespace AutoPsy.Database.Entities
     {
         protected Dictionary<string, List<ITableEntity>> tableController;
 
-        public TableEntityHandler()
-        {
-            tableController = new Dictionary<string, List<ITableEntity>>();
-        }
+        public TableEntityHandler() => this.tableController = new Dictionary<string, List<ITableEntity>>();
 
         public abstract bool CheckEntityExisted();
 
-        public byte GetEntityValue(string name, DateTime date)
-        {
-            return tableController[name].Where(x => DateTime.Compare(date.Date, x.Time) == 0).Select(x => x.Value).First();
-        }
+        public byte GetEntityValue(string name, DateTime date) => this.tableController[name].Where(x => DateTime.Compare(date.Date, x.Time) == 0).Select(x => x.Value).First();
 
         public void AddParameter(string parameter)
         {
-            if (!tableController.ContainsKey(parameter))
-                tableController.Add(parameter, new List<ITableEntity>());
+            if (!this.tableController.ContainsKey(parameter))
+                this.tableController.Add(parameter, new List<ITableEntity>());
         }
 
         public void AddEntity<T>(string parameter, ITableEntity entity)
         {
-            if (tableController[parameter].FirstOrDefault(x => x.IdValue.Equals(entity.IdValue) && DateTime.Compare(x.Time, entity.Time) == 0) == null)
+            if (this.tableController[parameter].FirstOrDefault(x => x.IdValue.Equals(entity.IdValue) && DateTime.Compare(x.Time, entity.Time) == 0) == null)
             {
-                tableController[parameter].Add(entity);
+                this.tableController[parameter].Add(entity);
                 CreateTableEntity<T>(entity);
             }
 
         }
 
-        public void CreateTableEntity<T>(ITableEntity entity)
-        {
-            App.Connector.CreateAndInsertData<T>(entity);
-        }
+        private void CreateTableEntity<T>(ITableEntity entity) => App.Connector.CreateAndInsertData<T>(entity);
 
         public Dictionary<string, List<ITableEntity>> GetValues(DateTime start, DateTime end)
         {
             if (!CheckEntityExisted()) return null;
-            return tableController;
+            return this.tableController;
         }
 
-        public List<string> GetFilterResults(DateTime start, DateTime end)
-        {
-            return tableController.Where(x => x.Value.Any(t => t.Time >= start && t.Time <= end)).Select(x => x.Key).ToList();
-        }
+        public List<string> GetFilterResults(DateTime start, DateTime end) => this.tableController.Where(x => x.Value.Any(t => t.Time >= start && t.Time <= end)).Select(x => x.Key).ToList();
 
-        public List<ITableEntity> GetEntities(string parameter)
-        {
-            return tableController[parameter];
-        }
+        public List<ITableEntity> GetEntities(string parameter) => this.tableController[parameter];
 
-        public List<string> GetAllParameters()
-        {
-            return tableController.Keys.Select(x => App.TableGraph.GetNameByIdString(x)).ToList();
-        }
+        public List<string> GetAllParameters() => this.tableController.Keys.Select(x => App.TableGraph.GetNameByIdString(x)).ToList();
 
         public bool ContainsEntity(ITableEntity entity)
         {
-            foreach (var record in tableController.Keys)
+            foreach (var record in this.tableController.Keys)
                 if (record.Equals(entity.IdValue)) return true;
             return false;
         }
 
         public bool ContainsParameter(string parameter)
         {
-            foreach (var key in tableController.Keys)
+            foreach (var key in this.tableController.Keys)
                 if (key.Equals(parameter)) return true;
             return false;
         }
 
         protected void SelectAllItems<T>() where T : new()
         {
-            var items = App.Connector.SelectAll<T>().Cast<ITableEntity>();
-            foreach (var item in items)
-                if (!tableController.ContainsKey(item.IdValue))
+            IEnumerable<ITableEntity> items = App.Connector.SelectAll<T>().Cast<ITableEntity>();
+            foreach (ITableEntity item in items)
+            {
+                if (!this.tableController.ContainsKey(item.IdValue))
                 {
-                    tableController.Add(item.IdValue, new List<ITableEntity>());
-                    tableController[item.IdValue].Add(item);
+                    this.tableController.Add(item.IdValue, new List<ITableEntity>());
+                    this.tableController[item.IdValue].Add(item);
                 }
                 else
-                    tableController[item.IdValue].Add(item);
+                {
+                    this.tableController[item.IdValue].Add(item);
+                }
+            }
         }
 
         public void DeleteParameter(string parameter)
         {
-            var selectedItemsToDelete = tableController.Where(x => x.Key.Equals(parameter)).Select(x => x.Value);
-            tableController.Remove(parameter);
-            foreach (var item in selectedItemsToDelete)
+            IEnumerable<List<ITableEntity>> selectedItemsToDelete = this.tableController.Where(x => x.Key.Equals(parameter)).Select(x => x.Value);
+            this.tableController.Remove(parameter);
+            foreach (List<ITableEntity> item in selectedItemsToDelete)
                 App.Connector.DeleteData(item);
         }
 
-        public void UpdateParameter<T>(string parameter, byte newValue)
+        public void UpdateParameter<T>(string parameter)
         {
-            var selectedItemsToUpdate = tableController[parameter];
-            foreach (var item in selectedItemsToUpdate)
+            List<ITableEntity> selectedItemsToUpdate = this.tableController[parameter];
+            foreach (ITableEntity item in selectedItemsToUpdate)
             {
-                item.Importance = newValue;
                 App.Connector.UpdateData<T>(item);
             }
         }
 
         public void UpdateEntityValue<T>(ITableEntity entity) where T : new()
         {
-            var request = App.Connector.SelectData<T>(entity.Id);
+            T request = App.Connector.SelectData<T>(entity.Id);
             if (request == null)
                 App.Connector.CreateAndInsertData<T>(entity);
             else
@@ -119,7 +103,7 @@ namespace AutoPsy.Database.Entities
 
         public static void StaticUpdateEntityValue<T>(ITableEntity entity) where T : new()
         {
-            var request = App.Connector.SelectData<T>(entity.Id);
+            T request = App.Connector.SelectData<T>(entity.Id);
             if (request == null)
                 App.Connector.CreateAndInsertData<T>(entity);
             else

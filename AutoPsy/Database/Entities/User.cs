@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SQLite;
+﻿using SQLite;
+using System;
 using System.ComponentModel;
 
 namespace AutoPsy.Database.Entities
@@ -13,54 +11,53 @@ namespace AutoPsy.Database.Entities
         [PrimaryKey, AutoIncrement]
         public int Id
         {
-            get { return id; }
-            set { this.id = value; OnPropertyChanged(nameof(Id)); }
+            get => this.id;
+            set { this.id = value; OnPropertyChanged(nameof(this.Id)); }
         }
 
         private string personName;
         [NotNull]
         public string PersonName
         {
-            get { return personName; }
-            set { this.personName = value; OnPropertyChanged(nameof(PersonName)); }
+            get => this.personName;
+            set { this.personName = value; OnPropertyChanged(nameof(this.PersonName)); }
         }
 
         private string personSurname;
         [NotNull]
         public string PersonSurname
         {
-            get
-            { return personSurname; }
-            set { this.personSurname = value; OnPropertyChanged(nameof(PersonSurname)); }
+            get => this.personSurname;
+            set { this.personSurname = value; OnPropertyChanged(nameof(this.PersonSurname)); }
         }
 
         private string personPatronymic;
         public string PersonPatronymic
         {
-            get { return personPatronymic; }
-            set { this.personPatronymic = value; OnPropertyChanged(nameof(PersonPatronymic)); }
+            get => this.personPatronymic;
+            set { this.personPatronymic = value; OnPropertyChanged(nameof(this.PersonPatronymic)); }
         }
 
         private DateTime birthDate;
         [NotNull]
         public DateTime BirthDate
         {
-            get { return birthDate; }
-            set { this.birthDate = value; OnPropertyChanged(nameof(BirthDate)); }
+            get => this.birthDate;
+            set { this.birthDate = value; OnPropertyChanged(nameof(this.BirthDate)); }
         }
 
         private string gender;
         public string Gender
         {
-            get { return gender; }
-            set { this.gender = value; OnPropertyChanged(nameof(Gender)); }
+            get => this.gender;
+            set { this.gender = value; OnPropertyChanged(nameof(this.Gender)); }
         }
 
         private string hashPassword;
         public string HashPassword
         {
-            get { return hashPassword; }
-            set { this.hashPassword = value; OnPropertyChanged(nameof(HashPassword)); }
+            get => this.hashPassword;
+            set { this.hashPassword = value; OnPropertyChanged(nameof(this.HashPassword)); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

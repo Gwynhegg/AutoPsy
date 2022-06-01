@@ -1,15 +1,13 @@
-﻿using System;
-using AutoPsy.Database;
+﻿using AutoPsy.Database.Entities;
+using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using AutoPsy.Database.Entities;
 
 namespace AutoPsy.Logic
 {
     public class DiaryPagesCalc
     {
-        INode[] nodes;
+        private INode[] nodes;
         private Dictionary<string, Structures.DiaryResultRecords> statRecords;
         private List<DiaryPage> pages;
         private List<Structures.DiaryPagesCut> pageCuts;
@@ -17,9 +15,9 @@ namespace AutoPsy.Logic
         // Метод инициализации работы с блоком стат. обработки.
         public void ProcessRecords(List<DiaryPage> pages)     // В блок передается набор выбранных записей из дневника
         {
-            nodes = App.Graph.GetAllItems();        // Поулчаем все узлы из графа
-            statRecords = new Dictionary<string, Structures.DiaryResultRecords>();      // Инициализируем библиотеку для хранения результатов
-            pageCuts = new List<Structures.DiaryPagesCut>();        // Инициализируем "срезы" - набор активных узлов на конкретную дату
+            this.nodes = App.Graph.GetAllItems();        // Поулчаем все узлы из графа
+            this.statRecords = new Dictionary<string, Structures.DiaryResultRecords>();      // Инициализируем библиотеку для хранения результатов
+            this.pageCuts = new List<Structures.DiaryPagesCut>();        // Инициализируем "срезы" - набор активных узлов на конкретную дату
             this.pages = pages.OrderBy(x => x.DateOfRecord).ToList();       // Сортируем данные записей по дате написания
         }
 
@@ -28,15 +26,18 @@ namespace AutoPsy.Logic
         {
             TryToMergeData();
 
-            foreach (var page in pages)
+            foreach (DiaryPage page in this.pages)
             {
                 // Создаем срез с конкретно указанной датой
-                Structures.DiaryPagesCut diaryCut = new Structures.DiaryPagesCut() { Date = page.DateOfRecord, Nodes = new Dictionary<string, int>() };
+                var diaryCut = new Structures.DiaryPagesCut() { Date = page.DateOfRecord, Nodes = new Dictionary<string, int>() };
                 var symptoms = PartiallyRecreateSymptoms(page);     // Восстанавливаем симптомы  по выбранной странице
                 if (symptoms != null)
+                {
                     foreach (var symptom in symptoms)       // Перебираем кажыдй из симптомов
                         diaryCut.FillSymptomTree(symptom);      // Переходим в метод обхода дерева-графа и заполнения структуры
-                pageCuts.Add(diaryCut);     // Добавляем заполненный срез в коллекцию
+                }
+
+                this.pageCuts.Add(diaryCut);     // Добавляем заполненный срез в коллекцию
             }
         }
 
@@ -44,52 +45,49 @@ namespace AutoPsy.Logic
         public void StatisticCalculation()
         {
             // Создаем новый объект - словарь. Ключем будет являться имя узла, значением - набор связанных с ним стат. параметров
-            statRecords = new Dictionary<string, Structures.DiaryResultRecords>();
-            while (pageCuts.Count > 0)      // Пока у нас есть срезы для обработки...
+            this.statRecords = new Dictionary<string, Structures.DiaryResultRecords>();
+            while (this.pageCuts.Count > 0)      // Пока у нас есть срезы для обработки...
             {
-                var node = pageCuts.First().Nodes.First();      // Поулчаем самый первый элемент (узел)
+                KeyValuePair<string, int> node = this.pageCuts.First().Nodes.First();      // Поулчаем самый первый элемент (узел)
 
                 // Выбираем все вхождения выбранного элемента в каждый из срезов
-                var cutContainers = pageCuts.Where(x => x.Nodes.ContainsKey(node.Key)).ToList();
+                var cutContainers = this.pageCuts.Where(x => x.Nodes.ContainsKey(node.Key)).ToList();
                 // Создаем объект для хранения стат. параметров на указанный узел
-                Structures.DiaryResultRecords diaryResult = new Structures.DiaryResultRecords() { Node = node.Key };
+                var diaryResult = new Structures.DiaryResultRecords() { Node = node.Key };
                 // Передаем в метод для вычисления набор связанных с узлом дат вхождений и количество наложений (вхождений)
                 diaryResult.Calculate(cutContainers.Select(x => x.Date).ToArray(), cutContainers.Select(x => x.Nodes[node.Key]).ToArray());
                 // Добавляем получившуюся структуру в коллекцию результатов
-                statRecords.Add(node.Key, diaryResult);
+                this.statRecords.Add(node.Key, diaryResult);
 
-                foreach (var page in pageCuts)      // Удаляем обработанный элемент из каждого из срезов
+                foreach (Structures.DiaryPagesCut page in this.pageCuts)      // Удаляем обработанный элемент из каждого из срезов
                     page.Nodes.Remove(node.Key);
 
-                for (int i = pageCuts.Count - 1; i >= 0; i--)
-                    if (pageCuts[i].Nodes.Count == 0) pageCuts.RemoveAt(i);     // Если элементов в текущем срезе не осталось - удаляем его и переходим к следующему
+                for (var i = this.pageCuts.Count - 1; i >= 0; i--)
+                    if (this.pageCuts[i].Nodes.Count == 0) this.pageCuts.RemoveAt(i);     // Если элементов в текущем срезе не осталось - удаляем его и переходим к следующему
             }
         }
 
-        public Dictionary<string, Structures.DiaryResultRecords> GetStatisticResults()
-        {
-            return this.statRecords;
-        }
+        public Dictionary<string, Structures.DiaryResultRecords> GetStatisticResults() => this.statRecords;
 
         // Метод для выделения исключительно симптомов из набора узлов
         public Dictionary<string, Structures.DiaryResultRecords> GetOnlySymptoms()
         {
-            var symptoms = App.Graph.GetSymptomNodes().Select(x => x.Id);
-            return statRecords.Where(x => symptoms.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value);
+            IEnumerable<string> symptoms = App.Graph.GetSymptomNodes().Select(x => x.Id);
+            return this.statRecords.Where(x => symptoms.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value);
         }
 
         // Метод для выделения исключительно проявлений из набора узлов
         public Dictionary<string, Structures.DiaryResultRecords> GetOnlyDisplays()
         {
-            var symptoms = App.Graph.GetDiseasesNodes().Select(x => x.Id);
-            return statRecords.Where(x => symptoms.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value);
+            IEnumerable<string> symptoms = App.Graph.GetDiseasesNodes().Select(x => x.Id);
+            return this.statRecords.Where(x => symptoms.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value);
         }
 
         // Метод для выделения исключительно категорий из набора узлов
         public Dictionary<string, Structures.DiaryResultRecords> GetOnlyCategories()
         {
-            var symptoms = App.Graph.GetCategoryNodes().Select(x => x.Id);
-            return statRecords.Where(x => symptoms.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value);
+            IEnumerable<string> symptoms = App.Graph.GetCategoryNodes().Select(x => x.Id);
+            return this.statRecords.Where(x => symptoms.Contains(x.Key)).ToDictionary(x => x.Key, x => x.Value);
         }
 
 
@@ -103,25 +101,25 @@ namespace AutoPsy.Logic
             return splitted;
         }
 
-        private string CodifySymptoms(string[] symptoms)
-        {
-            return String.Join("\n", symptoms);
-        }
+        private string CodifySymptoms(string[] symptoms) => string.Join("\n", symptoms);
 
         private void TryToMergeData()       // алгоритм слияния записей
         {
-            int iterator = 0;       
-            while (iterator < pages.Count - 1)      // пока итератор не дошел до конца списка...
+            var iterator = 0;
+            while (iterator < this.pages.Count - 1)      // пока итератор не дошел до конца списка...
             {
-                if (DateTime.Compare(pages[iterator].DateOfRecord.Date, pages[iterator + 1].DateOfRecord.Date) == 0)        // если даты текущего листа совпадают со следующим
+                if (DateTime.Compare(this.pages[iterator].DateOfRecord.Date, this.pages[iterator + 1].DateOfRecord.Date) == 0)        // если даты текущего листа совпадают со следующим
                 {
-                    var firstSymptoms = PartiallyRecreateSymptoms(pages[iterator]);     // получаем симптомы первого листа
-                    var secondSymptoms = PartiallyRecreateSymptoms(pages[iterator + 1]);        // получаем симптомы второго листа
+                    var firstSymptoms = PartiallyRecreateSymptoms(this.pages[iterator]);     // получаем симптомы первого листа
+                    var secondSymptoms = PartiallyRecreateSymptoms(this.pages[iterator + 1]);        // получаем симптомы второго листа
                     var resultSymptoms = firstSymptoms.Union(secondSymptoms).ToArray();     // объединяем симптомы логической функцией
-                    pages[iterator].AttachedSymptoms = CodifySymptoms(resultSymptoms);      // сохраняем изменения
-                    pages.RemoveAt(iterator + 1);       // удаляем дублирующий лист
+                    this.pages[iterator].AttachedSymptoms = CodifySymptoms(resultSymptoms);      // сохраняем изменения
+                    this.pages.RemoveAt(iterator + 1);       // удаляем дублирующий лист
                 }
-                else iterator++;
+                else
+                {
+                    iterator++;
+                }
             }
         }
     }

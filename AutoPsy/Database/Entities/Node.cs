@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AutoPsy.Database.Entities
+﻿namespace AutoPsy.Database.Entities
 {
     public interface INode
     {
@@ -12,27 +8,28 @@ namespace AutoPsy.Database.Entities
 
     public class CategoryNode : INode
     {
-        private string id, value;
+        private readonly string id;
+        private string value;
+
         public CategoryNode(string id, string value)
         {
             this.id = id;
             this.value = value;
         }
-        public string Id
-        {
-            get { return this.id; }
-        }
+        public string Id => this.id;
 
         public string Value
         {
-            get { return value; }
-            set { this.value = value; }
+            get => this.value;
+            set => this.value = value;
         }
     }       // Класс узлов-категорий
 
     public class DiseaseNode : INode
     {
-        private string id, value, category;
+        private readonly string id;
+        private string value;
+        private string category;
 
         public DiseaseNode(string id, string value, string category)
         {
@@ -41,40 +38,36 @@ namespace AutoPsy.Database.Entities
             this.category = category;
         }
 
-        public string Id
-        {
-            get { return id; }
-        }
+        public string Id => this.id;
         public string Value
         {
-            get { return value; }
-            set { this.value = value; }
+            get => this.value;
+            set => this.value = value;
         }
 
         public string Category
         {
-            get { return category; }
-            set { category = value; }
+            get => this.category;
+            set => this.category = value;
         }
     }       // Класс узлов-проявлений
 
     public class SymptomNode : INode        // Класс узлов-симптомов
     {
-        private string id, value;
+        private readonly string id;
+        private string value;
+
         public SymptomNode(string id, string value)
         {
             this.id = id;
             this.value = value;
         }
 
-        public string Id
-        {
-            get { return id; }
-        }
+        public string Id => this.id;
         public string Value
         {
-            get { return value; }
-            set { this.value = value; }
+            get => this.value;
+            set => this.value = value;
         }
     }
 
@@ -83,14 +76,14 @@ namespace AutoPsy.Database.Entities
         private string source, target;
         public string Source
         {
-            get { return source; }
-            set { source = value; }
+            get => this.source;
+            set => this.source = value;
         }
 
         public string Target
         {
-            get { return target; }
-            set { target = value; }
+            get => this.target;
+            set => this.target = value;
         }
 
         public Link(string source, string target)

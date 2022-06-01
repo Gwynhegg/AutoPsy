@@ -1,8 +1,5 @@
-﻿using AutoPsy.Database.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -13,8 +10,8 @@ namespace AutoPsy.Pages.TablePages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AnalysisSelectionPage : ContentPage
     {
-        private DateTime start, end;
-        private Dictionary<string, List<float>> calculatedValues;
+        private readonly DateTime start, end;
+        private readonly Dictionary<string, List<float>> calculatedValues;
         public AnalysisSelectionPage(Dictionary<string, List<float>> calculatedValues, DateTime start, DateTime end)
         {
             InitializeComponent();
@@ -24,25 +21,13 @@ namespace AutoPsy.Pages.TablePages
         }
 
 
-        private async void StatisticsButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new TableStatisticsPage(calculatedValues, start, end));
-        }
+        private async void StatisticsButton_Clicked(object sender, EventArgs e) => await this.Navigation.PushModalAsync(new TableStatisticsPage(this.calculatedValues, this.start, this.end));
 
-        private async void SimplePrognosys_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new SimpleRegressionPage(calculatedValues, start, end));
-        }
+        private async void SimplePrognosys_Clicked(object sender, EventArgs e) => await this.Navigation.PushModalAsync(new SimpleRegressionPage(this.calculatedValues, this.start, this.end));
 
-        private async void FullCorellation_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new HeatMapPage(calculatedValues));
-        }
+        private async void FullCorellation_Clicked(object sender, EventArgs e) => await this.Navigation.PushModalAsync(new HeatMapPage(this.calculatedValues));
 
-        private async void ClusterAnalysis_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushModalAsync(new ClusterHierarchyPage(calculatedValues));
-        }
+        private async void ClusterAnalysis_Clicked(object sender, EventArgs e) => await this.Navigation.PushModalAsync(new ClusterHierarchyPage(this.calculatedValues));
 
         protected override bool OnBackButtonPressed()
         {
@@ -50,10 +35,6 @@ namespace AutoPsy.Pages.TablePages
             return true;
         }
 
-        private async Task NavigateToMainAsync()
-        {
-            await Navigation.PushModalAsync(new MainPage());
-
-        }
+        private async Task NavigateToMainAsync() => await this.Navigation.PushModalAsync(new MainPage());
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AutoPsy.Const
+﻿namespace AutoPsy.Const
 {
     public static class Constants
     {
@@ -22,7 +18,7 @@ namespace AutoPsy.Const
         public const string ENTITY_TRIGGER = "Triggers";        // название категории "Триггеры"
         public const string IS_ZERO = "0";      // вспомогательная константа для проверки на ноль
 
-        public const int RECOMMENDATION_PARAMETER = 0;      
+        public const int RECOMMENDATION_PARAMETER = 0;
         public const int CONDITION_PARAMETER = 1;
         public const int TRIGGER_PARAMETER = 2;
         public const int WEEK = 7;      // константа количества дней в неделе (хоть что-то в этой жизни неизменно)

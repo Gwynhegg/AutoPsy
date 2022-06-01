@@ -1,9 +1,6 @@
-﻿using AutoPsy.Database.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,8 +10,8 @@ namespace AutoPsy.Pages.TablePages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TableStatisticsPage : ContentPage
     {
-        private Dictionary<string, List<float>> entityValues;
-        private DateTime start, end;
+        private readonly Dictionary<string, List<float>> entityValues;
+        private readonly DateTime start, end;
         private int currentStep = 0;
         public TableStatisticsPage(Dictionary<string, List<float>> entityValues, DateTime start, DateTime end)
         {
@@ -28,36 +25,36 @@ namespace AutoPsy.Pages.TablePages
 
         private void SynchronizeCurrentStep()
         {
-            if (currentStep == 0) BackwardButton.IsEnabled = false; else BackwardButton.IsEnabled = true;
-            if (currentStep == entityValues.Count - 1) ForwardButton.IsEnabled = false; else ForwardButton.IsEnabled = true;
+            if (this.currentStep == 0) this.BackwardButton.IsEnabled = false; else this.BackwardButton.IsEnabled = true;
+            if (this.currentStep == this.entityValues.Count - 1) this.ForwardButton.IsEnabled = false; else this.ForwardButton.IsEnabled = true;
 
-            var currentItem = entityValues.ElementAt(currentStep);
-            CurrentEntity.Text = App.TableGraph.GetNameByIdString(currentItem.Key);
+            KeyValuePair<string, List<float>> currentItem = this.entityValues.ElementAt(this.currentStep);
+            this.CurrentEntity.Text = App.TableGraph.GetNameByIdString(currentItem.Key);
 
             var statisticProcessor = new Logic.StatisticProcessor();
 
-            CurrentStatistics.Children.Clear();
-            var statisticCanvas = new CustomComponents.StatisticsCanvasLine(start, end);
-            CurrentStatistics.Children.Add(statisticCanvas);
+            this.CurrentStatistics.Children.Clear();
+            var statisticCanvas = new CustomComponents.StatisticsCanvasLine(this.start, this.end);
+            this.CurrentStatistics.Children.Add(statisticCanvas);
 
             statisticCanvas.DrawBasicGraph(currentItem.Value);
 
-            var isTrigger = App.TableGraph.GetParameterType(currentItem.Key).Equals(Const.Constants.ENTITY_TRIGGER) ? true: false;
-            var basicStatistic = statisticProcessor.GetBasicStatistics(currentItem.Value, isTrigger);
+            var isTrigger = App.TableGraph.GetParameterType(currentItem.Key).Equals(Const.Constants.ENTITY_TRIGGER) ? true : false;
+            List<string> basicStatistic = statisticProcessor.GetBasicStatistics(currentItem.Value, isTrigger);
             statisticCanvas.ShowBasicStatistic(basicStatistic);
 
             if (!isTrigger)
             {
-                var dynamicRange = statisticProcessor.CalculateDynamicValue(currentItem.Value);
+                List<float> dynamicRange = statisticProcessor.CalculateDynamicValue(currentItem.Value);
                 statisticCanvas.ShowDynamicRange(dynamicRange);
             }
 
 
-            var distributionRange = statisticProcessor.GetDistributionRange(isTrigger);
+            List<float> distributionRange = statisticProcessor.GetDistributionRange(isTrigger);
             statisticCanvas.ShowDistributionRange(distributionRange);
             if (!isTrigger)
             {
-                var distributionStatistic = statisticProcessor.GetDistributionStatistic(distributionRange);
+                List<string> distributionStatistic = statisticProcessor.GetDistributionStatistic(distributionRange);
                 statisticCanvas.ShowDistributionStatistic(distributionStatistic);
             }
 
@@ -65,13 +62,13 @@ namespace AutoPsy.Pages.TablePages
         }
         private void BackwardButton_Clicked(object sender, EventArgs e)
         {
-            currentStep--;
+            this.currentStep--;
             SynchronizeCurrentStep();
         }
 
         private void ForwardButton_Clicked(object sender, EventArgs e)
         {
-            currentStep++;
+            this.currentStep++;
             SynchronizeCurrentStep();
         }
 

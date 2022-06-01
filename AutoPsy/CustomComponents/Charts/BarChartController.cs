@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microcharts;
-using System.Linq;
+﻿using Microcharts;
 using SkiaSharp;
+using System.Collections.Generic;
 
 namespace AutoPsy.CustomComponents.Charts
 {
     public class BarChartController
     {
-        private List<float> values;       // список используемых значений
-        private List<string> labels;      // список названий элементов для их отображения на диаграмме
-        private List<SKColor> colors;     // список привязанных к каждому из элементов цветов
+        private readonly List<float> values;       // список используемых значений
+        private readonly List<string> labels;      // список названий элементов для их отображения на диаграмме
+        private readonly List<SKColor> colors;     // список привязанных к каждому из элементов цветов
         private Chart chart;
         // Класс, отвечающий за отображений столбчатых диаграмм
         public BarChartController(List<float> values, List<string> labels)
         {
             this.values = values;
             this.labels = labels;
-            colors = new List<SKColor>();
+            this.colors = new List<SKColor>();
             foreach (var label in labels)
-                colors.Add(AuxServices.ColorPicker.GetRandomColor());       // для каждого элемента во вспомогательном классе создается индивидуальный цвет
+                this.colors.Add(AuxServices.ColorPicker.GetRandomColor());       // для каждого элемента во вспомогательном классе создается индивидуальный цвет
         }
 
         /// <summary>
@@ -30,15 +27,18 @@ namespace AutoPsy.CustomComponents.Charts
         public void AddValuesToChart(List<int> indexes)
         {
             var entries = new ChartEntry[indexes.Count];        // создаем новый массив данных для диаграмм
-            for (int i = 0; i < indexes.Count; i++)
-                entries[i] = new ChartEntry(values[indexes[i]]) { Label = labels[indexes[i]],       // заполняем его значениями в соответствии с индексами, задаем названия и цвета
-                    Color = colors[indexes[i]], 
-                    ValueLabel = values[indexes[i]].ToString()};
+            for (var i = 0; i < indexes.Count; i++)
+            {
+                entries[i] = new ChartEntry(this.values[indexes[i]])
+                {
+                    Label = this.labels[indexes[i]],       // заполняем его значениями в соответствии с индексами, задаем названия и цвета
+                    Color = this.colors[indexes[i]],
+                    ValueLabel = this.values[indexes[i]].ToString()
+                };
+            }
 
-            var textSize = (float)Math.Round((double)200 / entries.Count());
-            var valueTextSize = textSize / 1.2f;
             // Создаем диаграмму для отображения
-            chart = new BarChart() { Entries = entries, LabelOrientation = Orientation.Horizontal , LabelTextSize = textSize, ValueLabelTextSize = valueTextSize, ValueLabelOrientation = Orientation.Horizontal};
+            this.chart = new BarChart() { Entries = entries, LabelOrientation = Orientation.Horizontal, LabelTextSize = 20, ValueLabelTextSize = 20, ValueLabelOrientation = Orientation.Horizontal };
         }
 
         public void AddAllValuesToChart(bool useNormalColorScheme)
@@ -51,19 +51,14 @@ namespace AutoPsy.CustomComponents.Charts
 
         private void CreateSchemeChart(Dictionary<byte, SKColor> colorScheme, float maxValue)
         {
-            var entries = new ChartEntry[labels.Count];
-            for (int i = 0; i < labels.Count; i++)
-                    entries[i] = new ChartEntry(values[i]) { Color = colorScheme[(byte)values[i]] };
+            var entries = new ChartEntry[this.labels.Count];
+            for (var i = 0; i < this.labels.Count; i++)
+                entries[i] = new ChartEntry(this.values[i]) { Color = colorScheme[(byte)this.values[i]] };
 
-            var textSize = (float)Math.Round((double)200 / entries.Count());
-            var valueTextSize = textSize / 1.2f;
-            chart = new BarChart() { Entries = entries, LabelOrientation = Orientation.Horizontal, ValueLabelOrientation = Orientation.Horizontal, LabelTextSize = textSize, ValueLabelTextSize = valueTextSize, MaxValue = maxValue };
+            this.chart = new BarChart() { Entries = entries, LabelOrientation = Orientation.Horizontal, ValueLabelOrientation = Orientation.Horizontal, LabelTextSize = 20, ValueLabelTextSize = 20, MaxValue = maxValue };
 
         }
 
-        public Chart GetChart()
-        {
-            return chart;
-        }
+        public Chart GetChart() => this.chart;
     }
 }

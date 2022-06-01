@@ -1,45 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoPsy.CustomComponents;
+﻿using AutoPsy.CustomComponents;
 using AutoPsy.Resources;
-
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace AutoPsy.Pages.TablePages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ParameterUpdatePage: ContentPage       // Форма для обновления данных о параметре
+    public partial class ParameterUpdatePage : ContentPage       // Форма для обновления данных о параметре
     {
-        private Database.Entities.ITableEntity entity;      // сущность-ячейка, служащая шаблоном для заполнения некоторых полей
-        private TableGridHandler tableGridHandler;      // ссылка на класс-обработчик таблиц
+        private readonly Database.Entities.ITableEntity entity;      // сущность-ячейка, служащая шаблоном для заполнения некоторых полей
+        private readonly TableGridHandler tableGridHandler;      // ссылка на класс-обработчик таблиц
         public ParameterUpdatePage(Database.Entities.ITableEntity entity, TableGridHandler tableGridHandler)
         {
             InitializeComponent();
             this.tableGridHandler = tableGridHandler;
             this.entity = entity;
 
-            ParameterLabel.Text = entity.Name;
+            this.ParameterLabel.Text = entity.Name;
         }
 
         private async void DeleteButton_Clicked(object sender, EventArgs e)
         {
-            bool answer = await DisplayAlert(Alerts.AlertMessage, Alerts.DeleteStringWarning, AuxiliaryResources.Yes, AuxiliaryResources.No);
+            var answer = await DisplayAlert(Alerts.AlertMessage, Alerts.DeleteStringWarning, AuxiliaryResources.Yes, AuxiliaryResources.No);
             if (answer)
             {
-                tableGridHandler.DeleteParameter(entity.IdValue);
-                await Navigation.PopModalAsync();
+                this.tableGridHandler.DeleteParameter(this.entity.IdValue);
+                await this.Navigation.PopModalAsync();
             }
-            else 
+            else
+            {
                 return;
+            }
         }
 
-        private async void SaveButton_Clicked(object sender, EventArgs e)
-        {
-                await Navigation.PopModalAsync();
-        }
+        private async void SaveButton_Clicked(object sender, EventArgs e) => await this.Navigation.PopModalAsync();
     }
 }

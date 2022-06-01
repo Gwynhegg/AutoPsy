@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace AutoPsy.CustomComponents.Charts
 {
@@ -10,15 +7,15 @@ namespace AutoPsy.CustomComponents.Charts
         private string name;        // наименования элемента статистики
         public string Name
         {
-            get { return name; }
-            set { name = value; OnPropertyChanged(nameof(Name)); }
+            get => this.name;
+            set { this.name = value; OnPropertyChanged(nameof(this.Name)); }
         }
 
         private string value;       // значение определенного статистического показателя элемента
         public string Value
         {
-            get { return value; }
-            set { this.value = value; OnPropertyChanged(nameof(Value)); }
+            get => this.value;
+            set { this.value = value; OnPropertyChanged(nameof(this.Value)); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

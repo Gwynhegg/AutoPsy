@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AutoPsy.Logic
 {
@@ -16,7 +14,7 @@ namespace AutoPsy.Logic
 
             foreach (var value in values)
             {
-                var normValue = delta == 0? 1: (value - minimum) / delta;
+                var normValue = delta == 0 ? 1 : (value - minimum) / delta;
                 resultArray.Add(normValue);
             }
 

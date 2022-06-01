@@ -1,8 +1,6 @@
 ﻿using SQLite;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace AutoPsy.Database.Entities
 {
@@ -32,60 +30,57 @@ namespace AutoPsy.Database.Entities
         [PrimaryKey, AutoIncrement]
         public int Id
         {
-            get { return id; }
-            set { this.id = value; OnPropertyChanged(nameof(Id)); }
+            get => this.id;
+            set { this.id = value; OnPropertyChanged(nameof(this.Id)); }
         }
         private string type = Const.Constants.RECOMENDATIONS_TAG;
         [NotNull]
         public string Type
         {
-            get { return type; }
-            set { this.type = Const.Constants.RECOMENDATIONS_TAG; OnPropertyChanged(Type); }
+            get => this.type;
+            set { this.type = Const.Constants.RECOMENDATIONS_TAG; OnPropertyChanged(this.Type); }
         }
         private string idValue;
         [NotNull]
         public string IdValue
         {
-            get { return idValue; }
-            set { idValue = value; OnPropertyChanged(nameof(IdValue)); }
+            get => this.idValue;
+            set { this.idValue = value; OnPropertyChanged(nameof(this.IdValue)); }
         }
         private string name;
         [NotNull]
         public string Name
         {
-            get { return name; }
-            set { name = value; OnPropertyChanged(nameof(Name)); }
+            get => this.name;
+            set { this.name = value; OnPropertyChanged(nameof(this.Name)); }
         }
         private byte value;
         [NotNull]
         public byte Value
         {
-            get { return value; }
-            set { this.value = value; OnPropertyChanged(nameof(Value)); }
+            get => this.value;
+            set { this.value = value; OnPropertyChanged(nameof(this.Value)); }
         }
 
         private DateTime time;
         [NotNull]
         public DateTime Time
         {
-            get { return time; }
-            set { time = value; OnPropertyChanged(nameof(Time)); }
+            get => this.time;
+            set { this.time = value; OnPropertyChanged(nameof(this.Time)); }
         }
 
         private byte importance;
         public byte Importance
         {
-            get { return importance; }
-            set { importance = value; OnPropertyChanged(nameof(Importance)); }
+            get => this.importance;
+            set { this.importance = value; OnPropertyChanged(nameof(this.Importance)); }
         }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
-        {
-            this.PropertyChanged?.Invoke(this,
+        private void OnPropertyChanged(string propertyName) => this.PropertyChanged?.Invoke(this,
               new PropertyChangedEventArgs(propertyName));
-        }
 
         public ITableEntity Clone(DateTime time)
         {
@@ -101,59 +96,56 @@ namespace AutoPsy.Database.Entities
         [PrimaryKey, AutoIncrement]
         public int Id
         {
-            get { return id; }
-            set { this.id = value; OnPropertyChanged(nameof(Id)); }
+            get => this.id;
+            set { this.id = value; OnPropertyChanged(nameof(this.Id)); }
         }
         private string type = Const.Constants.CONDITIONS_TAG;
         [NotNull]
         public string Type
         {
-            get { return type; }
-            set { this.type = Const.Constants.CONDITIONS_TAG; OnPropertyChanged(Type); }
+            get => this.type;
+            set { this.type = Const.Constants.CONDITIONS_TAG; OnPropertyChanged(this.Type); }
         }
         private string idValue;
         [NotNull]
         public string IdValue
         {
-            get { return idValue; }
-            set { idValue = value; OnPropertyChanged(nameof(IdValue)); }
+            get => this.idValue;
+            set { this.idValue = value; OnPropertyChanged(nameof(this.IdValue)); }
         }
         private string name;
         [NotNull]
         public string Name
         {
-            get { return name; }
-            set { name = value; OnPropertyChanged(nameof(Name)); }
+            get => this.name;
+            set { this.name = value; OnPropertyChanged(nameof(this.Name)); }
         }
         private byte value;
         [NotNull]
         public byte Value
         {
-            get { return value; }
-            set { this.value = value; OnPropertyChanged(nameof(Value)); }
+            get => this.value;
+            set { this.value = value; OnPropertyChanged(nameof(this.Value)); }
         }
 
         private DateTime time;
         [NotNull]
         public DateTime Time
         {
-            get { return time; }
-            set { time = value; OnPropertyChanged(nameof(Time)); }
+            get => this.time;
+            set { this.time = value; OnPropertyChanged(nameof(this.Time)); }
         }
 
         private byte importance;
         public byte Importance
         {
-            get { return importance; }
-            set { importance = value; OnPropertyChanged(nameof(Importance)); }
+            get => this.importance;
+            set { this.importance = value; OnPropertyChanged(nameof(this.Importance)); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
-        {
-            this.PropertyChanged?.Invoke(this,
+        private void OnPropertyChanged(string propertyName) => this.PropertyChanged?.Invoke(this,
               new PropertyChangedEventArgs(propertyName));
-        }
 
         public ITableEntity Clone(DateTime time)
         {
@@ -169,59 +161,56 @@ namespace AutoPsy.Database.Entities
         [PrimaryKey, AutoIncrement]
         public int Id
         {
-            get { return id; }
-            set { this.id = value; OnPropertyChanged(nameof(Id)); }
+            get => this.id;
+            set { this.id = value; OnPropertyChanged(nameof(this.Id)); }
         }
         private string type = Const.Constants.TRIGGERS_TAG;
         [NotNull]
         public string Type
         {
-            get { return type; }
-            set { this.type = Const.Constants.TRIGGERS_TAG; OnPropertyChanged(Type); }
+            get => this.type;
+            set { this.type = Const.Constants.TRIGGERS_TAG; OnPropertyChanged(this.Type); }
         }
         private string idValue;
         [NotNull]
         public string IdValue
         {
-            get { return idValue; }
-            set { idValue = value; OnPropertyChanged(nameof(IdValue)); }
+            get => this.idValue;
+            set { this.idValue = value; OnPropertyChanged(nameof(this.IdValue)); }
         }
         private string name;
         [NotNull]
         public string Name
         {
-            get { return name; }
-            set { name = value; OnPropertyChanged(nameof(Name)); }
+            get => this.name;
+            set { this.name = value; OnPropertyChanged(nameof(this.Name)); }
         }
         private byte value;
         [NotNull]
         public byte Value
         {
-            get { return value; }
-            set { this.value = value; OnPropertyChanged(nameof(Value)); }
+            get => this.value;
+            set { this.value = value; OnPropertyChanged(nameof(this.Value)); }
         }
 
         private DateTime time;
         [NotNull]
         public DateTime Time
         {
-            get { return time; }
-            set { time = value; OnPropertyChanged(nameof(Time)); }
+            get => this.time;
+            set { this.time = value; OnPropertyChanged(nameof(this.Time)); }
         }
 
         private byte importance;
         public byte Importance
         {
-            get { return importance; }
-            set { importance = value; OnPropertyChanged(nameof(Importance)); }
+            get => this.importance;
+            set { this.importance = value; OnPropertyChanged(nameof(this.Importance)); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string propertyName)
-        {
-            this.PropertyChanged?.Invoke(this,
+        private void OnPropertyChanged(string propertyName) => this.PropertyChanged?.Invoke(this,
               new PropertyChangedEventArgs(propertyName));
-        }
 
         public ITableEntity Clone(DateTime time)
         {

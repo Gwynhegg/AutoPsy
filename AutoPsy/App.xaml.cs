@@ -1,6 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace AutoPsy
 {
@@ -48,10 +46,10 @@ namespace AutoPsy
             InitializeComponent();
 
             // поднимаем графы
-            var graph = App.Graph;
-            var table = App.TableGraph;
+            Logic.Structures.DiseaseGraph graph = App.Graph;
+            Logic.Structures.TableEntitiesGraph table = App.TableGraph;
 
-            MainPage = new NavigationPage(new Pages.WelcomePage());     // Загрузка начальной страницы
+            this.MainPage = new NavigationPage(new Pages.WelcomePage());     // Загрузка начальной страницы
         }
 
         protected override void OnStart()
@@ -62,9 +60,6 @@ namespace AutoPsy
         {
         }
 
-        protected override void OnResume()
-        {
-            MainPage = new NavigationPage(new Pages.WelcomePage());
-        }
+        protected override void OnResume() => this.MainPage = new NavigationPage(new Pages.WelcomePage());
     }
 }

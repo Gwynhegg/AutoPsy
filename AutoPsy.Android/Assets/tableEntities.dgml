@@ -1,38 +1,38 @@
 ﻿<DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
 <Nodes>
   <Node Id="Rest" Label="Отдых" Category="Recomendations"></Node>
-  <Node Id="Sleep" Label="Сон" Category="Recomendations"></Node>
+  <Node Id="Sleep" Label="Сон" Category="Recomendations"></Node>  
   <Node Id="Activity" Label="Активность" Category="Recomendations"></Node>
   <Node Id="Hobby" Label="Занятие хобби" Category="Recomendations"></Node>
   <Node Id="Air" Label="Прогулка" Category="Recomendations"></Node>
   <Node Id="Work" Label="Продуктивная работа" Category="Recomendations"></Node>
-  <Node Id="Food" Label="Режим питания" Category="Recomendations"></Node>
+  <Node Id="Food" Label="Режим питания" Category="Recomendations"></Node> 
 
-  <Node Id="Stress" Label="Стресс" Category="Conditions"></Node>
-  <Node Id="Irritability" Label="Раздражительность" Category="Conditions"></Node>
-  <Node Id="Fatigue" Label="Усталость" Category="Conditions"></Node>
+  <Node Id="Stress" Label="Стресс" Category="Conditions"></Node> 
+  <Node Id="Irritability" Label="Раздражительность" Category="Conditions"></Node> 
+  <Node Id="Fatigue" Label="Усталость" Category="Conditions"></Node> 
   <Node Id="Sadness" Label="Грусть" Category="Conditions"></Node>
   <Node Id="Supression" Label="Подавленность" Category="Conditions"></Node>
-  <Node Id="Sensitive" Label="Чувствительность" Category="Conditions"></Node>
-  <Node Id="Depression" Label="Депрессивность" Category="Conditions"></Node>
-  <Node Id="Indifference" Label="Апатия" Category="Conditions"></Node>
-  <Node Id="Mania" Label="Мания" Category="Conditions"></Node>
-  <Node Id="WorkingDecrease" Label="Понижение работоспособности" Category="Conditions"></Node>
+  <Node Id="Sensitive" Label="Чувствительность" Category="Conditions"></Node> 
+  <Node Id="Depression" Label="Депрессивность" Category="Conditions"></Node> 
+  <Node Id="Indifference" Label="Апатия" Category="Conditions"></Node> 
+  <Node Id="Mania" Label="Мания" Category="Conditions"></Node> !!
+  <Node Id="WorkingDecrease" Label="Понижение работоспособности" Category="Conditions"></Node> 
   <Node Id="MentalRetardation" Label="Мыслительная заторможенность" Category="Conditions"></Node>
   <Node Id="Anxiety" Label="Тревожность" Category="Conditions"></Node>
 
-  <Node Id="Aggression" Label="Вспышка агрессии" Category="Triggers"></Node>
-  <Node Id="Impusivity" Label="Импульсивное действие" Category="Triggers"></Node>
+  <Node Id="Aggression" Label="Вспышка агрессии" Category="Triggers"></Node> 
+  <Node Id="Impusivity" Label="Импульсивное действие" Category="Triggers"></Node> 
   <Node Id="Obsession" Label="Навязчивые мысли" Category="Triggers"></Node>
   <Node Id="Rapid" Label="Ускорение речи и мышления" Category="Triggers"></Node>
-  <Node Id="Switch" Label="Перепад настроения" Category="Triggers"></Node>
+  <Node Id="Switch" Label="Перепад настроения" Category="Triggers"></Node> 
   <Node Id="OverEating" Label="Переедание" Category="Triggers"></Node>
   <Node Id="Hallucinations" Label="Галлюцинации" Category="Triggers"></Node>
-  <Node Id="SelfHarm" Label="Самоповреждение" Category="Triggers"></Node>
+  <Node Id="SelfHarm" Label="Самоповреждение" Category="Triggers"></Node> 
   <Node Id="Derealization" Label="Приступ дереализации" Category="Triggers"></Node>
-  <Node Id="Suicide" Label="Суицидальные действия" Category="Triggers"></Node>
+  <Node Id="Suicide" Label="Суицидальные действия" Category="Triggers"></Node> 
   <Node Id="Hysteria" Label="Приступ истерики" Category="Triggers"></Node>
-  <Node Id="Insomnia" Label="Бессонница" Category="Triggers"></Node>
+  <Node Id="Insomnia" Label="Бессонница" Category="Triggers"></Node> 
   <Node Id="Horrors" Label="Кошмарные сновидения" Category="Triggers"></Node>
 
 </Nodes>

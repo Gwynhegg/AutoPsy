@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace AutoPsy.CustomComponents.Charts
 {
@@ -10,15 +9,15 @@ namespace AutoPsy.CustomComponents.Charts
         private string name;        // названия элементов статистики
         public string Name
         {
-            get { return name; }
-            set { name = value; OnPropertyChanged(nameof(Name)); }
+            get => this.name;
+            set { this.name = value; OnPropertyChanged(nameof(this.Name)); }
         }
 
         private Dictionary<DateTime, int> values;       // статистические виличины, определенные по датам
         public Dictionary<DateTime, int> Values
         {
-            get { return values; }
-            set { this.values = value; OnPropertyChanged(nameof(Values)); }
+            get => this.values;
+            set { this.values = value; OnPropertyChanged(nameof(this.Values)); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

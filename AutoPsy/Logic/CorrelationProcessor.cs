@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace AutoPsy.Logic
 {
@@ -8,18 +6,18 @@ namespace AutoPsy.Logic
     {
         public static float CalculateCorrelationValue(List<float> X, List<float> Y)
         {
-            var averageX = StatisticProcessor.CalculateAverage(X);
-            var averageY = StatisticProcessor.CalculateAverage(Y);
+            var averageX = StatisticProcessor.CalculateAverage(X);      // получаем среднее по X
+            var averageY = StatisticProcessor.CalculateAverage(Y);      // получаем среднее по Y
 
-            var stdeviationX = StatisticProcessor.GetStandartDeviationValue(X, averageX);
-            var stdeviationY = StatisticProcessor.GetStandartDeviationValue(Y, averageY);
+            var stdeviationX = StatisticProcessor.GetStandartDeviationValue(X, averageX);       // получаем среднеквадратичное отклонение для X
+            var stdeviationY = StatisticProcessor.GetStandartDeviationValue(Y, averageY);       // получаем среднеквадратичное отклонение для Y
 
             var composition = new List<float>();
-            for (int i = 0; i < X.Count; i++)
+            for (var i = 0; i < X.Count; i++)
                 composition.Add(X[i] * Y[i]);
-            var averageComposition = StatisticProcessor.CalculateAverage(composition);
+            var averageComposition = StatisticProcessor.CalculateAverage(composition);      // расчитываем среднее по произведениям
 
-            var linearCorrelation = stdeviationX != 0 && stdeviationY != 0 ? (averageComposition - averageX * averageY) / (stdeviationX * stdeviationY) : 0;
+            var linearCorrelation = stdeviationX != 0 && stdeviationY != 0 ? (averageComposition - averageX * averageY) / (stdeviationX * stdeviationY) : 0;        // высчитываем коэффициент корреляции
 
             return linearCorrelation;
         }

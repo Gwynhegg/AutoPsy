@@ -1,77 +1,68 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AutoPsy.Resources;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using AutoPsy.Resources;
 
 namespace AutoPsy.Database.Entities
 {
     public class UserExperienceHandler
     {
         private UserExperience userExperience;
-        private ObservableCollection<Medicine> listOfMedicine;
+        private readonly ObservableCollection<Medicine> listOfMedicine;
         public byte stateMode { get; set; } = 0;
 
         public UserExperienceHandler(int userId)
         {
-            userExperience = new UserExperience();
-            userExperience.UserId = userId;
-            userExperience.Diagnosis = String.Empty;
-            listOfMedicine = new ObservableCollection<Medicine>();
+            this.userExperience = new UserExperience
+            {
+                UserId = userId,
+                Diagnosis = string.Empty
+            };
+            this.listOfMedicine = new ObservableCollection<Medicine>();
         }
 
-        public void CopyUserExperience(UserExperience userExperience)
-        {
-            this.userExperience = (UserExperience)userExperience.Clone();
-        }
+        public void CopyUserExperience(UserExperience userExperience) => this.userExperience = (UserExperience)userExperience.Clone();
 
 
-        public void AddNameOfClinic(string nameOfClinic)
-        {
-            userExperience.NameOfClinic = nameOfClinic;
-        }
+        public void AddNameOfClinic(string nameOfClinic) => this.userExperience.NameOfClinic = nameOfClinic;
 
-        public void AddTreatingDoctor(string doctor)
-        {
-            userExperience.TreatingDoctor = doctor;
-        }
+        public void AddTreatingDoctor(string doctor) => this.userExperience.TreatingDoctor = doctor;
 
-        public void AddAppointment(DateTime appointmentDate)
-        {
-            userExperience.Appointment = appointmentDate.Date;
-        }
+        public void AddAppointment(DateTime appointmentDate) => this.userExperience.Appointment = appointmentDate.Date;
 
-        public void AddDiagnosis(string diagnosis)
-        {
-            userExperience.Diagnosis = diagnosis;
-        }
+        public void AddDiagnosis(string diagnosis) => this.userExperience.Diagnosis = diagnosis;
 
         public void AddMedicine()
         {
-            if (listOfMedicine.Count == 0) {
-                listOfMedicine.Add(new Medicine() { NameOfMedicine = UserExperienceDefault.NameOfMedicine,
-                    Dosage = Double.Parse(UserExperienceDefault.Dosage) });
+            if (this.listOfMedicine.Count == 0)
+            {
+                this.listOfMedicine.Add(new Medicine()
+                {
+                    NameOfMedicine = UserExperienceDefault.NameOfMedicine,
+                    Dosage = double.Parse(UserExperienceDefault.Dosage)
+                });
                 return;
             }
 
-            var item = listOfMedicine.Last();
+            Medicine item = this.listOfMedicine.Last();
 
-            if (!item.NameOfMedicine.Equals(UserExperienceDefault.NameOfMedicine) && item.NameOfMedicine != String.Empty)
-                listOfMedicine.Add(new Medicine() { NameOfMedicine = UserExperienceDefault.NameOfMedicine, 
-                    Dosage = Double.Parse(UserExperienceDefault.Dosage) });         
+            if (!item.NameOfMedicine.Equals(UserExperienceDefault.NameOfMedicine) && item.NameOfMedicine != string.Empty)
+            {
+                this.listOfMedicine.Add(new Medicine()
+                {
+                    NameOfMedicine = UserExperienceDefault.NameOfMedicine,
+                    Dosage = double.Parse(UserExperienceDefault.Dosage)
+                });
+            }
         }
 
-        public void SetCurrentMedicineName(string name)
-        {
-            listOfMedicine.Last().NameOfMedicine = name;
-        }
+        public void SetCurrentMedicineName(string name) => this.listOfMedicine.Last().NameOfMedicine = name;
 
         public void SetCurrentMedicineDosage(string dosage)
         {
             try
             {
-                listOfMedicine.Last().Dosage = Double.Parse(dosage);
+                this.listOfMedicine.Last().Dosage = double.Parse(dosage);
             }
             catch
             {
@@ -79,87 +70,69 @@ namespace AutoPsy.Database.Entities
             }
         }
 
-        public ObservableCollection<Medicine> GetMedicine()
-        {
-            return listOfMedicine;
-        }
+        public ObservableCollection<Medicine> GetMedicine() => this.listOfMedicine;
 
-        public void AddScore(int score)
-        {
-            userExperience.Score = score;
-        }
+        public void AddScore(int score) => this.userExperience.Score = score;
 
-        public UserExperience GetUserExperience()
-        {
-            return userExperience;
-        }
-        public DateTime GetAppointmentDate()
-        {
-            return userExperience.Appointment;
-        }
+        public UserExperience GetUserExperience() => this.userExperience;
+        public DateTime GetAppointmentDate() => this.userExperience.Appointment;
 
         public string GetClinic()
         {
-            if (userExperience.NameOfClinic != null)
-                return userExperience.NameOfClinic;
-            else 
+            if (this.userExperience.NameOfClinic != null)
+                return this.userExperience.NameOfClinic;
+            else
                 return AuxiliaryResources.NotMentioned;
         }
 
         public string GetDoctor()
         {
-            if (userExperience.TreatingDoctor != null)
-                return userExperience.TreatingDoctor;
+            if (this.userExperience.TreatingDoctor != null)
+                return this.userExperience.TreatingDoctor;
             else
                 return AuxiliaryResources.NotMentioned;
         }
 
-        public string GetDiagnosis()
-        {
-            return userExperience.Diagnosis;
-        }
+        public string GetDiagnosis() => this.userExperience.Diagnosis;
 
-        public int GetScore()
-        {
-            return userExperience.Score;
-        }
+        public int GetScore() => this.userExperience.Score;
 
         public bool CheckCorrectness()
         {
-            if (userExperience.Appointment != null && userExperience.Diagnosis != String.Empty && userExperience.Diagnosis != UserExperienceDefault.Diagnosis) return true; else return false;
+            if (this.userExperience.Appointment != null && this.userExperience.Diagnosis != string.Empty && this.userExperience.Diagnosis != UserExperienceDefault.Diagnosis) return true; else return false;
         }
 
         public void CreateUserExperienceInfo()
-        {            
+        {
             CodifyListOfMedicine();
 
-            if (stateMode == 0)
-                App.Connector.CreateAndInsertData<UserExperience>(userExperience);
+            if (this.stateMode == 0)
+                App.Connector.CreateAndInsertData<UserExperience>(this.userExperience);
             else
-                App.Connector.UpdateData<UserExperience>(userExperience);
+                App.Connector.UpdateData<UserExperience>(this.userExperience);
         }
 
         private void CodifyListOfMedicine()
         {
-            string codifiedMedicine = String.Empty;
-            foreach (Medicine medicine in listOfMedicine)
+            var codifiedMedicine = string.Empty;
+            foreach (Medicine medicine in this.listOfMedicine)
             {
-                string temp = String.Join(", ", medicine.NameOfMedicine, medicine.Dosage);
-                codifiedMedicine += String.Concat(temp, '\n');
+                var temp = string.Join(", ", medicine.NameOfMedicine, medicine.Dosage);
+                codifiedMedicine += string.Concat(temp, '\n');
             }
-            userExperience.IndexOfMedicine = codifiedMedicine;
+            this.userExperience.IndexOfMedicine = codifiedMedicine;
         }
 
         public void RecreateListOfMedicine(Database.Entities.UserExperience userExperience)
         {
             if (userExperience.IndexOfMedicine == null) return;
 
-            string[] medicineRequest = userExperience.IndexOfMedicine.Split('\n');
+            var medicineRequest = userExperience.IndexOfMedicine.Split('\n');
 
-            foreach (string subRequest in medicineRequest)
+            foreach (var subRequest in medicineRequest)
             {
-                string[] tempString = subRequest.Split(',');
-                if (tempString.Length == 2) listOfMedicine.Add(new Medicine() { NameOfMedicine = tempString[0], Dosage = Double.Parse(tempString[1].Trim()) });
+                var tempString = subRequest.Split(',');
+                if (tempString.Length == 2) this.listOfMedicine.Add(new Medicine() { NameOfMedicine = tempString[0], Dosage = double.Parse(tempString[1].Trim()) });
             }
         }
     }

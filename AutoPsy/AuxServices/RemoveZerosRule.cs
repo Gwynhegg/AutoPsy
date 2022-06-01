@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AutoPsy.Resources;
+﻿using AutoPsy.Resources;
 
 namespace AutoPsy.AuxServices
 {

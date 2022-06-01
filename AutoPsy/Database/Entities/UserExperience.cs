@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using AutoPsy.Resources;
 using SQLite;
-using System.Text;
-using AutoPsy.Resources;
+using System;
+using System.ComponentModel;
 
 namespace AutoPsy.Database.Entities
 {
@@ -14,60 +12,60 @@ namespace AutoPsy.Database.Entities
         [PrimaryKey, AutoIncrement]
         public int Id
         {
-            get { return id; }
-            set { this.id = value; OnPropertyChanged(nameof(Id)); }
+            get => this.id;
+            set { this.id = value; OnPropertyChanged(nameof(this.Id)); }
         }
 
         private int userId;
         [NotNull]
         public int UserId
         {
-            get { return userId; }
-            set { this.userId = value; OnPropertyChanged(nameof(UserId)); }
+            get => this.userId;
+            set { this.userId = value; OnPropertyChanged(nameof(this.UserId)); }
         }
 
         private string nameOfClinic = AuxiliaryResources.NotMentioned;
         public string NameOfClinic
         {
-            get { return nameOfClinic; }
-            set { this.nameOfClinic = value; OnPropertyChanged(nameof(NameOfClinic)); }
+            get => this.nameOfClinic;
+            set { this.nameOfClinic = value; OnPropertyChanged(nameof(this.NameOfClinic)); }
         }
 
         private string treatingDoctor = AuxiliaryResources.NotMentioned;
         public string TreatingDoctor
         {
-            get { return treatingDoctor; }
-            set { this.treatingDoctor = value; OnPropertyChanged(nameof(TreatingDoctor)); }
+            get => this.treatingDoctor;
+            set { this.treatingDoctor = value; OnPropertyChanged(nameof(this.TreatingDoctor)); }
         }
 
         private DateTime appointment;
         [NotNull]
         public DateTime Appointment
         {
-            get { return appointment; }
-            set { this.appointment = value; OnPropertyChanged(nameof(Appointment)); }
+            get => this.appointment;
+            set { this.appointment = value; OnPropertyChanged(nameof(this.Appointment)); }
         }
 
         private string diagnosis;
         [NotNull]
         public string Diagnosis
         {
-            get { return diagnosis; }
-            set { this.diagnosis = value; OnPropertyChanged(nameof(Diagnosis)); }
+            get => this.diagnosis;
+            set { this.diagnosis = value; OnPropertyChanged(nameof(this.Diagnosis)); }
         }
 
         private string indexOfMedicine;
         public string IndexOfMedicine
         {
-            get { return indexOfMedicine; }
-            set { this.indexOfMedicine = value; OnPropertyChanged(nameof(IndexOfMedicine)); }
+            get => this.indexOfMedicine;
+            set { this.indexOfMedicine = value; OnPropertyChanged(nameof(this.IndexOfMedicine)); }
         }
 
         private int score;
         public int Score
         {
-            get { return score; }
-            set { this.score = value; OnPropertyChanged(nameof(Score)); }
+            get => this.score;
+            set { this.score = value; OnPropertyChanged(nameof(this.Score)); }
         }
 
 
@@ -76,13 +74,15 @@ namespace AutoPsy.Database.Entities
 
         public object Clone()
         {
-            UserExperience clone = new UserExperience();
-            clone.id = this.id;
-            clone.appointment = this.appointment;
-            if (this.NameOfClinic != null) clone.nameOfClinic = String.Copy(this.nameOfClinic);
-            if (this.IndexOfMedicine != null) clone.indexOfMedicine = String.Copy(this.indexOfMedicine);
-            if (this.TreatingDoctor != null) clone.treatingDoctor = String.Copy(this.treatingDoctor);
-            clone.diagnosis = String.Copy(this.diagnosis);
+            var clone = new UserExperience
+            {
+                id = this.id,
+                appointment = this.appointment
+            };
+            if (this.NameOfClinic != null) clone.nameOfClinic = string.Copy(this.nameOfClinic);
+            if (this.IndexOfMedicine != null) clone.indexOfMedicine = string.Copy(this.indexOfMedicine);
+            if (this.TreatingDoctor != null) clone.treatingDoctor = string.Copy(this.treatingDoctor);
+            clone.diagnosis = string.Copy(this.diagnosis);
             clone.score = this.score;
             clone.userId = this.userId;
             return clone;

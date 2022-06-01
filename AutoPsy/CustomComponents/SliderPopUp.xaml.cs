@@ -1,9 +1,4 @@
-﻿using AutoPsy.Pages.TablePages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -18,7 +13,7 @@ namespace AutoPsy.CustomComponents
         {
             InitializeComponent();
 
-            ParameterName.Text = entity.Name;
+            this.ParameterName.Text = entity.Name;
 
             if (entity is Database.Entities.TableRecomendation) InitializeRecomendationValue();
             else if (entity is Database.Entities.TableCondition) InitializeConditionValue();
@@ -27,32 +22,32 @@ namespace AutoPsy.CustomComponents
 
         private void InitializeRecomendationValue()
         {
-            Slider slider = new Slider() { Maximum = 5, Minimum = 1, Value = 3, MaximumTrackColor = Color.Green, MinimumTrackColor = Color.Red };
-            ParameterValue.Children.Add(slider);
+            var slider = new Slider() { Maximum = 5, Minimum = 1, Value = 3, MaximumTrackColor = Color.Green, MinimumTrackColor = Color.Red };
+            this.ParameterValue.Children.Add(slider);
             slider.ValueChanged += SliderValueChanged;
         }
 
         private void InitializeConditionValue()
         {
             // ПРИДУМАТЬ, КАК МОЖНО МОДИФИЦИРОВАТЬ СВОЙСТВА ДАННОГО ПАРАМЕТРА
-            Slider slider = new Slider() { Maximum = 5, Minimum = 1, Value = 3, MaximumTrackColor = Color.Green, MinimumTrackColor = Color.Red };
-            ParameterValue.Children.Add(slider);
+            var slider = new Slider() { Maximum = 5, Minimum = 1, Value = 3, MaximumTrackColor = Color.Green, MinimumTrackColor = Color.Red };
+            this.ParameterValue.Children.Add(slider);
             slider.ValueChanged += SliderValueChanged;
         }
 
         private void InitializeTriggerValue()
         {
-            Switch parameterSwitch = new Switch() { OnColor = Color.Red };
-            ParameterValue.Children.Add(parameterSwitch);
+            var parameterSwitch = new Switch() { OnColor = Color.Red };
+            this.ParameterValue.Children.Add(parameterSwitch);
             parameterSwitch.Toggled += SwitchToggled;
         }
 
-        private async void CancelButton_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        private async void CancelButton_Clicked(object sender, EventArgs e) => await this.Navigation.PopModalAsync();
 
-        private async void AcceptButton_Clicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
+        private async void AcceptButton_Clicked(object sender, EventArgs e) => await this.Navigation.PopModalAsync();
 
-        private void SliderValueChanged(object sender, EventArgs e) => value = (byte)(sender as Slider).Value;
+        private void SliderValueChanged(object sender, EventArgs e) => this.value = (byte)(sender as Slider).Value;
 
-        private void SwitchToggled(object sender, EventArgs e) => value = (sender as Switch).IsToggled ? (byte)1 : (byte)0;
+        private void SwitchToggled(object sender, EventArgs e) => this.value = (sender as Switch).IsToggled ? (byte)1 : (byte)0;
     }
 }

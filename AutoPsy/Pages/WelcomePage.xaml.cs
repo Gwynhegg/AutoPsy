@@ -1,8 +1,8 @@
-﻿using System;
+﻿using AutoPsy.Database.Entities;
+using System;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using System.Linq;
-using AutoPsy.Database.Entities;
 
 namespace AutoPsy.Pages
 {
@@ -16,24 +16,26 @@ namespace AutoPsy.Pages
 
             if (usersExisted)       // если пользователь существует, то...
             {
-                var user = App.Connector.SelectAll<User>().First();
-                if (user.HashPassword is null || user.HashPassword.Equals(String.Empty))        // Если пароль пользователя не задан...
-                    Navigation.PushModalAsync(new MainPage());      // переходим сразу на главную форму
+                User user = App.Connector.SelectAll<User>().First();
+                if (user.HashPassword is null || user.HashPassword.Equals(string.Empty))        // Если пароль пользователя не задан...
+                    this.Navigation.PushModalAsync(new MainPage());      // переходим сразу на главную форму
                 else
-                    Navigation.PushModalAsync(new CheckPasswordPage());     // переходим на страницу для ввода пароля
+                    this.Navigation.PushModalAsync(new CheckPasswordPage());     // переходим на страницу для ввода пароля
             }
-            else 
+            else
+            {
                 SetPrivacyPoliceView();        // иначе отображаем условия работы с приложением для нового пользователя
+            }
         }
 
         // Метод нажатия на кнопку согласия перенаправляет на страницу регистрации
-        private async void AcceptPolicy_Clicked(object sender, EventArgs e) => await Navigation.PushModalAsync(new RegisterPage());
-        
+        private async void AcceptPolicy_Clicked(object sender, EventArgs e) => await this.Navigation.PushModalAsync(new RegisterPage());
+
         // Отображаем правила пользования
         private void SetPrivacyPoliceView()
         {
-            LoadingView.IsVisible = false;
-            PolicyView.IsVisible = true;
+            this.LoadingView.IsVisible = false;
+            this.PolicyView.IsVisible = true;
         }
 
     }
